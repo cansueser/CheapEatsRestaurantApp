@@ -20,7 +20,8 @@ class OrderViewController: UIViewController {
     func initTableView() {
         orderTableView.delegate = self
         orderTableView.dataSource = self
-        orderTableView.register(UINib(nibName: "TableViewCellAdded", bundle: nil), forCellReuseIdentifier: "orderCell")
+        orderTableView.separatorStyle = .none
+        orderTableView.register(UINib(nibName: "ProductTableViewCell", bundle: nil), forCellReuseIdentifier: "orderCell")
         orderTableView.layer.cornerRadius = 10
         
     }

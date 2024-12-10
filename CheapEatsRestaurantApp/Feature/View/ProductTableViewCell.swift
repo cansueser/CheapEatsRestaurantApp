@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TableViewCellAdded: UITableViewCell {
+class ProductTableViewCell: UITableViewCell {
 
     @IBOutlet weak var foodImage: UIImageView!
     @IBOutlet weak var foodNameLabel: UILabel!
@@ -32,9 +32,16 @@ class TableViewCellAdded: UITableViewCell {
         super.layoutSubviews()
         contentView.backgroundColor = .textWhite
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 6, left: 10, bottom: 6, right: 10))
-        contentView.roundCorners(corners: [.allCorners], radius: 10, borderColor: UIColor(named: "ButtonColor"), borderWidth: 2)
-        foodImage.roundCorners(corners: [.allCorners], radius: 10, borderColor: UIColor(named: "ButtonColor"), borderWidth: 1)
+        configureView(contentView, cornerRadius: 10, borderColor: .button, borderWidth: 2)
+        configureView(foodImage, cornerRadius: 10, borderColor: .button, borderWidth: 1)
+        
        
+    } 
+    func configureView(_ view: UIView, cornerRadius: CGFloat, borderColor: UIColor?, borderWidth: CGFloat) {
+        view.layer.cornerRadius = cornerRadius
+        view.layer.borderColor = borderColor?.cgColor
+        view.layer.borderWidth = borderWidth
+        view.layer.masksToBounds = true
     }
     
 }

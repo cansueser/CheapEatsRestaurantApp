@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 extension OrderViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! TableViewCellAdded
+        let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! ProductTableViewCell
         cell.foodImage.image = UIImage(named: "testImage")
         return cell
         

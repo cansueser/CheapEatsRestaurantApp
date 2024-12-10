@@ -14,9 +14,10 @@
 		7E652CFD2D0711C100137ECA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E652CFC2D0711C100137ECA /* Assets.xcassets */; };
 		7E652D002D0711C100137ECA /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 7E652CFF2D0711C100137ECA /* Base */; };
 		7E652D102D0718B200137ECA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E652D0F2D0718B200137ECA /* GoogleService-Info.plist */; };
-		7E652D132D07218400137ECA /* TableViewCellAdded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E652D112D07218400137ECA /* TableViewCellAdded.swift */; };
-		7E652D142D07218400137ECA /* TableViewCellAdded.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E652D122D07218400137ECA /* TableViewCellAdded.xib */; };
+		7E652D132D07218400137ECA /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E652D112D07218400137ECA /* ProductTableViewCell.swift */; };
+		7E652D142D07218400137ECA /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E652D122D07218400137ECA /* ProductTableViewCell.xib */; };
 		7E652D172D07275D00137ECA /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 7E652D162D07275D00137ECA /* TextFieldEffects */; };
+		7E78EC392D08353C001A3782 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E78EC382D08353C001A3782 /* UIViewController+Extension.swift */; };
 		7EBED5E12D077BAB00E7CACB /* OrderViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBED5E02D077BAB00E7CACB /* OrderViewController+TableView.swift */; };
 		7EBED5E32D07837F00E7CACB /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBED5E22D07837F00E7CACB /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
@@ -31,8 +32,9 @@
 		7E652CFF2D0711C100137ECA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7E652D012D0711C100137ECA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E652D0F2D0718B200137ECA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		7E652D112D07218400137ECA /* TableViewCellAdded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellAdded.swift; sourceTree = "<group>"; };
-		7E652D122D07218400137ECA /* TableViewCellAdded.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCellAdded.xib; sourceTree = "<group>"; };
+		7E652D112D07218400137ECA /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
+		7E652D122D07218400137ECA /* ProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
+		7E78EC382D08353C001A3782 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		7EBED5E02D077BAB00E7CACB /* OrderViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderViewController+TableView.swift"; sourceTree = "<group>"; };
 		7EBED5E22D07837F00E7CACB /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				7EBED5E22D07837F00E7CACB /* UIView+Extension.swift */,
+				7E78EC382D08353C001A3782 /* UIViewController+Extension.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -142,8 +145,8 @@
 		7E652D0E2D0717D600137ECA /* SubView */ = {
 			isa = PBXGroup;
 			children = (
-				7E652D112D07218400137ECA /* TableViewCellAdded.swift */,
-				7E652D122D07218400137ECA /* TableViewCellAdded.xib */,
+				7E652D112D07218400137ECA /* ProductTableViewCell.swift */,
+				7E652D122D07218400137ECA /* ProductTableViewCell.xib */,
 			);
 			name = SubView;
 			sourceTree = "<group>";
@@ -216,7 +219,7 @@
 				7E652D102D0718B200137ECA /* GoogleService-Info.plist in Resources */,
 				7E652D002D0711C100137ECA /* Base in Resources */,
 				7E652CFB2D0711C000137ECA /* Base in Resources */,
-				7E652D142D07218400137ECA /* TableViewCellAdded.xib in Resources */,
+				7E652D142D07218400137ECA /* ProductTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,9 +231,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EBED5E32D07837F00E7CACB /* UIView+Extension.swift in Sources */,
-				7E652D132D07218400137ECA /* TableViewCellAdded.swift in Sources */,
+				7E652D132D07218400137ECA /* ProductTableViewCell.swift in Sources */,
 				7E652CF82D0711C000137ECA /* OrderViewController.swift in Sources */,
 				7EBED5E12D077BAB00E7CACB /* OrderViewController+TableView.swift in Sources */,
+				7E78EC392D08353C001A3782 /* UIViewController+Extension.swift in Sources */,
 				7E652CF42D0711C000137ECA /* AppDelegate.swift in Sources */,
 				7E652CF62D0711C000137ECA /* SceneDelegate.swift in Sources */,
 			);
