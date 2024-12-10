@@ -93,7 +93,7 @@
         <!--Product Added-->
         <scene sceneID="COQ-lF-0Mc">
             <objects>
-                <viewController id="L7P-jM-gad" sceneMemberID="viewController">
+                <viewController id="L7P-jM-gad" customClass="ProductAddedViewController" customModule="CheapEatsRestaurantApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="c83-D9-gpH">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -107,17 +107,18 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c07-FW-H0G" userLabel="ImageBackView">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="230"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fal-1P-YCm">
-                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="230"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testImage" translatesAutoresizingMaskIntoConstraints="NO" id="fal-1P-YCm">
+                                                        <rect key="frame" x="10" y="10" width="373" height="210"/>
+                                                        <color key="backgroundColor" red="0.80131826070000001" green="0.23568709630000001" blue="0.96949500639999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" name="TitleColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="fal-1P-YCm" secondAttribute="bottom" id="Bcz-ip-OmO"/>
-                                                    <constraint firstItem="fal-1P-YCm" firstAttribute="top" secondItem="c07-FW-H0G" secondAttribute="top" id="Mtp-pJ-EJK"/>
-                                                    <constraint firstAttribute="trailing" secondItem="fal-1P-YCm" secondAttribute="trailing" id="Sd7-xB-gBY"/>
+                                                    <constraint firstAttribute="bottom" secondItem="fal-1P-YCm" secondAttribute="bottom" constant="10" id="9sk-UY-ixJ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="fal-1P-YCm" secondAttribute="trailing" constant="10" id="W1b-hb-3Ly"/>
+                                                    <constraint firstItem="fal-1P-YCm" firstAttribute="top" secondItem="c07-FW-H0G" secondAttribute="top" constant="10" id="Zsv-P8-SSh"/>
                                                     <constraint firstAttribute="height" constant="230" id="lxR-kK-jgG"/>
-                                                    <constraint firstItem="fal-1P-YCm" firstAttribute="leading" secondItem="c07-FW-H0G" secondAttribute="leading" id="mmb-Fk-mfd"/>
+                                                    <constraint firstItem="fal-1P-YCm" firstAttribute="leading" secondItem="c07-FW-H0G" secondAttribute="leading" constant="10" id="xBq-jO-hfi"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jDj-jm-hzq" userLabel="ProductNameBackView">
@@ -130,10 +131,11 @@
                                                         <color key="textColor" name="ButtonColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ürün Adı" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tYK-wX-zdb">
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ürün Adı" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" sizingRule="oversize" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tYK-wX-zdb">
                                                         <rect key="frame" x="8" y="43" width="377" height="34"/>
+                                                        <color key="textColor" name="TextBlackColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" textContentType="name"/>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemGray3Color"/>
@@ -155,8 +157,9 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vPk-h3-vCc">
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vPk-h3-vCc">
                                                         <rect key="frame" x="8" y="41" width="377" height="34"/>
+                                                        <color key="textColor" name="TextBlackColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
@@ -180,8 +183,9 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Önerilen Fiyat 70" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="94i-jl-ERJ">
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Önerilen Fiyat 70" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="94i-jl-ERJ">
                                                         <rect key="frame" x="8" y="41" width="377" height="34"/>
+                                                        <color key="textColor" name="TextBlackColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
@@ -253,14 +257,16 @@
                                                     <constraint firstItem="IBe-M6-Pel" firstAttribute="leading" secondItem="4fY-BO-jhX" secondAttribute="leading" constant="8" id="veD-cr-EtP"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Fp-7d-Ti3">
-                                                <rect key="frame" x="279" y="957" width="95" height="35"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Fp-7d-Ti3">
+                                                <rect key="frame" x="287" y="903" width="87" height="39.333333333333371"/>
                                                 <color key="tintColor" name="ButtonColor"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Next &gt;">
                                                     <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="21"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="saveAndNextButton:" destination="L7P-jM-gad" eventType="touchUpInside" id="LxW-sy-f6j"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FML-kL-hYA" userLabel="clockBackView">
                                                 <rect key="frame" x="0.0" y="794" width="393" height="94"/>
@@ -278,8 +284,8 @@
                                                             <constraint firstAttribute="height" constant="36" id="gBK-oW-way"/>
                                                             <constraint firstAttribute="width" constant="111" id="of3-ii-GnE"/>
                                                         </constraints>
-                                                        <date key="date" timeIntervalSinceReferenceDate="755539189.90643501">
-                                                            <!--2024-12-10 15:59:49 +0000-->
+                                                        <date key="date" timeIntervalSinceReferenceDate="755539382.361076">
+                                                            <!--2024-12-10 16:03:02 +0000-->
                                                         </date>
                                                         <date key="minimumDate" timeIntervalSinceReferenceDate="725796000">
                                                             <!--2024-01-01 10:00:00 +0000-->
@@ -305,8 +311,8 @@
                                                             <constraint firstAttribute="height" constant="36" id="JIF-ac-f7O"/>
                                                             <constraint firstAttribute="width" constant="104" id="vVL-52-wAz"/>
                                                         </constraints>
-                                                        <date key="date" timeIntervalSinceReferenceDate="755539189.90696704">
-                                                            <!--2024-12-10 15:59:49 +0000-->
+                                                        <date key="date" timeIntervalSinceReferenceDate="755539382.36133599">
+                                                            <!--2024-12-10 16:03:02 +0000-->
                                                         </date>
                                                         <date key="minimumDate" timeIntervalSinceReferenceDate="725796000">
                                                             <!--2024-01-01 10:00:00 +0000-->
@@ -339,10 +345,11 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ürün Açıklaması" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qT5-bi-Jvj">
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ürün Açıklaması" minimumFontSize="17" sizingRule="oversize" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qT5-bi-Jvj">
                                                         <rect key="frame" x="8" y="44" width="377" height="34"/>
+                                                        <color key="textColor" name="TextBlackColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemGrayColor"/>
@@ -378,9 +385,11 @@
                                             <constraint firstAttribute="trailing" secondItem="wkR-Rc-geU" secondAttribute="trailing" id="dj6-qx-zgn"/>
                                             <constraint firstItem="jDj-jm-hzq" firstAttribute="leading" secondItem="J8R-JF-LrW" secondAttribute="leading" id="esq-3R-mzc"/>
                                             <constraint firstItem="wkR-Rc-geU" firstAttribute="leading" secondItem="J8R-JF-LrW" secondAttribute="leading" id="fMv-AS-nj5"/>
+                                            <constraint firstAttribute="trailing" secondItem="3Fp-7d-Ti3" secondAttribute="trailing" constant="19" id="fdD-FJ-uN0"/>
                                             <constraint firstAttribute="trailing" secondItem="9bO-qu-Gdf" secondAttribute="trailing" id="g5q-sZ-bSP"/>
                                             <constraint firstItem="jDj-jm-hzq" firstAttribute="top" secondItem="c07-FW-H0G" secondAttribute="bottom" id="qop-id-ayL"/>
                                             <constraint firstAttribute="trailing" secondItem="4fY-BO-jhX" secondAttribute="trailing" id="rfy-aG-w5c"/>
+                                            <constraint firstItem="3Fp-7d-Ti3" firstAttribute="top" secondItem="FML-kL-hYA" secondAttribute="bottom" constant="15" id="uvN-Go-4NJ"/>
                                             <constraint firstItem="c9F-UG-ow1" firstAttribute="leading" secondItem="J8R-JF-LrW" secondAttribute="leading" id="vaH-Rd-r78"/>
                                             <constraint firstItem="c9F-UG-ow1" firstAttribute="top" secondItem="9bO-qu-Gdf" secondAttribute="bottom" id="yRy-If-Dh8"/>
                                         </constraints>
@@ -406,6 +415,14 @@
                     </view>
                     <navigationItem key="navigationItem" title="Product Added" id="jVC-iD-xl1"/>
                     <size key="freeformSize" width="393" height="1200"/>
+                    <connections>
+                        <outlet property="newPriceTextField" destination="94i-jl-ERJ" id="hMo-4g-DJW"/>
+                        <outlet property="oldPriceTextField" destination="vPk-h3-vCc" id="uIp-sZ-SpW"/>
+                        <outlet property="productDescriptionTextField" destination="qT5-bi-Jvj" id="yVH-IK-Oiq"/>
+                        <outlet property="productNameTextField" destination="tYK-wX-zdb" id="d6L-3D-QGt"/>
+                        <outlet property="saveAndNextButton" destination="3Fp-7d-Ti3" id="kyL-qD-JsU"/>
+                        <outlet property="selectedImageView" destination="fal-1P-YCm" id="TlF-qc-zge"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aa3-S0-gFU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -461,6 +478,7 @@
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="plus.rectangle" catalog="system" width="128" height="93"/>
+        <image name="testImage" width="640" height="359"/>
         <namedColor name="BGColor">
             <color red="0.99599999189376831" green="0.98000001907348633" blue="0.95300000905990601" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
@@ -469,6 +487,9 @@
         </namedColor>
         <namedColor name="EmphasizeColor">
             <color red="0.94900000095367432" green="0.82700002193450928" blue="0.28600001335144043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextBlackColor">
+            <color red="0.2199999988079071" green="0.21600000560283661" blue="0.21600000560283661" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="TextWhiteColor">
             <color red="0.98799997568130493" green="0.98799997568130493" blue="0.98799997568130493" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

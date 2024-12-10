@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E4D22902D08CB15005CE604 /* ProductAddedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4D228F2D08CB15005CE604 /* ProductAddedViewController.swift */; };
 		7E652CF42D0711C000137ECA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E652CF32D0711C000137ECA /* AppDelegate.swift */; };
 		7E652CF62D0711C000137ECA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E652CF52D0711C000137ECA /* SceneDelegate.swift */; };
 		7E652CF82D0711C000137ECA /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E652CF72D0711C000137ECA /* OrderViewController.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E4D228F2D08CB15005CE604 /* ProductAddedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAddedViewController.swift; sourceTree = "<group>"; };
 		7E652CF02D0711C000137ECA /* CheapEatsRestaurantApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheapEatsRestaurantApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E652CF32D0711C000137ECA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E652CF52D0711C000137ECA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				7E652D0E2D0717D600137ECA /* SubView */,
 				7E652CF72D0711C000137ECA /* OrderViewController.swift */,
 				7EBED5E02D077BAB00E7CACB /* OrderViewController+TableView.swift */,
+				7E4D228F2D08CB15005CE604 /* ProductAddedViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 			files = (
 				7EBED5E32D07837F00E7CACB /* UIView+Extension.swift in Sources */,
 				7E652D132D07218400137ECA /* ProductTableViewCell.swift in Sources */,
+				7E4D22902D08CB15005CE604 /* ProductAddedViewController.swift in Sources */,
 				7E652CF82D0711C000137ECA /* OrderViewController.swift in Sources */,
 				7EBED5E12D077BAB00E7CACB /* OrderViewController+TableView.swift in Sources */,
 				7E78EC392D08353C001A3782 /* UIViewController+Extension.swift in Sources */,
