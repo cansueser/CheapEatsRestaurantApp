@@ -10,9 +10,13 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var saveAndNextButton: UIButton!
     @IBOutlet weak var deliveryTypeSegmentControl: UISegmentedControl!
     @IBOutlet weak var discountSegmentControl: UISegmentedControl!
+    @IBOutlet weak var startTimePicker: UIDatePicker!
+    @IBOutlet weak var lastTimePicker: UIDatePicker!
+    
     weak var delegate: FilterTypeViewModelOutputProtocol?
     var filterTypeViewModel: FilterTypeViewModelProtocol = FilterTypeViewModel()
-    
+    private var viewModel: TimeViewModel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,6 +29,19 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
         // TextField Delegate'lerini ayarla
              oldPriceTextField.delegate = self
              newPriceTextField.delegate = self
+        
+        // ViewModel'i başlat
+        viewModel = TimeViewModel()
+        
+        // DatePicker ayarları
+        startTimePicker.datePickerMode = .time
+        lastTimePicker.datePickerMode = .time
+        
+        if #available(iOS 14, *) {
+            startTimePicker.preferredDatePickerStyle = .wheels
+            lastTimePicker.preferredDatePickerStyle = .wheels
+        }
+
     }
     override func viewWillAppear(_ animated: Bool) {
         deliveryTypeSegmentControl.selectedSegmentIndex = filterTypeViewModel.selectedDeliveryType
@@ -67,6 +84,8 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
                // Eğer birisi boşsa hata mesajı
                showAlert(message: "Lütfen tüm alanları doldurun!")
            }
+        viewModel.logSelectedTimes()
+
        }
 
        private func showAlert(message: String) {
@@ -91,6 +110,14 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
         print(sender.selectedSegmentIndex)
         
     }
+    @IBAction func startTimePickerChanged(_ sender: UIDatePicker) {
+            viewModel.updateTime1(sender.date)
+        }
+        
+        @IBAction func lastTimePicker2Changed(_ sender: UIDatePicker) {
+            viewModel.updateTime2(sender.date)
+        }
+        
     
 }
 

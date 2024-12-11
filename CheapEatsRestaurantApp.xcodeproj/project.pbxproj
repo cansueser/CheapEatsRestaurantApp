@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E33F5132D0A2F5400891944 /* TimeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E33F5122D0A2F5400891944 /* TimeModel.swift */; };
+		7E33F5152D0A2F7B00891944 /* TimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E33F5142D0A2F7B00891944 /* TimeViewModel.swift */; };
 		7E3FB7BC2D098A2B00359003 /* FilterTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3FB7BB2D098A2A00359003 /* FilterTypeViewModel.swift */; };
 		7E3FB7BE2D098E0600359003 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3FB7BD2D098E0600359003 /* FilterViewController.swift */; };
 		7E4D22902D08CB15005CE604 /* ProductAddedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4D228F2D08CB15005CE604 /* ProductAddedViewController.swift */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E33F5122D0A2F5400891944 /* TimeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeModel.swift; sourceTree = "<group>"; };
+		7E33F5142D0A2F7B00891944 /* TimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewModel.swift; sourceTree = "<group>"; };
 		7E3FB7BB2D098A2A00359003 /* FilterTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTypeViewModel.swift; sourceTree = "<group>"; };
 		7E3FB7BD2D098E0600359003 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		7E4D228F2D08CB15005CE604 /* ProductAddedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAddedViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 		7E652D0B2D07177700137ECA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7E33F5122D0A2F5400891944 /* TimeModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				7E3FB7BB2D098A2A00359003 /* FilterTypeViewModel.swift */,
+				7E33F5142D0A2F7B00891944 /* TimeViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -240,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EBED5E32D07837F00E7CACB /* UIView+Extension.swift in Sources */,
+				7E33F5152D0A2F7B00891944 /* TimeViewModel.swift in Sources */,
 				7E652D132D07218400137ECA /* ProductTableViewCell.swift in Sources */,
 				7E3FB7BC2D098A2B00359003 /* FilterTypeViewModel.swift in Sources */,
 				7E4D22902D08CB15005CE604 /* ProductAddedViewController.swift in Sources */,
@@ -249,6 +256,7 @@
 				7E78EC392D08353C001A3782 /* UIViewController+Extension.swift in Sources */,
 				7E652CF42D0711C000137ECA /* AppDelegate.swift in Sources */,
 				7E652CF62D0711C000137ECA /* SceneDelegate.swift in Sources */,
+				7E33F5132D0A2F5400891944 /* TimeModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

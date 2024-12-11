@@ -185,10 +185,19 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Önerilen Fiyat 70" textAlignment="justified" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="94i-jl-ERJ">
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="70" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="94i-jl-ERJ">
                                                         <rect key="frame" x="8" y="41" width="377" height="34"/>
-                                                        <color key="textColor" name="TextBlackColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <attributedString key="attributedText">
+                                                            <fragment content="TL">
+                                                                <attributes>
+                                                                    <color key="NSColor" red="0.14908531310000001" green="0.2597853839" blue="0.27768415210000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                    <font key="NSFont" metaFont="system" size="14"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tighteningFactorForTruncation="0.0">
+                                                                        <lineBreakStrategy key="lineBreakStrategy" pushOut="YES" hangulWordPriority="YES" standard="YES"/>
+                                                                    </paragraphStyle>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                 </subviews>
@@ -275,12 +284,13 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <datePicker tag="1" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Om1-sC-Amb">
-                                                        <rect key="frame" x="8" y="41" width="111" height="36"/>
-                                                        <color key="backgroundColor" red="0.97131830450000001" green="0.95874017479999996" blue="0.88617342710000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <datePicker multipleTouchEnabled="YES" contentMode="scaleToFill" highlighted="YES" selected="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Om1-sC-Amb">
+                                                        <rect key="frame" x="27" y="41" width="90" height="50"/>
+                                                        <color key="backgroundColor" name="IconBG"/>
+                                                        <color key="tintColor" name="TextBlackColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="36" id="gBK-oW-way"/>
-                                                            <constraint firstAttribute="width" constant="111" id="of3-ii-GnE"/>
+                                                            <constraint firstAttribute="height" constant="50" id="gBK-oW-way"/>
+                                                            <constraint firstAttribute="width" constant="90" id="of3-ii-GnE"/>
                                                         </constraints>
                                                         <date key="date" timeIntervalSinceReferenceDate="755539382.361076">
                                                             <!--2024-12-10 16:03:02 +0000-->
@@ -291,46 +301,55 @@
                                                         <date key="maximumDate" timeIntervalSinceReferenceDate="788871600">
                                                             <!--2025-12-31 11:00:00 +0000-->
                                                         </date>
+                                                        <locale key="locale" localeIdentifier="tr"/>
+                                                        <connections>
+                                                            <action selector="startTimePickerChanged:" destination="L7P-jM-gad" eventType="valueChanged" id="12A-am-rU1"/>
+                                                        </connections>
                                                     </datePicker>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mB7-7z-o0a">
-                                                        <rect key="frame" x="120" y="41" width="17" height="36"/>
+                                                        <rect key="frame" x="117" y="41" width="16" height="50"/>
                                                         <color key="backgroundColor" red="0.32327002290000001" green="0.42145460839999999" blue="0.30231472850000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="36" id="92u-kw-FUc"/>
+                                                            <constraint firstAttribute="height" constant="50" id="92u-kw-FUc"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <datePicker tag="1" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="47c-gS-OYV">
-                                                        <rect key="frame" x="138" y="41" width="104" height="36"/>
-                                                        <color key="backgroundColor" red="0.96810072660000002" green="0.92207843069999995" blue="0.8522583842" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <datePicker contentMode="scaleToFill" highlighted="YES" selected="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fix-eC-AJ6">
+                                                        <rect key="frame" x="133" y="41" width="90" height="50"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="tintColor" name="TextBlackColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="36" id="JIF-ac-f7O"/>
-                                                            <constraint firstAttribute="width" constant="104" id="vVL-52-wAz"/>
+                                                            <constraint firstAttribute="height" constant="50" id="75B-ms-cCy"/>
                                                         </constraints>
-                                                        <date key="date" timeIntervalSinceReferenceDate="755539382.36133599">
-                                                            <!--2024-12-10 16:03:02 +0000-->
+                                                        <date key="date" timeIntervalSinceReferenceDate="755640972.12307501">
+                                                            <!--2024-12-11 20:16:12 +0000-->
                                                         </date>
-                                                        <date key="minimumDate" timeIntervalSinceReferenceDate="725796000">
-                                                            <!--2024-01-01 10:00:00 +0000-->
+                                                        <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
+                                                            <!--1970-01-01 11:00:00 +0000-->
                                                         </date>
-                                                        <date key="maximumDate" timeIntervalSinceReferenceDate="788871600">
-                                                            <!--2025-12-31 11:00:00 +0000-->
+                                                        <date key="maximumDate" timeIntervalSinceReferenceDate="1167562800">
+                                                            <!--2037-12-31 11:00:00 +0000-->
                                                         </date>
+                                                        <locale key="locale" localeIdentifier="tr_TR"/>
+                                                        <connections>
+                                                            <action selector="lastTimePicker2Changed:" destination="L7P-jM-gad" eventType="valueChanged" id="v7l-2w-N9v"/>
+                                                        </connections>
                                                     </datePicker>
                                                 </subviews>
                                                 <color key="backgroundColor" name="EmphasizeColor"/>
                                                 <constraints>
-                                                    <constraint firstItem="Om1-sC-Amb" firstAttribute="leading" secondItem="FML-kL-hYA" secondAttribute="leading" constant="8" id="3Ni-4F-o5A"/>
+                                                    <constraint firstItem="Om1-sC-Amb" firstAttribute="leading" secondItem="FML-kL-hYA" secondAttribute="leading" constant="27" id="3Ni-4F-o5A"/>
                                                     <constraint firstItem="uqV-xH-hE1" firstAttribute="top" secondItem="FML-kL-hYA" secondAttribute="top" constant="10" id="8AW-ac-mKu"/>
                                                     <constraint firstAttribute="height" constant="94" id="8YB-0m-vcl"/>
-                                                    <constraint firstItem="47c-gS-OYV" firstAttribute="top" secondItem="uqV-xH-hE1" secondAttribute="bottom" constant="10" id="AMI-mf-Uc6"/>
                                                     <constraint firstItem="uqV-xH-hE1" firstAttribute="leading" secondItem="FML-kL-hYA" secondAttribute="leading" constant="8" id="BvG-qQ-IdG"/>
-                                                    <constraint firstItem="47c-gS-OYV" firstAttribute="leading" secondItem="mB7-7z-o0a" secondAttribute="trailing" constant="1" id="Cdd-4r-oC0"/>
+                                                    <constraint firstItem="mB7-7z-o0a" firstAttribute="leading" secondItem="Om1-sC-Amb" secondAttribute="trailing" id="COM-42-EaM"/>
                                                     <constraint firstItem="mB7-7z-o0a" firstAttribute="top" secondItem="uqV-xH-hE1" secondAttribute="bottom" constant="10" id="K5c-XV-NMu"/>
+                                                    <constraint firstAttribute="trailing" secondItem="fix-eC-AJ6" secondAttribute="trailing" constant="170" id="Mq9-Gg-Q04"/>
                                                     <constraint firstItem="Om1-sC-Amb" firstAttribute="top" secondItem="uqV-xH-hE1" secondAttribute="bottom" constant="10" id="NVK-zI-wOa"/>
-                                                    <constraint firstItem="mB7-7z-o0a" firstAttribute="leading" secondItem="Om1-sC-Amb" secondAttribute="trailing" constant="1" id="Vqe-tV-xeC"/>
+                                                    <constraint firstItem="fix-eC-AJ6" firstAttribute="top" secondItem="uqV-xH-hE1" secondAttribute="bottom" constant="10" id="c9q-c8-gLF"/>
+                                                    <constraint firstItem="fix-eC-AJ6" firstAttribute="leading" secondItem="mB7-7z-o0a" secondAttribute="trailing" id="xZ1-PN-04t"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tWR-AP-Lzj" userLabel="ProductDescBackName">
@@ -435,12 +454,14 @@
                     <connections>
                         <outlet property="deliveryTypeSegmentControl" destination="qR3-VJ-Xdu" id="RSU-sV-9bj"/>
                         <outlet property="discountSegmentControl" destination="9V8-xO-3SD" id="BeU-TV-sXU"/>
+                        <outlet property="lastTimePicker" destination="fix-eC-AJ6" id="sYC-fb-T0p"/>
                         <outlet property="newPriceTextField" destination="94i-jl-ERJ" id="hMo-4g-DJW"/>
                         <outlet property="oldPriceTextField" destination="vPk-h3-vCc" id="uIp-sZ-SpW"/>
                         <outlet property="productDescriptionTextField" destination="qT5-bi-Jvj" id="yVH-IK-Oiq"/>
                         <outlet property="productNameTextField" destination="tYK-wX-zdb" id="d6L-3D-QGt"/>
                         <outlet property="saveAndNextButton" destination="3Fp-7d-Ti3" id="kyL-qD-JsU"/>
                         <outlet property="selectedImageView" destination="fal-1P-YCm" id="TlF-qc-zge"/>
+                        <outlet property="startTimePicker" destination="Om1-sC-Amb" id="c3X-Sm-ZTG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aa3-S0-gFU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -507,6 +528,9 @@
         </namedColor>
         <namedColor name="EmphasizeColor">
             <color red="0.94900000095367432" green="0.82700002193450928" blue="0.28600001335144043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="IconBG">
+            <color red="0.86299997568130493" green="0.88200002908706665" blue="0.84700000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TextBlackColor">
             <color red="0.2199999988079071" green="0.21600000560283661" blue="0.21600000560283661" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
