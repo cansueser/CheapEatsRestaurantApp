@@ -11,6 +11,8 @@ class OrderViewController: UIViewController {
 
     @IBOutlet weak var orderTableView: UITableView!
     
+    
+    @IBOutlet weak var foodAddButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         print("test")
@@ -24,6 +26,12 @@ class OrderViewController: UIViewController {
         orderTableView.register(UINib(nibName: "ProductTableViewCell", bundle: nil), forCellReuseIdentifier: "orderCell")
         orderTableView.layer.cornerRadius = 10
         
+    }
+    
+    @IBAction func foodAddButtonClicked(_ sender: UIButton) {
+        let SB = UIStoryboard(name: "Main", bundle: nil)
+        let productVC = SB.instantiateViewController(withIdentifier: "ProductAddedViewController") as! ProductAddedViewController
+        navigationController?.pushViewController(productVC, animated: true)
     }
 }
 

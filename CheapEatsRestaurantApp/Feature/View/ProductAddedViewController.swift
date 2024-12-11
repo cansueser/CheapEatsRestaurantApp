@@ -1,6 +1,6 @@
 import UIKit
 
-class ProductAddedViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ProductAddedViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var selectedImageView: UIImageView!
     @IBOutlet weak var productNameTextField: UITextField!
@@ -8,19 +8,28 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var oldPriceTextField: UITextField!
     @IBOutlet weak var newPriceTextField: UITextField!
     @IBOutlet weak var saveAndNextButton: UIButton!
+    @IBOutlet weak var deliveryTypeSegmentControl: UISegmentedControl!
+    @IBOutlet weak var discountSegmentControl: UISegmentedControl!
+    weak var delegate: FilterTypeViewModelOutputProtocol?
+    var filterTypeViewModel: FilterTypeViewModelProtocol = FilterTypeViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-  
-        // Tıklanabilirlik ekle
+
+        // Tıklanabilirlik
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(gestureRecognizer)
         selectedImageView.isUserInteractionEnabled = true
         let imageTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectImage))
         selectedImageView.addGestureRecognizer(imageTapRecognizer)
+        // TextField Delegate'lerini ayarla
+             oldPriceTextField.delegate = self
+             newPriceTextField.delegate = self
     }
-    
-  
+    override func viewWillAppear(_ animated: Bool) {
+        deliveryTypeSegmentControl.selectedSegmentIndex = filterTypeViewModel.selectedDeliveryType
+        discountSegmentControl.selectedSegmentIndex = filterTypeViewModel.selectedDiscount
+    }
     @objc func selectImage() {
         
         let picker = UIImagePickerController()
@@ -65,6 +74,24 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
            alert.addAction(UIAlertAction(title: "Tamam", style: .default, handler: nil))
            present(alert, animated: true, completion: nil)
        }
-   }
+    // Sadece sayı girişine izin veren bir kontrol
+      func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+          let allowedCharacters = CharacterSet.decimalDigits
+          let characterSet = CharacterSet(charactersIn: string)
+          return allowedCharacters.isSuperset(of: characterSet)
+      }
+    
+    @IBAction func deliveryTypeSegmentChanged(_ sender: UISegmentedControl) {
+        filterTypeViewModel.selectedDeliveryType = sender.selectedSegmentIndex
+        print(sender.selectedSegmentIndex)
+       }
+   
+    @IBAction func discountSegmentControlChanged(_ sender: UISegmentedControl) {
+        filterTypeViewModel.selectedDiscount = sender.selectedSegmentIndex
+        print(sender.selectedSegmentIndex)
+        
+    }
+    
+}
 
     

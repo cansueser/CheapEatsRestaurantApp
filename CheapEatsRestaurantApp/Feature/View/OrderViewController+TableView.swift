@@ -24,11 +24,5 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, weightForRowAt indexPath: IndexPath) -> CGFloat {
         return 390
     }
-    
-  /*  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let SB = UIStoryboard(name: "Main", bundle: nil)
-        let detailVC = SB.instantiateViewController(withIdentifier: "OrdersDetailViewController") as! OrdersDetailViewController
-        navigationController?.pushViewController(detailVC, animated: true)
-    }*/
-        }
+}
 
