@@ -1,10 +1,10 @@
 import UIKit
 
-class ProductAddedViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class ProductAddedViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate{
     
     @IBOutlet weak var selectedImageView: UIImageView!
     @IBOutlet weak var productNameTextField: UITextField!
-    @IBOutlet weak var productDescriptionTextField: UITextField!
+    @IBOutlet weak var productDescriptionTextView: UITextView!
     @IBOutlet weak var oldPriceTextField: UITextField!
     @IBOutlet weak var newPriceTextField: UITextField!
     @IBOutlet weak var saveAndNextButton: UIButton!
@@ -13,10 +13,13 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var startTimePicker: UIDatePicker!
     @IBOutlet weak var lastTimePicker: UIDatePicker!
     
+    @IBOutlet weak var placeholderLabel: UILabel!
+    
+    
     weak var delegate: FilterTypeViewModelOutputProtocol?
     var filterTypeViewModel: FilterTypeViewModelProtocol = FilterTypeViewModel()
     private var viewModel: TimeViewModel!
-
+    let DescplaceholderLabel = UILabel()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,6 +44,8 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
             startTimePicker.preferredDatePickerStyle = .wheels
             lastTimePicker.preferredDatePickerStyle = .wheels
         }
+        placeholderLabel.text = "Açıklamayı buraya yazın..."
+
 
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -68,21 +73,21 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     @IBAction func saveAndNextButton(_ sender: UIButton) {
-        
+
            // Tüm alanları kontrol et
            if let text1 = productNameTextField.text, !text1.isEmpty,
-              let text2 = productDescriptionTextField.text, !text2.isEmpty,
+              let text2 = productDescriptionTextView.text, !text2.isEmpty,
               let text3 = oldPriceTextField.text, !text3.isEmpty,
               let text4 = newPriceTextField.text, !text4.isEmpty {
                
                // Hepsi doluysa konsola yazdır
-               print("TextField1: \(text1)")
-               print("TextField2: \(text2)")
-               print("TextField3: \(text3)")
-               print("TextField4: \(text4)")
+               print("Ürün Adı: \(text1)")
+               print("ÜrünÜn Açıklaması: \(text2)")
+               print("Ürünün Eski fiyatı: \(text3)")
+               print("Ürünün Yeni fiyatı: \(text4)")
            } else {
                // Eğer birisi boşsa hata mesajı
-               showAlert(message: "Lütfen tüm alanları doldurun!")
+               showAlert(message: "Lütfen tüm alanları doldurun")
            }
         viewModel.logSelectedTimes()
 

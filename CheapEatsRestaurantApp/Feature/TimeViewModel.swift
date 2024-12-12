@@ -43,7 +43,7 @@ class TimeViewModel {
     // Konsola yazdırma işlemi
     func logSelectedTimes() {
         let formattedTimes = getFormattedTimes()
-        print("zaman aralığı: \(formattedTimes.0), \(formattedTimes.1)")
+        print("zaman aralığı: \(formattedTimes.0)- \(formattedTimes.1)")
     }
 }
 
