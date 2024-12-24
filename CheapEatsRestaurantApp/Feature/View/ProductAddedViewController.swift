@@ -74,24 +74,29 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
     
     @IBAction func saveAndNextButton(_ sender: UIButton) {
 
-           // Tüm alanları kontrol et
-           if let text1 = productNameTextField.text, !text1.isEmpty,
-              let text2 = productDescriptionTextView.text, !text2.isEmpty,
-              let text3 = oldPriceTextField.text, !text3.isEmpty,
-              let text4 = newPriceTextField.text, !text4.isEmpty {
+        
+               let name = productNameTextField.text!
+               let description = productDescriptionTextView.text!
+               let oldPrice = Double(oldPriceTextField.text!) ?? 0
+               let newPrice = Double(newPriceTextField.text!) ?? 0
+               let foodImage = selectedImageView.image ?? UIImage()
                
-               // Hepsi doluysa konsola yazdır
-               print("Ürün Adı: \(text1)")
-               print("ÜrünÜn Açıklaması: \(text2)")
-               print("Ürünün Eski fiyatı: \(text3)")
-               print("Ürünün Yeni fiyatı: \(text4)")
-           } else {
-               // Eğer birisi boşsa hata mesajı
-               showAlert(message: "Lütfen tüm alanları doldurun")
+               // Yeni ürünü oluşturma
+        let newOrder = Order(name: name, description: description, oldPrice: oldPrice, newPrice: newPrice, deliveryType: 1, discountType: 1, startTime: Date(), endTime: Date(), foodImage: foodImage, orderStatus: .preparing)
+               
+               // Veriyi ekleyin ve geri dönün
+               if let navigationController = self.navigationController {
+                   let orderViewController = navigationController.viewControllers.first as! OrderViewController
+                   orderViewController.orders.append(newOrder)  // Yeni ürünü ana sayfaya ekliyoruz
+                   orderViewController.orderTableView.reloadData()  // TableView'ı güncelleyerek gösteriyoruz
+               }
+               
+               // Geri dön
+               navigationController?.popViewController(animated: true)
            }
-        viewModel.logSelectedTimes()
-
-       }
+        
+       
+       
 
        private func showAlert(message: String) {
            let alert = UIAlertController(title: "Hata", message: message, preferredStyle: .alert)

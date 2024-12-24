@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="L7P-jM-gad">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BXf-Zc-Dnn">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
@@ -190,13 +190,13 @@
                                                         <color key="textColor" name="TextBlackColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="70" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="94i-jl-ERJ">
-                                                        <rect key="frame" x="8" y="41" width="47.333333333333336" height="34"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="40" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="94i-jl-ERJ">
+                                                        <rect key="frame" x="8" y="41" width="49" height="34"/>
                                                         <attributedString key="attributedText"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RL-dF-tvJ">
-                                                        <rect key="frame" x="55.333333333333343" y="48" width="20" height="21"/>
+                                                        <rect key="frame" x="57" y="48" width="20" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -361,13 +361,13 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tWR-AP-Lzj" userLabel="ProductDescBackName">
                                                 <rect key="frame" x="0.0" y="324" width="393" height="94"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ürün Açıklaması" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r96-Km-7Ww">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Ürün Açıklaması" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r96-Km-7Ww">
                                                         <rect key="frame" x="8" y="10" width="140.66666666666666" height="24"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <color key="textColor" name="TextBlackColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="WHF-mo-WTV">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="WHF-mo-WTV">
                                                         <rect key="frame" x="8" y="37" width="377" height="52"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
@@ -377,9 +377,8 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9IN-05-UvG">
-                                                        <rect key="frame" x="10" y="44" width="44" height="12"/>
-                                                        <color key="backgroundColor" name="TitleColor"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9IN-05-UvG">
+                                                        <rect key="frame" x="10" y="44" width="0.0" height="12"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" name="TextBlackColor"/>
                                                         <nil key="highlightedColor"/>
@@ -393,6 +392,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="WHF-mo-WTV" secondAttribute="trailing" constant="8" id="6kX-Xa-KVS"/>
                                                     <constraint firstItem="r96-Km-7Ww" firstAttribute="top" secondItem="tWR-AP-Lzj" secondAttribute="top" constant="10" id="IOc-59-TAU"/>
                                                     <constraint firstItem="9IN-05-UvG" firstAttribute="leading" secondItem="tWR-AP-Lzj" secondAttribute="leading" constant="10" id="Vbr-iu-gDB"/>
+                                                    <constraint firstAttribute="bottom" secondItem="9IN-05-UvG" secondAttribute="bottom" constant="38" id="bin-z5-OXq"/>
                                                     <constraint firstItem="9IN-05-UvG" firstAttribute="top" secondItem="r96-Km-7Ww" secondAttribute="bottom" constant="10" id="gyo-iA-Zev"/>
                                                     <constraint firstItem="r96-Km-7Ww" firstAttribute="leading" secondItem="tWR-AP-Lzj" secondAttribute="leading" constant="8" id="kK8-N8-cbG"/>
                                                 </constraints>

@@ -44,4 +44,5 @@ class ProductTableViewCell: UITableViewCell {
         view.layer.masksToBounds = true
     }
     
+        
 }
