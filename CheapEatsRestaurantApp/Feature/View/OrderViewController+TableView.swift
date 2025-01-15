@@ -40,6 +40,6 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource {
         return 390
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("cell seçildi test ")
+        print("cell seçildi test")
     }
 }
