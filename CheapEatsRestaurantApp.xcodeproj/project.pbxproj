@@ -113,7 +113,7 @@
 				7E652D0A2D07175E00137ECA /* NetworkLayer */,
 				7E652D0B2D07177700137ECA /* Model */,
 				7E652D0C2D07177E00137ECA /* View */,
-				7E652D0D2D07178700137ECA /* ViewModel */,
+				7E652D0D2D07178700137ECA /* viewmodel */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -155,7 +155,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		7E652D0D2D07178700137ECA /* ViewModel */ = {
+		7E652D0D2D07178700137ECA /* viewmodel */ = {
 			isa = PBXGroup;
 			children = (
 				7E3FB7BB2D098A2A00359003 /* FilterTypeViewModel.swift */,
@@ -163,7 +163,7 @@
 				7EB852AD2D0DD3EA009FAC62 /* ProductViewModel.swift */,
 				7E847A112D19ED7700D1DE23 /* OrderViewModel.swift */,
 			);
-			name = ViewModel;
+			name = viewmodel;
 			sourceTree = "<group>";
 		};
 		7E652D0E2D0717D600137ECA /* SubView */ = {
