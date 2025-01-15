@@ -23,6 +23,7 @@ final class OrderViewModel {
     }
 
     func getOrders() -> [Order] {
+        print("update")
         return orders
     }
 }

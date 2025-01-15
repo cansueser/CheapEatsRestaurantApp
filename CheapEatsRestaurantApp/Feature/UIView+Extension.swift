@@ -24,6 +24,8 @@ extension UIView {
             layer.sublayers?.removeAll(where: { $0 is CAShapeLayer && $0 !== mask })
             
             layer.addSublayer(borderLayer)
+            print("update")
+
         }
     }
 

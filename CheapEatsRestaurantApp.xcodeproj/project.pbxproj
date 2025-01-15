@@ -25,7 +25,6 @@
 		7E847A102D19ECED00D1DE23 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E847A0F2D19ECED00D1DE23 /* Order.swift */; };
 		7E847A122D19ED7700D1DE23 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E847A112D19ED7700D1DE23 /* OrderViewModel.swift */; };
 		7E847A202D1B60CC00D1DE23 /* ProductAddedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E847A1F2D1B60CC00D1DE23 /* ProductAddedViewController.swift */; };
-		7E847A262D1B78FF00D1DE23 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E847A252D1B78FF00D1DE23 /* test.swift */; };
 		7EB852AE2D0DD3EA009FAC62 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB852AD2D0DD3EA009FAC62 /* ProductViewModel.swift */; };
 		7EBED5E12D077BAB00E7CACB /* OrderViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBED5E02D077BAB00E7CACB /* OrderViewController+TableView.swift */; };
 		7EBED5E32D07837F00E7CACB /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBED5E22D07837F00E7CACB /* UIView+Extension.swift */; };
@@ -51,7 +50,6 @@
 		7E847A0F2D19ECED00D1DE23 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		7E847A112D19ED7700D1DE23 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		7E847A1F2D1B60CC00D1DE23 /* ProductAddedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAddedViewController.swift; sourceTree = "<group>"; };
-		7E847A252D1B78FF00D1DE23 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		7EB852AD2D0DD3EA009FAC62 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
 		7EBED5E02D077BAB00E7CACB /* OrderViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderViewController+TableView.swift"; sourceTree = "<group>"; };
 		7EBED5E22D07837F00E7CACB /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -141,7 +139,6 @@
 			children = (
 				7E33F5122D0A2F5400891944 /* TimeModel.swift */,
 				7E847A0F2D19ECED00D1DE23 /* Order.swift */,
-				7E847A252D1B78FF00D1DE23 /* test.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -262,7 +259,6 @@
 				7E652D132D07218400137ECA /* ProductTableViewCell.swift in Sources */,
 				7E3FB7BC2D098A2B00359003 /* FilterTypeViewModel.swift in Sources */,
 				7EB852AE2D0DD3EA009FAC62 /* ProductViewModel.swift in Sources */,
-				7E847A262D1B78FF00D1DE23 /* test.swift in Sources */,
 				7E3FB7BE2D098E0600359003 /* FilterViewController.swift in Sources */,
 				7E652CF82D0711C000137ECA /* OrderViewController.swift in Sources */,
 				7EBED5E12D077BAB00E7CACB /* OrderViewController+TableView.swift in Sources */,

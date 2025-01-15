@@ -36,6 +36,8 @@ enum OrderStatus: String, CaseIterable, CustomStringConvertible {
         case .delivered: return .systemGreen
         case .canceled: return .systemRed
         }
+        print("update")
+
     }
 }
 

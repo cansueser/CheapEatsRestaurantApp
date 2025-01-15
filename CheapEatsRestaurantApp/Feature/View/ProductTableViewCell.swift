@@ -42,6 +42,8 @@ class ProductTableViewCell: UITableViewCell {
         view.layer.borderColor = borderColor?.cgColor
         view.layer.borderWidth = borderWidth
         view.layer.masksToBounds = true
+        print("update")
+
     }
     
         
