@@ -1,7 +1,6 @@
 import UIKit
 
-class ProductAddedViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate{
-    
+class ProductAddedViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
     @IBOutlet weak var selectedImageView: UIImageView!
     @IBOutlet weak var productNameTextField: UITextField!
     @IBOutlet weak var productDescriptionTextView: UITextView!
@@ -10,125 +9,128 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var saveAndNextButton: UIButton!
     @IBOutlet weak var deliveryTypeSegmentControl: UISegmentedControl!
     @IBOutlet weak var discountSegmentControl: UISegmentedControl!
-    @IBOutlet weak var startTimePicker: UIDatePicker!
     @IBOutlet weak var lastTimePicker: UIDatePicker!
+    @IBOutlet weak var startTimePicker: UIDatePicker!
     
-    @IBOutlet weak var placeholderLabel: UILabel!
     
-    
-    weak var delegate: FilterTypeViewModelOutputProtocol?
-    var filterTypeViewModel: FilterTypeViewModelProtocol = FilterTypeViewModel()
-    private var viewModel: TimeViewModel!
-    let DescplaceholderLabel = UILabel()
+    var orderViewModel: OrderViewModel!
+    //qqq
+    var selectedOrder: Order?
+    //qqqqqq
+    //clli  güncelleme
+    var selectedIndexPath: IndexPath?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        //qqqqq
+        // Eğer selectedOrder varsa bilgileri UI elemanlarına aktar
+                if let order = selectedOrder {
+                    productNameTextField.text = order.name
+                    productDescriptionTextView.text = order.description
+                    oldPriceTextField.text = "\(order.oldPrice)"
+                    newPriceTextField.text = "\(order.newPrice)"
+                    // Görsel için URL'den resim yükleme işlemi yapılabilir
+                  //  selectedImageView.image = UIImage(named: order.foodImage) // Bu örnekte yerel bir resim adı kullanıyoruz
 
-        // Tıklanabilirlik
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        view.addGestureRecognizer(gestureRecognizer)
+                    // Delivery Type ve Discount Type segmentlerini ayarla
+                    deliveryTypeSegmentControl.selectedSegmentIndex = order.deliveryType
+                    discountSegmentControl.selectedSegmentIndex = order.discountType
+                    
+                    // Start ve End Time Picker'ları ayarla
+                    startTimePicker.date = order.startTime
+                    lastTimePicker.date = order.endTime
+                }
+            
+    //qqqqqq
+        configureGestures()
+        configureImageViewTap()
+    }
+    
+    private func configureGestures() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    private func configureImageViewTap() {
+        // Resim seçmek için tap gesture ekleme
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(selectImage))
         selectedImageView.isUserInteractionEnabled = true
-        let imageTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectImage))
-        selectedImageView.addGestureRecognizer(imageTapRecognizer)
-        // TextField Delegate'lerini ayarla
-             oldPriceTextField.delegate = self
-             newPriceTextField.delegate = self
-        
-        // ViewModel'i başlat
-        viewModel = TimeViewModel()
-        
-        // DatePicker ayarları
-        startTimePicker.datePickerMode = .time
-        lastTimePicker.datePickerMode = .time
-        
-        if #available(iOS 14, *) {
-            startTimePicker.preferredDatePickerStyle = .wheels
-            lastTimePicker.preferredDatePickerStyle = .wheels
-        }
-        placeholderLabel.text = "Açıklamayı buraya yazın..."
+        selectedImageView.addGestureRecognizer(tapGesture)
+    }
 
-
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        deliveryTypeSegmentControl.selectedSegmentIndex = filterTypeViewModel.selectedDeliveryType
-        discountSegmentControl.selectedSegmentIndex = filterTypeViewModel.selectedDiscount
-    }
-    @objc func selectImage() {
-        
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = .photoLibrary
-        picker.allowsEditing = true
-        present(picker, animated: true, completion: nil)
-        
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        selectedImageView.image = info[.originalImage] as? UIImage
-        // saveButton.isEnabled = true
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @objc func hideKeyboard() {
+    @objc private func hideKeyboard() {
         view.endEditing(true)
     }
-    
-    @IBAction func saveAndNextButton(_ sender: UIButton) {
 
+    @objc private func selectImage() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .photoLibrary  // Galeriden seçim yapılacak
         
-               let name = productNameTextField.text!
-               let description = productDescriptionTextView.text!
-               let oldPrice = Double(oldPriceTextField.text!) ?? 0
-               let newPrice = Double(newPriceTextField.text!) ?? 0
-               let foodImage = selectedImageView.image ?? UIImage()
-               
-               // Yeni ürünü oluşturma
-        let newOrder = Order(name: name, description: description, oldPrice: oldPrice, newPrice: newPrice, deliveryType: 1, discountType: 1, startTime: Date(), endTime: Date(), foodImage: foodImage, orderStatus: .preparing)
-               
-               // Veriyi ekleyin ve geri dönün
-               if let navigationController = self.navigationController {
-                   let orderViewController = navigationController.viewControllers.first as! OrderViewController
-                   orderViewController.orders.append(newOrder)  // Yeni ürünü ana sayfaya ekliyoruz
-                   orderViewController.orderTableView.reloadData()  // TableView'ı güncelleyerek gösteriyoruz
-               }
-               
-               // Geri dön
-               navigationController?.popViewController(animated: true)
-           }
-        
-       
-       
-
-       private func showAlert(message: String) {
-           let alert = UIAlertController(title: "Hata", message: message, preferredStyle: .alert)
-           alert.addAction(UIAlertAction(title: "Tamam", style: .default, handler: nil))
-           present(alert, animated: true, completion: nil)
-       }
-    // Sadece sayı girişine izin veren bir kontrol
-      func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-          let allowedCharacters = CharacterSet.decimalDigits
-          let characterSet = CharacterSet(charactersIn: string)
-          return allowedCharacters.isSuperset(of: characterSet)
-      }
-    
-    @IBAction func deliveryTypeSegmentChanged(_ sender: UISegmentedControl) {
-        filterTypeViewModel.selectedDeliveryType = sender.selectedSegmentIndex
-        print(sender.selectedSegmentIndex)
-       }
-   
-    @IBAction func discountSegmentControlChanged(_ sender: UISegmentedControl) {
-        filterTypeViewModel.selectedDiscount = sender.selectedSegmentIndex
-        print(sender.selectedSegmentIndex)
-        
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            self.present(imagePickerController, animated: true, completion: nil)
+        } else {
+            print("Fotoğraf kütüphanesi erişilemiyor.")
+        }
     }
-    @IBAction func startTimePickerChanged(_ sender: UIDatePicker) {
-            viewModel.updateTime1(sender.date)
-        }
-        
-        @IBAction func lastTimePicker2Changed(_ sender: UIDatePicker) {
-            viewModel.updateTime2(sender.date)
-        }
-        
     
-}
+    // Seçilen resmin alındığı metot
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            selectedImageView.image = selectedImage  // Seçilen resmi imageView'e ekleyin
+        }
+        dismiss(animated: true, completion: nil)
+    }
 
-    
+    // Kullanıcı fotoğraf seçiminden vazgeçerse
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+
+   
+    @IBAction func saveAndNextButtonClicked(_ sender: UIButton) {
+        let name = productNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+         let description = productDescriptionTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+         let oldPriceText = oldPriceTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+         let newPriceText = newPriceTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+
+         guard !name.isEmpty,
+               !description.isEmpty,
+               !oldPriceText.isEmpty,
+               !newPriceText.isEmpty,
+               let oldPrice = Double(oldPriceText),
+               let newPrice = Double(newPriceText),
+               let foodImage = selectedImageView.image else {
+             showAlert(message: "Lütfen tüm alanları doldurun.")
+             return
+         }
+
+         let updatedOrder = Order(
+             name: name,
+             description: description,
+             oldPrice: oldPrice,
+             newPrice: newPrice,
+             deliveryType: deliveryTypeSegmentControl.selectedSegmentIndex,
+             discountType: discountSegmentControl.selectedSegmentIndex,
+             startTime: startTimePicker.date,
+             endTime: lastTimePicker.date,
+             foodImage: foodImage,
+             orderStatus: .preparing
+         )
+
+         if let indexPath = selectedIndexPath {
+             // Mevcut order'ı güncelle
+             orderViewModel.updateOrder(at: indexPath.row, with: updatedOrder)
+         } else {
+             // Yeni order ekle
+             orderViewModel.addOrder(updatedOrder)
+         }
+
+         navigationController?.popViewController(animated: true)
+     }
+           private func showAlert(message: String) {
+               let alert = UIAlertController(title: "Hata", message: message, preferredStyle: .alert)
+               alert.addAction(UIAlertAction(title: "Tamam", style: .default))
+               present(alert, animated: true)
+           }
+       }

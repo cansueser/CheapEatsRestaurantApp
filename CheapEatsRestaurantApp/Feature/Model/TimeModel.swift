@@ -10,7 +10,6 @@ import Foundation
 struct TimeModel {
     var time1: Date
     var time2: Date
-    //    print("update")
 
 }
 

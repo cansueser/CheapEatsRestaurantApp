@@ -12,7 +12,6 @@ final class ProductViewModel {
                !(description?.isEmpty ?? true) &&
                !(oldPrice?.isEmpty ?? true) &&
                !(newPrice?.isEmpty ?? true)
-        print("update")
 
     }
 }

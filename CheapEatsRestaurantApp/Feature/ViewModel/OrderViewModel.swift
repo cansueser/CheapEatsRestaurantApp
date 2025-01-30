@@ -1,29 +1,34 @@
-//
-//  OrderViewModel.swift
-//  CheapEatsRestaurantApp
-//
-//  Created by CANSU on 23.12.2024.
-//
-
 import Foundation
-//YENİ
 import UIKit
 
 protocol OrderViewModelOutputProtocol: AnyObject {
-    func ordersDidUpdate() // TableView'yi güncellemek için protokol
+    func ordersDidUpdate()
 }
 
 final class OrderViewModel {
-    private var orders: [Order] = [] // Ürün listesi
+    //private yapınca tableviewden erişilmiyor düzelt
+     var orders: [Order] = []
     weak var delegate: OrderViewModelOutputProtocol?
 
-    func addOrder(_ product: Order) {
-        orders.append(product) // Yeni ürünü listeye ekle
-        delegate?.ordersDidUpdate() // TableView'yi bilgilendir
+    func addOrder(_ order: Order) {
+        orders.append(order)
+        delegate?.ordersDidUpdate()
     }
 
     func getOrders() -> [Order] {
-        print("update")
         return orders
     }
+
+    func removeOrder(at index: Int) {
+        guard index >= 0 && index < orders.count else { return }
+        orders.remove(at: index)
+        delegate?.ordersDidUpdate()
+    }
+    //celli güncelleme
+    func updateOrder(at index: Int, with order: Order) {
+        guard index >= 0 && index < orders.count else { return }
+        orders[index] = order
+        delegate?.ordersDidUpdate()
+    }
+
 }

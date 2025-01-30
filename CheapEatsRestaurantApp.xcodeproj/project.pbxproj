@@ -140,7 +140,6 @@
 				7E652CF52D0711C000137ECA /* SceneDelegate.swift */,
 				7E652CFE2D0711C100137ECA /* LaunchScreen.storyboard */,
 				7E652CFC2D0711C100137ECA /* Assets.xcassets */,
-				7E445D132D38055900BEDD0C /* Extension */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -148,6 +147,7 @@
 		7E652D082D0716BA00137ECA /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				7E445D132D38055900BEDD0C /* Extension */,
 				7E652D0A2D07175E00137ECA /* NetworkLayer */,
 				7E445D092D38024E00BEDD0C /* Model */,
 				7E652D0C2D07177E00137ECA /* View */,

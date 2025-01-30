@@ -18,8 +18,20 @@ struct Order {
     var discountType: Int
     var startTime: Date
     var endTime: Date
-    var foodImage: UIImage
+    var foodImage: UIImage?
     var orderStatus: OrderStatus
+    init(name: String, description: String, oldPrice: Double, newPrice: Double, deliveryType: Int, discountType: Int, startTime: Date, endTime: Date, foodImage: UIImage?, orderStatus: OrderStatus) {
+         self.name = name
+         self.description = description
+         self.oldPrice = oldPrice
+         self.newPrice = newPrice
+         self.deliveryType = deliveryType
+         self.discountType = discountType
+         self.startTime = startTime
+         self.endTime = endTime
+         self.foodImage = foodImage
+         self.orderStatus = orderStatus
+     }
 }
 enum OrderStatus: String, CaseIterable, CustomStringConvertible {
     case preparing = "Hazırlanıyor"
@@ -36,7 +48,6 @@ enum OrderStatus: String, CaseIterable, CustomStringConvertible {
         case .delivered: return .systemGreen
         case .canceled: return .systemRed
         }
-        print("update")
 
     }
 }
