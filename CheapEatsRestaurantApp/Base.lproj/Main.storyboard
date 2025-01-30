@@ -223,6 +223,7 @@
                                                             <color key="baseForegroundColor" name="ButtonColor"/>
                                                         </buttonConfiguration>
                                                         <connections>
+                                                            <action selector="mealTypeButtonClicked:" destination="L7P-jM-gad" eventType="touchUpInside" id="ZTZ-IS-4g0"/>
                                                             <segue destination="9bJ-aJ-Vfp" kind="showDetail" id="1iE-Lv-Nd7"/>
                                                         </connections>
                                                     </button>
@@ -471,6 +472,7 @@
                         <outlet property="deliveryTypeSegmentControl" destination="qR3-VJ-Xdu" id="RSU-sV-9bj"/>
                         <outlet property="discountSegmentControl" destination="9V8-xO-3SD" id="BeU-TV-sXU"/>
                         <outlet property="lastTimePicker" destination="fix-eC-AJ6" id="0rZ-JQ-3ME"/>
+                        <outlet property="mealTypeButton" destination="6ws-eY-hpX" id="5XE-EE-pad"/>
                         <outlet property="newPriceTextField" destination="94i-jl-ERJ" id="hMo-4g-DJW"/>
                         <outlet property="oldPriceTextField" destination="vPk-h3-vCc" id="uIp-sZ-SpW"/>
                         <outlet property="productDescriptionTextView" destination="WHF-mo-WTV" id="FLi-ck-tIx"/>
