@@ -12,15 +12,15 @@ import UIKit
 struct Order {
     var name: String
     var description: String
-    var oldPrice: Double
-    var newPrice: Double
+    var oldPrice: Int
+    var newPrice: Int
     var deliveryType: Int
     var discountType: Int
     var startTime: Date
     var endTime: Date
     var foodImage: UIImage?
     var orderStatus: OrderStatus
-    init(name: String, description: String, oldPrice: Double, newPrice: Double, deliveryType: Int, discountType: Int, startTime: Date, endTime: Date, foodImage: UIImage?, orderStatus: OrderStatus) {
+    init(name: String, description: String, oldPrice: Int, newPrice: Int, deliveryType: Int, discountType: Int, startTime: Date, endTime: Date, foodImage: UIImage?, orderStatus: OrderStatus) {
          self.name = name
          self.description = description
          self.oldPrice = oldPrice

@@ -13,18 +13,16 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var startTimePicker: UIDatePicker!
     @IBOutlet weak var mealTypeButton: UIButton!
     
-
     var orderViewModel: OrderViewModel!
     //qqq
     var selectedOrder: Order?
     //qqqqqq
     //clli  güncelleme
     var selectedIndexPath: IndexPath?
-    var bottomSheetViewModel: BottomSheetViewModel!
+    private let bottomSheetViewModel = BottomSheetViewModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-           
         //qqqqq
         // Eğer selectedOrder varsa bilgileri UI elemanlarına aktar
                 if let order = selectedOrder {
@@ -101,8 +99,8 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
                !description.isEmpty,
                !oldPriceText.isEmpty,
                !newPriceText.isEmpty,
-               let oldPrice = Double(oldPriceText),
-               let newPrice = Double(newPriceText),
+               let oldPrice = Int(oldPriceText),
+               let newPrice = Int(newPriceText),
                let foodImage = selectedImageView.image else {
              showAlert(message: "Lütfen tüm alanları doldurun.")
              return
@@ -136,24 +134,15 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
                alert.addAction(UIAlertAction(title: "Tamam", style: .default))
                present(alert, animated: true)
            }
- 
     
     @IBAction func mealTypeButtonClicked(_ sender: UIButton) {
-        // ViewModel ve BottomSheetViewController'ı oluştur
-               let viewModel = BottomSheetViewModel()
-               let bottomSheetVC = BottomSheetViewController(viewModel: viewModel)
-               
-               // Navigation Controller içine al
-               let nav = UINavigationController(rootViewController: bottomSheetVC)
-               nav.modalPresentationStyle = .pageSheet
-               
-               // Bottom Sheet için ayarlar
-               if let sheet = nav.sheetPresentationController {
-                   sheet.detents = [.medium(), .large()] // Medium ve Large modlarını ayarla
+        let bottomSheetVC = BottomSheetViewController(viewModel: bottomSheetViewModel)
+               let navController = UINavigationController(rootViewController: bottomSheetVC)
+               navController.modalPresentationStyle = .pageSheet
+               if let sheet = navController.sheetPresentationController {
+                   sheet.detents = [.medium(), .large()]
                }
-               
-               // Bottom Sheet'i göster
-               present(nav, animated: true, completion: nil)
+               present(navController, animated: true, completion: nil)
            }
     }
 

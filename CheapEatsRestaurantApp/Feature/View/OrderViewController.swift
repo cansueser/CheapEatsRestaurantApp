@@ -14,7 +14,7 @@ class OrderViewController: UIViewController {
         orderViewModel.delegate = self
 
         // Test verisi ekleme
-        let testOrder = Order(name: "Pizza", description: "Delicious pizza", oldPrice: 20.0, newPrice: 15.0, deliveryType: 1, discountType: 1, startTime: Date(), endTime: Date(), foodImage: UIImage(named: "testImage")!, orderStatus: .preparing)
+        let testOrder = Order(name: "Pizza", description: "Delicious pizza", oldPrice: 20, newPrice: 15, deliveryType: 1, discountType: 1, startTime: Date(), endTime: Date(), foodImage: UIImage(named: "testImage")!, orderStatus: .preparing)
         orderViewModel.addOrder(testOrder)
     }
 
