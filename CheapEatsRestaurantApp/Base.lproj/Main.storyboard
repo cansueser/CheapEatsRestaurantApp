@@ -158,41 +158,18 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" allowsEditingTextAttributes="YES" borderStyle="roundedRect" placeholder="70" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vPk-h3-vCc">
-                                                        <rect key="frame" x="8" y="41" width="47.333333333333336" height="34"/>
+                                                        <rect key="frame" x="188" y="10" width="47.333333333333336" height="34"/>
                                                         <attributedString key="attributedText"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dv8-Et-l6y">
-                                                        <rect key="frame" x="55.333333333333343" y="48" width="20" height="21"/>
+                                                        <rect key="frame" x="243" y="16.666666666666686" width="20" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                </subviews>
-                                                <color key="backgroundColor" name="BGColor"/>
-                                                <constraints>
-                                                    <constraint firstItem="vPk-h3-vCc" firstAttribute="top" secondItem="0CK-LD-b3S" secondAttribute="bottom" constant="10" id="7jp-ca-cQ0"/>
-                                                    <constraint firstItem="Dv8-Et-l6y" firstAttribute="top" secondItem="0CK-LD-b3S" secondAttribute="bottom" constant="17" id="DHj-q3-Xig"/>
-                                                    <constraint firstItem="0CK-LD-b3S" firstAttribute="leading" secondItem="wkR-Rc-geU" secondAttribute="leading" constant="8" id="UWx-ox-fza"/>
-                                                    <constraint firstItem="vPk-h3-vCc" firstAttribute="leading" secondItem="wkR-Rc-geU" secondAttribute="leading" constant="8" id="UpR-HH-kEy"/>
-                                                    <constraint firstItem="Dv8-Et-l6y" firstAttribute="leading" secondItem="vPk-h3-vCc" secondAttribute="trailing" id="pLG-qm-6nX"/>
-                                                    <constraint firstItem="0CK-LD-b3S" firstAttribute="top" secondItem="wkR-Rc-geU" secondAttribute="top" constant="10" id="ror-Th-XO6"/>
-                                                    <constraint firstAttribute="height" constant="94" id="ttl-cD-xOV"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9bO-qu-Gdf" userLabel="NewPriceBackView">
-                                                <rect key="frame" x="0.0" y="512" width="393" height="75"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Önerilen İndirimler" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9J-yI-wtA">
-                                                        <rect key="frame" x="8" y="8" width="139" height="21"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" name="TextBlackColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9V8-xO-3SD">
-                                                        <rect key="frame" x="4" y="36" width="381" height="32"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9V8-xO-3SD">
+                                                        <rect key="frame" x="166" y="55" width="219" height="32"/>
                                                         <color key="backgroundColor" name="TextWhiteColor"/>
                                                         <segments>
                                                             <segment title="%30"/>
@@ -202,19 +179,84 @@
                                                         </segments>
                                                         <color key="selectedSegmentTintColor" name="TitleColor"/>
                                                     </segmentedControl>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Önerilen İndirimler:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9J-yI-wtA">
+                                                        <rect key="frame" x="8" y="58" width="144" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" name="TextBlackColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" name="BGColor"/>
                                                 <constraints>
+                                                    <constraint firstItem="vPk-h3-vCc" firstAttribute="leading" secondItem="0CK-LD-b3S" secondAttribute="trailing" constant="22" id="AwV-xa-P0e"/>
+                                                    <constraint firstItem="0CK-LD-b3S" firstAttribute="leading" secondItem="h9J-yI-wtA" secondAttribute="leading" id="H0J-dN-tzw"/>
+                                                    <constraint firstItem="9V8-xO-3SD" firstAttribute="top" secondItem="vPk-h3-vCc" secondAttribute="bottom" constant="11" id="KoT-Eh-pnk"/>
+                                                    <constraint firstItem="vPk-h3-vCc" firstAttribute="centerY" secondItem="Dv8-Et-l6y" secondAttribute="centerY" id="RGv-IE-Veg"/>
+                                                    <constraint firstItem="9V8-xO-3SD" firstAttribute="bottom" secondItem="wkR-Rc-geU" secondAttribute="bottomMargin" id="RPs-M8-dk9"/>
+                                                    <constraint firstItem="h9J-yI-wtA" firstAttribute="top" secondItem="0CK-LD-b3S" secondAttribute="bottom" constant="27" id="Rf3-qb-4yp"/>
+                                                    <constraint firstItem="9V8-xO-3SD" firstAttribute="trailing" secondItem="wkR-Rc-geU" secondAttribute="trailingMargin" id="UqI-ws-P1F"/>
+                                                    <constraint firstItem="0CK-LD-b3S" firstAttribute="leading" secondItem="wkR-Rc-geU" secondAttribute="leadingMargin" id="Wst-hc-2tj"/>
+                                                    <constraint firstItem="0CK-LD-b3S" firstAttribute="top" secondItem="vPk-h3-vCc" secondAttribute="top" id="kwa-R8-hxc"/>
+                                                    <constraint firstItem="Dv8-Et-l6y" firstAttribute="leading" secondItem="vPk-h3-vCc" secondAttribute="trailing" constant="7.6666666666666572" id="rpJ-kM-KnH"/>
+                                                    <constraint firstAttribute="height" constant="94" id="ttl-cD-xOV"/>
+                                                    <constraint firstItem="9V8-xO-3SD" firstAttribute="leading" secondItem="h9J-yI-wtA" secondAttribute="trailing" constant="14" id="uyn-kV-7IS"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9bO-qu-Gdf" userLabel="NewPriceBackView">
+                                                <rect key="frame" x="0.0" y="512" width="393" height="75"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ürünün Yeni Fiyatı" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3H1-xT-lpE">
+                                                        <rect key="frame" x="8" y="22" width="141" height="18"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="141" id="1j9-18-zKz"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" name="TextBlackColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" allowsEditingTextAttributes="YES" borderStyle="roundedRect" placeholder="40" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="94i-jl-ERJ">
+                                                        <rect key="frame" x="157" y="14" width="56" height="34"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="56" id="lML-1o-ALU"/>
+                                                        </constraints>
+                                                        <attributedString key="attributedText"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RL-dF-tvJ">
+                                                        <rect key="frame" x="221" y="20.666666666666629" width="20" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" name="BGColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="94i-jl-ERJ" secondAttribute="bottom" constant="27" id="4QP-46-iYj"/>
                                                     <constraint firstAttribute="height" constant="75" id="ca0-PM-tJT"/>
+                                                    <constraint firstItem="1RL-dF-tvJ" firstAttribute="leading" secondItem="94i-jl-ERJ" secondAttribute="trailing" constant="8" id="gzv-Nk-NdH"/>
+                                                    <constraint firstItem="94i-jl-ERJ" firstAttribute="top" secondItem="9bO-qu-Gdf" secondAttribute="top" constant="14" id="ivY-lV-3N1"/>
+                                                    <constraint firstItem="94i-jl-ERJ" firstAttribute="centerY" secondItem="1RL-dF-tvJ" secondAttribute="centerY" id="keb-x0-Bel"/>
+                                                    <constraint firstItem="3H1-xT-lpE" firstAttribute="leading" secondItem="9bO-qu-Gdf" secondAttribute="leadingMargin" id="nVP-h7-wa2"/>
+                                                    <constraint firstItem="1RL-dF-tvJ" firstAttribute="centerY" secondItem="3H1-xT-lpE" secondAttribute="centerY" id="qyR-68-sxv"/>
+                                                    <constraint firstItem="3H1-xT-lpE" firstAttribute="top" secondItem="9bO-qu-Gdf" secondAttribute="top" constant="22" id="wZz-xO-q6E"/>
+                                                    <constraint firstItem="94i-jl-ERJ" firstAttribute="leading" secondItem="3H1-xT-lpE" secondAttribute="trailing" constant="8" id="wzO-do-Eu3"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c9F-UG-ow1" userLabel="suggestedDiscountBackView">
                                                 <rect key="frame" x="0.0" y="587" width="393" height="94"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ws-eY-hpX">
-                                                        <rect key="frame" x="256" y="8" width="129" height="35"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c75-jS-dry">
+                                                        <rect key="frame" x="8" y="43" width="370" height="43"/>
+                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ws-eY-hpX">
+                                                        <rect key="frame" x="8" y="8" width="129" height="35"/>
                                                         <color key="backgroundColor" name="TextWhiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="35" id="StD-3F-j8V"/>
+                                                        </constraints>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="Yemek Türü &gt;" cornerStyle="dynamic">
                                                             <backgroundConfiguration key="background">
@@ -227,30 +269,16 @@
                                                             <segue destination="9bJ-aJ-Vfp" kind="showDetail" id="1iE-Lv-Nd7"/>
                                                         </connections>
                                                     </button>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="40" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="94i-jl-ERJ">
-                                                        <rect key="frame" x="8" y="46" width="49" height="34"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <attributedString key="attributedText"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ürünün Yeni Fiyatı" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3H1-xT-lpE">
-                                                        <rect key="frame" x="5" y="15" width="141" height="20"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" name="TextBlackColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RL-dF-tvJ">
-                                                        <rect key="frame" x="59" y="53" width="20" height="21"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" name="BGColor"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="c75-jS-dry" secondAttribute="trailing" constant="15" id="8Us-2q-bhT"/>
+                                                    <constraint firstItem="6ws-eY-hpX" firstAttribute="leading" secondItem="c9F-UG-ow1" secondAttribute="leadingMargin" id="DtQ-px-SAe"/>
+                                                    <constraint firstItem="c75-jS-dry" firstAttribute="bottom" secondItem="c9F-UG-ow1" secondAttribute="bottomMargin" id="MV8-Ve-pPf"/>
+                                                    <constraint firstItem="6ws-eY-hpX" firstAttribute="top" secondItem="c9F-UG-ow1" secondAttribute="topMargin" id="RGQ-gT-RvB"/>
                                                     <constraint firstAttribute="height" constant="94" id="XUJ-ET-rBH"/>
+                                                    <constraint firstItem="c75-jS-dry" firstAttribute="top" secondItem="6ws-eY-hpX" secondAttribute="bottom" id="oXF-fK-K7N"/>
+                                                    <constraint firstItem="6ws-eY-hpX" firstAttribute="leading" secondItem="c75-jS-dry" secondAttribute="leading" id="q50-Jt-EAz"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4fY-BO-jhX" userLabel="deliveryOptionsBackView">
@@ -295,32 +323,12 @@
                                                         <color key="textColor" name="TextBlackColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <datePicker multipleTouchEnabled="YES" contentMode="scaleToFill" highlighted="YES" selected="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Om1-sC-Amb">
-                                                        <rect key="frame" x="15" y="41" width="131" height="93"/>
+                                                    <datePicker contentMode="scaleAspectFit" semanticContentAttribute="forceRightToLeft" highlighted="YES" selected="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fix-eC-AJ6">
+                                                        <rect key="frame" x="5" y="41" width="133" height="91"/>
                                                         <color key="backgroundColor" name="TextWhiteColor"/>
                                                         <color key="tintColor" name="TextBlackColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="93" id="E8m-G1-P8d"/>
-                                                            <constraint firstAttribute="width" constant="131" id="fb7-EF-vAd"/>
-                                                        </constraints>
-                                                        <date key="date" timeIntervalSinceReferenceDate="755539382.361076">
-                                                            <!--2024-12-10 16:03:02 +0000-->
-                                                        </date>
-                                                        <date key="minimumDate" timeIntervalSinceReferenceDate="725796000">
-                                                            <!--2024-01-01 10:00:00 +0000-->
-                                                        </date>
-                                                        <date key="maximumDate" timeIntervalSinceReferenceDate="788871600">
-                                                            <!--2025-12-31 11:00:00 +0000-->
-                                                        </date>
-                                                        <locale key="locale" localeIdentifier="tr"/>
-                                                    </datePicker>
-                                                    <datePicker contentMode="scaleToFill" highlighted="YES" selected="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fix-eC-AJ6">
-                                                        <rect key="frame" x="183" y="41" width="131" height="93"/>
-                                                        <color key="backgroundColor" name="TextWhiteColor"/>
-                                                        <color key="tintColor" name="TextBlackColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="131" id="5ZV-Ki-ITl"/>
-                                                            <constraint firstAttribute="height" constant="93" id="vM6-XX-Jcc"/>
+                                                            <constraint firstAttribute="width" constant="133" id="fDT-G3-IRB"/>
                                                         </constraints>
                                                         <date key="date" timeIntervalSinceReferenceDate="755640972.12307501">
                                                             <!--2024-12-11 20:16:12 +0000-->
@@ -333,28 +341,15 @@
                                                         </date>
                                                         <locale key="locale" localeIdentifier="tr_TR"/>
                                                     </datePicker>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" showsExpansionTextWhenTruncated="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mB7-7z-o0a">
-                                                        <rect key="frame" x="155" y="76" width="22" height="23"/>
-                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="23" id="RGC-mW-Jwn"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                                        <color key="textColor" systemColor="tintColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" name="BGColor"/>
                                                 <constraints>
-                                                    <constraint firstItem="Om1-sC-Amb" firstAttribute="leading" secondItem="FML-kL-hYA" secondAttribute="leading" constant="15" id="3Ni-4F-o5A"/>
+                                                    <constraint firstItem="fix-eC-AJ6" firstAttribute="leading" secondItem="FML-kL-hYA" secondAttribute="leading" constant="5" id="3xS-IK-XqE"/>
                                                     <constraint firstItem="uqV-xH-hE1" firstAttribute="top" secondItem="FML-kL-hYA" secondAttribute="top" constant="10" id="8AW-ac-mKu"/>
                                                     <constraint firstAttribute="height" constant="142" id="8YB-0m-vcl"/>
                                                     <constraint firstItem="uqV-xH-hE1" firstAttribute="leading" secondItem="FML-kL-hYA" secondAttribute="leading" constant="8" id="BvG-qQ-IdG"/>
-                                                    <constraint firstItem="Om1-sC-Amb" firstAttribute="top" secondItem="uqV-xH-hE1" secondAttribute="bottom" constant="10" id="NVK-zI-wOa"/>
-                                                    <constraint firstItem="mB7-7z-o0a" firstAttribute="leading" secondItem="Om1-sC-Amb" secondAttribute="trailing" constant="9" id="S7W-kI-UUD"/>
-                                                    <constraint firstItem="fix-eC-AJ6" firstAttribute="top" secondItem="uqV-xH-hE1" secondAttribute="bottom" constant="10" id="SzE-gt-Vfg"/>
-                                                    <constraint firstItem="fix-eC-AJ6" firstAttribute="leading" secondItem="mB7-7z-o0a" secondAttribute="trailing" constant="6" id="Xqp-QL-iO0"/>
-                                                    <constraint firstItem="mB7-7z-o0a" firstAttribute="top" secondItem="uqV-xH-hE1" secondAttribute="bottom" constant="45" id="es8-ni-gBT"/>
+                                                    <constraint firstItem="fix-eC-AJ6" firstAttribute="top" secondItem="uqV-xH-hE1" secondAttribute="bottom" constant="10" id="Itx-KE-G2I"/>
+                                                    <constraint firstAttribute="bottom" secondItem="fix-eC-AJ6" secondAttribute="bottom" constant="10" id="Rxe-Oi-iQY"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tWR-AP-Lzj" userLabel="ProductDescBackName">
@@ -479,7 +474,7 @@
                         <outlet property="productNameTextField" destination="tYK-wX-zdb" id="d6L-3D-QGt"/>
                         <outlet property="saveAndNextButton" destination="3Fp-7d-Ti3" id="fB5-Hb-YlK"/>
                         <outlet property="selectedImageView" destination="fal-1P-YCm" id="TlF-qc-zge"/>
-                        <outlet property="startTimePicker" destination="Om1-sC-Amb" id="Cl3-yz-OM0"/>
+                        <outlet property="selectedMealTypeLabel" destination="c75-jS-dry" id="oyj-mk-bD7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aa3-S0-gFU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -586,9 +581,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

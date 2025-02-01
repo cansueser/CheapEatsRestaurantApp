@@ -3,6 +3,7 @@ import UIKit
 class BottomSheetViewController: UIViewController {
     private var viewModel: BottomSheetViewModel
     private var tableView: UITableView!
+    var onDismissWithSelectedMeals: (([String]) -> Void)? // Yeni closure
     
     init(viewModel: BottomSheetViewModel) {
         self.viewModel = viewModel
@@ -58,17 +59,19 @@ class BottomSheetViewController: UIViewController {
     
     @objc private func doneButtonTapped() {
         let selectedMeals = viewModel.selectedMealIndices.map { viewModel.mealTypes[$0] }
+        onDismissWithSelectedMeals?(selectedMeals) // Seçilenleri iletiyoruz
         print("Seçilen yemekler: \(selectedMeals)")
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
+        
     }
     
     @objc private func cancelButtonTapped() {
-        viewModel.selectedMealIndices.removeAll() // Tüm seçimleri kaldır
+        viewModel.selectedMealIndices.removeAll()
         tableView.reloadData()
-        dismiss(animated: true, completion: nil)
+        onDismissWithSelectedMeals?([]) // ProductAddedViewController'a boş array gönder
+        dismiss(animated: true)
     }
 }
-
 extension BottomSheetViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.mealTypes.count
@@ -76,16 +79,17 @@ extension BottomSheetViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        cell.textLabel?.text = viewModel.mealTypes[indexPath.row]
+        let mealType = viewModel.mealTypes[indexPath.row]
+        cell.textLabel?.text = mealType
         
-        if viewModel.isSelected(at: indexPath.row) {
-            // Seçili duruma göre checkmark.circle.fill ve renk
+        // Seçili mi kontrolü DOĞRUDAN ViewModel'den alın
+        if viewModel.selectedMealIndices.contains(indexPath.row) {
             let checkmarkImage = UIImage(systemName: "checkmark.circle.fill")
             let imageView = UIImageView(image: checkmarkImage)
-            imageView.tintColor = UIColor(named: "ButtonColor") // "Buttongreen" renginde
+            imageView.tintColor = UIColor(named: "ButtonColor")
             cell.accessoryView = imageView
         } else {
-            cell.accessoryView = nil // Seçili değilse işareti kaldır
+            cell.accessoryView = nil
         }
         
         return cell
@@ -95,8 +99,12 @@ extension BottomSheetViewController: UITableViewDataSource {
 extension BottomSheetViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        viewModel.toggleSelection(at: indexPath.row)
-        let selectedMeals = viewModel.selectedMealIndices.map { viewModel.mealTypes[$0] }
-        print("Seçilen yemekler: \(selectedMeals)")
+         
+         // Seçilen satırın indeksini toggle et
+         viewModel.toggleSelection(at: indexPath.row)
+         
+         // SADECE o satırı yenile
+         tableView.reloadRows(at: [indexPath], with: .automatic)
+        //  print("Seçilen yemekler: \(selectedMeals)")
     }
 }

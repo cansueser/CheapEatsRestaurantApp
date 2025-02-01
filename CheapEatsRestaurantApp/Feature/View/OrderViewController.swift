@@ -3,28 +3,28 @@ import UIKit
 class OrderViewController: UIViewController {
     @IBOutlet weak var orderTableView: UITableView!
     @IBOutlet weak var foodAddButton: UIButton!
-
-     var orderViewModel = OrderViewModel()
+    
+    var orderViewModel = OrderViewModel()
     //celli güncelleme
     var selectedIndexPath: IndexPath?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
         orderViewModel.delegate = self
-
+        
         // Test verisi ekleme
-        let testOrder = Order(name: "Pizza", description: "Delicious pizza", oldPrice: 20, newPrice: 15, deliveryType: 1, discountType: 1, startTime: Date(), endTime: Date(), foodImage: UIImage(named: "testImage")!, orderStatus: .preparing)
+        let testOrder = Order(name: "Pizza", description: "Kaşarlı pizza", oldPrice: 20, newPrice: 15, deliveryTypeTitle: "kurye", discountType: 1, endTime: Date(), foodImage: UIImage(named: "testImage")!, orderStatus: .preparing,mealTypes: ["Tavuk","Tatlı"])
         orderViewModel.addOrder(testOrder)
     }
-
+    
     private func configureTableView() {
         orderTableView.delegate = self
         orderTableView.dataSource = self
         orderTableView.separatorStyle = .none
         orderTableView.register(UINib(nibName: "ProductTableViewCell", bundle: nil), forCellReuseIdentifier: "orderCell")
     }
-
+    
     @IBAction func foodAddButtonClicked(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let productVC = storyboard.instantiateViewController(withIdentifier: "ProductAddedViewController") as? ProductAddedViewController {

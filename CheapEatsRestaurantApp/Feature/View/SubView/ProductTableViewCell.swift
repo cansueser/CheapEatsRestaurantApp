@@ -8,7 +8,7 @@
 import UIKit
 
 class ProductTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var foodImage: UIImageView!
     @IBOutlet weak var foodNameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -27,7 +27,7 @@ class ProductTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         contentView.backgroundColor = .textWhite
@@ -35,15 +35,13 @@ class ProductTableViewCell: UITableViewCell {
         configureView(contentView, cornerRadius: 10, borderColor: .button, borderWidth: 2)
         configureView(foodImage, cornerRadius: 10, borderColor: .button, borderWidth: 1)
         
-       
+        
     } 
     func configureView(_ view: UIView, cornerRadius: CGFloat, borderColor: UIColor?, borderWidth: CGFloat) {
         view.layer.cornerRadius = cornerRadius
         view.layer.borderColor = borderColor?.cgColor
         view.layer.borderWidth = borderWidth
         view.layer.masksToBounds = true
-
-    }
-    
         
+    }
 }

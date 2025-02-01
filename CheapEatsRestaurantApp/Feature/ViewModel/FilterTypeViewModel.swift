@@ -30,7 +30,7 @@ extension FilterTypeViewModel: FilterTypeViewModelProtocol {
         selectedDeliveryType = index
         // UI'yi bilgilendirme
         delegate?.deliveryTypeDidUpdate(to: index)
-
+        
     }
 }
 
