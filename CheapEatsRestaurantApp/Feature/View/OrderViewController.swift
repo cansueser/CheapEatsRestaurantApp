@@ -1,10 +1,11 @@
 import UIKit
-
-class OrderViewController: UIViewController {
+import Firebase
+import FirebaseFirestore
+final class OrderViewController: UIViewController {
     @IBOutlet weak var orderTableView: UITableView!
     @IBOutlet weak var foodAddButton: UIButton!
     
-    var orderViewModel = OrderViewModel()
+    var orderViewModel: OrderViewModel = OrderViewModel()
     //celli güncelleme
     var selectedIndexPath: IndexPath?
     
@@ -12,10 +13,14 @@ class OrderViewController: UIViewController {
         super.viewDidLoad()
         configureTableView()
         orderViewModel.delegate = self
-        
+        orderTableView.dataSource = self
+        orderTableView.delegate = self
+        /*
+        let testOrder = Order(name: "dönerr", description: "zurna", oldPrice: 90, newPrice: 30, discountType: 1, endTime: Date(), orderStatus: .preparing, deliveryTypeTitle: "Tümü", mealTypes: ["döner"])
+        orderViewModel.addOrder(testOrder)*/
         // Test verisi ekleme
-        let testOrder = Order(name: "Pizza", description: "Kaşarlı pizza", oldPrice: 20, newPrice: 15, deliveryTypeTitle: "kurye", discountType: 1, endTime: Date(), foodImage: UIImage(named: "testImage")!, orderStatus: .preparing,mealTypes: ["Tavuk","Tatlı"])
-        orderViewModel.addOrder(testOrder)
+        /*   let testOrder = Order(name: "Pizza", description: "Kaşarlı pizza", oldPrice: 20, newPrice: 15, deliveryTypeTitle: "kurye", discountType: 1, endTime: Date(), foodImage: UIImage(named: "testImage")!, orderStatus: .preparing,mealTypes: ["Tavuk","Tatlı"])
+         orderViewModel.addOrder(testOrder)*/
     }
     
     private func configureTableView() {

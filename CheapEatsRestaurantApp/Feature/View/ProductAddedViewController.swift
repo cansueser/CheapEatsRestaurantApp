@@ -1,8 +1,9 @@
-
-
 import UIKit
-class ProductAddedViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
-    @IBOutlet weak var selectedImageView: UIImageView!
+import Cloudinary
+import Kingfisher
+import PhotosUI
+
+class ProductAddedViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate  {
     @IBOutlet weak var productNameTextField: UITextField!
     @IBOutlet weak var productDescriptionTextView: UITextView!
     @IBOutlet weak var oldPriceTextField: UITextField!
@@ -14,31 +15,43 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var mealTypeButton: UIButton!
     @IBOutlet weak var selectedMealTypeLabel: UILabel!
     
-    var orderViewModel: OrderViewModel!
+    @IBOutlet weak var selectedImageView: CLDUIImageView!
+    
+    let cloudName: String = "djsg1qqv3"
+    var uploadPreset: String = "ml_Resim"
+    var cloudinary: CLDCloudinary!
+    var toImage: String?
+    // var cloudinary: CLDCloudinary?
+    var orderViewModel: OrderViewModel = OrderViewModel()
     var selectedOrder: Order?
-    //clli  güncelleme
     var selectedIndexPath: IndexPath?
-    private var bottomSheetViewModel: BottomSheetViewModel! //
+    private var bottomSheetViewModel: BottomSheetViewModel = BottomSheetViewModel() //
     // DateFormatter tanımla
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm" // Saat ve dakika formatı
         return formatter
     }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        tapGesture()
+        initCloudinary()
+        bottomSheetViewModel = BottomSheetViewModel()
+        
+        //   configureImageViewTap()
+        //   let config = CLDConfiguration(cloudName:"djsg1qqv3")
+        //  cloudinary = CLDCloudinary(configuration: config)
         // Segment değişimini dinle
         deliveryTypeSegmentControl.addTarget(self, action: #selector(deliveryTypeChanged(_:)), for: .valueChanged)
         // Segment değişimini dinlemek için viewDidLoad'a ekle
         discountSegmentControl.addTarget(self, action: #selector(discountSegmentChanged(_:)), for: .valueChanged)
-        
         
         // DatePicker'ı saat moduna ayarla (Storyboard'dan da yapılabilir)
         lastTimePicker.datePickerMode = .time
         lastTimePicker.locale = Locale(identifier: "tr_TR") // Türkçe saat formatı
         
         updateSelectedMealTypes([]) // İlk açılışta placeholder göster
-        bottomSheetViewModel = BottomSheetViewModel()
         // Eğer düzenliyorsak, önceki seçimleri yükle
         if let order = selectedOrder {
             let selectedIndices = order.mealTypes.compactMap { mealType in
@@ -59,17 +72,14 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
             productDescriptionTextView.text = order.description
             oldPriceTextField.text = "\(order.oldPrice) TL"
             newPriceTextField.text = "\(order.newPrice) TL"
-         
+            
             discountSegmentControl.selectedSegmentIndex = order.discountType
             lastTimePicker.date = order.endTime
             
             updateSelectedMealTypes(order.mealTypes) // Yemek türlerini yükle
             
         }
-        
-        
         configureGestures()
-        configureImageViewTap()
     }
     
     private func configureGestures() {
@@ -77,39 +87,9 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
         view.addGestureRecognizer(tapGesture)
     }
     
-    private func configureImageViewTap() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(selectImage))
-        selectedImageView.isUserInteractionEnabled = true
-        selectedImageView.addGestureRecognizer(tapGesture)
-    }
-    
     @objc private func hideKeyboard() {
         view.endEditing(true)
     }
-    
-    @objc private func selectImage() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.sourceType = .photoLibrary
-        
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            self.present(imagePickerController, animated: true, completion: nil)
-        } else {
-            print("Fotoğraf kütüphanesi erişilemiyor.")
-        }
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            selectedImageView.image = selectedImage
-        }
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let currentText = textField.text else { return true }
         let newString = (currentText as NSString).replacingCharacters(in: range, with: string)
@@ -122,65 +102,102 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
         
         return false
     }
+    func tapGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        selectedImageView.isUserInteractionEnabled = true
+        selectedImageView.addGestureRecognizer(tap)
+    }
+    
+    @objc func imageTapped() {
+        var config = PHPickerConfiguration()
+        config.selectionLimit = 1
+        config.filter = .images
+        
+        let picker = PHPickerViewController(configuration: config)
+        picker.delegate = self
+        present(picker, animated: true, completion: nil)
+    }
+    
+    private func initCloudinary() {
+        let config = CLDConfiguration(cloudName: cloudName, secure: true)
+        cloudinary = CLDCloudinary(configuration: config)
+    }
+    
+    private func uploadImage(selectedImage: UIImage) {
+        guard let data = selectedImage.jpegData(compressionQuality: 0.8) else {
+            print("Error: Image data not found")
+            return
+        }
+        cloudinary.createUploader().upload(data: data, uploadPreset: uploadPreset, completionHandler:  { response, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print("Upload error: \(error.localizedDescription)")
+                    return
+                }
+                
+                guard let url = response?.secureUrl else {
+                    print("Error: Secure URL not found in response")
+                    return
+                }
+                
+                self.selectedImageView.cldSetImage(url, cloudinary: self.cloudinary)
+                print("Image uploaded successfully!!!!!!!!!!!!!!!!!!!!!: \(url)")
+                self.toImage = url
+            }
+        })
+    }
     
     
     @IBAction func saveAndNextButtonClicked(_ sender: UIButton) {
-        // Seçilen segmentin başlığını al
-            let deliveryTypeIndex = deliveryTypeSegmentControl.selectedSegmentIndex
-            let deliveryTypeTitle = deliveryTypeSegmentControl.titleForSegment(at: deliveryTypeIndex) ?? ""
-             
-        // Seçilen saati al
+        let deliveryTypeTitle = deliveryTypeSegmentControl.titleForSegment(at: deliveryTypeSegmentControl.selectedSegmentIndex) ?? ""
         let selectedTime = lastTimePicker.date
-        // Formatlı şekilde konsola yaz
-        let formattedTime = dateFormatter.string(from: selectedTime)
-        print("Seçilen saat: \(formattedTime)")
-        let name = productNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        let description = productDescriptionTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        let oldPriceText = oldPriceTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: " TL", with: "") ?? ""
-        let newPriceText = newPriceTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: " TL", with: "") ?? ""
-        
-        guard !name.isEmpty,
-              !description.isEmpty,
-              !oldPriceText.isEmpty,
-              !newPriceText.isEmpty,
-              let oldPrice = Int(oldPriceText),
-              let newPrice = Int(newPriceText),
-              let foodImage = selectedImageView.image else {
+        guard
+            let name = productNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+            !name.isEmpty,
+            let description = productDescriptionTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+            !description.isEmpty,
+            let oldPriceText = oldPriceTextField.text?
+                .replacingOccurrences(of: " TL", with: "")
+                .trimmingCharacters(in: .whitespacesAndNewlines),
+            let oldPrice = Int(oldPriceText),
+            let newPriceText = newPriceTextField.text?
+                .replacingOccurrences(of: " TL", with: "")
+                .trimmingCharacters(in: .whitespacesAndNewlines),
+            let newPrice = Int(newPriceText)
+        else {
             showAlert(message: "Lütfen tüm alanları doldurun.")
             return
         }
+        
         let selectedMeals = bottomSheetViewModel.selectedMealIndices.map {
             bottomSheetViewModel.mealTypes[$0]
         }
-        let updatedOrder = Order(
+        let order = Order(
+            id: selectedOrder?.id,
             name: name,
             description: description,
             oldPrice: oldPrice,
             newPrice: newPrice,
-            deliveryTypeTitle: deliveryTypeTitle,
             discountType: discountSegmentControl.selectedSegmentIndex,
             endTime: selectedTime,
-            foodImage: foodImage,
-            orderStatus: .preparing,
-            mealTypes: selectedMeals //
+            orderStatus: OrderStatus.preparing,
+            deliveryTypeTitle: deliveryTypeTitle,
+            mealTypes: selectedMeals,
+            imageUrl: toImage ?? ""
+            
         )
-        print("Teslim Türü: \(deliveryTypeTitle)")
-        if let indexPath = selectedIndexPath {
-            orderViewModel.updateOrder(at: indexPath.row, with: updatedOrder)
-        } else {
-            orderViewModel.addOrder(updatedOrder)
+        
+        orderViewModel.saveOrder(order) { result in
+            // Geri çağrı işlemleri
+            self.navigationController?.popViewController(animated: true)
+            
         }
-        
-        
-        navigationController?.popViewController(animated: true)
     }
-    
     private func showAlert(message: String) {
         let alert = UIAlertController(title: "Hata", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Tamam", style: .default))
         present(alert, animated: true)
     }
-    
     
     @IBAction func mealTypeButtonClicked(_ sender: UIButton) {
         let bottomSheetVC = BottomSheetViewController(viewModel: bottomSheetViewModel)
@@ -238,4 +255,19 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
         print("Seçilen teslim türü: \(selectedTitle)")
     }
 }
-
+extension ProductAddedViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true, completion: nil)
+        
+        guard let item = results.first?.itemProvider, item.canLoadObject(ofClass: UIImage.self) else { return }
+        
+        item.loadObject(ofClass: UIImage.self) { [weak self] (image, error) in
+            guard let self = self, let selectedImage = image as? UIImage else { return }
+            
+            DispatchQueue.main.async {
+                self.selectedImageView.image = selectedImage
+                self.uploadImage(selectedImage: selectedImage)
+            }
+        }
+    }
+}

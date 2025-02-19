@@ -14,17 +14,17 @@ final class FilterViewController: UIViewController {
     
     
     override func viewDidLoad() {
-           super.viewDidLoad()
-       // orderDeliveryType.layer.shadowOpacity = 0
-       }
+        super.viewDidLoad()
+        // orderDeliveryType.layer.shadowOpacity = 0
+    }
     override func viewWillAppear(_ animated: Bool) {
-      //  distanceSegment.selectedSegmentIndex = filterDeliveryTypeViewModel.selectedDistance
+        //  distanceSegment.selectedSegmentIndex = filterDeliveryTypeViewModel.selectedDistance
     }
     
     @IBAction func distanceSegmentChanged(_ sender: UISegmentedControl) {
-       //     filterDeliveryTypeViewModel.selectedDistance = sender.selectedSegmentIndex
-           
-       }
-
+        //     filterDeliveryTypeViewModel.selectedDistance = sender.selectedSegmentIndex
+        
+    }
+    
 }
 
