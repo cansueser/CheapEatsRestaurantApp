@@ -1,5 +1,5 @@
 {
-  "originHash" : "cc0ceee3e87798cef90c35286a8992b6877a63d67ccaf552752e1a019fe0bb2e",
+  "originHash" : "22abc64d07b7829063ee758b81c2a37a1cb09cb1958dc93335d16d608f06b819",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -26,6 +26,15 @@
       "state" : {
         "revision" : "215ea1db05e7f3c0212f3c9ad027cfd52c924545",
         "version" : "5.1.0"
+      }
+    },
+    {
+      "identity" : "easytipview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/teodorpatras/EasyTipView.git",
+      "state" : {
+        "revision" : "1cba0e75f745da03773cd7092480c5fa8cde4a72",
+        "version" : "2.1.0"
       }
     },
     {
@@ -134,15 +143,6 @@
       "state" : {
         "revision" : "ebc7251dd5b37f627c93698e4374084d98409633",
         "version" : "1.28.2"
-      }
-    },
-    {
-      "identity" : "textfieldeffects",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/raulriera/TextFieldEffects",
-      "state" : {
-        "revision" : "7e563d4d6d755bb1ab6c1c049f8c215d7c489100",
-        "version" : "1.7.0"
       }
     }
   ],

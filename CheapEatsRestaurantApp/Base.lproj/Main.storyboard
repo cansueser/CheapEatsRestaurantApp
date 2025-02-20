@@ -108,12 +108,12 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c07-FW-H0G" userLabel="ImageBackView">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="190"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jMh-Je-a2s" customClass="CLDUIImageView" customModule="Cloudinary">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jMh-Je-a2s" customClass="CLDUIImageView" customModule="Cloudinary">
                                                         <rect key="frame" x="30" y="10" width="333" height="170"/>
                                                         <color key="backgroundColor" name="IconBG"/>
                                                     </imageView>
                                                 </subviews>
-                                                <color key="backgroundColor" name="TitleColor"/>
+                                                <color key="backgroundColor" name="BGColor"/>
                                                 <constraints>
                                                     <constraint firstItem="jMh-Je-a2s" firstAttribute="leading" secondItem="c07-FW-H0G" secondAttribute="leading" constant="30" id="ILk-6X-f2P"/>
                                                     <constraint firstAttribute="bottom" secondItem="jMh-Je-a2s" secondAttribute="bottom" constant="10" id="Mse-hj-0JW"/>
@@ -133,6 +133,7 @@
                                                     </label>
                                                     <textField opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ürün Adı" minimumFontSize="14" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tYK-wX-zdb">
                                                         <rect key="frame" x="8" y="43" width="377" height="34"/>
+                                                        <color key="backgroundColor" red="0.97682522819999995" green="0.96168414820000003" blue="0.94229588070000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <color key="textColor" name="TextBlackColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -153,7 +154,6 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c75-jS-dry">
                                                         <rect key="frame" x="8" y="55" width="377" height="0.0"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <attributedString key="attributedText"/>
                                                         <nil key="highlightedColor"/>
                                                         <color key="shadowColor" name="ButtonColor"/>
@@ -226,7 +226,7 @@
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="WHF-mo-WTV">
                                                         <rect key="frame" x="8" y="42" width="377" height="40"/>
-                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                        <color key="backgroundColor" red="0.97682522819999995" green="0.96168414820000003" blue="0.94229588070000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="y9T-1U-ba1"/>
                                                         </constraints>
@@ -300,9 +300,10 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" allowsEditingTextAttributes="YES" borderStyle="roundedRect" placeholder="40" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="94i-jl-ERJ">
-                                                        <rect key="frame" x="8" y="39" width="70" height="34"/>
+                                                        <rect key="frame" x="8" y="39" width="49" height="34"/>
+                                                        <color key="backgroundColor" red="0.97682522819999995" green="0.96168414820000003" blue="0.94229588070000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="70" id="4ig-5O-VhW"/>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="90" id="4ig-5O-VhW"/>
                                                         </constraints>
                                                         <attributedString key="attributedText"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -346,11 +347,15 @@
                                                         <color key="tintColor" name="ButtonColor"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="info.circle.fill" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="infoButtonClicked:" destination="L7P-jM-gad" eventType="touchUpInside" id="bgb-Dn-R4G"/>
+                                                        </connections>
                                                     </button>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" allowsEditingTextAttributes="YES" borderStyle="roundedRect" placeholder="70" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vPk-h3-vCc">
-                                                        <rect key="frame" x="8" y="41" width="70" height="34"/>
+                                                        <rect key="frame" x="8" y="41" width="47.333333333333336" height="34"/>
+                                                        <color key="backgroundColor" red="0.97682522819999995" green="0.96168414820000003" blue="0.94229588070000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="70" id="noG-70-cVr"/>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="90" id="noG-70-cVr"/>
                                                         </constraints>
                                                         <attributedString key="attributedText"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -389,7 +394,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="tableBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.92007607219999998" green="0.92007607219999998" blue="0.92007607219999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1050" id="0SI-bI-od2"/>
                                             <constraint firstItem="c07-FW-H0G" firstAttribute="top" secondItem="J8R-JF-LrW" secondAttribute="top" id="1mg-sC-iKi"/>
@@ -448,7 +453,9 @@
                     <connections>
                         <outlet property="deliveryTypeSegmentControl" destination="qR3-VJ-Xdu" id="RSU-sV-9bj"/>
                         <outlet property="discountSegmentControl" destination="9V8-xO-3SD" id="BeU-TV-sXU"/>
+                        <outlet property="infoButton" destination="MPb-Z8-nUw" id="ugD-lq-8Ls"/>
                         <outlet property="lastTimePicker" destination="fix-eC-AJ6" id="0rZ-JQ-3ME"/>
+                        <outlet property="mainView" destination="c83-D9-gpH" id="nZ4-Qj-AwI"/>
                         <outlet property="mealTypeButton" destination="6ws-eY-hpX" id="5XE-EE-pad"/>
                         <outlet property="newPriceTextField" destination="94i-jl-ERJ" id="hMo-4g-DJW"/>
                         <outlet property="oldPriceTextField" destination="vPk-h3-vCc" id="uIp-sZ-SpW"/>
@@ -565,12 +572,6 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="tableBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>

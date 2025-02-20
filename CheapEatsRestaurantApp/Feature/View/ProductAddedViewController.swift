@@ -2,8 +2,22 @@ import UIKit
 import Cloudinary
 import Kingfisher
 import PhotosUI
+import EasyTipView
 
-class ProductAddedViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate  {
+class ProductAddedViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UIToolTipInteractionDelegate ,EasyTipViewDelegate {
+    func easyTipViewDidTap(_ tipView: EasyTipView) {
+        tipView.dismiss()
+    }
+   
+    func easyTipViewDidDismiss(_ tipView: EasyTipView) {
+      
+       // DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { self.dismiss(animated: true)}
+       
+        preferences.animating.dismissTransform = CGAffineTransform(translationX: 0, y: -15)
+        preferences.animating.showInitialTransform = CGAffineTransform(translationX: 0, y: -15)
+        preferences.animating.showInitialAlpha = 0
+        preferences.animating.showDuration = 1.5
+        preferences.animating.dismissDuration = 1.5    }
     @IBOutlet weak var productNameTextField: UITextField!
     @IBOutlet weak var productDescriptionTextView: UITextView!
     @IBOutlet weak var oldPriceTextField: UITextField!
@@ -17,14 +31,19 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
     
     @IBOutlet weak var selectedImageView: CLDUIImageView!
     
+    @IBOutlet weak var infoButton: UIButton!
+    
+    
+    @IBOutlet var mainView: UIView!
     let cloudName: String = "djsg1qqv3"
     var uploadPreset: String = "ml_Resim"
     var cloudinary: CLDCloudinary!
     var toImage: String?
-    // var cloudinary: CLDCloudinary?
     var orderViewModel: OrderViewModel = OrderViewModel()
     var selectedOrder: Order?
     var selectedIndexPath: IndexPath?
+    var preferences = EasyTipView.Preferences()
+    var tipView: EasyTipView?
     private var bottomSheetViewModel: BottomSheetViewModel = BottomSheetViewModel() //
     // DateFormatter tanımla
     let dateFormatter: DateFormatter = {
@@ -35,13 +54,12 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        preferences.drawing.backgroundColor = .lightGray
+        preferences.drawing.foregroundColor = .textWhite
+        
         tapGesture()
         initCloudinary()
         bottomSheetViewModel = BottomSheetViewModel()
-        
-        //   configureImageViewTap()
-        //   let config = CLDConfiguration(cloudName:"djsg1qqv3")
-        //  cloudinary = CLDCloudinary(configuration: config)
         // Segment değişimini dinle
         deliveryTypeSegmentControl.addTarget(self, action: #selector(deliveryTypeChanged(_:)), for: .valueChanged)
         // Segment değişimini dinlemek için viewDidLoad'a ekle
@@ -148,6 +166,22 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     
+    @IBAction func infoButtonClicked(_ sender: Any) {
+        showToolTip()
+    }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    func showToolTip() {
+        tipView = EasyTipView(text: "Önerilen sabit indirimler!",
+                              preferences: self.preferences,
+                              delegate: self)
+        tipView?.show(forView: self.infoButton, withinSuperview: self.mainView)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.tipView?.dismiss()
+            self.tipView = nil
+        }
+    }
     @IBAction func saveAndNextButtonClicked(_ sender: UIButton) {
         let deliveryTypeTitle = deliveryTypeSegmentControl.titleForSegment(at: deliveryTypeSegmentControl.selectedSegmentIndex) ?? ""
         let selectedTime = lastTimePicker.date
