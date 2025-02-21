@@ -394,7 +394,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.92007607219999998" green="0.92007607219999998" blue="0.92007607219999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" red="0.99241250749999999" green="0.99241250749999999" blue="0.99241250749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1050" id="0SI-bI-od2"/>
                                             <constraint firstItem="c07-FW-H0G" firstAttribute="top" secondItem="J8R-JF-LrW" secondAttribute="top" id="1mg-sC-iKi"/>
