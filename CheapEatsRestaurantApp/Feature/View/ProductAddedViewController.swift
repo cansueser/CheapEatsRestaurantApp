@@ -60,7 +60,6 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
         tapGesture()
         initCloudinary()
         bottomSheetViewModel = BottomSheetViewModel()
-        // Segment değişimini dinle
         deliveryTypeSegmentControl.addTarget(self, action: #selector(deliveryTypeChanged(_:)), for: .valueChanged)
         // Segment değişimini dinlemek için viewDidLoad'a ekle
         discountSegmentControl.addTarget(self, action: #selector(discountSegmentChanged(_:)), for: .valueChanged)
