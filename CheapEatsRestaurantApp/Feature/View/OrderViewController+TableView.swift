@@ -57,7 +57,7 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource {
             alert.addAction(UIAlertAction(title: "Sil", style: .destructive, handler: { _ in
                 let order = self.orderViewModel.getOrders()[indexPath.row]
                 
-                guard let orderID = order.id else {
+                guard let orderID = order.productId else {
                     print("Hata: Order ID bulunamadı")
                     return
                 }

@@ -39,7 +39,7 @@ final class OrderViewModel {
         let db = Firestore.firestore()
         let documentRef: DocumentReference
         
-        if let id = order.id { // Güncelleme
+        if let id = order.productId { // Güncelleme
             documentRef = db.collection("orders").document(id)
         } else { // Yeni kayıt
             documentRef = db.collection("orders").document()
@@ -50,14 +50,14 @@ final class OrderViewModel {
                 completion(.failure(error))
             } else {
                 var updatedOrder = order
-                updatedOrder.id = documentRef.documentID
+                updatedOrder.productId = documentRef.documentID
                 self.syncLocalData(with: updatedOrder)
                 completion(.success(()))
             }
         }
     }
     private func syncLocalData(with order: Order) {
-        if let index = orders.firstIndex(where: { $0.id == order.id }) {
+        if let index = orders.firstIndex(where: { $0.productId == order.productId }) {
             orders[index] = order
         } else {
             orders.append(order)
@@ -74,7 +74,7 @@ final class OrderViewModel {
                 completion(false)
             } else {
                 // Yerel veriden de kaldır
-                if let index = self.orders.firstIndex(where: { $0.id == orderID }) {
+                if let index = self.orders.firstIndex(where: { $0.productId == orderID }) {
                     self.orders.remove(at: index)
                 }
                 completion(true)

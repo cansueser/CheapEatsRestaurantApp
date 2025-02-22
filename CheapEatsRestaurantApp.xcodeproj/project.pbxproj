@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7E1489582D67C93800E99F58 /* EasyTipView in Frameworks */ = {isa = PBXBuildFile; productRef = 7E1489572D67C93800E99F58 /* EasyTipView */; };
+		7E3D4DC02D69FFFC00B58E53 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 7E3D4DBF2D69FFFC00B58E53 /* TextFieldEffects */; };
 		7E3FB7BC2D098A2B00359003 /* FilterTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3FB7BB2D098A2A00359003 /* FilterTypeViewModel.swift */; };
 		7E3FB7BE2D098E0600359003 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3FB7BD2D098E0600359003 /* FilterViewController.swift */; };
 		7E652CF42D0711C000137ECA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E652CF32D0711C000137ECA /* AppDelegate.swift */; };
@@ -99,6 +100,7 @@
 				7EA908E02D4FBF600022B673 /* FirebaseFunctionsCombine-Community in Frameworks */,
 				7EA908F02D4FBF600022B673 /* FirebaseStorageCombine-Community in Frameworks */,
 				7EA908CC2D4FBF600022B673 /* FirebaseAppDistribution-Beta in Frameworks */,
+				7E3D4DC02D69FFFC00B58E53 /* TextFieldEffects in Frameworks */,
 				7EA908F22D4FBF600022B673 /* FirebaseVertexAI in Frameworks */,
 				7EA908EE2D4FBF600022B673 /* FirebaseStorage in Frameworks */,
 				7EA908EC2D4FBF600022B673 /* FirebaseRemoteConfig in Frameworks */,
@@ -199,19 +201,11 @@
 			isa = PBXGroup;
 			children = (
 				7E445D132D38055900BEDD0C /* Extension */,
-				7E652D0A2D07175E00137ECA /* NetworkLayer */,
 				7E445D092D38024E00BEDD0C /* Model */,
 				7E652D0C2D07177E00137ECA /* View */,
 				7E445D0B2D3802FB00BEDD0C /* ViewModel */,
 			);
 			path = Feature;
-			sourceTree = "<group>";
-		};
-		7E652D0A2D07175E00137ECA /* NetworkLayer */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = NetworkLayer;
 			sourceTree = "<group>";
 		};
 		7E652D0C2D07177E00137ECA /* View */ = {
@@ -271,6 +265,7 @@
 				7EF612D12D518CC2003B1DF1 /* Kingfisher */,
 				7E7666B52D59AFCE000F808F /* Cloudinary */,
 				7E1489572D67C93800E99F58 /* EasyTipView */,
+				7E3D4DBF2D69FFFC00B58E53 /* TextFieldEffects */,
 			);
 			productName = CheapEatsRestaurantApp;
 			productReference = 7E652CF02D0711C000137ECA /* CheapEatsRestaurantApp.app */;
@@ -305,6 +300,7 @@
 				7EF612D02D518CC2003B1DF1 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				7E7666B42D59AFCE000F808F /* XCRemoteSwiftPackageReference "cloudinary_ios" */,
 				7E1489562D67C93800E99F58 /* XCRemoteSwiftPackageReference "EasyTipView" */,
+				7E3D4DBE2D69FFFC00B58E53 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 			);
 			productRefGroup = 7E652CF12D0711C000137ECA /* Products */;
 			projectDirPath = "";
@@ -582,6 +578,14 @@
 				minimumVersion = 2.1.0;
 			};
 		};
+		7E3D4DBE2D69FFFC00B58E53 /* XCRemoteSwiftPackageReference "TextFieldEffects" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/raulriera/TextFieldEffects";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.0;
+			};
+		};
 		7E7666B42D59AFCE000F808F /* XCRemoteSwiftPackageReference "cloudinary_ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/cloudinary/cloudinary_ios.git";
@@ -613,6 +617,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7E1489562D67C93800E99F58 /* XCRemoteSwiftPackageReference "EasyTipView" */;
 			productName = EasyTipView;
+		};
+		7E3D4DBF2D69FFFC00B58E53 /* TextFieldEffects */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E3D4DBE2D69FFFC00B58E53 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
+			productName = TextFieldEffects;
 		};
 		7E7666B52D59AFCE000F808F /* Cloudinary */ = {
 			isa = XCSwiftPackageProductDependency;

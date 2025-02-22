@@ -28,12 +28,8 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var lastTimePicker: UIDatePicker!
     @IBOutlet weak var mealTypeButton: UIButton!
     @IBOutlet weak var selectedMealTypeLabel: UILabel!
-    
     @IBOutlet weak var selectedImageView: CLDUIImageView!
-    
     @IBOutlet weak var infoButton: UIButton!
-    
-    
     @IBOutlet var mainView: UIView!
     let cloudName: String = "djsg1qqv3"
     var uploadPreset: String = "ml_Resim"
@@ -56,7 +52,12 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
         super.viewDidLoad()
         preferences.drawing.backgroundColor = .lightGray
         preferences.drawing.foregroundColor = .textWhite
-        
+        setupDeliverySegments()
+        deliveryTypeSegmentControl.addTarget(
+            self,
+            action: #selector(deliveryTypeChanged(_:)),
+            for: .valueChanged
+        )
         tapGesture()
         initCloudinary()
         bottomSheetViewModel = BottomSheetViewModel()
@@ -71,7 +72,7 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
         updateSelectedMealTypes([]) // İlk açılışta placeholder göster
         // Eğer düzenliyorsak, önceki seçimleri yükle
         if let order = selectedOrder {
-            let selectedIndices = order.mealTypes.compactMap { mealType in
+            let selectedIndices = order.category.compactMap { mealType in
                 bottomSheetViewModel.mealTypes.firstIndex { $0 == mealType } // String karşılaştırma yapın!
             }
             bottomSheetViewModel.selectedMealIndices = Set(selectedIndices)
@@ -81,7 +82,7 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
         newPriceTextField.delegate = self
         
         if let order = selectedOrder {
-            let selectedIndices = order.mealTypes.compactMap { mealType in
+            let selectedIndices = order.category.compactMap { mealType in
                 bottomSheetViewModel.mealTypes.firstIndex { $0 == mealType }
             }
             bottomSheetViewModel.selectedMealIndices = Set(selectedIndices)
@@ -93,7 +94,7 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
             discountSegmentControl.selectedSegmentIndex = order.discountType
             lastTimePicker.date = order.endTime
             
-            updateSelectedMealTypes(order.mealTypes) // Yemek türlerini yükle
+            updateSelectedMealTypes(order.category) // Yemek türlerini yükle
             
         }
         configureGestures()
@@ -182,7 +183,10 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
         }
     }
     @IBAction func saveAndNextButtonClicked(_ sender: UIButton) {
-        let deliveryTypeTitle = deliveryTypeSegmentControl.titleForSegment(at: deliveryTypeSegmentControl.selectedSegmentIndex) ?? ""
+        guard let deliveryType = DeliveryType(index: deliveryTypeSegmentControl.selectedSegmentIndex) else {
+               showAlert(message: "Geçersiz teslimat türü")
+               return
+           }
         let selectedTime = lastTimePicker.date
         guard
             let name = productNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
@@ -206,7 +210,7 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
             bottomSheetViewModel.mealTypes[$0]
         }
         let order = Order(
-            id: selectedOrder?.id,
+            productId: selectedOrder?.productId,
             name: name,
             description: description,
             oldPrice: oldPrice,
@@ -214,10 +218,10 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
             discountType: discountSegmentControl.selectedSegmentIndex,
             endTime: selectedTime,
             orderStatus: OrderStatus.preparing,
-            deliveryTypeTitle: deliveryTypeTitle,
-            mealTypes: selectedMeals,
+            deliveryType: deliveryType,
+            restaurantId: "1327",
+            category: selectedMeals,
             imageUrl: toImage ?? ""
-            
         )
         
         orderViewModel.saveOrder(order) { result in
@@ -282,10 +286,30 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
             discountSegmentControl.selectedSegmentIndex = UISegmentedControl.noSegment
         }
     }
-    @objc func deliveryTypeChanged(_ sender: UISegmentedControl) {
-        let selectedIndex = sender.selectedSegmentIndex
-        let selectedTitle = sender.titleForSegment(at: selectedIndex) ?? ""
-        print("Seçilen teslim türü: \(selectedTitle)")
+    
+    // MARK: - Delivery Segment
+       private func setupDeliverySegments() {
+           // Segment başlıklarını enum'dan al
+           deliveryTypeSegmentControl.removeAllSegments()
+           
+           for (index, type) in DeliveryType.allCases.enumerated() {
+               deliveryTypeSegmentControl.insertSegment(
+                   withTitle: type.title,
+                   at: index,
+                   animated: false
+               )
+           }
+           
+           // Varsayılan seçimi ayarla
+           deliveryTypeSegmentControl.selectedSegmentIndex = 0
+       }
+    @objc private func deliveryTypeChanged(_ sender: UISegmentedControl) {
+        guard let deliveryType = DeliveryType(index: sender.selectedSegmentIndex) else {
+            print("Geçersiz segment seçimi")
+            return
+        }
+        
+        print("Seçilen teslim türü: \(deliveryType.title)")
     }
 }
 extension ProductAddedViewController: PHPickerViewControllerDelegate {
