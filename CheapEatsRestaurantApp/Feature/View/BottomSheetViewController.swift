@@ -58,7 +58,7 @@ class BottomSheetViewController: UIViewController {
     }
     
     @objc private func doneButtonTapped() {
-        let selectedMeals = viewModel.selectedMealIndices.map { viewModel.mealTypes[$0] }
+        let selectedMeals = viewModel.selectedMealIndices.map { viewModel.mealType[$0].description }
         onDismissWithSelectedMeals?(selectedMeals) // Seçilenleri iletiyoruz
         print("Seçilen yemekler: \(selectedMeals)")
         dismiss(animated: true)
@@ -74,12 +74,12 @@ class BottomSheetViewController: UIViewController {
 }
 extension BottomSheetViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.mealTypes.count
+        return viewModel.mealType.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        let mealType = viewModel.mealTypes[indexPath.row]
+        let mealType = viewModel.mealType[indexPath.row].description
         cell.textLabel?.text = mealType
         
         // Seçili mi kontrolü DOĞRUDAN ViewModel'den alın

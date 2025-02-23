@@ -10,9 +10,6 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
     }
    
     func easyTipViewDidDismiss(_ tipView: EasyTipView) {
-      
-       // DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { self.dismiss(animated: true)}
-       
         preferences.animating.dismissTransform = CGAffineTransform(translationX: 0, y: -15)
         preferences.animating.showInitialTransform = CGAffineTransform(translationX: 0, y: -15)
         preferences.animating.showInitialAlpha = 0
@@ -31,6 +28,17 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var selectedImageView: CLDUIImageView!
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet var mainView: UIView!
+    @IBOutlet weak var view1: UIView!
+    @IBOutlet weak var view2: UIView!
+    @IBOutlet weak var view3: UIView!
+    @IBOutlet weak var view4: UIView!
+    @IBOutlet weak var view5: UIView!
+    @IBOutlet weak var view6: UIView!
+    @IBOutlet weak var view7: UIView!
+    @IBOutlet weak var view8: UIView!
+    
+    
+    
     let cloudName: String = "djsg1qqv3"
     var uploadPreset: String = "ml_Resim"
     var cloudinary: CLDCloudinary!
@@ -50,8 +58,20 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //MARK: - VİEW AYARLAMA
+        view1.addRoundedBorder()
+        view2.addRoundedBorder()
+        view3.addRoundedBorder()
+        view4.addRoundedBorder()
+        view5.addRoundedBorder()
+        view6.addRoundedBorder()
+        view7.addRoundedBorder()
+        view8.addRoundedBorder()
+        selectedMealTypeLabel.addRoundedBorder(cornerRadius: 5, borderWidth: 1, borderColor: .sarı,backgroundColor: .beyaz)
+        productDescriptionTextView.addRoundedBorder(cornerRadius: 5, borderWidth: 1, borderColor: .sarı,backgroundColor: .beyaz)
+    
         preferences.drawing.backgroundColor = .lightGray
-        preferences.drawing.foregroundColor = .textWhite
+        preferences.drawing.foregroundColor = .white
         setupDeliverySegments()
         deliveryTypeSegmentControl.addTarget(
             self,
@@ -73,7 +93,7 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
         // Eğer düzenliyorsak, önceki seçimleri yükle
         if let order = selectedOrder {
             let selectedIndices = order.category.compactMap { mealType in
-                bottomSheetViewModel.mealTypes.firstIndex { $0 == mealType } // String karşılaştırma yapın!
+                bottomSheetViewModel.mealType.firstIndex { $0.description == mealType } // String karşılaştırma yapın!
             }
             bottomSheetViewModel.selectedMealIndices = Set(selectedIndices)
         }
@@ -83,7 +103,7 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
         
         if let order = selectedOrder {
             let selectedIndices = order.category.compactMap { mealType in
-                bottomSheetViewModel.mealTypes.firstIndex { $0 == mealType }
+                bottomSheetViewModel.mealType.firstIndex { $0.description == mealType }
             }
             bottomSheetViewModel.selectedMealIndices = Set(selectedIndices)
             productNameTextField.text = order.name
@@ -207,7 +227,7 @@ class ProductAddedViewController: UIViewController, UIImagePickerControllerDeleg
         }
         
         let selectedMeals = bottomSheetViewModel.selectedMealIndices.map {
-            bottomSheetViewModel.mealTypes[$0]
+            bottomSheetViewModel.mealType[$0].description
         }
         let order = Order(
             productId: selectedOrder?.productId,
@@ -326,5 +346,19 @@ extension ProductAddedViewController: PHPickerViewControllerDelegate {
                 self.uploadImage(selectedImage: selectedImage)
             }
         }
+    }
+}
+
+// MARK: - view
+extension UIView {
+    func addRoundedBorder(cornerRadius: CGFloat = 10,
+                         borderWidth: CGFloat = 3,
+                          borderColor: UIColor = .açıkgri,
+                          backgroundColor: UIColor? = .opakbeyaz) {
+        self.layer.cornerRadius = cornerRadius
+        self.layer.masksToBounds = true
+        self.layer.borderWidth = borderWidth
+        self.layer.borderColor = borderColor.cgColor
+        self.backgroundColor = backgroundColor
     }
 }
