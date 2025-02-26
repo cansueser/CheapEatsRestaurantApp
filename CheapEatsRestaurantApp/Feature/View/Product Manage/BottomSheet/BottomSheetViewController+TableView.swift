@@ -19,7 +19,7 @@ extension BottomSheetViewController: UITableViewDataSource, UITableViewDelegate 
         cell.accessoryView = nil
         if bottomSheetViewModel.selectedOptions.contains(option) {
             let checkmarkImageView = UIImageView(image: UIImage(systemName: "checkmark.circle.fill"))
-            checkmarkImageView.tintColor = UIColor(.yeşil)
+            checkmarkImageView.tintColor = UIColor(.button)
             cell.accessoryView = checkmarkImageView
         }
         return cell

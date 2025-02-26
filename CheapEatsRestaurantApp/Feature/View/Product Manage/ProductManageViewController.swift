@@ -18,12 +18,12 @@ class ProductManageViewController: UIViewController {
     @IBOutlet weak var selectedImageView: CLDUIImageView!
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet var mainView: UIView!
-    @IBOutlet weak var view1: UIView!
-    @IBOutlet weak var view2: UIView!
-    @IBOutlet weak var view3: UIView!
-    @IBOutlet weak var view4: UIView!
-    @IBOutlet weak var view5: UIView!
-    @IBOutlet weak var view6: UIView!
+    @IBOutlet weak var productNameBackView: UIView!
+    @IBOutlet weak var photoBackView: UIView!
+    @IBOutlet weak var mealTypeBackView: UIView!
+    @IBOutlet weak var priceBackView: UIView!
+    @IBOutlet weak var deliveryTypeBackView: UIView!
+    @IBOutlet weak var timeBackView: UIView!
     @IBOutlet weak var priceImage: UIImageView!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -64,12 +64,12 @@ class ProductManageViewController: UIViewController {
         oldPriceTextField.delegate = self
         newPriceTextField.delegate = self
         productManageViewModel.delegate = self
-        productDescriptionTextView.addRoundedBorder(cornerRadius: 5, borderWidth: 1, borderColor: .suyeşil,backgroundColor: .beyaz)
+        productDescriptionTextView.addRoundedBorder(cornerRadius: 5, borderWidth: 1, borderColor: .title,backgroundColor: .textWhite)
         timeImage.makeRounded(radius: 5)
         timeLabel.makeRounded(radius: 5)
         priceImage.makeRounded(radius: 5)
         priceLabel.makeRounded(radius: 5)
-        selectedImageView.makeRounded(radius: 5)
+        selectedImageView.addRoundedBorder(cornerRadius: 5, borderWidth: 2, borderColor: .title)
         preferences.drawing.backgroundColor = .lightGray
         preferences.drawing.foregroundColor = .white
     }

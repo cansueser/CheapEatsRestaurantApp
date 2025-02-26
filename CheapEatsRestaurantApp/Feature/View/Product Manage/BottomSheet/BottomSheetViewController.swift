@@ -20,11 +20,11 @@ class BottomSheetViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .white
         let clearButton = UIBarButtonItem(title: "Temizle", style: .plain, target: self, action: #selector(clearButtonTapped))
-        clearButton.tintColor = .yeşil
+        clearButton.tintColor = .button
         navigationItem.rightBarButtonItem = clearButton
         navigationItem.title = "Yemek Türleri"
         let cancelButton = UIBarButtonItem(title: "İptal", style: .plain, target: self, action: #selector(cancelButtonTapped))
-        cancelButton.tintColor = .kırmızı
+        cancelButton.tintColor = .cut
         navigationItem.leftBarButtonItem = cancelButton
         navigationBar.setItems([navigationItem], animated: false)
     }
