@@ -107,10 +107,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="1050"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c07-FW-H0G" userLabel="view1">
-                                                <rect key="frame" x="0.0" y="15" width="393" height="177"/>
+                                                <rect key="frame" x="0.0" y="15" width="393" height="166"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit." translatesAutoresizingMaskIntoConstraints="NO" id="WHF-mo-WTV">
-                                                        <rect key="frame" x="19" y="107" width="355" height="62"/>
+                                                        <rect key="frame" x="19" y="96" width="355" height="62"/>
                                                         <color key="backgroundColor" name="beyaz"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="62" id="Omk-rx-2dV"/>
@@ -137,7 +137,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meal Details" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcT-xQ-ODg">
-                                                        <rect key="frame" x="19" y="70" width="107" height="35"/>
+                                                        <rect key="frame" x="19" y="70" width="107" height="24"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <color key="textColor" name="ButtonColor"/>
                                                         <nil key="highlightedColor"/>
@@ -158,16 +158,16 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="jDj-jm-hzq" userLabel="view2">
-                                                <rect key="frame" x="8" y="205" width="365" height="163"/>
+                                                <rect key="frame" x="0.0" y="194" width="393" height="163"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload Photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycI-Va-0RK">
-                                                        <rect key="frame" x="8" y="4" width="103.66666666666667" height="21"/>
+                                                        <rect key="frame" x="36.000000000000007" y="4" width="103.66666666666669" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="0.83529412749999998" green="0.83529412749999998" blue="0.69803923369999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.badge.plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="jMh-Je-a2s" customClass="CLDUIImageView" customModule="Cloudinary">
-                                                        <rect key="frame" x="8" y="39.666666666666657" width="135" height="86"/>
+                                                        <rect key="frame" x="8" y="39.666666666666657" width="163" height="86"/>
                                                         <color key="backgroundColor" name="açıkgri"/>
                                                         <color key="tintColor" name="BGColor"/>
                                                         <constraints>
@@ -187,10 +187,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c9F-UG-ow1" userLabel="view5">
-                                                <rect key="frame" x="0.0" y="702" width="393" height="97"/>
+                                                <rect key="frame" x="0.0" y="691.33333333333337" width="393" height="107.66666666666663"/>
                                                 <subviews>
                                                     <segmentedControl toolTip="hepsi" opaque="NO" contentMode="scaleToFill" highlighted="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qR3-VJ-Xdu">
-                                                        <rect key="frame" x="8" y="46.333333333333371" width="366" height="34.666666666666657"/>
+                                                        <rect key="frame" x="8" y="46.333333333333258" width="366" height="45.333333333333343"/>
                                                         <color key="backgroundColor" name="TextWhiteColor"/>
                                                         <segments>
                                                             <segment title="Hepsi"/>
@@ -210,7 +210,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.seal.fill" catalog="system" highlightedImage="checkmark.seal.fill" translatesAutoresizingMaskIntoConstraints="NO" id="D9Z-qI-RCo">
-                                                        <rect key="frame" x="88" y="55.999999999999957" width="15" height="14.333333333333329"/>
+                                                        <rect key="frame" x="88" y="61.333333333333329" width="15" height="14.333333333333343"/>
                                                         <color key="tintColor" name="ButtonColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="15" id="Mms-KK-GpJ"/>
@@ -218,7 +218,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="figure.outdoor.cycle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dr0-Gv-v7f">
-                                                        <rect key="frame" x="333" y="57.999999999999957" width="15" height="10.666666666666671"/>
+                                                        <rect key="frame" x="333" y="63.333333333333314" width="15" height="10.666666666666686"/>
                                                         <color key="tintColor" name="ButtonColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="15" id="DX8-QU-PNd"/>
@@ -226,7 +226,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="figure.walk" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="3xc-u2-VOw">
-                                                        <rect key="frame" x="211" y="60.000000000000043" width="15" height="11.000000000000014"/>
+                                                        <rect key="frame" x="211" y="59.999999999999922" width="15" height="21.666666666666679"/>
                                                         <color key="tintColor" name="ButtonColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="15" id="IxW-XD-4cP"/>
@@ -260,69 +260,58 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wkR-Rc-geU" userLabel="view3">
-                                                <rect key="frame" x="0.0" y="384" width="393" height="144"/>
+                                                <rect key="frame" x="0.0" y="377" width="393" height="60"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ws-eY-hpX">
-                                                        <rect key="frame" x="8" y="8" width="227" height="42"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ws-eY-hpX">
+                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="227" id="xDu-4e-egS"/>
+                                                            <constraint firstAttribute="height" constant="60" id="VdJ-fp-Qtg"/>
                                                         </constraints>
-                                                        <color key="tintColor" name="yeşil"/>
-                                                        <buttonConfiguration key="configuration" style="plain" cornerStyle="dynamic">
-                                                            <imageReference key="image" image="fork.knife.circle" catalog="system" renderingMode="hierarchical">
-                                                                <hierarchicalColors>
-                                                                    <color name="yeşil"/>
-                                                                    <color name="yeşil"/>
-                                                                    <color name="ButtonColor"/>
-                                                                </hierarchicalColors>
-                                                            </imageReference>
-                                                            <backgroundConfiguration key="background">
-                                                                <color key="backgroundColor" name="açıkgri"/>
-                                                                <color key="strokeColor" name="yeşil"/>
-                                                            </backgroundConfiguration>
-                                                            <attributedString key="attributedTitle">
-                                                                <fragment content="Yemek Türü Seçiniz -&gt;">
-                                                                    <attributes>
-                                                                        <color key="NSColor" red="0.34117650989999998" green="0.41568624970000001" blue="0.31372550129999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                        <font key="NSFont" size="12" name="Helvetica"/>
-                                                                        <font key="NSOriginalFont" size="12" name="Helvetica"/>
-                                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                            </attributedString>
-                                                            <color key="baseForegroundColor" name="yeşil"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Yemek Türleri" cornerStyle="dynamic">
+                                                            <backgroundConfiguration key="background"/>
+                                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                            <color key="baseForegroundColor" systemColor="labelColor"/>
                                                         </buttonConfiguration>
                                                         <connections>
                                                             <action selector="mealTypeButtonClicked:" destination="L7P-jM-gad" eventType="touchUpInside" id="ZTZ-IS-4g0"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="7" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c75-jS-dry">
-                                                        <rect key="frame" x="8" y="58" width="368" height="75"/>
-                                                        <color key="backgroundColor" name="opakbeyaz"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Svj-ng-bfH">
+                                                        <rect key="frame" x="359" y="23" width="22.666666666666686" height="12.666666666666664"/>
+                                                        <color key="tintColor" name="suyeşil"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="75" id="syJ-c2-Yq7"/>
+                                                            <constraint firstAttribute="width" constant="22.666666666666686" id="T90-uz-GxS"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
+                                                        <imageReference key="image" image="arrowtriangle.right.fill" catalog="system" symbolScale="small"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yemek Türü Seçiniz" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="7" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c75-jS-dry">
+                                                        <rect key="frame" x="119.99999999999999" y="16" width="235.66666666666663" height="28"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <color key="textColor" name="suyeşil"/>
                                                         <nil key="highlightedColor"/>
-                                                        <color key="shadowColor" name="ButtonColor"/>
                                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                                     </label>
                                                 </subviews>
                                                 <color key="backgroundColor" name="beyaz"/>
                                                 <constraints>
-                                                    <constraint firstItem="c75-jS-dry" firstAttribute="top" secondItem="6ws-eY-hpX" secondAttribute="bottom" constant="8" symbolic="YES" id="3LN-Rd-yDk"/>
-                                                    <constraint firstAttribute="trailing" secondItem="c75-jS-dry" secondAttribute="trailing" constant="17" id="Tok-eI-RSo"/>
-                                                    <constraint firstItem="c75-jS-dry" firstAttribute="leading" secondItem="6ws-eY-hpX" secondAttribute="leading" id="b3W-K7-rPJ"/>
-                                                    <constraint firstItem="c75-jS-dry" firstAttribute="leading" secondItem="wkR-Rc-geU" secondAttribute="leadingMargin" id="hh8-kJ-fjO"/>
-                                                    <constraint firstAttribute="bottom" secondItem="c75-jS-dry" secondAttribute="bottom" constant="11" id="n4T-Zx-cQ2"/>
-                                                    <constraint firstItem="6ws-eY-hpX" firstAttribute="top" secondItem="wkR-Rc-geU" secondAttribute="topMargin" id="vuY-kP-Prc"/>
+                                                    <constraint firstItem="c75-jS-dry" firstAttribute="leading" secondItem="wkR-Rc-geU" secondAttribute="leading" constant="120" id="3rf-ka-PPK"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Svj-ng-bfH" secondAttribute="bottom" constant="20.670000000000002" id="4JB-t9-ffR"/>
+                                                    <constraint firstItem="Svj-ng-bfH" firstAttribute="top" secondItem="wkR-Rc-geU" secondAttribute="top" constant="19" id="4uu-hy-NgK"/>
+                                                    <constraint firstItem="6ws-eY-hpX" firstAttribute="leading" secondItem="wkR-Rc-geU" secondAttribute="leading" id="7fG-JA-VxG"/>
+                                                    <constraint firstAttribute="height" constant="60" id="Jzq-n2-pjc"/>
+                                                    <constraint firstAttribute="bottom" secondItem="c75-jS-dry" secondAttribute="bottom" constant="16" id="Jzu-fx-Us3"/>
+                                                    <constraint firstAttribute="trailing" secondItem="6ws-eY-hpX" secondAttribute="trailing" id="Y64-z7-xRP"/>
+                                                    <constraint firstItem="6ws-eY-hpX" firstAttribute="top" secondItem="wkR-Rc-geU" secondAttribute="top" id="anZ-z4-2PL"/>
+                                                    <constraint firstItem="c75-jS-dry" firstAttribute="top" secondItem="wkR-Rc-geU" secondAttribute="top" constant="16" id="aoo-6r-eIK"/>
+                                                    <constraint firstAttribute="bottom" secondItem="6ws-eY-hpX" secondAttribute="bottom" id="ctn-H0-x8t"/>
+                                                    <constraint firstItem="Svj-ng-bfH" firstAttribute="leading" secondItem="c75-jS-dry" secondAttribute="trailing" constant="3.3333333333333712" id="mgp-D0-y7T"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Svj-ng-bfH" secondAttribute="trailing" constant="11.333333333333314" id="xCf-XP-aAA"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9bO-qu-Gdf" userLabel="view4">
-                                                <rect key="frame" x="0.0" y="536" width="393" height="158"/>
+                                                <rect key="frame" x="0.0" y="525.33333333333337" width="393" height="158"/>
                                                 <subviews>
-                                                    <textField toolTip="yemek adı" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="right" contentVerticalAlignment="center" allowsEditingTextAttributes="YES" borderStyle="line" placeholder="New Price" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="94i-jl-ERJ" customClass="JVFloatLabeledTextField">
+                                                    <textField toolTip="yemek adı" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="right" contentVerticalAlignment="center" allowsEditingTextAttributes="YES" borderStyle="roundedRect" placeholder="New Price" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="94i-jl-ERJ" customClass="JVFloatLabeledTextField">
                                                         <rect key="frame" x="8" y="108" width="111" height="42"/>
                                                         <color key="backgroundColor" name="opakbeyaz"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -375,7 +364,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="right" contentVerticalAlignment="center" allowsEditingTextAttributes="YES" borderStyle="line" placeholder="Old Price" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vPk-h3-vCc" customClass="JVFloatLabeledTextField">
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="right" contentVerticalAlignment="center" allowsEditingTextAttributes="YES" borderStyle="roundedRect" placeholder="Old Price" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vPk-h3-vCc" customClass="JVFloatLabeledTextField">
                                                         <rect key="frame" x="8" y="59" width="110" height="40"/>
                                                         <color key="backgroundColor" name="opakbeyaz"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -496,8 +485,9 @@
                                                     <constraint firstItem="wEI-ik-Xa1" firstAttribute="trailing" secondItem="4fY-BO-jhX" secondAttribute="trailingMargin" id="mLJ-H8-NUG"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Fp-7d-Ti3">
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Fp-7d-Ti3">
                                                 <rect key="frame" x="85" y="978" width="223" height="56"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="tintColor" name="TextWhiteColor"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Save" cornerStyle="fixed">
@@ -515,7 +505,6 @@
                                         <color key="backgroundColor" name="BGColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1050" id="0SI-bI-od2"/>
-                                            <constraint firstItem="wkR-Rc-geU" firstAttribute="top" secondItem="jDj-jm-hzq" secondAttribute="bottom" constant="16" id="14n-TJ-bQN"/>
                                             <constraint firstItem="c9F-UG-ow1" firstAttribute="top" secondItem="9bO-qu-Gdf" secondAttribute="bottom" constant="8" id="6Z9-mX-m3T"/>
                                             <constraint firstItem="9bO-qu-Gdf" firstAttribute="leading" secondItem="J8R-JF-LrW" secondAttribute="leading" id="7Re-Hk-UPv"/>
                                             <constraint firstItem="c07-FW-H0G" firstAttribute="top" secondItem="J8R-JF-LrW" secondAttribute="top" constant="15" id="B3h-La-CkF"/>
@@ -524,20 +513,18 @@
                                             <constraint firstItem="wkR-Rc-geU" firstAttribute="trailing" secondItem="4fY-BO-jhX" secondAttribute="trailing" id="GhX-Az-5zB"/>
                                             <constraint firstItem="wkR-Rc-geU" firstAttribute="leading" secondItem="c9F-UG-ow1" secondAttribute="leading" id="J4N-8u-mIM"/>
                                             <constraint firstItem="wkR-Rc-geU" firstAttribute="leading" secondItem="4fY-BO-jhX" secondAttribute="leading" id="JiP-Ga-DRs"/>
-                                            <constraint firstItem="9bO-qu-Gdf" firstAttribute="top" secondItem="wkR-Rc-geU" secondAttribute="bottom" constant="8" id="Kqd-Kr-KOv"/>
                                             <constraint firstItem="4fY-BO-jhX" firstAttribute="top" secondItem="c9F-UG-ow1" secondAttribute="bottom" constant="8" id="SWZ-aJ-5my"/>
                                             <constraint firstItem="wkR-Rc-geU" firstAttribute="leading" secondItem="c07-FW-H0G" secondAttribute="leading" id="TXg-d1-uIK"/>
-                                            <constraint firstItem="wkR-Rc-geU" firstAttribute="centerX" secondItem="3Fp-7d-Ti3" secondAttribute="centerX" id="W25-nw-99n"/>
                                             <constraint firstItem="jDj-jm-hzq" firstAttribute="top" secondItem="c07-FW-H0G" secondAttribute="bottom" constant="13" id="Wme-Ss-Oct"/>
                                             <constraint firstAttribute="trailing" secondItem="9bO-qu-Gdf" secondAttribute="trailing" id="ZNZ-29-j5Y"/>
-                                            <constraint firstItem="jDj-jm-hzq" firstAttribute="leading" secondItem="J8R-JF-LrW" secondAttribute="leading" constant="8" id="aDE-4p-XPL"/>
-                                            <constraint firstAttribute="trailing" secondItem="jDj-jm-hzq" secondAttribute="trailing" constant="20" id="eWa-cB-eFO"/>
+                                            <constraint firstItem="jDj-jm-hzq" firstAttribute="leading" secondItem="J8R-JF-LrW" secondAttribute="leading" id="aDE-4p-XPL"/>
+                                            <constraint firstItem="wkR-Rc-geU" firstAttribute="top" secondItem="jDj-jm-hzq" secondAttribute="bottom" constant="20" id="beT-Ot-wGT"/>
+                                            <constraint firstAttribute="trailing" secondItem="wkR-Rc-geU" secondAttribute="trailing" id="eKT-gy-c8t"/>
+                                            <constraint firstAttribute="trailing" secondItem="jDj-jm-hzq" secondAttribute="trailing" id="eWa-cB-eFO"/>
                                             <constraint firstAttribute="bottom" secondItem="c9F-UG-ow1" secondAttribute="bottom" constant="251" id="iPE-n7-uyO"/>
-                                            <constraint firstAttribute="bottom" secondItem="wkR-Rc-geU" secondAttribute="bottom" constant="522" id="kw2-Rk-E5q"/>
+                                            <constraint firstItem="wkR-Rc-geU" firstAttribute="leading" secondItem="J8R-JF-LrW" secondAttribute="leading" id="m3o-hL-Apg"/>
                                             <constraint firstItem="wkR-Rc-geU" firstAttribute="leading" secondItem="9bO-qu-Gdf" secondAttribute="leading" id="oBf-tA-B03"/>
                                             <constraint firstItem="wkR-Rc-geU" firstAttribute="trailing" secondItem="c07-FW-H0G" secondAttribute="trailing" id="sjt-z6-B64"/>
-                                            <constraint firstItem="3Fp-7d-Ti3" firstAttribute="top" secondItem="4fY-BO-jhX" secondAttribute="bottom" constant="52.333333333333371" id="u4C-iH-2Ht"/>
-                                            <constraint firstItem="wkR-Rc-geU" firstAttribute="top" secondItem="J8R-JF-LrW" secondAttribute="top" constant="384" id="zBN-ze-rDZ"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -584,7 +571,7 @@
                         <outlet property="view3" destination="wkR-Rc-geU" id="KDk-Yi-D7J"/>
                         <outlet property="view4" destination="9bO-qu-Gdf" id="Bbo-xJ-OD4"/>
                         <outlet property="view5" destination="c9F-UG-ow1" id="LSc-eM-crX"/>
-                        <outlet property="view6" destination="4fY-BO-jhX" id="2fB-K4-X6U"/>
+                        <outlet property="view6" destination="4fY-BO-jhX" id="rKg-gc-xcv"/>
                         <segue destination="9bJ-aJ-Vfp" kind="showDetail" id="mqm-94-Aj7"/>
                     </connections>
                 </viewController>
@@ -704,12 +691,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrowtriangle.right.fill" catalog="system" width="128" height="113"/>
         <image name="checkmark.seal.fill" catalog="system" width="128" height="124"/>
         <image name="clock" catalog="system" width="128" height="123"/>
         <image name="dollarsign.arrow.circlepath" catalog="system" width="128" height="119"/>
         <image name="figure.outdoor.cycle" catalog="system" width="128" height="90"/>
         <image name="figure.walk" catalog="system" width="94" height="128"/>
-        <image name="fork.knife.circle" catalog="system" width="128" height="123"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="info.circle.fill" catalog="system" width="128" height="123"/>
@@ -751,6 +738,9 @@
         <namedColor name="yeşil">
             <color red="0.32199999690055847" green="0.41999998688697815" blue="0.30199998617172241" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -1,6 +1,5 @@
 import UIKit
 import Cloudinary
-import Kingfisher
 import PhotosUI
 import EasyTipView
 
@@ -35,7 +34,6 @@ class ProductManageViewController: UIViewController {
     
     var tipView: EasyTipView?
     var preferences = EasyTipView.Preferences()
-    
     var cloudinary: CLDCloudinary!
     
     override func viewDidLoad() {
@@ -62,11 +60,10 @@ class ProductManageViewController: UIViewController {
     }
     
     private func setupUI() {
+        
         oldPriceTextField.delegate = self
         newPriceTextField.delegate = self
         productManageViewModel.delegate = self
-        
-        selectedMealTypeLabel.addRoundedBorder(cornerRadius: 5, borderWidth: 1, borderColor: .suyeşil,backgroundColor: .beyaz)
         productDescriptionTextView.addRoundedBorder(cornerRadius: 5, borderWidth: 1, borderColor: .suyeşil,backgroundColor: .beyaz)
         timeImage.makeRounded(radius: 5)
         timeLabel.makeRounded(radius: 5)
@@ -126,17 +123,7 @@ class ProductManageViewController: UIViewController {
             bottomSheetVC.delegate = self
             present(bottomSheetVC, animated: true)
         }
-    }
-    
-    
-    private func updateSelectedMealTypes(_ meals: [String]) {
-        if meals.isEmpty {
-            selectedMealTypeLabel.text = "Yemek Türü Seçiniz"
-            selectedMealTypeLabel.textColor = .gri
-        } else {
-            selectedMealTypeLabel.text = meals.joined(separator: " , ")
-            selectedMealTypeLabel.textColor = .black
-        }
+        
     }
 
     private func tapGesture() {
@@ -151,24 +138,20 @@ class ProductManageViewController: UIViewController {
             showOneButtonAlert(title: "Hata", message: "Lütfen önce normal fiyatı giriniz.")
             return
         }
-        
-        // Segment başlığından yüzdeyi çıkar
         let selectedTitle = sender.titleForSegment(at: sender.selectedSegmentIndex) ?? ""
         let percentageString = selectedTitle.filter { $0.isNumber }
         guard let discountPercentage = Int(percentageString) else { return }
-        
-        // Yeni fiyatı hesapla
         let discountRate = Double(discountPercentage) / 100.0
         let newPrice = Int(Double(oldPrice) * (1.0 - discountRate))
         newPriceTextField.text = "\(newPrice) TL"
-        
-        // Konsola yazdır
         print("Normal Fiyat:\(oldPrice) TL İndirim Oranı:%\(discountPercentage) Yeni Fiyat: \(newPrice) TL")
     }
+    
     @IBAction func deliveryTypeSegmentClicked(_ sender: UISegmentedControl) {
-        print(sender.selectedSegmentIndex)
+        print(sender.titleForSegment(at: sender.selectedSegmentIndex) ?? "")
     }
 }
+
 extension ProductManageViewController: BottomSheetViewModelDelegate {
     func didApplySelection(selectedOptions: [Category]) {
         productManageViewModel.selectedMealTypes = selectedOptions
