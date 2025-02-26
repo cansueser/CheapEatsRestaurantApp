@@ -145,7 +145,7 @@
                 <outlet property="stateImage" destination="Jp1-Bi-BK8" id="9hT-7o-Adt"/>
                 <outlet property="stateLabel" destination="VVK-i1-ZAd" id="8CF-lB-VkH"/>
             </connections>
-            <point key="canvasLocation" x="132.82442748091603" y="55.985915492957751"/>
+            <point key="canvasLocation" x="119" y="43"/>
         </tableViewCell>
     </objects>
     <resources>

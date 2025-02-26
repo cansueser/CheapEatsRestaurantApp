@@ -7,8 +7,6 @@
 
 import Foundation
 import UIKit
-import FirebaseFirestore
-import Firebase
 
 struct Order {
     var productId: String?
@@ -23,7 +21,6 @@ struct Order {
     var deliveryType: DeliveryType
     var discountType: Int
     var endTime: Date // adını createdAt
-    //var endDate: String
     var orderStatus: OrderStatus //bool şeklinde yapılacak
 
     init(
@@ -56,6 +53,7 @@ struct Order {
 
 
     // Firestore'dan veri alırken kullanılacak init
+    /*
     init?(document: [String: Any]) {
         guard let name = document["name"] as? String,
               let description = document["description"] as? String,
@@ -88,6 +86,7 @@ struct Order {
     }
     
     // Firestore'a gönderilecek dictionary
+    
     func toDictionary() -> [String: Any] {
         return [
             "name": name,
@@ -103,6 +102,7 @@ struct Order {
             "imageUrl" : imageUrl ?? ""
         ]
     }
+     */
 }
 
 enum OrderStatus: String, Codable, CaseIterable, CustomStringConvertible {

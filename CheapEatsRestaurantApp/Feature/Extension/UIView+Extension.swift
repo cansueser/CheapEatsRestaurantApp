@@ -28,5 +28,20 @@ extension UIView {
 
         }
     }
+    func addRoundedBorder(cornerRadius: CGFloat = 5,
+                          borderWidth: CGFloat = 1,
+                          borderColor: UIColor = .açıkgri,
+                          backgroundColor: UIColor? = .white) {
+        self.layer.cornerRadius = cornerRadius
+        self.layer.masksToBounds = true
+        self.layer.borderWidth = borderWidth
+        self.layer.borderColor = borderColor.cgColor
+        self.backgroundColor = backgroundColor
+    }
+    
+    func makeRounded(radius: CGFloat) {
+        self.layer.cornerRadius = radius
+        self.layer.masksToBounds = true
+    }
 
 }

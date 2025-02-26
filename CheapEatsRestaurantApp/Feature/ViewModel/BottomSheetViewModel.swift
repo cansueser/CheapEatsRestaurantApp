@@ -8,25 +8,34 @@
 import UIKit
 import Foundation
 
-class BottomSheetViewModel {
-    var mealType: [Category] = Category.getAllCategories()
-    var selectedMealIndices: Set<Int> = [] // Çoklu seçim için set
-    
-    var reloadTableView: (() -> Void)?
-    
-    func fetchMealTypes() {
-        reloadTableView?()
-    }
-    
-    func toggleSelection(at index: Int) {
-        if selectedMealIndices.contains(index) {
-            selectedMealIndices.remove(index)
-        } else {
-            selectedMealIndices.insert(index)
+protocol BottomSheetViewModelProtocol {
+    var delegate: BottomSheetViewModelOutputProtocol? { get set }
+    var options: [Category] { get }
+    var selectedOptions: [Category] { get set }
+    func clearSelection(tableView: UITableView)
+}
+
+protocol BottomSheetViewModelOutputProtocol: AnyObject {
+    func didChangeSelection()
+}
+
+protocol BottomSheetViewModelDelegate: AnyObject {
+    func didApplySelection(selectedOptions: [Category])
+}
+
+final class BottomSheetViewModel {
+    var options = Category.allCases
+    var selectedOptions: [Category] = []
+    weak var delegate: BottomSheetViewModelOutputProtocol?
+
+    func clearSelection(tableView: UITableView) {
+        selectedOptions.removeAll()
+        if let selectedRows = tableView.indexPathsForSelectedRows {
+            for indexPath in selectedRows {
+                tableView.deselectRow(at: indexPath, animated: false)
+            }
         }
-    }
-    
-    func isSelected(at index: Int) -> Bool {
-        return selectedMealIndices.contains(index)
+        delegate?.didChangeSelection()
     }
 }
+extension BottomSheetViewModel: BottomSheetViewModelProtocol {}

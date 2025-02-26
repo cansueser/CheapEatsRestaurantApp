@@ -17,12 +17,10 @@ class ProductTableViewCell: UITableViewCell {
     @IBOutlet weak var newAmountLabel: UILabel!
     @IBOutlet weak var stateLabel: UILabel!
     @IBOutlet weak var stateImage: UIImageView!
-    
     @IBOutlet weak var siparisBackView: UIView!
-    
     @IBOutlet weak var priceBackView: UIView!
-    
     @IBOutlet weak var stateBackView: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -42,6 +40,21 @@ class ProductTableViewCell: UITableViewCell {
         view.layer.borderColor = borderColor?.cgColor
         view.layer.borderWidth = borderWidth
         view.layer.masksToBounds = true
-        
     }
+    
+    func configureCell(wtih order: Order) {
+        foodNameLabel.text = order.name
+        oldAmountLabel.text = "\(order.oldPrice) TL"
+        newAmountLabel.text = "\(order.newPrice) TL"
+        stateLabel.text = order.orderStatus.description
+        stateLabel.textColor = order.orderStatus.textColor
+        dateLabel.text = dateFormatter().string(from: order.endTime)
+    }
+    
+    private func dateFormatter() -> DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter
+    }
+    
 }

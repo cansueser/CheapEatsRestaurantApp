@@ -1,0 +1,20 @@
+import Foundation
+import UIKit
+
+protocol HomeViewModelProtocol {
+    var delegate: OrderViewModelOutputProtocol? { get set}
+    var orders: [Order]? { get set }
+}
+
+protocol OrderViewModelOutputProtocol: AnyObject {
+    func update()
+    func error()
+}
+
+final class HomeViewModel {
+    var orders: [Order]?
+    weak var delegate: OrderViewModelOutputProtocol?
+    
+}
+
+extension HomeViewModel: HomeViewModelProtocol {}
