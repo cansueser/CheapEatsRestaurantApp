@@ -9,16 +9,8 @@ import UIKit
 extension ProductManageViewController: UITextFieldDelegate, UITextViewDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let currentText = textField.text else { return true }
-        let newString = (currentText as NSString).replacingCharacters(in: range, with: string)
-        
-        if let number = Int(newString.filter({ $0.isNumber })) {
-            textField.text = "\(number) TL"
-        } else if newString.isEmpty {
-            textField.text = ""
-        }
-        
-        return false
+        let isNumber = string.isEmpty || string.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
+        return isNumber
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

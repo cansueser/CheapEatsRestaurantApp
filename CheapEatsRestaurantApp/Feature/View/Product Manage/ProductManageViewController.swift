@@ -21,8 +21,10 @@ class ProductManageViewController: UIViewController {
     @IBOutlet weak var productNameBackView: UIView!
     @IBOutlet weak var photoBackView: UIView!
     @IBOutlet weak var mealTypeBackView: UIView!
-    @IBOutlet weak var priceBackView: UIView!
-    @IBOutlet weak var deliveryTypeBackView: UIView!
+    @IBOutlet weak var priceBackView: CustomLineView!
+    
+    @IBOutlet weak var deliveryTypeBackView: CustomLineView!
+    
     @IBOutlet weak var timeBackView: UIView!
     @IBOutlet weak var priceImage: UIImageView!
     @IBOutlet weak var priceLabel: UILabel!
@@ -60,7 +62,8 @@ class ProductManageViewController: UIViewController {
     }
     
     private func setupUI() {
-        
+        discountSegmentControl.layer.shadowOpacity = 0
+        deliveryTypeSegmentControl.layer.shadowOpacity = 0
         oldPriceTextField.delegate = self
         newPriceTextField.delegate = self
         productManageViewModel.delegate = self
@@ -72,6 +75,10 @@ class ProductManageViewController: UIViewController {
         selectedImageView.addRoundedBorder(cornerRadius: 5, borderWidth: 2, borderColor: .title)
         preferences.drawing.backgroundColor = .lightGray
         preferences.drawing.foregroundColor = .white
+        priceBackView.lineYPosition = oldPriceTextField.frame.origin.y - 10
+        deliveryTypeBackView.lineYPosition = deliveryTypeSegmentControl.frame.origin.y - 10
+        priceBackView.setNeedsDisplay()
+        deliveryTypeBackView.setNeedsDisplay()
     }
 
     @objc func imageTapped() {
@@ -98,17 +105,15 @@ class ProductManageViewController: UIViewController {
             !name.isEmpty,
             let description = productDescriptionTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines),
             !description.isEmpty,
-            let oldPriceText = oldPriceTextField.text?
-                .replacingOccurrences(of: " TL", with: "")
-                .trimmingCharacters(in: .whitespacesAndNewlines),
-            let oldPrice = Int(oldPriceText),
-            let newPriceText = newPriceTextField.text?
-                .replacingOccurrences(of: " TL", with: "")
-                .trimmingCharacters(in: .whitespacesAndNewlines),
-            let newPrice = Int(newPriceText)
+            let oldPrice = Int(oldPriceTextField.text ?? "0"),
+            let newPrice = Int(newPriceTextField.text ?? "0")
         else {
             showOneButtonAlert(title: "Hata", message: "Lütfen tüm alanları doldurun.")
             return
+        }
+        
+        if oldPrice <= newPrice {
+            showOneButtonAlert(title: "Hata", message: "Eski fiyat yeni fiyattan yüksek olamaz.")
         }
     }
     
@@ -133,18 +138,19 @@ class ProductManageViewController: UIViewController {
     }
     
     @IBAction func discountSegmentClicked(_ sender: UISegmentedControl) {
-        guard let oldPriceText = oldPriceTextField.text?.replacingOccurrences(of: " TL", with: ""),
-              let oldPrice = Int(oldPriceText) else {
+        if let oldPriceText = Int(oldPriceTextField.text ?? "0"){
+            let selectedTitle = sender.titleForSegment(at: sender.selectedSegmentIndex) ?? ""
+            let percentageString = selectedTitle.filter { $0.isNumber }
+            guard let discountPercentage = Int(percentageString) else { return }
+            
+            let discountRate = Double(discountPercentage) / 100.0
+            let newPrice = Int(Double(oldPriceText ) * (1.0 - discountRate))
+            newPriceTextField.text = "\(newPrice)"
+            print("Normal Fiyat:\(oldPriceText ) TL İndirim Oranı:%\(discountPercentage) Yeni Fiyat: \(newPrice) TL")
+        }else{
             showOneButtonAlert(title: "Hata", message: "Lütfen önce normal fiyatı giriniz.")
-            return
         }
-        let selectedTitle = sender.titleForSegment(at: sender.selectedSegmentIndex) ?? ""
-        let percentageString = selectedTitle.filter { $0.isNumber }
-        guard let discountPercentage = Int(percentageString) else { return }
-        let discountRate = Double(discountPercentage) / 100.0
-        let newPrice = Int(Double(oldPrice) * (1.0 - discountRate))
-        newPriceTextField.text = "\(newPrice) TL"
-        print("Normal Fiyat:\(oldPrice) TL İndirim Oranı:%\(discountPercentage) Yeni Fiyat: \(newPrice) TL")
+        
     }
     
     @IBAction func deliveryTypeSegmentClicked(_ sender: UISegmentedControl) {
