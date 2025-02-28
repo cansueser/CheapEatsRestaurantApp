@@ -6,17 +6,18 @@
 //
 
 import Foundation
-import EasyTipView
-import Cloudinary
 import UIKit
+import Cloudinary
+
 
 protocol ProductManageViewModelProtocol {
     var delegate: ProductManageViewModelOutputProtocol? { get set}
     var selectedMealTypes: [Category] { get set }
     var cloudinaryImageUrlString: String? { get set }
     func initCloudinary() -> CLDCloudinary
-    func uploadImage(selectedImageView: CLDUIImageView, selectedImage: UIImage, cloudinary: CLDCloudinary)
+    func uploadImage(selectedImageView: CLDUIImageView, selectedImage: UIImage)
     func emptyCheckSelectedItem(bottomSheetVC: BottomSheetViewController)
+    func setProduct(product: Product)
     
 }
 protocol ProductManageViewModelOutputProtocol: AnyObject{
@@ -26,8 +27,25 @@ protocol ProductManageViewModelOutputProtocol: AnyObject{
 
 final class ProductManageViewModel {
     weak var delegate: ProductManageViewModelOutputProtocol?
+    var cloudinary: CLDCloudinary!
     var cloudinaryImageUrlString: String?
     var selectedMealTypes: [Category] = []
+    
+    init() {
+        cloudinary = initCloudinary()
+    }
+    
+    func setProduct(product: Product) {
+        NetworkManager.shared.addProduct(product: product) { result in
+            switch result {
+            case .success():
+                self.delegate?.update()
+            case .failure(let error):
+                print("Error: \(error)")
+                self.delegate?.error()
+            }
+        }
+    }
     
     func initCloudinary() -> CLDCloudinary {
         let networkHelper = NetworkHelper.self
@@ -35,7 +53,7 @@ final class ProductManageViewModel {
         return CLDCloudinary(configuration: config)
     }
 
-    func uploadImage(selectedImageView: CLDUIImageView, selectedImage: UIImage, cloudinary: CLDCloudinary) {
+    func uploadImage(selectedImageView: CLDUIImageView, selectedImage: UIImage) {
         guard let data = selectedImage.jpegData(compressionQuality: 0.8) else {
             print("Error: Image data not found")
             return
@@ -53,7 +71,7 @@ final class ProductManageViewModel {
                     return
                 }
                 
-                selectedImageView.cldSetImage(url, cloudinary: cloudinary)
+                selectedImageView.cldSetImage(url, cloudinary: self.cloudinary)
                 print("Image uploaded successfully!: \(url)")
                 self.cloudinaryImageUrlString = url
             }

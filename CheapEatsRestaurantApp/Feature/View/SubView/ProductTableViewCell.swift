@@ -42,19 +42,13 @@ class ProductTableViewCell: UITableViewCell {
         view.layer.masksToBounds = true
     }
     
-    func configureCell(wtih order: Order) {
+    func configureCell(wtih order: Product) {
         foodNameLabel.text = order.name
         oldAmountLabel.text = "\(order.oldPrice) TL"
         newAmountLabel.text = "\(order.newPrice) TL"
-        stateLabel.text = order.orderStatus.description
-        stateLabel.textColor = order.orderStatus.textColor
-        dateLabel.text = dateFormatter().string(from: order.endTime)
+        stateLabel.text = order.status.description
+        dateLabel.text = order.endDate
     }
-    
-    private func dateFormatter() -> DateFormatter {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        return dateFormatter
-    }
+
     
 }

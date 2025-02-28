@@ -22,9 +22,7 @@ class ProductManageViewController: UIViewController {
     @IBOutlet weak var photoBackView: UIView!
     @IBOutlet weak var mealTypeBackView: UIView!
     @IBOutlet weak var priceBackView: CustomLineView!
-    
     @IBOutlet weak var deliveryTypeBackView: CustomLineView!
-    
     @IBOutlet weak var timeBackView: UIView!
     @IBOutlet weak var priceImage: UIImageView!
     @IBOutlet weak var priceLabel: UILabel!
@@ -36,12 +34,10 @@ class ProductManageViewController: UIViewController {
     
     var tipView: EasyTipView?
     var preferences = EasyTipView.Preferences()
-    var cloudinary: CLDCloudinary!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        cloudinary = productManageViewModel.initCloudinary()
         tapGesture()
         if productManageViewModel.selectedMealTypes.isEmpty {
             selectedMealTypeLabel.text = "Yemek Türü Seçiniz"
@@ -79,6 +75,8 @@ class ProductManageViewController: UIViewController {
         deliveryTypeBackView.lineYPosition = deliveryTypeSegmentControl.frame.origin.y - 10
         priceBackView.setNeedsDisplay()
         deliveryTypeBackView.setNeedsDisplay()
+        
+        lastTimePicker.setDate(Date(), animated: true)
     }
 
     @objc func imageTapped() {
@@ -96,10 +94,6 @@ class ProductManageViewController: UIViewController {
     }
     
     @IBAction func saveAndNextButtonClicked(_ sender: UIButton) {
-        guard let deliveryType = DeliveryType(index: deliveryTypeSegmentControl.selectedSegmentIndex) else {
-            return
-        }
-        let selectedTime = lastTimePicker.date
         guard
             let name = productNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
             !name.isEmpty,
@@ -111,10 +105,25 @@ class ProductManageViewController: UIViewController {
             showOneButtonAlert(title: "Hata", message: "Lütfen tüm alanları doldurun.")
             return
         }
-        
         if oldPrice <= newPrice {
             showOneButtonAlert(title: "Hata", message: "Eski fiyat yeni fiyattan yüksek olamaz.")
         }
+        
+        let selectedMealTypes = productManageViewModel.selectedMealTypes.map({ $0.rawValue })
+        
+        guard let deliveryType = DeliveryType(index: deliveryTypeSegmentControl.selectedSegmentIndex) else {
+            return
+        }
+        let endDate = dateFormatter().string(from: lastTimePicker.date)
+        let product =  Product(name: name, description: description, oldPrice: oldPrice, newPrice: newPrice,  endDate: endDate, deliveryType: deliveryType, restaurantId: "WXJ5I0rRDYfWaJSfwF3d", category: selectedMealTypes, imageUrl: "https://www.realsimple.com/thmb/jLV38QZ-yGvpgScscWwdPuVS2Ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/0524FEAT_SweetHeatHoisin-SerranoMeatballsandRiceNoodleSalad-healthy-meal-prep-c76adba65a77484b98d4c0283ee5cb8f.jpg")
+        //productManageViewModel.setProduct(product: product)
+        
+    }
+    
+    private func dateFormatter() -> DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter
     }
     
     @IBAction func mealTypeButtonClicked(_ sender: UIButton) {

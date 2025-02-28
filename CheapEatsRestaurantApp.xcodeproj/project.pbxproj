@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E2868FA2D71EE1A00C5F46D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E2868F92D71EE1A00C5F46D /* GoogleService-Info.plist */; };
+		7E2868FD2D71EE7B00C5F46D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7E2868FC2D71EE7B00C5F46D /* FirebaseAuth */; };
+		7E2868FF2D71EE7B00C5F46D /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 7E2868FE2D71EE7B00C5F46D /* FirebaseCore */; };
+		7E2869012D71EE7B00C5F46D /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 7E2869002D71EE7B00C5F46D /* FirebaseDatabase */; };
+		7E2869032D71EE7B00C5F46D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7E2869022D71EE7B00C5F46D /* FirebaseFirestore */; };
+		7E2869052D71EE7B00C5F46D /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 7E2869042D71EE7B00C5F46D /* FirebaseStorage */; };
+		7E2869092D71F1CE00C5F46D /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2869082D71F1CC00C5F46D /* Order.swift */; };
 		7E52053B2D6F358900650F4C /* JVFloatLabeledTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 7E52053A2D6F358900650F4C /* JVFloatLabeledTextField */; };
 		7E652CF42D0711C000137ECA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E652CF32D0711C000137ECA /* AppDelegate.swift */; };
 		7E652CF62D0711C000137ECA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E652CF52D0711C000137ECA /* SceneDelegate.swift */; };
@@ -17,7 +24,7 @@
 		7E652D142D07218400137ECA /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E652D122D07218400137ECA /* ProductTableViewCell.xib */; };
 		7E7666B62D59AFCE000F808F /* Cloudinary in Frameworks */ = {isa = PBXBuildFile; productRef = 7E7666B52D59AFCE000F808F /* Cloudinary */; };
 		7E78EC392D08353C001A3782 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E78EC382D08353C001A3782 /* UIViewController+Extension.swift */; };
-		7E847A102D19ECED00D1DE23 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E847A0F2D19ECED00D1DE23 /* Order.swift */; };
+		7E847A102D19ECED00D1DE23 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E847A0F2D19ECED00D1DE23 /* Product.swift */; };
 		7E847A122D19ED7700D1DE23 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E847A112D19ED7700D1DE23 /* HomeViewModel.swift */; };
 		7E847A202D1B60CC00D1DE23 /* ProductManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E847A1F2D1B60CC00D1DE23 /* ProductManageViewController.swift */; };
 		7E9642022D70617700176FAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E9642012D70617700176FAA /* Assets.xcassets */; };
@@ -39,6 +46,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E2868F92D71EE1A00C5F46D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7E2869082D71F1CC00C5F46D /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		7E652CF02D0711C000137ECA /* CheapEatsRestaurantApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheapEatsRestaurantApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E652CF32D0711C000137ECA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E652CF52D0711C000137ECA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,7 +58,7 @@
 		7E652D112D07218400137ECA /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		7E652D122D07218400137ECA /* ProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
 		7E78EC382D08353C001A3782 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
-		7E847A0F2D19ECED00D1DE23 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		7E847A0F2D19ECED00D1DE23 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		7E847A112D19ED7700D1DE23 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		7E847A1F2D1B60CC00D1DE23 /* ProductManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManageViewController.swift; sourceTree = "<group>"; };
 		7E9642012D70617700176FAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,8 +83,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E7666B62D59AFCE000F808F /* Cloudinary in Frameworks */,
+				7E2868FD2D71EE7B00C5F46D /* FirebaseAuth in Frameworks */,
+				7E2869052D71EE7B00C5F46D /* FirebaseStorage in Frameworks */,
 				7EA0AF772D6F3A66004F4499 /* EasyTipView in Frameworks */,
 				7EF612D22D518CC2003B1DF1 /* Kingfisher in Frameworks */,
+				7E2868FF2D71EE7B00C5F46D /* FirebaseCore in Frameworks */,
+				7E2869032D71EE7B00C5F46D /* FirebaseFirestore in Frameworks */,
+				7E2869012D71EE7B00C5F46D /* FirebaseDatabase in Frameworks */,
 				7E52053B2D6F358900650F4C /* JVFloatLabeledTextField in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,7 +100,8 @@
 		7E445D092D38024E00BEDD0C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7E847A0F2D19ECED00D1DE23 /* Order.swift */,
+				7E2869082D71F1CC00C5F46D /* Order.swift */,
+				7E847A0F2D19ECED00D1DE23 /* Product.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -142,6 +157,7 @@
 				7E652D072D0715CB00137ECA /* Core */,
 				7E652D082D0716BA00137ECA /* Feature */,
 				7E652CF92D0711C000137ECA /* Main.storyboard */,
+				7E2868F92D71EE1A00C5F46D /* GoogleService-Info.plist */,
 				7E652D012D0711C100137ECA /* Info.plist */,
 			);
 			path = CheapEatsRestaurantApp;
@@ -249,6 +265,11 @@
 				7E7666B52D59AFCE000F808F /* Cloudinary */,
 				7E52053A2D6F358900650F4C /* JVFloatLabeledTextField */,
 				7EA0AF762D6F3A66004F4499 /* EasyTipView */,
+				7E2868FC2D71EE7B00C5F46D /* FirebaseAuth */,
+				7E2868FE2D71EE7B00C5F46D /* FirebaseCore */,
+				7E2869002D71EE7B00C5F46D /* FirebaseDatabase */,
+				7E2869022D71EE7B00C5F46D /* FirebaseFirestore */,
+				7E2869042D71EE7B00C5F46D /* FirebaseStorage */,
 			);
 			productName = CheapEatsRestaurantApp;
 			productReference = 7E652CF02D0711C000137ECA /* CheapEatsRestaurantApp.app */;
@@ -283,6 +304,7 @@
 				7E7666B42D59AFCE000F808F /* XCRemoteSwiftPackageReference "cloudinary_ios" */,
 				7E5205392D6F358900650F4C /* XCRemoteSwiftPackageReference "JVFloatLabeledTextField" */,
 				7EA0AF752D6F3A66004F4499 /* XCRemoteSwiftPackageReference "EasyTipView" */,
+				7E2868FB2D71EE7B00C5F46D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 7E652CF12D0711C000137ECA /* Products */;
 			projectDirPath = "";
@@ -300,6 +322,7 @@
 			files = (
 				7E652D002D0711C100137ECA /* Base in Resources */,
 				7E652CFB2D0711C000137ECA /* Base in Resources */,
+				7E2868FA2D71EE1A00C5F46D /* GoogleService-Info.plist in Resources */,
 				7E9642022D70617700176FAA /* Assets.xcassets in Resources */,
 				7E652D142D07218400137ECA /* ProductTableViewCell.xib in Resources */,
 			);
@@ -316,6 +339,7 @@
 				7E652D132D07218400137ECA /* ProductTableViewCell.swift in Sources */,
 				7EB852AE2D0DD3EA009FAC62 /* ProductManageViewModel.swift in Sources */,
 				7EA0AF7B2D6F42EB004F4499 /* ProductManageViewController+EastTipView.swift in Sources */,
+				7E2869092D71F1CE00C5F46D /* Order.swift in Sources */,
 				7E652CF82D0711C000137ECA /* HomeViewController.swift in Sources */,
 				7EA0AF8E2D6F6848004F4499 /* LineView.swift in Sources */,
 				7EA0AF7F2D6F45E1004F4499 /* ProductManageViewController+Picker.swift in Sources */,
@@ -332,7 +356,7 @@
 				7E652CF62D0711C000137ECA /* SceneDelegate.swift in Sources */,
 				7E847A122D19ED7700D1DE23 /* HomeViewModel.swift in Sources */,
 				7EA0AF882D6F5237004F4499 /* Alert.swift in Sources */,
-				7E847A102D19ECED00D1DE23 /* Order.swift in Sources */,
+				7E847A102D19ECED00D1DE23 /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,7 +521,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cansu.CheapEatsRestaurantApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emre.CheapEats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -525,7 +549,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cansu.CheapEatsRestaurantApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emre.CheapEats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -557,6 +581,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7E2868FB2D71EE7B00C5F46D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.9.0;
+			};
+		};
 		7E5205392D6F358900650F4C /* XCRemoteSwiftPackageReference "JVFloatLabeledTextField" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jverdi/JVFloatLabeledTextField";
@@ -592,6 +624,31 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7E2868FC2D71EE7B00C5F46D /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E2868FB2D71EE7B00C5F46D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		7E2868FE2D71EE7B00C5F46D /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E2868FB2D71EE7B00C5F46D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		7E2869002D71EE7B00C5F46D /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E2868FB2D71EE7B00C5F46D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		7E2869022D71EE7B00C5F46D /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E2868FB2D71EE7B00C5F46D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		7E2869042D71EE7B00C5F46D /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E2868FB2D71EE7B00C5F46D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
 		7E52053A2D6F358900650F4C /* JVFloatLabeledTextField */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7E5205392D6F358900650F4C /* XCRemoteSwiftPackageReference "JVFloatLabeledTextField" */;

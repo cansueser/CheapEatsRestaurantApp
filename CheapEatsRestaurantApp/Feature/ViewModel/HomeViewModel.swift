@@ -3,7 +3,7 @@ import UIKit
 
 protocol HomeViewModelProtocol {
     var delegate: OrderViewModelOutputProtocol? { get set}
-    var orders: [Order]? { get set }
+    var orders: [Product]? { get set }
 }
 
 protocol OrderViewModelOutputProtocol: AnyObject {
@@ -12,7 +12,7 @@ protocol OrderViewModelOutputProtocol: AnyObject {
 }
 
 final class HomeViewModel {
-    var orders: [Order]?
+    var orders: [Product]?
     weak var delegate: OrderViewModelOutputProtocol?
     
 }
