@@ -2,6 +2,7 @@ import UIKit
 import Cloudinary
 import PhotosUI
 import EasyTipView
+import NVActivityIndicatorView
 
 class ProductManageViewController: UIViewController {
     //MARK: -Variables
@@ -28,10 +29,12 @@ class ProductManageViewController: UIViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var timeImage: UIImageView!
+    @IBOutlet weak var waitView: UIView!
     
     var productManageViewModel: ProductManageViewModelProtocol = ProductManageViewModel()
     private var bottomSheetViewModel: BottomSheetViewModel = BottomSheetViewModel()
     
+    private var loadIndicator: NVActivityIndicatorView!
     var tipView: EasyTipView?
     var preferences = EasyTipView.Preferences()
 
@@ -75,8 +78,8 @@ class ProductManageViewController: UIViewController {
         deliveryTypeBackView.lineYPosition = deliveryTypeSegmentControl.frame.origin.y - 10
         priceBackView.setNeedsDisplay()
         deliveryTypeBackView.setNeedsDisplay()
-        
         lastTimePicker.setDate(Date(), animated: true)
+        loadIndicator = createLoadingIndicator(in: waitView)
     }
 
     @objc func imageTapped() {
@@ -114,10 +117,19 @@ class ProductManageViewController: UIViewController {
         guard let deliveryType = DeliveryType(index: deliveryTypeSegmentControl.selectedSegmentIndex) else {
             return
         }
-        let endDate = dateFormatter().string(from: lastTimePicker.date)
-        let product =  Product(name: name, description: description, oldPrice: oldPrice, newPrice: newPrice,  endDate: endDate, deliveryType: deliveryType, restaurantId: "WXJ5I0rRDYfWaJSfwF3d", category: selectedMealTypes, imageUrl: "https://www.realsimple.com/thmb/jLV38QZ-yGvpgScscWwdPuVS2Ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/0524FEAT_SweetHeatHoisin-SerranoMeatballsandRiceNoodleSalad-healthy-meal-prep-c76adba65a77484b98d4c0283ee5cb8f.jpg")
-        //productManageViewModel.setProduct(product: product)
         
+        if productManageViewModel.cloudinaryImageUrlString.isEmpty {
+            showOneButtonAlert(title: "Hata", message: "Eski fiyat yeni fiyattan yüksek olamaz.")
+        }else{
+            let endDate = dateFormatter().string(from: lastTimePicker.date)
+            let product =  Product(name: name, description: description, oldPrice: oldPrice, newPrice: newPrice,  endDate: endDate, deliveryType: deliveryType, restaurantId: "WXJ5I0rRDYfWaJSfwF3d", category: selectedMealTypes, imageUrl: productManageViewModel.cloudinaryImageUrlString)
+            productManageViewModel.setProduct(product: product)
+        }
+        
+        /*showTwoButtonAlert(title: "Uyarı", message: "Emin misin", firstButtonTitle: "Sil", firstButtonHandler: { _ in
+                ---
+        }, secondButtonTitle: "İptal Et")
+        */
     }
     
     private func dateFormatter() -> DateFormatter {
@@ -175,6 +187,7 @@ extension ProductManageViewController: BottomSheetViewModelDelegate {
 }
 
 extension ProductManageViewController: ProductManageViewModelOutputProtocol {
+    
     func update() {
         print("Update")
     }
@@ -182,5 +195,19 @@ extension ProductManageViewController: ProductManageViewModelOutputProtocol {
     func error() {
         print("Error")
     }
+    
+    func stopLoading() {
+        waitView.isHidden = true
+        loadIndicator.isHidden = true
+        loadIndicator.stopAnimating()
+    }
+    
+    func startLoading() {
+        waitView.isHidden = false
+        loadIndicator.isHidden = false
+        loadIndicator.startAnimating()
+        
+    }
+    
 }
 

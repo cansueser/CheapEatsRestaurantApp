@@ -13,9 +13,8 @@ import Cloudinary
 protocol ProductManageViewModelProtocol {
     var delegate: ProductManageViewModelOutputProtocol? { get set}
     var selectedMealTypes: [Category] { get set }
-    var cloudinaryImageUrlString: String? { get set }
-    func initCloudinary() -> CLDCloudinary
-    func uploadImage(selectedImageView: CLDUIImageView, selectedImage: UIImage)
+    var cloudinaryImageUrlString: String { get set }
+    func uploadImage(selectedImageView: CLDUIImageView)
     func emptyCheckSelectedItem(bottomSheetVC: BottomSheetViewController)
     func setProduct(product: Product)
     
@@ -23,12 +22,14 @@ protocol ProductManageViewModelProtocol {
 protocol ProductManageViewModelOutputProtocol: AnyObject{
     func update()
     func error()
+    func startLoading()
+    func stopLoading()
 }
 
 final class ProductManageViewModel {
     weak var delegate: ProductManageViewModelOutputProtocol?
     var cloudinary: CLDCloudinary!
-    var cloudinaryImageUrlString: String?
+    var cloudinaryImageUrlString: String = ""
     var selectedMealTypes: [Category] = []
     
     init() {
@@ -36,6 +37,7 @@ final class ProductManageViewModel {
     }
     
     func setProduct(product: Product) {
+        self.delegate?.startLoading()
         NetworkManager.shared.addProduct(product: product) { result in
             switch result {
             case .success():
@@ -44,17 +46,19 @@ final class ProductManageViewModel {
                 print("Error: \(error)")
                 self.delegate?.error()
             }
+            self.delegate?.stopLoading()
         }
     }
     
-    func initCloudinary() -> CLDCloudinary {
+    private func initCloudinary() -> CLDCloudinary {
         let networkHelper = NetworkHelper.self
         let config = CLDConfiguration(cloudName: networkHelper.cloudName, secure: true)
         return CLDCloudinary(configuration: config)
     }
 
-    func uploadImage(selectedImageView: CLDUIImageView, selectedImage: UIImage) {
-        guard let data = selectedImage.jpegData(compressionQuality: 0.8) else {
+    func uploadImage(selectedImageView: CLDUIImageView) {
+        delegate?.startLoading()
+        guard let imageView = selectedImageView.image, let data = imageView.jpegData(compressionQuality: 0.8) else {
             print("Error: Image data not found")
             return
         }
@@ -74,6 +78,7 @@ final class ProductManageViewModel {
                 selectedImageView.cldSetImage(url, cloudinary: self.cloudinary)
                 print("Image uploaded successfully!: \(url)")
                 self.cloudinaryImageUrlString = url
+                self.delegate?.stopLoading()
             }
         })
     }
