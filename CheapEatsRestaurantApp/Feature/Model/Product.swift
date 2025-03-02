@@ -67,7 +67,6 @@ struct Product {
     }
 }
 
-//burayı kodun içinde değiştir
 enum DeliveryType: String, CaseIterable {
     case all = "Hepsi"
     case delivery = "Gel-Al"
