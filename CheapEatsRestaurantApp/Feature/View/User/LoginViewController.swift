@@ -19,15 +19,15 @@ final class LoginViewController: UIViewController {
     @IBOutlet weak var emailImage: UIImageView!
     @IBOutlet weak var passwordImage: UIImageView!
     @IBOutlet weak var loginButton: UIButton!
-    
     @IBOutlet weak var securityIcon: UIButton!
     //MARK: - Variables
     var loginViewModel: LoginViewModelProtocol = LoginViewModel()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         initScreen()
     }
+
+    
     func initScreen() {
         loginViewModel.delegate = self
         emailImage.makeRounded(radius: 5)
@@ -35,38 +35,25 @@ final class LoginViewController: UIViewController {
         emailBackView.addRoundedBorder(cornerRadius: 2,borderWidth: 1, borderColor: .iconBG)
         passwordBackView.addRoundedBorder(cornerRadius: 2,borderWidth: 1, borderColor: .iconBG)
     }
-    var iconClick = true
-    @IBAction func securityIconClicked(_ sender: Any) {
-        if iconClick {
-            passwordTextField.isSecureTextEntry = false
-            securityIcon.setImage(<#T##image: UIImage?##UIImage?#>, for: <#T##UIControl.State#>)
+    
+    @IBAction func securityIconClicked(_ sender: UIButton) {
+        passwordTextField.togglePasswordVisibility()
+        if passwordTextField.isSecureTextEntry {
+            sender.setImage(UIImage(systemName: "eye"), for: .normal)
+        } else{
+            sender.setImage(UIImage(systemName: "eye.slash"), for: .normal)
         }
-        else{
-            passwordTextField.isSecureTextEntry = true
-        }
-        iconClick = !iconClick
-        
     }
 
-
     @IBAction func loginButtonClicked(_ sender: Any) {
-       
         if let email = emailTextField.text,
            let password = passwordTextField.text {
             let user = UserLogin(email: email, password: password)
             loginViewModel.loginUser(user: user, password: password)
             print("doğru")
         }
-        
-       
         else{
             print("bilgiler hatalı")
-        }
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let loginVC = storyboard.instantiateViewController(withIdentifier: "RegisterViewControllerID") as? RegisterViewController{
-            navigationController?.pushViewController(loginVC, animated: true)}
-        else{
-            print("geçiş yapılamadı")
         }
     }
     
@@ -74,6 +61,10 @@ final class LoginViewController: UIViewController {
 extension LoginViewController: LoginViewModelOutputProtocol {
     func update() {
         print("Update")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let tabBarVC = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+        navigationController?.navigationBar.isHidden = true
+        navigationController?.pushViewController(tabBarVC, animated: true)
     }
     
     func error() {

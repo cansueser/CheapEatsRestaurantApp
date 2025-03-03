@@ -51,6 +51,7 @@
 		7EBED5E32D07837F00E7CACB /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBED5E22D07837F00E7CACB /* UIView+Extension.swift */; };
 		7ED81A032D4BD37800E4F272 /* BottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED81A022D4BD37800E4F272 /* BottomSheetViewModel.swift */; };
 		7ED81A052D4BD3F900E4F272 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED81A042D4BD3F900E4F272 /* BottomSheetViewController.swift */; };
+		7EDDC4652D75BE6F004085F4 /* HiddenPassword+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDDC4642D75BE4F004085F4 /* HiddenPassword+UITextField.swift */; };
 		7EF612D22D518CC2003B1DF1 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7EF612D12D518CC2003B1DF1 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +92,7 @@
 		7EBED5E22D07837F00E7CACB /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		7ED81A022D4BD37800E4F272 /* BottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewModel.swift; sourceTree = "<group>"; };
 		7ED81A042D4BD3F900E4F272 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
+		7EDDC4642D75BE4F004085F4 /* HiddenPassword+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HiddenPassword+UITextField.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 		7E445D132D38055900BEDD0C /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				7EDDC4642D75BE4F004085F4 /* HiddenPassword+UITextField.swift */,
 				7EA0AF872D6F5235004F4499 /* Alert.swift */,
 				7EBED5E22D07837F00E7CACB /* UIView+Extension.swift */,
 				7E78EC382D08353C001A3782 /* UIViewController+Extension.swift */,
@@ -391,6 +394,7 @@
 				7E847A202D1B60CC00D1DE23 /* ProductManageViewController.swift in Sources */,
 				7EA0AF842D6F4782004F4499 /* NetworkHelper.swift in Sources */,
 				7EA0AF822D6F4751004F4499 /* NetworkManager.swift in Sources */,
+				7EDDC4652D75BE6F004085F4 /* HiddenPassword+UITextField.swift in Sources */,
 				7ED81A032D4BD37800E4F272 /* BottomSheetViewModel.swift in Sources */,
 				7E652CF42D0711C000137ECA /* AppDelegate.swift in Sources */,
 				7ED81A052D4BD3F900E4F272 /* BottomSheetViewController.swift in Sources */,
