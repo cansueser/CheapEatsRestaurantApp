@@ -1120,6 +1120,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Şifreni Sıfırla">
                                     <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="16"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="resetPasswordButtonClicked:" destination="kT9-Pw-6Hi" eventType="touchUpInside" id="YL3-Mm-KzN"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4qu-Jh-F3s">
                                 <rect key="frame" x="61.666666666666657" y="630.66666666666663" width="270" height="55"/>
@@ -1375,13 +1378,14 @@
                         <outlet property="passwordBackView" destination="jLF-bx-OEa" id="pZM-nC-ADd"/>
                         <outlet property="passwordImage" destination="2Q9-K4-BLE" id="uuk-Ej-KhW"/>
                         <outlet property="passwordTextField" destination="rfW-99-vhG" id="3vh-aL-owP"/>
+                        <outlet property="resetPassword" destination="UHr-2i-Ns8" id="yDD-Xd-mSc"/>
                         <outlet property="securityIcon" destination="K8Y-YD-Iu8" id="nZf-zL-wAp"/>
                         <segue destination="ZZ3-Zp-3ez" kind="show" id="cl0-Ng-DZ6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ehs-WY-R78" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-256" y="-2"/>
+            <point key="canvasLocation" x="-381" y="13"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="7MY-QK-exo">
@@ -2033,20 +2037,91 @@
             </objects>
             <point key="canvasLocation" x="-257.25190839694653" y="820.4225352112677"/>
         </scene>
-        <!--View Controller-->
+        <!--Reset Password View Controller-->
         <scene sceneID="ysw-h0-fVC">
             <objects>
-                <viewController id="hoh-Kp-MEa" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResetPasswordViewController" id="hoh-Kp-MEa" customClass="ResetPasswordViewController" customModule="CheapEatsRestaurantApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RYN-yS-hH4">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail adrresinizi giriniz" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="MqE-hi-Rcx" customClass="JVFloatLabeledTextField">
+                                <rect key="frame" x="16" y="309" width="361" height="34"/>
+                                <color key="backgroundColor" name="TextWhiteColor"/>
+                                <color key="tintColor" name="TextBlackColor"/>
+                                <color key="textColor" name="TextBlackColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelTextColor">
+                                        <color key="value" name="TitleColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelActiveTextColor">
+                                        <color key="value" name="ButtonColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="floatingLabelYPadding">
+                                        <real key="value" value="-17"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="floatingLabelXPadding">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderYPadding">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="floatingLabelReductionRatio">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" name="SecondTextColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="keepBaseline" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustsClearButtonRect" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="animateEvenIfNotFirstResponder" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Şifrenizi sıfırlamak için e-mail adresinizi giriniz" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbB-Xo-vBr">
+                                <rect key="frame" x="14" y="272.66666666666669" width="365" height="19.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wdw-Gb-fOV">
+                                <rect key="frame" x="71" y="371" width="224" height="52"/>
+                                <color key="backgroundColor" name="ButtonColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="n0O-Kr-WQm"/>
+                                </constraints>
+                                <color key="tintColor" name="TextWhiteColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Gönder"/>
+                                <connections>
+                                    <action selector="sendButtonClicked:" destination="hoh-Kp-MEa" eventType="touchUpInside" id="lFk-ok-1ae"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="G6h-tk-bTp"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="BGColor"/>
+                        <constraints>
+                            <constraint firstItem="mbB-Xo-vBr" firstAttribute="leading" secondItem="G6h-tk-bTp" secondAttribute="leading" constant="14" id="6Fs-eh-0B0"/>
+                            <constraint firstItem="G6h-tk-bTp" firstAttribute="trailing" secondItem="wdw-Gb-fOV" secondAttribute="trailing" constant="98" id="AD2-yq-MiE"/>
+                            <constraint firstItem="G6h-tk-bTp" firstAttribute="trailing" secondItem="MqE-hi-Rcx" secondAttribute="trailing" constant="16" id="B6V-uo-H5W"/>
+                            <constraint firstItem="MqE-hi-Rcx" firstAttribute="top" secondItem="mbB-Xo-vBr" secondAttribute="bottom" constant="17" id="GvT-DN-aHn"/>
+                            <constraint firstItem="G6h-tk-bTp" firstAttribute="bottom" secondItem="wdw-Gb-fOV" secondAttribute="bottom" constant="395" id="kSl-Qv-KeN"/>
+                            <constraint firstItem="MqE-hi-Rcx" firstAttribute="leading" secondItem="G6h-tk-bTp" secondAttribute="leading" constant="16" id="mb1-gK-uKi"/>
+                            <constraint firstItem="wdw-Gb-fOV" firstAttribute="leading" secondItem="G6h-tk-bTp" secondAttribute="leading" constant="71" id="oyM-vk-mVI"/>
+                            <constraint firstItem="G6h-tk-bTp" firstAttribute="trailing" secondItem="mbB-Xo-vBr" secondAttribute="trailing" constant="14" id="vy3-kt-4xr"/>
+                            <constraint firstItem="wdw-Gb-fOV" firstAttribute="top" secondItem="MqE-hi-Rcx" secondAttribute="bottom" constant="28" id="zY3-4q-gK7"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Uv0-Q2-nF1"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="MqE-hi-Rcx" id="9CF-Gd-QfB"/>
+                        <outlet property="sendButton" destination="wdw-Gb-fOV" id="PuM-d7-nCR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BK3-L5-9ww" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="422" y="14"/>
+            <point key="canvasLocation" x="420.61068702290072" y="13.380281690140846"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="IGs-gj-r7a">

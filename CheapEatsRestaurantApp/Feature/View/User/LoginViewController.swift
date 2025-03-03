@@ -20,11 +20,13 @@ final class LoginViewController: UIViewController {
     @IBOutlet weak var passwordImage: UIImageView!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var securityIcon: UIButton!
+    @IBOutlet weak var resetPassword: UIButton!
     //MARK: - Variables
     var loginViewModel: LoginViewModelProtocol = LoginViewModel()
     let SB = UIStoryboard(name: "Main", bundle: nil)
     private var registerVC: RegisterViewController?
     private var tabBarVC: UITabBarController?
+    private var resetVC: ResetPasswordViewController?
     override func viewDidLoad() {
         super.viewDidLoad()
         initScreen()
@@ -67,6 +69,27 @@ final class LoginViewController: UIViewController {
         
         if let registerVC = registerVC {
             navigationController?.pushViewController(registerVC, animated: true)
+        }
+    }
+    
+    @IBAction func resetPasswordButtonClicked(_ sender: UIButton) {
+        Auth.auth().sendPasswordReset(withEmail: emailTextField.text!) { error in
+            DispatchQueue.main.async {
+                if error != nil {
+                    let resetFailedAlert = UIAlertController(title: "Reset Failed", message: "Error: \(String(describing: error?.localizedDescription))", preferredStyle: .alert)
+                    resetFailedAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(resetFailedAlert, animated: true, completion: nil)
+                }else{
+                    if error == nil && self.emailTextField.text?.isEmpty==false{
+                                        let resetEmailAlertSent = UIAlertController(title: "Sıfırlama E-postası Gönderildi.", message: "Giriş e-postanıza sıfırlama e-postası gönderildi, lütfen şifrenizi sıfırlamak için e-postadaki talimatları izleyin.", preferredStyle: .alert)
+                                        resetEmailAlertSent.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                        self.present(resetEmailAlertSent, animated: true, completion: nil)
+                                    }
+                                        let resetEmailAlertSent = UIAlertController(title: "Sıfırlama E-postası Gönderildi.", message: "Giriş e-postanıza sıfırlama e-postası gönderildi, lütfen şifrenizi sıfırlamak için e-postadaki talimatları izleyin.", preferredStyle: .alert)
+                                        resetEmailAlertSent.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                        self.present(resetEmailAlertSent, animated: true, completion: nil)
+                                    }
+            }
         }
     }
     

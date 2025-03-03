@@ -148,9 +148,8 @@
 		7E445D0B2D3802FB00BEDD0C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				7EC6CCD02D76519A00316926 /* UserVM */,
 				7EC6CCCD2D760FB900316926 /* MapVM */,
-				7EB2D3A02D74DC3A00CFF13E /* LoginViewModel.swift */,
-				7E9014C02D73AAA90005572A /* RegisterViewModel.swift */,
 				7E847A112D19ED7700D1DE23 /* HomeViewModel.swift */,
 				7EB852AD2D0DD3EA009FAC62 /* ProductManageViewModel.swift */,
 				7ED81A022D4BD37800E4F272 /* BottomSheetViewModel.swift */,
@@ -297,6 +296,15 @@
 				7EC6CCCB2D760FAF00316926 /* MapDetailViewModel.swift */,
 			);
 			path = MapVM;
+			sourceTree = "<group>";
+		};
+		7EC6CCD02D76519A00316926 /* UserVM */ = {
+			isa = PBXGroup;
+			children = (
+				7EB2D3A02D74DC3A00CFF13E /* LoginViewModel.swift */,
+				7E9014C02D73AAA90005572A /* RegisterViewModel.swift */,
+			);
+			path = UserVM;
 			sourceTree = "<group>";
 		};
 		7EC772F22D75E61800846090 /* MapVC */ = {
