@@ -12,7 +12,7 @@ import FirebaseAuth
 import JVFloatLabeledTextField
       
 final class RegisterViewController: UIViewController {
-
+    //MARK: - Variables
     @IBOutlet weak var nameTextField: JVFloatLabeledTextField!
     @IBOutlet weak var surnameTextField: JVFloatLabeledTextField!
     @IBOutlet weak var phoneNumberTextField: JVFloatLabeledTextField!
@@ -31,10 +31,13 @@ final class RegisterViewController: UIViewController {
     @IBOutlet weak var passwordImage: UIImageView!
     @IBOutlet weak var companyImage: UIImageView!
     @IBOutlet weak var logoBackView: UIView!
+    @IBOutlet weak var addressButton: UIButton!
     @IBOutlet weak var addressLabel: UILabel!
-    //MARK: - Variables
-    var registerViewModel: RegisterViewModelProtocol = RegisterViewModel()
     
+    var registerViewModel: RegisterViewModelProtocol = RegisterViewModel()
+    private var mapVC: MapViewController?
+    let SB = UIStoryboard(name: "Main", bundle: nil)
+    private var tabBarVC: UITabBarController?
     override func viewDidLoad() {
         super.viewDidLoad()
         initScreen()
@@ -74,10 +77,30 @@ final class RegisterViewController: UIViewController {
     func setRestaurant(restaurant: Restaurant, password: String) {
         registerViewModel.registerRestaurant(restaurant: restaurant, password: password)
     }
+    
+    @IBAction func addressButtonClicked(_ sender: UIButton) {
+        if mapVC == nil{
+            mapVC = SB.instantiateViewController(withIdentifier: "MapViewController") as? MapViewController
+        }
+        
+        if let mapVC = mapVC {
+            navigationController?.pushViewController(mapVC, animated: true)
+        }
+    }
+    
+   
 }
 extension RegisterViewController: RegisterViewModelOutputProtocol {
     func update() {
         print("Update")
+        if tabBarVC == nil {
+            navigationController?.navigationBar.isHidden = true
+            tabBarVC = SB.instantiateViewController(identifier: "TabBarController") as? UITabBarController
+        }
+      if let tabBarVC = tabBarVC {
+          navigationController?.navigationBar.isHidden = true
+          navigationController?.pushViewController(tabBarVC, animated: true)
+        }
     }
     
     func error() {

@@ -22,6 +22,9 @@ final class LoginViewController: UIViewController {
     @IBOutlet weak var securityIcon: UIButton!
     //MARK: - Variables
     var loginViewModel: LoginViewModelProtocol = LoginViewModel()
+    let SB = UIStoryboard(name: "Main", bundle: nil)
+    private var registerVC: RegisterViewController?
+    private var tabBarVC: UITabBarController?
     override func viewDidLoad() {
         super.viewDidLoad()
         initScreen()
@@ -57,14 +60,28 @@ final class LoginViewController: UIViewController {
         }
     }
     
+    @IBAction func registerButtonClicked(_ sender: UIButton) {
+        if registerVC == nil {
+            registerVC = SB.instantiateViewController(withIdentifier: "RegisterViewController") as? RegisterViewController
+        }
+        
+        if let registerVC = registerVC {
+            navigationController?.pushViewController(registerVC, animated: true)
+        }
+    }
+    
 }
 extension LoginViewController: LoginViewModelOutputProtocol {
     func update() {
         print("Update")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let tabBarVC = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
-        navigationController?.navigationBar.isHidden = true
-        navigationController?.pushViewController(tabBarVC, animated: true)
+        if tabBarVC == nil {
+            navigationController?.navigationBar.isHidden = true
+            tabBarVC = SB.instantiateViewController(identifier: "TabBarController") as? UITabBarController
+        }
+      if let tabBarVC = tabBarVC {
+          navigationController?.navigationBar.isHidden = true
+          navigationController?.pushViewController(tabBarVC, animated: true)
+        }
     }
     
     func error() {

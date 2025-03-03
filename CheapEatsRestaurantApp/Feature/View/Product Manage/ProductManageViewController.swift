@@ -30,7 +30,10 @@ class ProductManageViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var timeImage: UIImageView!
     @IBOutlet weak var waitView: UIView!
-    
+    @IBOutlet weak var UploadIconImage: UIImageView!
+    @IBOutlet weak var nameIconImage: UIImageView!
+    @IBOutlet weak var deliveryIconImage: UIImageView!
+    @IBOutlet weak var detailsIconImage: UIImageView!
     var productManageViewModel: ProductManageViewModelProtocol = ProductManageViewModel()
     private var bottomSheetViewModel: BottomSheetViewModel = BottomSheetViewModel()
     
@@ -71,6 +74,10 @@ class ProductManageViewController: UIViewController {
         timeLabel.makeRounded(radius: 5)
         priceImage.makeRounded(radius: 5)
         priceLabel.makeRounded(radius: 5)
+        deliveryIconImage.makeRounded(radius: 5)
+        detailsIconImage.makeRounded(radius: 5)
+        nameIconImage.makeRounded(radius: 5)
+        UploadIconImage.makeRounded(radius: 5)
         selectedImageView.addRoundedBorder(cornerRadius: 5, borderWidth: 2, borderColor: .title)
         preferences.drawing.backgroundColor = .lightGray
         preferences.drawing.foregroundColor = .white

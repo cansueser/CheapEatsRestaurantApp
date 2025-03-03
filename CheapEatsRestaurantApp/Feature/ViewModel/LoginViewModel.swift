@@ -10,7 +10,6 @@ import UIKit
 
 protocol LoginViewModelProtocol{
     var delegate: LoginViewModelOutputProtocol? { get set}
-   // func loginUser(email: String , password: String)
     func loginUser(user: UserLogin, password: String)
 }
 
