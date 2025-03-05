@@ -7,8 +7,8 @@
 
 import UIKit
 import MapKit
-
-class MapViewController: UIViewController {
+import CoreLocation
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     //MARK: - Variables
     @IBOutlet weak var mapImage: UIImageView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -22,6 +22,8 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         initView()
     }
+    
+    
     func initView() {
         mapImage.makeRounded(radius: 5)
         toolTipImage.makeRounded(radius: 5)
@@ -37,6 +39,7 @@ class MapViewController: UIViewController {
         if let mapDetailVC = mapDetailVC {
             navigationController?.pushViewController(mapDetailVC, animated: true)
         }
+        
+        
     }
-    
 }

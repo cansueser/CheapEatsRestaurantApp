@@ -26,12 +26,11 @@ final class LoginViewController: UIViewController {
     let SB = UIStoryboard(name: "Main", bundle: nil)
     private var registerVC: RegisterViewController?
     private var tabBarVC: UITabBarController?
-    private var resetVC: ResetPasswordViewController?
     override func viewDidLoad() {
         super.viewDidLoad()
         initScreen()
     }
-
+    
     
     func initScreen() {
         loginViewModel.delegate = self
@@ -49,7 +48,7 @@ final class LoginViewController: UIViewController {
             sender.setImage(UIImage(systemName: "eye.slash"), for: .normal)
         }
     }
-
+    
     @IBAction func loginButtonClicked(_ sender: Any) {
         if let email = emailTextField.text,
            let password = passwordTextField.text {
@@ -76,23 +75,21 @@ final class LoginViewController: UIViewController {
         Auth.auth().sendPasswordReset(withEmail: emailTextField.text!) { error in
             DispatchQueue.main.async {
                 if error != nil {
-                    let resetFailedAlert = UIAlertController(title: "Reset Failed", message: "Error: \(String(describing: error?.localizedDescription))", preferredStyle: .alert)
+                    let resetFailedAlert = UIAlertController(title: "Sıfırlama Başarısız", message: "Error(E-postanızı doğru giriniz ve tekrar deneyiniz) : \(String(describing: error?.localizedDescription))", preferredStyle: .alert)
                     resetFailedAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self.present(resetFailedAlert, animated: true, completion: nil)
                 }else{
                     if error == nil && self.emailTextField.text?.isEmpty==false{
-                                        let resetEmailAlertSent = UIAlertController(title: "Sıfırlama E-postası Gönderildi.", message: "Giriş e-postanıza sıfırlama e-postası gönderildi, lütfen şifrenizi sıfırlamak için e-postadaki talimatları izleyin.", preferredStyle: .alert)
-                                        resetEmailAlertSent.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                                        self.present(resetEmailAlertSent, animated: true, completion: nil)
-                                    }
-                                        let resetEmailAlertSent = UIAlertController(title: "Sıfırlama E-postası Gönderildi.", message: "Giriş e-postanıza sıfırlama e-postası gönderildi, lütfen şifrenizi sıfırlamak için e-postadaki talimatları izleyin.", preferredStyle: .alert)
-                                        resetEmailAlertSent.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                                        self.present(resetEmailAlertSent, animated: true, completion: nil)
-                                    }
+                        let resetEmailAlertSent = UIAlertController(title: "Sıfırlama E-postası Gönderildi.", message: "Giriş e-postanıza sıfırlama e-postası gönderildi, lütfen şifrenizi sıfırlamak için e-postadaki talimatları izleyin.", preferredStyle: .alert)
+                        resetEmailAlertSent.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(resetEmailAlertSent, animated: true, completion: nil)}
+                    let resetEmailAlertSent = UIAlertController(title: "Sıfırlama E-postası Gönderildi.", message: "Giriş e-postanıza sıfırlama e-postası gönderildi, lütfen şifrenizi sıfırlamak için e-postadaki talimatları izleyin.", preferredStyle: .alert)
+                    resetEmailAlertSent.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(resetEmailAlertSent, animated: true, completion: nil)
+                }
             }
         }
     }
-    
 }
 extension LoginViewController: LoginViewModelOutputProtocol {
     func update() {
@@ -101,9 +98,9 @@ extension LoginViewController: LoginViewModelOutputProtocol {
             navigationController?.navigationBar.isHidden = true
             tabBarVC = SB.instantiateViewController(identifier: "TabBarController") as? UITabBarController
         }
-      if let tabBarVC = tabBarVC {
-          navigationController?.navigationBar.isHidden = true
-          navigationController?.pushViewController(tabBarVC, animated: true)
+        if let tabBarVC = tabBarVC {
+            navigationController?.navigationBar.isHidden = true
+            navigationController?.pushViewController(tabBarVC, animated: true)
         }
     }
     
