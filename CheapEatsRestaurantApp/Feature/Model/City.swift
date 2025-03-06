@@ -4,6 +4,9 @@
 //
 //  Created by CANSU on 5.03.2025.
 //
+struct CityData: Codable {
+    let data: [City]
+}
 
 struct City: Codable {
     let ilAdi: String

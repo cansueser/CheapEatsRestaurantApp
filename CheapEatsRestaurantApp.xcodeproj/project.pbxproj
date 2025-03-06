@@ -54,6 +54,10 @@
 		7EC6CCDE2D775BCB00316926 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 7EC6CCDD2D775BCB00316926 /* FirebaseStorage */; };
 		7EC772F12D75E60700846090 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC772F02D75E5FD00846090 /* MapViewModel.swift */; };
 		7EC772F62D75E85000846090 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC772F52D75E85000846090 /* MapViewController.swift */; };
+		7ECF12532D79CD530062F6DA /* BorderAndShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECF12522D79CD3E0062F6DA /* BorderAndShadow.swift */; };
+		7ECF12552D79D3D80062F6DA /* MapDetailViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECF12542D79D3C80062F6DA /* MapDetailViewController+TableView.swift */; };
+		7ECF12572D79D4530062F6DA /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECF12562D79D44B0062F6DA /* DropDownCell.swift */; };
+		7ECF125A2D79E15C0062F6DA /* CityDistrict.json in Resources */ = {isa = PBXBuildFile; fileRef = 7ECF12582D79DDB70062F6DA /* CityDistrict.json */; };
 		7ED81A032D4BD37800E4F272 /* BottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED81A022D4BD37800E4F272 /* BottomSheetViewModel.swift */; };
 		7ED81A052D4BD3F900E4F272 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED81A042D4BD3F900E4F272 /* BottomSheetViewController.swift */; };
 		7EDDC4652D75BE6F004085F4 /* HiddenPassword+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDDC4642D75BE4F004085F4 /* HiddenPassword+UITextField.swift */; };
@@ -100,6 +104,10 @@
 		7EC6CCCB2D760FAF00316926 /* MapDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailViewModel.swift; sourceTree = "<group>"; };
 		7EC772F02D75E5FD00846090 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		7EC772F52D75E85000846090 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		7ECF12522D79CD3E0062F6DA /* BorderAndShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderAndShadow.swift; sourceTree = "<group>"; };
+		7ECF12542D79D3C80062F6DA /* MapDetailViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapDetailViewController+TableView.swift"; sourceTree = "<group>"; };
+		7ECF12562D79D44B0062F6DA /* DropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
+		7ECF12582D79DDB70062F6DA /* CityDistrict.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CityDistrict.json; sourceTree = "<group>"; };
 		7ED81A022D4BD37800E4F272 /* BottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewModel.swift; sourceTree = "<group>"; };
 		7ED81A042D4BD3F900E4F272 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		7EDDC4642D75BE4F004085F4 /* HiddenPassword+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HiddenPassword+UITextField.swift"; sourceTree = "<group>"; };
@@ -142,6 +150,7 @@
 		7E445D0A2D3802C700BEDD0C /* SubView */ = {
 			isa = PBXGroup;
 			children = (
+				7ECF12562D79D44B0062F6DA /* DropDownCell.swift */,
 				7E652D112D07218400137ECA /* ProductTableViewCell.swift */,
 				7E652D122D07218400137ECA /* ProductTableViewCell.xib */,
 			);
@@ -151,8 +160,8 @@
 		7E445D0B2D3802FB00BEDD0C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				7EC6CCD02D76519A00316926 /* UserVM */,
-				7EC6CCCD2D760FB900316926 /* MapVM */,
+				7EC6CCD02D76519A00316926 /* User */,
+				7EC6CCCD2D760FB900316926 /* Map */,
 				7E847A112D19ED7700D1DE23 /* HomeViewModel.swift */,
 				7EB852AD2D0DD3EA009FAC62 /* ProductManageViewModel.swift */,
 				7ED81A022D4BD37800E4F272 /* BottomSheetViewModel.swift */,
@@ -226,7 +235,7 @@
 		7E652D0C2D07177E00137ECA /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7EC772F22D75E61800846090 /* MapVC */,
+				7EC772F22D75E61800846090 /* Map */,
 				7E9014BE2D73AA650005572A /* User */,
 				7E445D0A2D3802C700BEDD0C /* SubView */,
 				7EA0AF782D6F41DD004F4499 /* Home */,
@@ -268,6 +277,7 @@
 		7EA0AF802D6F4744004F4499 /* Network Layer */ = {
 			isa = PBXGroup;
 			children = (
+				7ECF12592D79DDDC0062F6DA /* Data */,
 				7EA0AF832D6F477F004F4499 /* NetworkHelper.swift */,
 				7EA0AF812D6F474F004F4499 /* NetworkManager.swift */,
 			);
@@ -286,37 +296,47 @@
 		7EA0AF8C2D6F683F004F4499 /* Design */ = {
 			isa = PBXGroup;
 			children = (
+				7ECF12522D79CD3E0062F6DA /* BorderAndShadow.swift */,
 				7E28691A2D72002100C5F46D /* LoadingIndicator.swift */,
 				7EA0AF8D2D6F6845004F4499 /* LineView.swift */,
 			);
 			path = Design;
 			sourceTree = "<group>";
 		};
-		7EC6CCCD2D760FB900316926 /* MapVM */ = {
+		7EC6CCCD2D760FB900316926 /* Map */ = {
 			isa = PBXGroup;
 			children = (
 				7EC772F02D75E5FD00846090 /* MapViewModel.swift */,
 				7EC6CCCB2D760FAF00316926 /* MapDetailViewModel.swift */,
 			);
-			path = MapVM;
+			path = Map;
 			sourceTree = "<group>";
 		};
-		7EC6CCD02D76519A00316926 /* UserVM */ = {
+		7EC6CCD02D76519A00316926 /* User */ = {
 			isa = PBXGroup;
 			children = (
 				7EB2D3A02D74DC3A00CFF13E /* LoginViewModel.swift */,
 				7E9014C02D73AAA90005572A /* RegisterViewModel.swift */,
 			);
-			path = UserVM;
+			path = User;
 			sourceTree = "<group>";
 		};
-		7EC772F22D75E61800846090 /* MapVC */ = {
+		7EC772F22D75E61800846090 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				7ECF12542D79D3C80062F6DA /* MapDetailViewController+TableView.swift */,
 				7EC772F52D75E85000846090 /* MapViewController.swift */,
 				7EC6CCC92D760F6000316926 /* MapDetailViewController.swift */,
 			);
-			path = MapVC;
+			path = Map;
+			sourceTree = "<group>";
+		};
+		7ECF12592D79DDDC0062F6DA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				7ECF12582D79DDB70062F6DA /* CityDistrict.json */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -402,6 +422,7 @@
 				7E652CFB2D0711C000137ECA /* Base in Resources */,
 				7E2868FA2D71EE1A00C5F46D /* GoogleService-Info.plist in Resources */,
 				7E9642022D70617700176FAA /* Assets.xcassets in Resources */,
+				7ECF125A2D79E15C0062F6DA /* CityDistrict.json in Resources */,
 				7E652D142D07218400137ECA /* ProductTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -421,6 +442,7 @@
 				7E9014BC2D73A37A0005572A /* Restaurant.swift in Sources */,
 				7E149DB12D7863A60095DAE3 /* City.swift in Sources */,
 				7EB852AE2D0DD3EA009FAC62 /* ProductManageViewModel.swift in Sources */,
+				7ECF12572D79D4530062F6DA /* DropDownCell.swift in Sources */,
 				7EA0AF7B2D6F42EB004F4499 /* ProductManageViewController+EastTipView.swift in Sources */,
 				7E2869092D71F1CE00C5F46D /* Order.swift in Sources */,
 				7EB2D3A52D74E0D200CFF13E /* UserLogin.swift in Sources */,
@@ -444,6 +466,8 @@
 				7EA0AF8A2D6F573F004F4499 /* BottomSheetViewController+TableView.swift in Sources */,
 				7E9014C12D73AAB50005572A /* RegisterViewModel.swift in Sources */,
 				7E652CF62D0711C000137ECA /* SceneDelegate.swift in Sources */,
+				7ECF12532D79CD530062F6DA /* BorderAndShadow.swift in Sources */,
+				7ECF12552D79D3D80062F6DA /* MapDetailViewController+TableView.swift in Sources */,
 				7EC6CCCA2D760F6000316926 /* MapDetailViewController.swift in Sources */,
 				7E847A122D19ED7700D1DE23 /* HomeViewModel.swift in Sources */,
 				7EA0AF882D6F5237004F4499 /* Alert.swift in Sources */,

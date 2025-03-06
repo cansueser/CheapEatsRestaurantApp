@@ -8,14 +8,14 @@
 import UIKit
 import MapKit
 import JVFloatLabeledTextField
-class CellClass: UITableViewCell {}
-class MapDetailViewController: UIViewController {
+
+final class MapDetailViewController: UIViewController {
     // MARK: - Variables
-@IBOutlet weak var provinceBackView: UIView!
-@IBOutlet weak var districtButtonBackView: UIView!
-@IBOutlet weak var neighbourhoodButtonBackView: UIView!
-@IBOutlet weak var streetTextFieldBackView: UIView!
-@IBOutlet weak var buildingNumberBackView: UIView!
+    @IBOutlet weak var provinceBackView: UIView!
+    @IBOutlet weak var districtButtonBackView: UIView!
+    @IBOutlet weak var neighbourhoodButtonBackView: UIView!
+    @IBOutlet weak var streetTextFieldBackView: UIView!
+    @IBOutlet weak var buildingNumberBackView: UIView!
     @IBOutlet weak var directionsBackView: UIView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var provinceButton: UIButton!
@@ -26,39 +26,57 @@ class MapDetailViewController: UIViewController {
     @IBOutlet weak var directionsTextField: JVFloatLabeledTextField!
     @IBOutlet weak var saveButton: UIButton!
     
+    var mapDetailViewModel: MapDetailViewModelProtocol = MapDetailViewModel()
+    
     let transparentView = UIView()
     let tableview = UITableView()
     var selectedButton = UIButton()
-    var dataSource = [String]()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
-        
+        initTableView()
     }
-    func initView() {
-        tableview.clipsToBounds = true
-        tableview.delegate = self
-        tableview.dataSource = self
-        tableview.register(CellClass.self, forCellReuseIdentifier: "Cell")
-        tableview.layer.cornerRadius = 5
+    
+    private func initView() {
+        mapDetailViewModel.delegate = self
         provinceBackView.addRoundedBorder(cornerRadius: 2,borderWidth: 1, borderColor: .iconBG)
         districtButtonBackView.addRoundedBorder(cornerRadius: 2,borderWidth: 1, borderColor: .iconBG)
         neighbourhoodButtonBackView.addRoundedBorder(cornerRadius: 2,borderWidth: 1, borderColor: .iconBG)
         streetTextFieldBackView.addRoundedBorder(cornerRadius: 2,borderWidth: 1, borderColor: .iconBG)
         directionsBackView.addRoundedBorder(cornerRadius: 2,borderWidth: 1, borderColor: .iconBG)
+        buildingNumberBackView.addRoundedBorder(cornerRadius: 2,borderWidth: 1, borderColor: .iconBG)
+        setShadow(with: provinceBackView.layer, shadowOffset: true)
+        setShadow(with: districtButtonBackView.layer, shadowOffset: true)
+        setShadow(with: neighbourhoodButtonBackView.layer, shadowOffset: true)
+        setShadow(with: streetTextFieldBackView.layer, shadowOffset: true)
+        setShadow(with: directionsBackView.layer, shadowOffset: true)
+        setShadow(with: buildingNumberBackView.layer, shadowOffset: true)
+        saveButton.makeRounded(radius: 5)
+        mapDetailViewModel.getData()
     }
     
-    func addTrasparentView(frames: CGRect) {
+    private func initTableView() {
+        tableview.clipsToBounds = true
+        tableview.delegate = self
+        tableview.dataSource = self
+        tableview.register(DropDownCell.self, forCellReuseIdentifier: "Cell")
+        tableview.layer.cornerRadius = 5
+    }
+    
+    private func addTrasparentView(frames: CGRect) {
         let convertedFrame = selectedButton.convert(selectedButton.bounds, to: self.view)
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,let window = windowScene.keyWindow {
-            transparentView.frame = window.frame ?? self.view.frame
+            transparentView.frame = window.frame
             self.view.addSubview(transparentView)
             self.view.addSubview(tableview)
         }
         
-         tableview.frame = CGRect(
+        tableview.frame = CGRect(
             x: convertedFrame.origin.x,
-            y: convertedFrame.origin.y + convertedFrame.height, // Dönüştürülmüş y değeri
+            y: convertedFrame.origin.y + convertedFrame.height,
             width: convertedFrame.width,
             height: 0
         )
@@ -68,17 +86,17 @@ class MapDetailViewController: UIViewController {
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(removetrasparentView))
         transparentView.addGestureRecognizer(tapGestureRecognizer)
-  
-       transparentView.alpha = 0.0
+        
+        transparentView.alpha = 0.0
         UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping:1.0, initialSpringVelocity: 1.0,options: .curveEaseInOut, animations:{
             self.transparentView.alpha = 0.5
-            self.tableview.frame = CGRect(x: convertedFrame.origin.x, y: convertedFrame.origin.y + convertedFrame.height, width: convertedFrame.width, height: CGFloat(self.dataSource.count * 50))
+            let height: CGFloat = self.mapDetailViewModel.dataSource.count > 8 ? 400 : CGFloat(self.mapDetailViewModel.dataSource.count * 50)
+            self.tableview.frame = CGRect(x: convertedFrame.origin.x, y: convertedFrame.origin.y + convertedFrame.height, width: convertedFrame.width, height: height)
             
         }, completion: nil)
     }
     @objc func removetrasparentView () {
         let frames = selectedButton.convert(selectedButton.bounds, to: self.view)
-        //let frames = selectedButton.frame
         UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0,options: .curveEaseInOut, animations:{
             self.transparentView.alpha = 0
             self.tableview.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height + 5, width: frames.width, height: 0)
@@ -86,45 +104,44 @@ class MapDetailViewController: UIViewController {
             self.transparentView.removeFromSuperview()
             self.tableview.removeFromSuperview()
         }
-    )
-}
+        )
+    }
+    
     @IBAction func provinceButtonClicked(_ sender: UIButton) {
-        dataSource = ["Çorum","Ankara","Bolu","Urfa","Antep","Tokat","Samsun","Rize","Amasya"]
+        mapDetailViewModel.selectedData(with: true)
         selectedButton = provinceButton
-        self.view.layoutIfNeeded() // provinceButtonClicked içinde
+        self.view.layoutIfNeeded()
         addTrasparentView(frames: provinceButton.frame)
         
+        districtButton.setTitle("İlçe", for: .normal)
+        districtButton.isEnabled = false
+        mapDetailViewModel.clearDistrictData()
     }
     
     @IBAction func districtButtonClicked(_ sender: UIButton) {
-        dataSource =  ["İskilip","Merkez","Laçin","OrtaKöy","altındağ","bahçelievler","buhara","keçiören"]
+        mapDetailViewModel.getDistrict(cityName:  provinceButton.titleLabel?.text ?? "")
+        mapDetailViewModel.selectedData(with: false)
         selectedButton = districtButton
-        self.view.layoutIfNeeded() // provinceButtonClicked içinde
+        self.view.layoutIfNeeded()
         addTrasparentView(frames: districtButton.frame)
-        
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {
-        
+        if districtButton.titleLabel?.text == "İlçe" {
+            showOneButtonAlert(title: "Hata", message: "İlçe seçmediniz!")
+        } else{
+            print("İşlem başarılı")
+        }
     }
     
 }
-extension MapDetailViewController :UITableViewDataSource ,UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
+extension MapDetailViewController :MapDetailViewModelOutputProtocol {
+    func update() {
+        print("update")
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = dataSource[indexPath.row]
-        return cell
+    func error() {
+        print("error")
     }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedButton.setTitle(dataSource[indexPath.row], for: .normal)
-        removetrasparentView()
-        
-    }
+    
 }
