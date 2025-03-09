@@ -18,6 +18,7 @@ protocol MapViewModelOutputProtocol: AnyObject {
 
 final class MapViewModel {
     weak var delegate: MapViewModelOutputProtocol?
+    
 }
 
 

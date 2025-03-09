@@ -58,6 +58,8 @@
 		7ECF12552D79D3D80062F6DA /* MapDetailViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECF12542D79D3C80062F6DA /* MapDetailViewController+TableView.swift */; };
 		7ECF12572D79D4530062F6DA /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECF12562D79D44B0062F6DA /* DropDownCell.swift */; };
 		7ECF125A2D79E15C0062F6DA /* CityDistrict.json in Resources */ = {isa = PBXBuildFile; fileRef = 7ECF12582D79DDB70062F6DA /* CityDistrict.json */; };
+		7ECF125C2D7DB26F0062F6DA /* MapViewController+MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECF125B2D7DB2560062F6DA /* MapViewController+MapView.swift */; };
+		7ECF12622D7DF27E0062F6DA /* MapDetailViewController+MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECF12612D7DF2620062F6DA /* MapDetailViewController+MapView.swift */; };
 		7ED81A032D4BD37800E4F272 /* BottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED81A022D4BD37800E4F272 /* BottomSheetViewModel.swift */; };
 		7ED81A052D4BD3F900E4F272 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED81A042D4BD3F900E4F272 /* BottomSheetViewController.swift */; };
 		7EDDC4652D75BE6F004085F4 /* HiddenPassword+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDDC4642D75BE4F004085F4 /* HiddenPassword+UITextField.swift */; };
@@ -108,6 +110,8 @@
 		7ECF12542D79D3C80062F6DA /* MapDetailViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapDetailViewController+TableView.swift"; sourceTree = "<group>"; };
 		7ECF12562D79D44B0062F6DA /* DropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
 		7ECF12582D79DDB70062F6DA /* CityDistrict.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CityDistrict.json; sourceTree = "<group>"; };
+		7ECF125B2D7DB2560062F6DA /* MapViewController+MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapViewController+MapView.swift"; sourceTree = "<group>"; };
+		7ECF12612D7DF2620062F6DA /* MapDetailViewController+MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapDetailViewController+MapView.swift"; sourceTree = "<group>"; };
 		7ED81A022D4BD37800E4F272 /* BottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewModel.swift; sourceTree = "<group>"; };
 		7ED81A042D4BD3F900E4F272 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		7EDDC4642D75BE4F004085F4 /* HiddenPassword+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HiddenPassword+UITextField.swift"; sourceTree = "<group>"; };
@@ -235,8 +239,8 @@
 		7E652D0C2D07177E00137ECA /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7EC772F22D75E61800846090 /* Map */,
 				7E9014BE2D73AA650005572A /* User */,
+				7EC772F22D75E61800846090 /* Map */,
 				7E445D0A2D3802C700BEDD0C /* SubView */,
 				7EA0AF782D6F41DD004F4499 /* Home */,
 				7EA0AF792D6F4280004F4499 /* Product Manage */,
@@ -324,9 +328,11 @@
 		7EC772F22D75E61800846090 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				7ECF12542D79D3C80062F6DA /* MapDetailViewController+TableView.swift */,
+				7ECF12612D7DF2620062F6DA /* MapDetailViewController+MapView.swift */,
+				7ECF125B2D7DB2560062F6DA /* MapViewController+MapView.swift */,
 				7EC772F52D75E85000846090 /* MapViewController.swift */,
 				7EC6CCC92D760F6000316926 /* MapDetailViewController.swift */,
+				7ECF12542D79D3C80062F6DA /* MapDetailViewController+TableView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -454,10 +460,12 @@
 				7EC772F62D75E85000846090 /* MapViewController.swift in Sources */,
 				7EBED5E12D077BAB00E7CACB /* HomeViewController+TableView.swift in Sources */,
 				7EA0AF7D2D6F4572004F4499 /* ProductManageViewController+TextField.swift in Sources */,
+				7ECF12622D7DF27E0062F6DA /* MapDetailViewController+MapView.swift in Sources */,
 				7E78EC392D08353C001A3782 /* UIViewController+Extension.swift in Sources */,
 				7E847A202D1B60CC00D1DE23 /* ProductManageViewController.swift in Sources */,
 				7EA0AF842D6F4782004F4499 /* NetworkHelper.swift in Sources */,
 				7EA0AF822D6F4751004F4499 /* NetworkManager.swift in Sources */,
+				7ECF125C2D7DB26F0062F6DA /* MapViewController+MapView.swift in Sources */,
 				7EDDC4652D75BE6F004085F4 /* HiddenPassword+UITextField.swift in Sources */,
 				7ED81A032D4BD37800E4F272 /* BottomSheetViewModel.swift in Sources */,
 				7E652CF42D0711C000137ECA /* AppDelegate.swift in Sources */,

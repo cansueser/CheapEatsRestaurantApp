@@ -38,6 +38,7 @@ final class MapDetailViewController: UIViewController {
         super.viewDidLoad()
         initView()
         initTableView()
+        mapViewConrol()
     }
     
     private func initView() {
@@ -56,6 +57,14 @@ final class MapDetailViewController: UIViewController {
         setShadow(with: buildingNumberBackView.layer, shadowOffset: true)
         saveButton.makeRounded(radius: 5)
         mapDetailViewModel.getData()
+    }
+    private func mapViewConrol(){
+        mapView.isScrollEnabled = false
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        mapView.addGestureRecognizer(gestureRecognizer)
+    }
+    @objc func handleTap() {
+        navigationController?.popViewController(animated: true)
     }
     
     private func initTableView() {
@@ -127,11 +136,12 @@ final class MapDetailViewController: UIViewController {
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {
-        if districtButton.titleLabel?.text == "İlçe" {
-            showOneButtonAlert(title: "Hata", message: "İlçe seçmediniz!")
+        navigationController?.popViewController(animated: true)
+        /*if districtButton.titleLabel?.text == "İlçe" && provinceButton.titleLabel?.text == "İl" {
+            showOneButtonAlert(title: "Hata", message: "İl veya İlçe seçmediniz!")
         } else{
             print("İşlem başarılı")
-        }
+        }*/
     }
     
 }

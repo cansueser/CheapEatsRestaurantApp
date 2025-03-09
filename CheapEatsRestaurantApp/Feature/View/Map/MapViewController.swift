@@ -8,7 +8,8 @@
 import UIKit
 import MapKit
 import CoreLocation
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+
+final class MapViewController: UIViewController {
     //MARK: - Variables
     @IBOutlet weak var mapImage: UIImageView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -17,18 +18,41 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet weak var saveButton: UIButton!
     let SB = UIStoryboard(name: "Main", bundle: nil)
     private var  mapDetailVC : MapDetailViewController?
-    
+    var locationManager = CLLocationManager()
+    var chosenLatitude: Double?
+    var chosenLongitude: Double?
+    let geocoder = CLGeocoder()
+    let address = "8787 Snouffer School Rd, Montgomery Village, MD 20879"
+    var currentLocationStr = " "
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
+        mapControlView()
     }
     
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        
+    }
     
     func initView() {
         mapImage.makeRounded(radius: 5)
         toolTipImage.makeRounded(radius: 5)
         saveButton.makeRounded(radius: 5)
         searchBar.addRoundedBorder(cornerRadius: 5, borderWidth: 1, borderColor: .button)
+    }
+    func mapControlView(){
+        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(chooseLocation(gestureRecognizer:)))
+        gestureRecognizer.minimumPressDuration = 1.0
+        mapView.addGestureRecognizer(gestureRecognizer)
+        mapView.delegate = self
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
     }
     
     @IBAction func saveButtonClicked(_ sender: UIButton) {

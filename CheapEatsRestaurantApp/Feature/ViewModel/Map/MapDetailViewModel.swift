@@ -43,7 +43,7 @@ final class MapDetailViewModel {
     
     func getDistrict(cityName: String) {
         if let selectedCity = cityJSONData.first(where: { $0.ilAdi == cityName }) {
-            districtData = selectedCity.ilceler.map { $0.ilceAdi }
+            districtData = selectedCity.ilceler.map { $0.ilceAdi.capitalized}
         } else {
             districtData = []
         }
