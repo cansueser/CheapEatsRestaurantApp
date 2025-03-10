@@ -17,7 +17,7 @@ final class MapDetailViewController: UIViewController {
     @IBOutlet weak var streetTextFieldBackView: UIView!
     @IBOutlet weak var buildingNumberBackView: UIView!
     @IBOutlet weak var directionsBackView: UIView!
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var detailMapView: MKMapView!
     @IBOutlet weak var provinceButton: UIButton!
     @IBOutlet weak var districtButton: UIButton!
     @IBOutlet weak var neighbourhoodTextField: JVFloatLabeledTextField!
@@ -25,9 +25,7 @@ final class MapDetailViewController: UIViewController {
     @IBOutlet weak var buildingNumberTextField: JVFloatLabeledTextField!
     @IBOutlet weak var directionsTextField: JVFloatLabeledTextField!
     @IBOutlet weak var saveButton: UIButton!
-    
     var mapDetailViewModel: MapDetailViewModelProtocol = MapDetailViewModel()
-    
     let transparentView = UIView()
     let tableview = UITableView()
     var selectedButton = UIButton()
@@ -39,8 +37,15 @@ final class MapDetailViewController: UIViewController {
         initView()
         initTableView()
         mapViewConrol()
+        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        mapDetailViewModel.centerMapToLocation(mapView: detailMapView)
+        mapDetailViewModel.checkLocation(cityButton: provinceButton, districtButton: districtButton)
+    }
+  
     private func initView() {
         mapDetailViewModel.delegate = self
         provinceBackView.addRoundedBorder(cornerRadius: 2,borderWidth: 1, borderColor: .iconBG)
@@ -58,11 +63,14 @@ final class MapDetailViewController: UIViewController {
         saveButton.makeRounded(radius: 5)
         mapDetailViewModel.getData()
     }
+    
     private func mapViewConrol(){
-        mapView.isScrollEnabled = false
+        mapDetailViewModel.selectedData(with: true)
+        detailMapView.isScrollEnabled = false
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        mapView.addGestureRecognizer(gestureRecognizer)
+        detailMapView.addGestureRecognizer(gestureRecognizer)
     }
+    
     @objc func handleTap() {
         navigationController?.popViewController(animated: true)
     }
@@ -73,6 +81,7 @@ final class MapDetailViewController: UIViewController {
         tableview.dataSource = self
         tableview.register(DropDownCell.self, forCellReuseIdentifier: "Cell")
         tableview.layer.cornerRadius = 5
+        
     }
     
     private func addTrasparentView(frames: CGRect) {
@@ -104,6 +113,7 @@ final class MapDetailViewController: UIViewController {
             
         }, completion: nil)
     }
+    
     @objc func removetrasparentView () {
         let frames = selectedButton.convert(selectedButton.bounds, to: self.view)
         UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0,options: .curveEaseInOut, animations:{

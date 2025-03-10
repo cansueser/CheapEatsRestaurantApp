@@ -9,6 +9,7 @@ import UIKit
 
 protocol MapViewModelProtocol{
     var delegate: MapViewModelOutputProtocol? { get set}
+    var location: MapLocation? { get set }
 }
 
 protocol MapViewModelOutputProtocol: AnyObject {
@@ -18,6 +19,7 @@ protocol MapViewModelOutputProtocol: AnyObject {
 
 final class MapViewModel {
     weak var delegate: MapViewModelOutputProtocol?
+    var location: MapLocation?
     
 }
 

@@ -17,62 +17,48 @@ extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate  {
         mapView.setRegion(region, animated: true)
         
     }
-    @objc func chooseLocation(gestureRecognizer: UILongPressGestureRecognizer){
+    @objc func chooseLocation(gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state == .began {
+            mapView.removeAnnotations(mapView.annotations)
             let touchPoint = gestureRecognizer.location(in: mapView)
             let touchCoordinate: CLLocationCoordinate2D = mapView.convert(touchPoint, toCoordinateFrom: mapView)
             
-            chosenLatitude = touchCoordinate.latitude
-            chosenLongitude = touchCoordinate.longitude
+            mapViewModel.location = MapLocation(latitude: touchCoordinate.latitude, longitude: touchCoordinate.longitude)
             
             let annotation: MKPointAnnotation = MKPointAnnotation()
             annotation.coordinate = touchCoordinate
             annotation.title = "Restoran konumu"
             mapView.addAnnotation(annotation)
-            print(annotation)
-            getAddressFromCoordinates(latitude: touchCoordinate.latitude, longitude: touchCoordinate.longitude) { address in
-                if let address = address {
-                    print("Seçilen Konumun Adresi: \(address)")
-                } else {
-                    print("Adres bulunamadı.")
-                }
-            }
+            
+            getAddressFromCoordinates(latitude: touchCoordinate.latitude, longitude: touchCoordinate.longitude)
             
         }
     }
-        func getAddressFromCoordinates(latitude: CLLocationDegrees, longitude: CLLocationDegrees, completion: @escaping (String?) -> Void) {
-            let geocoder = CLGeocoder()
-            let location = CLLocation(latitude: latitude, longitude: longitude)
-            
-            geocoder.reverseGeocodeLocation(location) { placemarks, error in
-                if let error = error {
-                    print("Ters geokodlama hatası: \(error.localizedDescription)")
-                    completion(nil)
-                    return
-                }
-                
-                if let placemark = placemarks?.first {
-                    var addressString = ""
-                    
-                    if let street = placemark.thoroughfare {
-                        addressString += street + ", "
-                    }
-                    if let city = placemark.locality {
-                        addressString += city + ", "
-                    }
-                    if let state = placemark.administrativeArea {
-                        addressString += state + ", "
-                    }
-                    if let country = placemark.country {
-                        addressString += country
-                    }
-                    
-                    completion(addressString)
-                } else {
-                    completion(nil)
-                }
-            }
-        }
+
+    func getAddressFromCoordinates(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+        let geocoder = CLGeocoder()
+        let location = CLLocation(latitude: latitude, longitude: longitude)
         
+        geocoder.reverseGeocodeLocation(location) { placemarks, error in
+            if let error = error {
+                print("Ters geokodlama hatası: \(error.localizedDescription)")
+                return
+            }
+            
+            if let placemark = placemarks?.first {
+                if let district = placemark.locality {
+                    self.mapViewModel.location?.district = district
+                }
+                if let city = placemark.administrativeArea {
+                    self.mapViewModel.location?.city = city
+                }
+                if let country = placemark.country {
+                    self.mapViewModel.location?.country = country
+                }
+            }
+        }
     }
+    
+    
+}
 

@@ -483,11 +483,11 @@
                     <connections>
                         <outlet property="buildingNumberBackView" destination="HKW-Rh-fSL" id="Xsr-pI-Csv"/>
                         <outlet property="buildingNumberTextField" destination="XzT-4J-CNR" id="CHj-PU-oyw"/>
+                        <outlet property="detailMapView" destination="0q5-yl-Etq" id="3Zi-H8-hjB"/>
                         <outlet property="directionsBackView" destination="kM2-XY-Sig" id="G52-qG-B8C"/>
                         <outlet property="directionsTextField" destination="u11-pe-9B8" id="olu-Bx-Z9V"/>
                         <outlet property="districtButton" destination="VaM-Ep-LOm" id="0CZ-Pr-Fiq"/>
                         <outlet property="districtButtonBackView" destination="mHv-gw-C1Z" id="spX-de-ZzM"/>
-                        <outlet property="mapView" destination="0q5-yl-Etq" id="3Zi-H8-hjB"/>
                         <outlet property="neighbourhoodButtonBackView" destination="dWH-hz-uyI" id="eHg-2z-PR6"/>
                         <outlet property="neighbourhoodTextField" destination="gPB-HE-H14" id="Oyl-Du-mGY"/>
                         <outlet property="provinceBackView" destination="eEl-c8-kre" id="8we-bb-VpG"/>

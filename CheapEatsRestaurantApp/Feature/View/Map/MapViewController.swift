@@ -17,24 +17,19 @@ final class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var saveButton: UIButton!
     let SB = UIStoryboard(name: "Main", bundle: nil)
-    private var  mapDetailVC : MapDetailViewController?
+    var  mapDetailVC : MapDetailViewController?
     var locationManager = CLLocationManager()
-    var chosenLatitude: Double?
-    var chosenLongitude: Double?
+    var mapViewModel: MapViewModelProtocol = MapViewModel()
     let geocoder = CLGeocoder()
     let address = "8787 Snouffer School Rd, Montgomery Village, MD 20879"
     var currentLocationStr = " "
+    var city = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
         mapControlView()
-    }
-    
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-        
+        mapViewModel.delegate = self
     }
     
     func initView() {
@@ -61,9 +56,21 @@ final class MapViewController: UIViewController {
         }
         
         if let mapDetailVC = mapDetailVC {
+            mapDetailVC.mapDetailViewModel.location = mapViewModel.location
             navigationController?.pushViewController(mapDetailVC, animated: true)
         }
         
         
     }
+}
+extension MapViewController: MapViewModelOutputProtocol {
+    func update() {
+        print("Update")
+    }
+    
+    func error() {
+        print("error")
+    }
+    
+    
 }

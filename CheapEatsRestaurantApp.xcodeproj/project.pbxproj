@@ -60,6 +60,8 @@
 		7ECF125A2D79E15C0062F6DA /* CityDistrict.json in Resources */ = {isa = PBXBuildFile; fileRef = 7ECF12582D79DDB70062F6DA /* CityDistrict.json */; };
 		7ECF125C2D7DB26F0062F6DA /* MapViewController+MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECF125B2D7DB2560062F6DA /* MapViewController+MapView.swift */; };
 		7ECF12622D7DF27E0062F6DA /* MapDetailViewController+MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECF12612D7DF2620062F6DA /* MapDetailViewController+MapView.swift */; };
+		7ECF12642D7F250C0062F6DA /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECF12632D7F24FF0062F6DA /* LocationModel.swift */; };
+		7ECF12672D7F5B9E0062F6DA /* String+UpperCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECF12662D7F5B960062F6DA /* String+UpperCase.swift */; };
 		7ED81A032D4BD37800E4F272 /* BottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED81A022D4BD37800E4F272 /* BottomSheetViewModel.swift */; };
 		7ED81A052D4BD3F900E4F272 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED81A042D4BD3F900E4F272 /* BottomSheetViewController.swift */; };
 		7EDDC4652D75BE6F004085F4 /* HiddenPassword+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDDC4642D75BE4F004085F4 /* HiddenPassword+UITextField.swift */; };
@@ -112,6 +114,8 @@
 		7ECF12582D79DDB70062F6DA /* CityDistrict.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CityDistrict.json; sourceTree = "<group>"; };
 		7ECF125B2D7DB2560062F6DA /* MapViewController+MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapViewController+MapView.swift"; sourceTree = "<group>"; };
 		7ECF12612D7DF2620062F6DA /* MapDetailViewController+MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapDetailViewController+MapView.swift"; sourceTree = "<group>"; };
+		7ECF12632D7F24FF0062F6DA /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		7ECF12662D7F5B960062F6DA /* String+UpperCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+UpperCase.swift"; sourceTree = "<group>"; };
 		7ED81A022D4BD37800E4F272 /* BottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewModel.swift; sourceTree = "<group>"; };
 		7ED81A042D4BD3F900E4F272 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		7EDDC4642D75BE4F004085F4 /* HiddenPassword+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HiddenPassword+UITextField.swift"; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 		7E445D092D38024E00BEDD0C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7ECF12632D7F24FF0062F6DA /* LocationModel.swift */,
 				7E149DB02D78638F0095DAE3 /* City.swift */,
 				7EB2D3A42D74E0C600CFF13E /* UserLogin.swift */,
 				7E9014BB2D73A36A0005572A /* Restaurant.swift */,
@@ -176,6 +181,7 @@
 		7E445D132D38055900BEDD0C /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				7ECF12662D7F5B960062F6DA /* String+UpperCase.swift */,
 				7EDDC4642D75BE4F004085F4 /* HiddenPassword+UITextField.swift */,
 				7EA0AF872D6F5235004F4499 /* Alert.swift */,
 				7EBED5E22D07837F00E7CACB /* UIView+Extension.swift */,
@@ -328,11 +334,9 @@
 		7EC772F22D75E61800846090 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				7ECF12612D7DF2620062F6DA /* MapDetailViewController+MapView.swift */,
-				7ECF125B2D7DB2560062F6DA /* MapViewController+MapView.swift */,
 				7EC772F52D75E85000846090 /* MapViewController.swift */,
-				7EC6CCC92D760F6000316926 /* MapDetailViewController.swift */,
-				7ECF12542D79D3C80062F6DA /* MapDetailViewController+TableView.swift */,
+				7ECF125B2D7DB2560062F6DA /* MapViewController+MapView.swift */,
+				7ECF12652D7F44E80062F6DA /* MapDetail */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -343,6 +347,16 @@
 				7ECF12582D79DDB70062F6DA /* CityDistrict.json */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		7ECF12652D7F44E80062F6DA /* MapDetail */ = {
+			isa = PBXGroup;
+			children = (
+				7EC6CCC92D760F6000316926 /* MapDetailViewController.swift */,
+				7ECF12612D7DF2620062F6DA /* MapDetailViewController+MapView.swift */,
+				7ECF12542D79D3C80062F6DA /* MapDetailViewController+TableView.swift */,
+			);
+			path = MapDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -465,6 +479,7 @@
 				7E847A202D1B60CC00D1DE23 /* ProductManageViewController.swift in Sources */,
 				7EA0AF842D6F4782004F4499 /* NetworkHelper.swift in Sources */,
 				7EA0AF822D6F4751004F4499 /* NetworkManager.swift in Sources */,
+				7ECF12672D7F5B9E0062F6DA /* String+UpperCase.swift in Sources */,
 				7ECF125C2D7DB26F0062F6DA /* MapViewController+MapView.swift in Sources */,
 				7EDDC4652D75BE6F004085F4 /* HiddenPassword+UITextField.swift in Sources */,
 				7ED81A032D4BD37800E4F272 /* BottomSheetViewModel.swift in Sources */,
@@ -477,6 +492,7 @@
 				7ECF12532D79CD530062F6DA /* BorderAndShadow.swift in Sources */,
 				7ECF12552D79D3D80062F6DA /* MapDetailViewController+TableView.swift in Sources */,
 				7EC6CCCA2D760F6000316926 /* MapDetailViewController.swift in Sources */,
+				7ECF12642D7F250C0062F6DA /* LocationModel.swift in Sources */,
 				7E847A122D19ED7700D1DE23 /* HomeViewModel.swift in Sources */,
 				7EA0AF882D6F5237004F4499 /* Alert.swift in Sources */,
 				7E847A102D19ECED00D1DE23 /* Product.swift in Sources */,
