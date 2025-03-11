@@ -8,10 +8,10 @@
 import Foundation
 import UIKit
 
-
 protocol RegisterViewModelProtocol{
     var delegate: RegisterViewModelOutputProtocol? { get set}
     func registerRestaurant(restaurant: Restaurant, password: String)
+    var mapLocation : MapLocation? { get set }
 }
 
 protocol RegisterViewModelOutputProtocol: AnyObject {
@@ -22,7 +22,7 @@ protocol RegisterViewModelOutputProtocol: AnyObject {
 
 final class RegisterViewModel {
     weak var delegate: RegisterViewModelOutputProtocol?
-    
+    var mapLocation: MapLocation?
     func registerRestaurant(restaurant: Restaurant, password: String) {
         NetworkManager.shared.registerRestaurant(restaurant: restaurant, password: password) { result in
             switch result{

@@ -29,7 +29,7 @@ final class MapDetailViewController: UIViewController {
     let transparentView = UIView()
     let tableview = UITableView()
     var selectedButton = UIButton()
-    
+    var registerVC: RegisterViewController?
     
     
     override func viewDidLoad() {
@@ -146,12 +146,19 @@ final class MapDetailViewController: UIViewController {
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-        /*if districtButton.titleLabel?.text == "İlçe" && provinceButton.titleLabel?.text == "İl" {
+        
+        if districtButton.titleLabel?.text == "İlçe" && provinceButton.titleLabel?.text == "İl" {
             showOneButtonAlert(title: "Hata", message: "İl veya İlçe seçmediniz!")
-        } else{
-            print("İşlem başarılı")
-        }*/
+            return
+        }
+        guard let provinceName = provinceButton.titleLabel?.text, let districtName = districtButton.titleLabel?.text ,let neighbourhood = neighbourhoodTextField.text, let street = streetTextField.text ,let buildingNumber = buildingNumberTextField.text, let directions = directionsTextField.text else { return }
+        if let location = mapDetailViewModel.location {
+            let mapLocation = MapLocation(latitude: location.latitude, longitude: location.longitude, city: provinceName, district: districtName, neighbourhood: neighbourhood, street: street, buildingNumber: buildingNumber, directions: directions)
+            NotificationCenter.default.post(name: NSNotification.Name("MapUpdated"), object: mapLocation)
+            navigationController?.popToViewController(registerVC!, animated: true)
+        }
+        
+        
     }
     
 }

@@ -29,7 +29,7 @@ extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate  {
             annotation.coordinate = touchCoordinate
             annotation.title = "Restoran konumu"
             mapView.addAnnotation(annotation)
-            
+            saveButton.isEnabled = true
             getAddressFromCoordinates(latitude: touchCoordinate.latitude, longitude: touchCoordinate.longitude)
             
         }

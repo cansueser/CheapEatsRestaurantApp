@@ -11,8 +11,8 @@ import MapKit
 protocol MapDetailViewModelProtocol {
     var delegate: MapDetailViewModelOutputProtocol? { get set}
     var location: MapLocation? { get set }
-    func centerMapToLocation(mapView: MKMapView)
     var dataSource:  [String] { get set }
+    func centerMapToLocation(mapView: MKMapView)
     func selectedData(with status: Bool)
     func getData()
     func getDistrict(cityName: String)

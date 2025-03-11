@@ -33,16 +33,22 @@ final class RegisterViewController: UIViewController {
     @IBOutlet weak var logoBackView: UIView!
     @IBOutlet weak var addressButton: UIButton!
     @IBOutlet weak var addressLabel: UILabel!
-    
     var registerViewModel: RegisterViewModelProtocol = RegisterViewModel()
     private var mapVC: MapViewController?
     let SB = UIStoryboard(name: "Main", bundle: nil)
     private var tabBarVC: UITabBarController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initScreen()
+        NotificationCenter.default.addObserver(self, selector: #selector(mapUpdated(_:)), name: NSNotification.Name("MapUpdated"), object: nil)
     }
-
+    @objc func mapUpdated(_ notification: Notification){
+        if let mapLocation = notification.object as? MapLocation {
+            addressLabel.text = mapLocation.getAddress()
+            registerViewModel.mapLocation = mapLocation
+        }
+    }
     func initScreen() {
         registerViewModel.delegate = self
         userImage.makeRounded(radius: 5)
@@ -58,20 +64,20 @@ final class RegisterViewController: UIViewController {
     }
     
     @IBAction func registerButtonClicked(_ sender: UIButton) {
-        if let ownerName = nameTextField.text,
+        guard let ownerName = nameTextField.text,
            let ownerSurname = surnameTextField.text,
            let phone = phoneNumberTextField.text,
-           let address = addressLabel.text,
            let companyname = companyNameTextField.text,
            let email = emailTextField.text,
-           let password = passwordTextField.text {
-            let restaurant = Restaurant(ownerName: ownerName, ownerSurname: ownerSurname, email: email, phone: phone, address: address, companyName: companyname, location: Location(latitude: 0, longitude: 0))
-            setRestaurant(restaurant: restaurant, password: password)
-        }
-        else{
+           let password = passwordTextField.text else {
             print("hata")
-            
+            return }
+        guard let mapLocation = registerViewModel.mapLocation else {
+            print("harita ekranından konum seçmediniz")
+            return
         }
+        let restaurant = Restaurant(ownerName: ownerName, ownerSurname: ownerSurname, email: email, phone: phone, address: mapLocation.getAddress(), companyName: companyname, location: Location(latitude: mapLocation.latitude, longitude: mapLocation.longitude))
+        setRestaurant(restaurant: restaurant, password: password)
         
     }
     func setRestaurant(restaurant: Restaurant, password: String) {
@@ -84,6 +90,7 @@ final class RegisterViewController: UIViewController {
         }
         
         if let mapVC = mapVC {
+            mapVC.registerVC = self
             navigationController?.pushViewController(mapVC, animated: true)
         }
     }
@@ -93,14 +100,16 @@ final class RegisterViewController: UIViewController {
 extension RegisterViewController: RegisterViewModelOutputProtocol {
     func update() {
         print("Update")
+        /*
         if tabBarVC == nil {
             navigationController?.navigationBar.isHidden = true
             tabBarVC = SB.instantiateViewController(identifier: "TabBarController") as? UITabBarController
         }
-      if let tabBarVC = tabBarVC {
-          navigationController?.navigationBar.isHidden = true
-          navigationController?.pushViewController(tabBarVC, animated: true)
+        if let tabBarVC = tabBarVC {
+            navigationController?.navigationBar.isHidden = true
+            navigationController?.pushViewController(tabBarVC, animated: true)
         }
+         */
     }
     
     func error() {

@@ -16,20 +16,19 @@ final class MapViewController: UIViewController {
     @IBOutlet weak var toolTipImage: UIImageView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var saveButton: UIButton!
+    
     let SB = UIStoryboard(name: "Main", bundle: nil)
     var  mapDetailVC : MapDetailViewController?
     var locationManager = CLLocationManager()
     var mapViewModel: MapViewModelProtocol = MapViewModel()
-    let geocoder = CLGeocoder()
-    let address = "8787 Snouffer School Rd, Montgomery Village, MD 20879"
-    var currentLocationStr = " "
-    var city = ""
+    var registerVC: RegisterViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
         mapControlView()
         mapViewModel.delegate = self
+        saveButton.isEnabled = false
     }
     
     func initView() {
@@ -38,6 +37,7 @@ final class MapViewController: UIViewController {
         saveButton.makeRounded(radius: 5)
         searchBar.addRoundedBorder(cornerRadius: 5, borderWidth: 1, borderColor: .button)
     }
+    
     func mapControlView(){
         let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(chooseLocation(gestureRecognizer:)))
         gestureRecognizer.minimumPressDuration = 1.0
@@ -51,12 +51,18 @@ final class MapViewController: UIViewController {
     }
     
     @IBAction func saveButtonClicked(_ sender: UIButton) {
+        if mapViewModel.location?.country != "Türkiye" {
+            showOneButtonAlert(title: "Hata", message: "Seçtiğiniz konum Türkiye sınırları dışındadır. Lütfen Türkiye sınırları içinde bir konum seçip tekrar deneyiniz.")
+            return
+        }
+        
         if mapDetailVC == nil{
             mapDetailVC = SB.instantiateViewController(withIdentifier: "MapDetailViewController") as? MapDetailViewController
         }
         
         if let mapDetailVC = mapDetailVC {
             mapDetailVC.mapDetailViewModel.location = mapViewModel.location
+            mapDetailVC.registerVC = registerVC
             navigationController?.pushViewController(mapDetailVC, animated: true)
         }
         
