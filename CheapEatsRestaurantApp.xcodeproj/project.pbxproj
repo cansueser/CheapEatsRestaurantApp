@@ -15,6 +15,8 @@
 		7E28691E2D72005900C5F46D /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 7E28691D2D72005900C5F46D /* NVActivityIndicatorView */; };
 		7E2869202D72005900C5F46D /* NVActivityIndicatorViewExtended in Frameworks */ = {isa = PBXBuildFile; productRef = 7E28691F2D72005900C5F46D /* NVActivityIndicatorViewExtended */; };
 		7E52053B2D6F358900650F4C /* JVFloatLabeledTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 7E52053A2D6F358900650F4C /* JVFloatLabeledTextField */; };
+		7E60E6372D8F6CDC00A297CE /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E60E6362D8F6CDC00A297CE /* PasswordResetViewController.swift */; };
+		7E60E6392D8F6D1D00A297CE /* PasswordResetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E60E6382D8F6D1D00A297CE /* PasswordResetViewModel.swift */; };
 		7E652CF42D0711C000137ECA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E652CF32D0711C000137ECA /* AppDelegate.swift */; };
 		7E652CF62D0711C000137ECA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E652CF52D0711C000137ECA /* SceneDelegate.swift */; };
 		7E652CF82D0711C000137ECA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E652CF72D0711C000137ECA /* HomeViewController.swift */; };
@@ -80,6 +82,8 @@
 		7E2868F92D71EE1A00C5F46D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7E2869082D71F1CC00C5F46D /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		7E28691A2D72002100C5F46D /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
+		7E60E6362D8F6CDC00A297CE /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
+		7E60E6382D8F6D1D00A297CE /* PasswordResetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewModel.swift; sourceTree = "<group>"; };
 		7E652CF02D0711C000137ECA /* CheapEatsRestaurantApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheapEatsRestaurantApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E652CF32D0711C000137ECA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E652CF52D0711C000137ECA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -273,6 +277,7 @@
 			children = (
 				7EB2D3A22D74DC5700CFF13E /* LoginViewController.swift */,
 				7E1F5D5E2D7273CA0000D990 /* RegisterViewController.swift */,
+				7E60E6362D8F6CDC00A297CE /* PasswordResetViewController.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -341,6 +346,7 @@
 			children = (
 				7EB2D3A02D74DC3A00CFF13E /* LoginViewModel.swift */,
 				7E9014C02D73AAA90005572A /* RegisterViewModel.swift */,
+				7E60E6382D8F6D1D00A297CE /* PasswordResetViewModel.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -476,6 +482,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EC772F12D75E60700846090 /* MapViewModel.swift in Sources */,
+				7E60E6372D8F6CDC00A297CE /* PasswordResetViewController.swift in Sources */,
 				7EB2D3A32D74DC5E00CFF13E /* LoginViewController.swift in Sources */,
 				7E28691B2D72002700C5F46D /* LoadingIndicator.swift in Sources */,
 				7EBED5E32D07837F00E7CACB /* UIView+Extension.swift in Sources */,
@@ -511,6 +518,7 @@
 				7EA0AF8A2D6F573F004F4499 /* BottomSheetViewController+TableView.swift in Sources */,
 				7E9014C12D73AAB50005572A /* RegisterViewModel.swift in Sources */,
 				7E652CF62D0711C000137ECA /* SceneDelegate.swift in Sources */,
+				7E60E6392D8F6D1D00A297CE /* PasswordResetViewModel.swift in Sources */,
 				7ECF12532D79CD530062F6DA /* BorderAndShadow.swift in Sources */,
 				7ECF12552D79D3D80062F6DA /* MapDetailViewController+TableView.swift in Sources */,
 				7EDF6E312D8F5AA100B20AEC /* OrderTableViewCell.swift in Sources */,

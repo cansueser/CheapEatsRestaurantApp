@@ -40,6 +40,8 @@ final class ProductManageViewController: UIViewController {
     @IBOutlet weak var stepperLabel: UILabel!
     
     @IBOutlet weak var stepperImage: UIImageView!
+    
+    @IBOutlet weak var clearImage: UIButton!
     var productManageViewModel: ProductManageViewModelProtocol = ProductManageViewModel()
     private var bottomSheetViewModel: BottomSheetViewModel = BottomSheetViewModel()
     weak var dataTransferDelegate: DataTransferDelegate?
@@ -91,12 +93,6 @@ final class ProductManageViewController: UIViewController {
         stepperProduct.makeRounded(radius: 5)
         stepperImage.makeRounded(radius: 5)
         selectedImageView.makeRounded(radius: 5)
-
-      //  selectedImageView.contentMode = .scaleToFill
-       // selectedImageView.clipsToBounds = true
-       // selectedImageView.layer.masksToBounds = true
-       // selectedImageView.layer.cornerRadius = 5
-       // setBorder(with: selectedImageView.layer)
         
         setShadow(with: selectedImageView.layer, shadowOffset: true)
         preferences.drawing.backgroundColor = .lightGray
@@ -124,6 +120,16 @@ final class ProductManageViewController: UIViewController {
         picker.delegate = self
         present(picker, animated: true, completion: nil)
     }
+    func clearSelectedImage() {
+       selectedImageView.image = nil
+        selectedImageView.setSymbolImage(.init(systemName: "photo.badge.plus")!, contentTransition: .automatic, options: .default)
+      }
+    
+    @IBAction func clearImageClicked(_ sender: UIButton) {
+        clearSelectedImage()
+    }
+   
+
     
     @IBAction func infoButtonClicked(_ sender: Any) {
         showToolTip()
