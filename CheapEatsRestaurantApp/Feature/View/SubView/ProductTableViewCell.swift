@@ -50,6 +50,13 @@ class ProductTableViewCell: UITableViewCell {
         dateLabel.text = "Saat:\(order.endDate)"
         stepperNumber.text = "\(order.quantity.description) Adet"
     }
-
+    func fakeconfigureCell() {
+        foodImage.image = UIImage(named: "Logo")
+        foodNameLabel.text = "Tavuk Döner"
+        newAmountLabel.text = "150 TL"
+        stateLabel.text = "Hazırlanıyor"
+        dateLabel.text = "12:30"
+        stepperNumber.text = "5 Adet"
+    }
     
 }

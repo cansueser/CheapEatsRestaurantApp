@@ -90,15 +90,15 @@ final class ProductManageViewController: UIViewController {
         uploadIconImage.makeRounded(radius: 5)
         stepperProduct.makeRounded(radius: 5)
         stepperImage.makeRounded(radius: 5)
-        
-        selectedImageView.contentMode = .scaleToFill
-        selectedImageView.clipsToBounds = true
-        selectedImageView.layer.masksToBounds = true
-        selectedImageView.layer.cornerRadius = 5
-        
+        selectedImageView.makeRounded(radius: 5)
+
+      //  selectedImageView.contentMode = .scaleToFill
+       // selectedImageView.clipsToBounds = true
+       // selectedImageView.layer.masksToBounds = true
+       // selectedImageView.layer.cornerRadius = 5
        // setBorder(with: selectedImageView.layer)
-        //selectedImageView.makeRounded(radius: 5)
         
+        setShadow(with: selectedImageView.layer, shadowOffset: true)
         preferences.drawing.backgroundColor = .lightGray
         preferences.drawing.foregroundColor = .white
         
