@@ -52,3 +52,9 @@ struct Location {
         return GeoPoint(latitude: latitude, longitude: longitude)
     }
 }
+
+enum EmailValidationError: Error {
+    case empty
+    case invalidFormat
+    case domainNotAllowed
+}

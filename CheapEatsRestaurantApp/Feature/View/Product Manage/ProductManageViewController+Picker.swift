@@ -18,7 +18,7 @@ extension ProductManageViewController: PHPickerViewControllerDelegate {
             DispatchQueue.main.async {
                 self.selectedImageView.image = selectedImage
                 self.selectedImageView.contentMode = .scaleAspectFit
-                self.productManageViewModel.uploadImage(selectedImageView: self.selectedImageView)
+//               Geri aç self.productManageViewModel.uploadImage(selectedImageView: self.selectedImageView)
 
             }
         }

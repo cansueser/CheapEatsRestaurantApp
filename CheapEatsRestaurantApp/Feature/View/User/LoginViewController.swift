@@ -21,6 +21,9 @@ final class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var securityIcon: UIButton!
     @IBOutlet weak var resetPassword: UIButton!
+    @IBOutlet weak var ImageBackView: CustomLineView!
+    
+    @IBOutlet weak var girisYapLabel: UILabel!
     //MARK: - Variables
     var loginViewModel: LoginViewModelProtocol = LoginViewModel()
     let SB = UIStoryboard(name: "Main", bundle: nil)
@@ -34,10 +37,13 @@ final class LoginViewController: UIViewController {
     
     func initScreen() {
         loginViewModel.delegate = self
+        ImageBackView.setNeedsDisplay()
+        ImageBackView.lineYPosition = girisYapLabel.frame.origin.y+40
         emailImage.makeRounded(radius: 5)
         passwordImage.makeRounded(radius: 5)
         emailBackView.addRoundedBorder(cornerRadius: 2,borderWidth: 1, borderColor: .iconBG)
         passwordBackView.addRoundedBorder(cornerRadius: 2,borderWidth: 1, borderColor: .iconBG)
+        loginButton.makeRounded(radius: 5)
     }
     
     @IBAction func securityIconClicked(_ sender: UIButton) {

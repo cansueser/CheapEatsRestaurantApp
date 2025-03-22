@@ -21,6 +21,7 @@ struct Product {
     var endDate: String
     var status: Bool
     var createdAt: Date
+    var quantity: Int
 
     init(
         name: String,
@@ -31,7 +32,8 @@ struct Product {
         deliveryType: DeliveryType,
         restaurantId: String,
         category: [String],
-        imageUrl :String
+        imageUrl :String,
+        quantity: Int
     ) {
         self.productId = ""
         self.name = name
@@ -45,6 +47,7 @@ struct Product {
         self.category = category
         self.imageUrl = imageUrl
         self.createdAt = Date()
+        self.quantity = quantity
     }
     // Firestore'a gönderilecek dictionary
     
@@ -61,7 +64,8 @@ struct Product {
             "restaurantId": restaurantId,
             "category": category,
             "imageUrl" : imageUrl,
-            "createdAt": Timestamp(date: createdAt)
+            "createdAt": Timestamp(date: createdAt),
+            "quantity": quantity
         ]
         
     }

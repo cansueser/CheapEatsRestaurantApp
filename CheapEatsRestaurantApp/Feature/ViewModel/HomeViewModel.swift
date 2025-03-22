@@ -2,18 +2,24 @@ import Foundation
 import UIKit
 
 protocol HomeViewModelProtocol {
-    var delegate: OrderViewModelOutputProtocol? { get set}
-    var orders: [Product]? { get set }
+    var delegate: HomeViewModelOutputProtocol? { get set}
+    var products: [Product] { get set }
+    func addProduct(_ product: Product)
 }
 
-protocol OrderViewModelOutputProtocol: AnyObject {
+protocol HomeViewModelOutputProtocol: AnyObject {
     func update()
     func error()
 }
 
 final class HomeViewModel {
-    var orders: [Product]?
-    weak var delegate: OrderViewModelOutputProtocol?
+    weak var delegate: HomeViewModelOutputProtocol?
+    var products: [Product] = []
+
+    func addProduct(_ product: Product) {
+        products.append(product)
+        delegate?.update()
+    }
     
 }
 

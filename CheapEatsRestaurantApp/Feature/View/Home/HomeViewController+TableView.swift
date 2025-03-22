@@ -2,23 +2,21 @@ import UIKit
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return orderViewModel.orders?.count ?? 0
+        return homeViewModel.products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as? ProductTableViewCell else {
             return UITableViewCell()
         }
-        if let order = orderViewModel.orders?[indexPath.row] {
-            print("Order: \(order)")
-            cell.configureCell(wtih: order)
-            return cell
-        }
-        return UITableViewCell()
+        let order = homeViewModel.products[indexPath.row]
+        print("Order: \(order)")
+        cell.configureCell(wtih: order)
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 145
+        return 110
     }
     
     

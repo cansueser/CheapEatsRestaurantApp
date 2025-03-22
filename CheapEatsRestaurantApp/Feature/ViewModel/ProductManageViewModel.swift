@@ -12,13 +12,20 @@ import Cloudinary
 
 protocol ProductManageViewModelProtocol {
     var delegate: ProductManageViewModelOutputProtocol? { get set}
+    var product: Product? { get set }
     var selectedMealTypes: [Category] { get set }
     var cloudinaryImageUrlString: String { get set }
     func uploadImage(selectedImageView: CLDUIImageView)
     func emptyCheckSelectedItem(bottomSheetVC: BottomSheetViewController)
     func setProduct(product: Product)
+    func setMockProduct(product: Product)
     
 }
+
+protocol DataTransferDelegate: AnyObject {
+    func didSaveProduct(product: Product)
+}
+
 protocol ProductManageViewModelOutputProtocol: AnyObject{
     func update()
     func error()
@@ -28,6 +35,7 @@ protocol ProductManageViewModelOutputProtocol: AnyObject{
 
 final class ProductManageViewModel {
     weak var delegate: ProductManageViewModelOutputProtocol?
+    var product: Product?
     var cloudinary: CLDCloudinary!
     var cloudinaryImageUrlString: String = ""
     var selectedMealTypes: [Category] = []
@@ -41,6 +49,7 @@ final class ProductManageViewModel {
         NetworkManager.shared.addProduct(product: product) { result in
             switch result {
             case .success():
+                self.product = product
                 self.delegate?.update()
             case .failure(let error):
                 print("Error: \(error)")
@@ -48,6 +57,11 @@ final class ProductManageViewModel {
             }
             self.delegate?.stopLoading()
         }
+    }
+    
+    func setMockProduct(product: Product) {
+        self.product = product
+        delegate?.update()
     }
     
     private func initCloudinary() -> CLDCloudinary {

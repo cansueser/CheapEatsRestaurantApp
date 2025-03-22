@@ -8,7 +8,11 @@ import MapKit
 import CoreLocation
 
 extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate  {
-    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            locationManager.requestLocation()
+        }
+    }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
         let location = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
         
@@ -17,24 +21,45 @@ extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate  {
         mapView.setRegion(region, animated: true)
         
     }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("didFailWithErrorerror:: \(error)")
+    }
     @objc func chooseLocation(gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state == .began {
-            mapView.removeAnnotations(mapView.annotations)
             let touchPoint = gestureRecognizer.location(in: mapView)
-            let touchCoordinate: CLLocationCoordinate2D = mapView.convert(touchPoint, toCoordinateFrom: mapView)
-            
-            mapViewModel.location = MapLocation(latitude: touchCoordinate.latitude, longitude: touchCoordinate.longitude)
-            
-            let annotation: MKPointAnnotation = MKPointAnnotation()
-            annotation.coordinate = touchCoordinate
-            annotation.title = "Restoran konumu"
-            mapView.addAnnotation(annotation)
-            saveButton.isEnabled = true
-            getAddressFromCoordinates(latitude: touchCoordinate.latitude, longitude: touchCoordinate.longitude)
-            
+            let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
+            addAnnotationAndUpdateLocation(coordinate: touchCoordinate)
         }
     }
+    
+    func dropPinZoomIn(placemark: MKPlacemark) {
+        let coordinate = placemark.coordinate
+        let title = placemark.name
+        let subtitle = "\(placemark.locality ?? ""), \(placemark.administrativeArea ?? "")"
+        addAnnotationAndUpdateLocation(coordinate: coordinate, title: title, subtitle: subtitle)
+    }
+    func addAnnotationAndUpdateLocation(coordinate: CLLocationCoordinate2D, title: String? = nil, subtitle: String? = nil) {
+        clearAllAnnotationsExceptLast()
 
+        mapView.removeAnnotations(mapView.annotations)
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinate
+        annotation.title = title ?? "Restoran konumu"
+        annotation.subtitle = subtitle
+        mapView.addAnnotation(annotation)
+        lastAnnotation = annotation
+
+        mapViewModel.location = MapLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let region = MKCoordinateRegion(center: coordinate, span: span)
+        mapView.setRegion(region, animated: true)
+        
+        saveButton.isEnabled = true
+        getAddressFromCoordinates(latitude: coordinate.latitude, longitude: coordinate.longitude)
+    }
+    
     func getAddressFromCoordinates(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         let geocoder = CLGeocoder()
         let location = CLLocation(latitude: latitude, longitude: longitude)
@@ -58,7 +83,12 @@ extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate  {
             }
         }
     }
-    
-    
-}
-
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let annotation = view.annotation as? MKPointAnnotation {
+            clearAllAnnotationsExceptLast()
+            lastAnnotation = annotation
+            let coordinate = annotation.coordinate
+            mapViewModel.location = MapLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            getAddressFromCoordinates(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        }
+    }}

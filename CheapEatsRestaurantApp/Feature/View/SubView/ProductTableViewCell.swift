@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ProductTableViewCell: UITableViewCell {
     
@@ -13,14 +14,13 @@ class ProductTableViewCell: UITableViewCell {
     @IBOutlet weak var foodNameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var orderNoLabel: UILabel!
-    @IBOutlet weak var oldAmountLabel: UILabel!
     @IBOutlet weak var newAmountLabel: UILabel!
     @IBOutlet weak var stateLabel: UILabel!
     @IBOutlet weak var stateImage: UIImageView!
     @IBOutlet weak var siparisBackView: UIView!
     @IBOutlet weak var priceBackView: UIView!
     @IBOutlet weak var stateBackView: UIView!
-    
+    @IBOutlet weak var stepperNumber: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -30,9 +30,9 @@ class ProductTableViewCell: UITableViewCell {
         super.layoutSubviews()
         contentView.backgroundColor = .white
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 6, left: 10, bottom: 6, right: 10))
-        configureView(contentView, cornerRadius: 10, borderColor: .button, borderWidth: 2)
-        configureView(foodImage, cornerRadius: 10, borderColor: .button, borderWidth: 1)
-        
+        configureView(contentView, cornerRadius: 10, borderColor: .title, borderWidth: 1)
+        configureView(foodImage, cornerRadius: 10, borderColor: .title, borderWidth: 1)
+        setShadow(with:contentView.layer, shadowOffset: true)
         
     } 
     func configureView(_ view: UIView, cornerRadius: CGFloat, borderColor: UIColor?, borderWidth: CGFloat) {
@@ -43,11 +43,12 @@ class ProductTableViewCell: UITableViewCell {
     }
     
     func configureCell(wtih order: Product) {
+        foodImage.kf.setImage(with: URL(string: order.imageUrl))
         foodNameLabel.text = order.name
-        oldAmountLabel.text = "\(order.oldPrice) TL"
         newAmountLabel.text = "\(order.newPrice) TL"
         stateLabel.text = order.status.description
-        dateLabel.text = order.endDate
+        dateLabel.text = "Saat:\(order.endDate)"
+        stepperNumber.text = "\(order.quantity.description) Adet"
     }
 
     

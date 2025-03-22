@@ -30,9 +30,12 @@ final class RegisterViewController: UIViewController {
     @IBOutlet weak var mailImage: UIImageView!
     @IBOutlet weak var passwordImage: UIImageView!
     @IBOutlet weak var companyImage: UIImageView!
-    @IBOutlet weak var logoBackView: UIView!
+    @IBOutlet weak var logoBackView: CustomLineView!
     @IBOutlet weak var addressButton: UIButton!
     @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet var registerBackView: CustomLineView!
+    
+    @IBOutlet weak var kayıtolLabel: UILabel!
     var registerViewModel: RegisterViewModelProtocol = RegisterViewModel()
     private var mapVC: MapViewController?
     let SB = UIStoryboard(name: "Main", bundle: nil)
@@ -51,18 +54,23 @@ final class RegisterViewController: UIViewController {
     }
     func initScreen() {
         registerViewModel.delegate = self
+        registerBackView.setNeedsDisplay()
+        logoBackView.lineYPosition = kayıtolLabel.frame.origin.y+40
+      registerBackView.setNeedsDisplay()
+       registerBackView.lineYPosition = addressLabel.frame.origin.y-10
         userImage.makeRounded(radius: 5)
         phoneImage.makeRounded(radius: 5)
         mailImage.makeRounded(radius: 5)
         passwordImage.makeRounded(radius: 5)
          companyImage.makeRounded(radius: 5)
+        registerButoon.makeRounded(radius: 5)
         userNameBackView.addRoundedBorder(cornerRadius: 2,borderWidth: 1, borderColor: .iconBG)
         phoneBackView.addRoundedBorder(cornerRadius: 2,borderWidth: 1, borderColor: .iconBG)
         mailBackView.addRoundedBorder(cornerRadius: 2,borderWidth: 1, borderColor: .iconBG)
         passwordBackView.addRoundedBorder(cornerRadius: 2,borderWidth: 1, borderColor: .iconBG)
          companyBackView.addRoundedBorder(cornerRadius: 2,borderWidth: 1, borderColor: .iconBG)
     }
-    
+
     @IBAction func registerButtonClicked(_ sender: UIButton) {
         guard let ownerName = nameTextField.text,
            let ownerSurname = surnameTextField.text,
@@ -72,10 +80,28 @@ final class RegisterViewController: UIViewController {
            let password = passwordTextField.text else {
             print("hata")
             return }
+        // E-posta doğrulama
+         do {
+             try registerViewModel.validateEmail(email)
+         } catch EmailValidationError.empty {
+             showOneButtonAlert(title: "Hata", message: "E-posta adresi boş olamaz.")
+             return
+         } catch EmailValidationError.invalidFormat {
+             showOneButtonAlert(title: "Hata", message: "Geçersiz e-posta formatı.")
+             return
+         } catch EmailValidationError.domainNotAllowed {
+             showOneButtonAlert(title: "Hata", message: "Bu e-posta domaini izinli değil.")
+             return
+         } catch {
+             showOneButtonAlert(title: "Hata", message: "Bilinmeyen bir hata oluştu.")
+             return
+         }
+
         guard let mapLocation = registerViewModel.mapLocation else {
             print("harita ekranından konum seçmediniz")
             return
         }
+        
         let restaurant = Restaurant(ownerName: ownerName, ownerSurname: ownerSurname, email: email, phone: phone, address: mapLocation.getAddress(), companyName: companyname, location: Location(latitude: mapLocation.latitude, longitude: mapLocation.longitude))
         setRestaurant(restaurant: restaurant, password: password)
         

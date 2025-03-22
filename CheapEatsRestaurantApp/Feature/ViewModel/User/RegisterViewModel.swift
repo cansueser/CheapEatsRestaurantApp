@@ -12,6 +12,7 @@ protocol RegisterViewModelProtocol{
     var delegate: RegisterViewModelOutputProtocol? { get set}
     func registerRestaurant(restaurant: Restaurant, password: String)
     var mapLocation : MapLocation? { get set }
+    func validateEmail(_ email: String) throws
 }
 
 protocol RegisterViewModelOutputProtocol: AnyObject {
@@ -34,6 +35,24 @@ final class RegisterViewModel {
             }
         }
     }
+    func validateEmail(_ email: String) throws {
+        if email.isEmpty {
+            throw EmailValidationError.empty
+        }
+        
+        let emailRegex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,64}$"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES[c] %@", emailRegex)
+        
+        if !emailPredicate.evaluate(with: email) {
+            throw EmailValidationError.invalidFormat
+        }
+        
+        let allowedDomains = ["example.com", "test.com"]
+        if let emailDomain = email.split(separator: "@").last, !allowedDomains.contains(String(emailDomain)) {
+            throw EmailValidationError.domainNotAllowed
+        }
+    }
+
     
 }
 extension RegisterViewModel: RegisterViewModelProtocol {}

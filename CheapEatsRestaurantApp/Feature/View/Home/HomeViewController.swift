@@ -5,15 +5,14 @@ final class HomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var foodAddButton: UIButton!
     
-    var orderViewModel: HomeViewModel = HomeViewModel()
+    var homeViewModel: HomeViewModel = HomeViewModel()
     var selectedIndexPath: IndexPath?
-    
     //TODO: -Cell güncelle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        orderViewModel.delegate = self
+        homeViewModel.delegate = self
+        
     }
     
     private func configureTableView() {
@@ -27,12 +26,13 @@ final class HomeViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let productVC = storyboard.instantiateViewController(withIdentifier: "ProductAddedViewController") as? ProductManageViewController {
             //productVC.orderViewModel = orderViewModel
+            productVC.dataTransferDelegate = self
             navigationController?.pushViewController(productVC, animated: true)
         }
     }
 }
 
-extension HomeViewController: OrderViewModelOutputProtocol {
+extension HomeViewController: HomeViewModelOutputProtocol {
     func update() {
         tableView.reloadData()
         print("Update")
@@ -40,5 +40,11 @@ extension HomeViewController: OrderViewModelOutputProtocol {
     
     func error() {
         print("Error")
+    }
+}
+
+extension HomeViewController: DataTransferDelegate {
+    func didSaveProduct(product: Product) {
+        homeViewModel.addProduct(product)
     }
 }
