@@ -2,35 +2,37 @@ import UIKit
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return homeViewModel.products.count
-        return 5
+        return homeViewModel.products.count
+        //return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as? ProductTableViewCell else {
             return UITableViewCell()
         }
-//        let order = homeViewModel.products[indexPath.row]
-//        print("Order: \(order)")
-        //cell.configureCell(wtih: order)
-        cell.fakeconfigureCell()
+        let order = homeViewModel.products[indexPath.row]
+        print("Order: \(order)")
+        cell.configureCell(wtih: order)
+        //cell.fakeconfigureCell()
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
     }
+
     
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //let selectedOrder = orderViewModel.orders?[indexPath.row]
-        //selectedIndexPath = indexPath
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)  {
         let SB = UIStoryboard(name: "Main", bundle: nil)
         let productAddedVC = SB.instantiateViewController(withIdentifier: "ProductAddedViewController") as! ProductManageViewController
-        //productAddedVC.selectedOrder = selectedOrder
-        //productAddedVC.selectedIndexPath = selectedIndexPath
+        productAddedVC.productManageViewModel.product = homeViewModel.products[indexPath.row]
         navigationController?.pushViewController(productAddedVC, animated: true)
     }
+   /* func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+       if editingStyle == .delete {
+        
+       }
+    }*/
    /* func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         //Global alert yaz
         

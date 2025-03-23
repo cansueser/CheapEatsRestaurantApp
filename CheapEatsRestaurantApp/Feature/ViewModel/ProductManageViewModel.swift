@@ -19,7 +19,8 @@ protocol ProductManageViewModelProtocol {
     func emptyCheckSelectedItem(bottomSheetVC: BottomSheetViewController)
     func setProduct(product: Product)
     func setMockProduct(product: Product)
-    
+    func getProduct() -> Product?
+    func updateProduct(product: Product)
 }
 
 protocol DataTransferDelegate: AnyObject {
@@ -57,6 +58,14 @@ final class ProductManageViewModel {
             }
             self.delegate?.stopLoading()
         }
+    }
+    func getProduct() -> Product? {
+        return product ?? nil
+    }
+    
+    func updateProduct(product: Product) {
+        self.product = product
+        delegate?.update()
     }
     
     func setMockProduct(product: Product) {

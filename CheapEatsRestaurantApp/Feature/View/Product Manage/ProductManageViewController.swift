@@ -34,18 +34,14 @@ final class ProductManageViewController: UIViewController {
     @IBOutlet weak var nameIconImage: UIImageView!
     @IBOutlet weak var deliveryIconImage: UIImageView!
     @IBOutlet weak var detailsIconImage: UIImageView!
-    
     @IBOutlet weak var stepperProduct: UIStepper!
-    
     @IBOutlet weak var stepperLabel: UILabel!
-    
     @IBOutlet weak var stepperImage: UIImageView!
-    
     @IBOutlet weak var clearImage: UIButton!
+    
     var productManageViewModel: ProductManageViewModelProtocol = ProductManageViewModel()
     private var bottomSheetViewModel: BottomSheetViewModel = BottomSheetViewModel()
     weak var dataTransferDelegate: DataTransferDelegate?
-    
     private var loadIndicator: NVActivityIndicatorView!
     var tipView: EasyTipView?
     var preferences = EasyTipView.Preferences()
@@ -61,27 +57,33 @@ final class ProductManageViewController: UIViewController {
         } else {
             selectedMealTypeLabel.text = productManageViewModel.selectedMealTypes.map { $0.rawValue }.joined(separator: ", ")
         }
-    
-        
-        /*if let order = selectedOrder {
-            productNameTextField.text = order.name
-            productDescriptionTextView.text = order.description
-            oldPriceTextField.text = "\(order.oldPrice) TL"
-            newPriceTextField.text = "\(order.newPrice) TL"
-            discountSegmentControl.selectedSegmentIndex = order.discountType
-            lastTimePicker.date = order.endTime
-            updateSelectedMealTypes(order.category)
-        }
-         */
+        getProductData()
     }
     
+    private func getProductData() {
+        if let product = productManageViewModel.getProduct() {
+            productNameTextField.text = product.name
+            oldPriceTextField.text = "\(product.oldPrice)"
+            newPriceTextField.text = "\(product.newPrice)"
+            productDescriptionTextView.text = product.description
+            stepperLabel.text = "\(product.quantity)"
+            lastTimePicker.date = product.createdAt
+            selectedMealTypeLabel.text =  product.category.joined(separator: ", ")
+            if let imageUrl = URL(string: product.imageUrl) {
+                selectedImageView.kf.setImage(with: imageUrl)
+            }
+        }
+    }
     private func setupUI() {
         oldPriceTextField.delegate = self
         newPriceTextField.delegate = self
         productManageViewModel.delegate = self
         
         productDescriptionTextView.addRoundedBorder(cornerRadius: 5, borderWidth: 1, borderColor: .title,backgroundColor: .textWhite)
-        
+        selectedImageView.layer.masksToBounds = true
+        selectedImageView.clipsToBounds = true
+        selectedImageView.layer.cornerRadius = 5
+   
         timeImage.makeRounded(radius: 5)
         timeLabel.makeRounded(radius: 5)
         priceImage.makeRounded(radius: 5)
@@ -92,8 +94,7 @@ final class ProductManageViewController: UIViewController {
         uploadIconImage.makeRounded(radius: 5)
         stepperProduct.makeRounded(radius: 5)
         stepperImage.makeRounded(radius: 5)
-        selectedImageView.makeRounded(radius: 5)
-        
+    
         setShadow(with: selectedImageView.layer, shadowOffset: true)
         preferences.drawing.backgroundColor = .lightGray
         preferences.drawing.foregroundColor = .white
@@ -101,7 +102,7 @@ final class ProductManageViewController: UIViewController {
         setShadow(with: stepperProduct.layer, shadowOffset: true)
         discountSegmentControl.layer.shadowOpacity = 0
         deliveryTypeSegmentControl.layer.shadowOpacity = 0
-
+      
         priceBackView.lineYPosition = oldPriceTextField.frame.origin.y - 10
         priceBackView.setNeedsDisplay()
         deliveryTypeBackView.lineYPosition = deliveryTypeSegmentControl.frame.origin.y - 10
@@ -173,9 +174,13 @@ final class ProductManageViewController: UIViewController {
         }else{
             let endDate = dateFormatter().string(from: lastTimePicker.date)
             let product =  Product(name: name, description: description, oldPrice: oldPrice, newPrice: newPrice,  endDate: endDate, deliveryType: deliveryType, restaurantId: "WXJ5I0rRDYfWaJSfwF3d", category: selectedMealTypes, imageUrl: productManageViewModel.cloudinaryImageUrlString, quantity: stepperNumber)
-            productManageViewModel.setMockProduct(product: product)
+                productManageViewModel.setMockProduct(product: product)
+                productManageViewModel.selectedMealTypes = product.endDate.isEmpty ? [] : productManageViewModel.selectedMealTypes
+          //  selectedMealTypeLabel.text = selectedOptions.isEmpty ? "Yemek Türü Seçiniz" : selectedOptions.map { $0.rawValue }.joined(separator: ", ")
             //Bunu daha sonra aç Firebaseye gönderme metodum.
-            //productManageViewModel.setProduct(product: product)
+           // productManageViewModel.setProduct(product: product)
+                navigationController?.popViewController(animated: true)
+           
         }
         
 //        showTwoButtonAlert(title: "Uyarı", message: "Emin misin", firstButtonTitle: "Sil", firstButtonHandler: { _ in
@@ -265,6 +270,4 @@ extension ProductManageViewController: ProductManageViewModelOutputProtocol {
         loadIndicator.startAnimating()
         
     }
-    
 }
-

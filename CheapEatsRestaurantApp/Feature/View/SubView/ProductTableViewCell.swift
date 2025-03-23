@@ -24,6 +24,7 @@ class ProductTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+
     }
     
     override func layoutSubviews() {
@@ -47,7 +48,7 @@ class ProductTableViewCell: UITableViewCell {
         foodNameLabel.text = order.name
         newAmountLabel.text = "\(order.newPrice) TL"
         stateLabel.text = order.status.description
-        dateLabel.text = "Saat:\(order.endDate)"
+        dateLabel.text = "\(order.endDate)"
         stepperNumber.text = "\(order.quantity.description) Adet"
     }
     func fakeconfigureCell() {
