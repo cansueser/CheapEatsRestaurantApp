@@ -45,6 +45,7 @@ class ProductTableViewCell: UITableViewCell {
     
     func configureCell(wtih order: Product) {
         foodImage.kf.setImage(with: URL(string: order.imageUrl))
+        orderNoLabel.text = "#\(order.productId)"
         foodNameLabel.text = order.name
         newAmountLabel.text = "\(order.newPrice) TL"
         stateLabel.text = order.status.description

@@ -17,6 +17,9 @@ final class HomeViewModel {
     var products: [Product] = []
 
     func addProduct(_ product: Product) {
+        if products.contains(where: { $0.productId == product.productId }) {
+            products.remove(at: products.firstIndex(where: { $0.productId == product.productId })!)
+        }
         products.append(product)
         delegate?.update()
     }

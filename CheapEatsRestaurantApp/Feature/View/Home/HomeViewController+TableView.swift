@@ -24,9 +24,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)  {
         let SB = UIStoryboard(name: "Main", bundle: nil)
-        let productAddedVC = SB.instantiateViewController(withIdentifier: "ProductAddedViewController") as! ProductManageViewController
-        productAddedVC.productManageViewModel.product = homeViewModel.products[indexPath.row]
-        navigationController?.pushViewController(productAddedVC, animated: true)
+        let productUpdateVC = SB.instantiateViewController(withIdentifier: "ProductAddedViewController") as! ProductManageViewController
+        productUpdateVC.productManageViewModel.product = homeViewModel.products[indexPath.row]
+        productUpdateVC.dataTransferDelegate = self
+        productUpdateVC.productManageViewModel.goSource = .updateProduct
+        navigationController?.pushViewController(productUpdateVC, animated: true)
     }
    /* func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
        if editingStyle == .delete {

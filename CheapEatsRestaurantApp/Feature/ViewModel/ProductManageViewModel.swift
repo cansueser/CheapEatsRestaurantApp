@@ -21,6 +21,7 @@ protocol ProductManageViewModelProtocol {
     func setMockProduct(product: Product)
     func getProduct() -> Product?
     func updateProduct(product: Product)
+    var goSource : GoSource { get set }
 }
 
 protocol DataTransferDelegate: AnyObject {
@@ -40,6 +41,7 @@ final class ProductManageViewModel {
     var cloudinary: CLDCloudinary!
     var cloudinaryImageUrlString: String = ""
     var selectedMealTypes: [Category] = []
+    var goSource : GoSource = .addProduct
     
     init() {
         cloudinary = initCloudinary()
@@ -69,7 +71,15 @@ final class ProductManageViewModel {
     }
     
     func setMockProduct(product: Product) {
-        self.product = product
+        switch goSource {
+        case .addProduct:
+            self.product = product
+        case .updateProduct:
+            var tempProduct = product
+            tempProduct.productId = self.product?.productId ?? product.productId
+            self.product = tempProduct
+        }
+        
         delegate?.update()
     }
     
@@ -117,3 +127,7 @@ final class ProductManageViewModel {
 
 extension ProductManageViewModel: ProductManageViewModelProtocol { }
 
+
+enum GoSource {
+    case addProduct, updateProduct
+}

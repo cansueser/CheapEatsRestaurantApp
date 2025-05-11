@@ -83,7 +83,7 @@ final class ProductManageViewController: UIViewController {
         selectedImageView.layer.masksToBounds = true
         selectedImageView.clipsToBounds = true
         selectedImageView.layer.cornerRadius = 5
-   
+        
         timeImage.makeRounded(radius: 5)
         timeLabel.makeRounded(radius: 5)
         priceImage.makeRounded(radius: 5)
@@ -94,7 +94,7 @@ final class ProductManageViewController: UIViewController {
         uploadIconImage.makeRounded(radius: 5)
         stepperProduct.makeRounded(radius: 5)
         stepperImage.makeRounded(radius: 5)
-    
+        
         setShadow(with: selectedImageView.layer, shadowOffset: true)
         preferences.drawing.backgroundColor = .lightGray
         preferences.drawing.foregroundColor = .white
@@ -102,7 +102,7 @@ final class ProductManageViewController: UIViewController {
         setShadow(with: stepperProduct.layer, shadowOffset: true)
         discountSegmentControl.layer.shadowOpacity = 0
         deliveryTypeSegmentControl.layer.shadowOpacity = 0
-      
+        
         priceBackView.lineYPosition = oldPriceTextField.frame.origin.y - 10
         priceBackView.setNeedsDisplay()
         deliveryTypeBackView.lineYPosition = deliveryTypeSegmentControl.frame.origin.y - 10
@@ -111,7 +111,7 @@ final class ProductManageViewController: UIViewController {
         lastTimePicker.setDate(Date(), animated: true)
         loadIndicator = createLoadingIndicator(in: waitView)
     }
-
+    
     @objc func imageTapped() {
         var config = PHPickerConfiguration()
         config.selectionLimit = 1
@@ -122,25 +122,25 @@ final class ProductManageViewController: UIViewController {
         present(picker, animated: true, completion: nil)
     }
     func clearSelectedImage() {
-       selectedImageView.image = nil
+        selectedImageView.image = nil
         selectedImageView.setSymbolImage(.init(systemName: "photo.badge.plus")!, contentTransition: .automatic, options: .default)
-      }
+    }
     
     @IBAction func clearImageClicked(_ sender: UIButton) {
         clearSelectedImage()
     }
-   
-
+    
+    
     
     @IBAction func infoButtonClicked(_ sender: Any) {
         showToolTip()
     }
-
+    
     @IBAction func stepperProductClicked(_ sender: UIStepper) {
         stepperLabel.text = Int(sender.value).description
     }
     
-   
+    
     @IBAction func saveAndNextButtonClicked(_ sender: UIButton) {
         guard
             let name = productNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
@@ -150,19 +150,19 @@ final class ProductManageViewController: UIViewController {
             let oldPrice = Int(oldPriceTextField.text ?? "0"),
             let newPrice = Int(newPriceTextField.text ?? "0"),
             let stepperNumber = Int(stepperLabel.text ?? "1")
-
+                
         else {
             showOneButtonAlert(title: "Hata", message: "Lütfen tüm alanları doldurun.")
             return
-           
+            
         }
-      
+        
         if oldPrice <= newPrice {
             showOneButtonAlert(title: "Hata", message: "Eski fiyat yeni fiyattan yüksek olamaz.")
         }
         
         let selectedMealTypes = productManageViewModel.selectedMealTypes.map({ $0.rawValue })
-     
+        
         guard let deliveryType = DeliveryType(index: deliveryTypeSegmentControl.selectedSegmentIndex) else {
             return
         }
@@ -174,17 +174,17 @@ final class ProductManageViewController: UIViewController {
         }else{
             let endDate = dateFormatter().string(from: lastTimePicker.date)
             let product =  Product(name: name, description: description, oldPrice: oldPrice, newPrice: newPrice,  endDate: endDate, deliveryType: deliveryType, restaurantId: "WXJ5I0rRDYfWaJSfwF3d", category: selectedMealTypes, imageUrl: productManageViewModel.cloudinaryImageUrlString, quantity: stepperNumber)
-                productManageViewModel.setMockProduct(product: product)
-                productManageViewModel.selectedMealTypes = product.endDate.isEmpty ? [] : productManageViewModel.selectedMealTypes
-          //  selectedMealTypeLabel.text = selectedOptions.isEmpty ? "Yemek Türü Seçiniz" : selectedOptions.map { $0.rawValue }.joined(separator: ", ")
+            
+            productManageViewModel.selectedMealTypes = product.endDate.isEmpty ? [] : productManageViewModel.selectedMealTypes
+            productManageViewModel.setMockProduct(product: product)
+            //  selectedMealTypeLabel.text = selectedOptions.isEmpty ? "Yemek Türü Seçiniz" : selectedOptions.map { $0.rawValue }.joined(separator: ", ")
             //Bunu daha sonra aç Firebaseye gönderme metodum.
-           // productManageViewModel.setProduct(product: product)
-                navigationController?.popViewController(animated: true)
-           
+            // productManageViewModel.setProduct(product: product)
+            
         }
         
-//        showTwoButtonAlert(title: "Uyarı", message: "Emin misin", firstButtonTitle: "Sil", firstButtonHandler: { _ in
-//        }, secondButtonTitle: "İptal Et")
+        //        showTwoButtonAlert(title: "Uyarı", message: "Emin misin", firstButtonTitle: "Sil", firstButtonHandler: { _ in
+        //        }, secondButtonTitle: "İptal Et")
     }
     
     private func dateFormatter() -> DateFormatter {
@@ -206,7 +206,7 @@ final class ProductManageViewController: UIViewController {
         }
         
     }
-
+    
     private func tapGesture() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         selectedImageView.isUserInteractionEnabled = true

@@ -35,7 +35,7 @@ struct Product {
         imageUrl :String,
         quantity: Int
     ) {
-        self.productId = ""
+        self.productId = "\(Int.random(in: 100000..<1000000))"
         self.name = name
         self.description = description
         self.oldPrice = oldPrice
