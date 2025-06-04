@@ -14,6 +14,7 @@
 		7E28691B2D72002700C5F46D /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E28691A2D72002100C5F46D /* LoadingIndicator.swift */; };
 		7E28691E2D72005900C5F46D /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 7E28691D2D72005900C5F46D /* NVActivityIndicatorView */; };
 		7E2869202D72005900C5F46D /* NVActivityIndicatorViewExtended in Frameworks */ = {isa = PBXBuildFile; productRef = 7E28691F2D72005900C5F46D /* NVActivityIndicatorViewExtended */; };
+		7E4FD07C2DECBCB20062918E /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4FD07B2DECBCAD0062918E /* OrderDetailViewController.swift */; };
 		7E52053B2D6F358900650F4C /* JVFloatLabeledTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 7E52053A2D6F358900650F4C /* JVFloatLabeledTextField */; };
 		7E60E6372D8F6CDC00A297CE /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E60E6362D8F6CDC00A297CE /* PasswordResetViewController.swift */; };
 		7E60E6392D8F6D1D00A297CE /* PasswordResetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E60E6382D8F6D1D00A297CE /* PasswordResetViewModel.swift */; };
@@ -30,6 +31,7 @@
 		7E847A102D19ECED00D1DE23 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E847A0F2D19ECED00D1DE23 /* Product.swift */; };
 		7E847A122D19ED7700D1DE23 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E847A112D19ED7700D1DE23 /* HomeViewModel.swift */; };
 		7E847A202D1B60CC00D1DE23 /* ProductManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E847A1F2D1B60CC00D1DE23 /* ProductManageViewController.swift */; };
+		7E8C182E2DE224F900FF3713 /* OrderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C182D2DE224EA00FF3713 /* OrderService.swift */; };
 		7E9014BC2D73A37A0005572A /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9014BB2D73A36A0005572A /* Restaurant.swift */; };
 		7E9014C12D73AAB50005572A /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9014C02D73AAA90005572A /* RegisterViewModel.swift */; };
 		7E9642022D70617700176FAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E9642012D70617700176FAA /* Assets.xcassets */; };
@@ -88,6 +90,7 @@
 		7E2868F92D71EE1A00C5F46D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7E2869082D71F1CC00C5F46D /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		7E28691A2D72002100C5F46D /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
+		7E4FD07B2DECBCAD0062918E /* OrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
 		7E60E6362D8F6CDC00A297CE /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
 		7E60E6382D8F6D1D00A297CE /* PasswordResetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewModel.swift; sourceTree = "<group>"; };
 		7E652CF02D0711C000137ECA /* CheapEatsRestaurantApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheapEatsRestaurantApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +106,7 @@
 		7E847A0F2D19ECED00D1DE23 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		7E847A112D19ED7700D1DE23 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		7E847A1F2D1B60CC00D1DE23 /* ProductManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManageViewController.swift; sourceTree = "<group>"; };
+		7E8C182D2DE224EA00FF3713 /* OrderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderService.swift; sourceTree = "<group>"; };
 		7E9014BB2D73A36A0005572A /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		7E9014C02D73AAA90005572A /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		7E9642012D70617700176FAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -352,6 +356,8 @@
 		7EA74CA22DD0FC9B005479DC /* Order */ = {
 			isa = PBXGroup;
 			children = (
+				7E4FD07B2DECBCAD0062918E /* OrderDetailViewController.swift */,
+				7E8C182D2DE224EA00FF3713 /* OrderService.swift */,
 				7EA74CA32DD0FEF2005479DC /* OrderViewController.swift */,
 				7EA74CA72DD10057005479DC /* OrderViewController+TableView.swift */,
 			);
@@ -543,6 +549,7 @@
 				7E652CF42D0711C000137ECA /* AppDelegate.swift in Sources */,
 				7ED81A052D4BD3F900E4F272 /* BottomSheetViewController.swift in Sources */,
 				7EA74CAE2DD104E3005479DC /* Customer.swift in Sources */,
+				7E4FD07C2DECBCB20062918E /* OrderDetailViewController.swift in Sources */,
 				7EC6CCCC2D760FAF00316926 /* MapDetailViewModel.swift in Sources */,
 				7EA0AF8A2D6F573F004F4499 /* BottomSheetViewController+TableView.swift in Sources */,
 				7E9014C12D73AAB50005572A /* RegisterViewModel.swift in Sources */,
@@ -555,6 +562,7 @@
 				7EDF6E312D8F5AA100B20AEC /* OrderTableViewCell.swift in Sources */,
 				7EC6CCCA2D760F6000316926 /* MapDetailViewController.swift in Sources */,
 				7EA74CAA2DD103DB005479DC /* OrderDetail.swift in Sources */,
+				7E8C182E2DE224F900FF3713 /* OrderService.swift in Sources */,
 				7ECF12642D7F250C0062F6DA /* MapLocation.swift in Sources */,
 				7E847A122D19ED7700D1DE23 /* HomeViewModel.swift in Sources */,
 				7EA0AF882D6F5237004F4499 /* Alert.swift in Sources */,

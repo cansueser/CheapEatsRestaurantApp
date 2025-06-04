@@ -1,10 +1,3 @@
-//
-//  Product.swift
-//  CheapEatsRestaurantApp
-//
-//  Created by CANSU on 23.12.2024.
-//
-
 import Foundation
 import Firebase
 
@@ -32,7 +25,7 @@ struct Product {
         deliveryType: DeliveryType,
         restaurantId: String,
         category: [String],
-        imageUrl :String,
+        imageUrl: String,
         quantity: Int
     ) {
         self.productId = "\(Int.random(in: 100000..<1000000))"
@@ -49,7 +42,42 @@ struct Product {
         self.createdAt = Date()
         self.quantity = quantity
     }
-    // Firestore'a gönderilecek dictionary
+    
+    init?(dictionary: [String: Any]) {
+        guard
+            let productId = dictionary["productId"] as? String,
+            let name = dictionary["name"] as? String,
+            let description = dictionary["description"] as? String,
+            let oldPrice = dictionary["oldPrice"] as? Int,
+            let newPrice = dictionary["newPrice"] as? Int,
+            let endDate = dictionary["endDate"] as? String,
+            let deliveryTypeString = dictionary["deliveryType"] as? String,
+            let deliveryType = DeliveryType(rawValue: deliveryTypeString),
+            let restaurantId = dictionary["restaurantId"] as? String,
+            let category = dictionary["category"] as? [String],
+            let imageUrl = dictionary["imageUrl"] as? String,
+            let quantity = dictionary["quantity"] as? Int
+        else {
+            return nil
+        }
+        self.productId = productId
+        self.name = name
+        self.description = description
+        self.oldPrice = oldPrice
+        self.newPrice = newPrice
+        self.endDate = endDate
+        self.status = dictionary["status"] as? Bool ?? false
+        self.deliveryType = deliveryType
+        self.restaurantId = restaurantId
+        self.category = category
+        self.imageUrl = imageUrl
+        if let createdAt = dictionary["createdAt"] as? Timestamp {
+            self.createdAt = createdAt.dateValue()
+        } else {
+            self.createdAt = Date()
+        }
+        self.quantity = quantity
+    }
     
     func toDictionary() -> [String: Any] {
         return [
@@ -67,7 +95,6 @@ struct Product {
             "createdAt": Timestamp(date: createdAt),
             "quantity": quantity
         ]
-        
     }
 }
 
@@ -97,6 +124,7 @@ enum DeliveryType: String, CaseIterable {
         }
     }
 }
+
 enum Category: String, CaseIterable, CustomStringConvertible {
     case burger = "Burger"
     case doner = "Döner"
