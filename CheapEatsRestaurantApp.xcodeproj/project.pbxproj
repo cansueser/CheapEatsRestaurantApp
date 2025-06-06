@@ -16,6 +16,8 @@
 		7E2869202D72005900C5F46D /* NVActivityIndicatorViewExtended in Frameworks */ = {isa = PBXBuildFile; productRef = 7E28691F2D72005900C5F46D /* NVActivityIndicatorViewExtended */; };
 		7E4FD07C2DECBCB20062918E /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4FD07B2DECBCAD0062918E /* OrderDetailViewController.swift */; };
 		7E52053B2D6F358900650F4C /* JVFloatLabeledTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 7E52053A2D6F358900650F4C /* JVFloatLabeledTextField */; };
+		7E553E0B2DF35FEA00B6E102 /* EditUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E553E0A2DF35FD900B6E102 /* EditUser.swift */; };
+		7E553E0E2DF3609600B6E102 /* ProfilAyarlariViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E553E0D2DF3608A00B6E102 /* ProfilAyarlariViewModel.swift */; };
 		7E60E6372D8F6CDC00A297CE /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E60E6362D8F6CDC00A297CE /* PasswordResetViewController.swift */; };
 		7E60E6392D8F6D1D00A297CE /* PasswordResetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E60E6382D8F6D1D00A297CE /* PasswordResetViewModel.swift */; };
 		7E652CF42D0711C000137ECA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E652CF32D0711C000137ECA /* AppDelegate.swift */; };
@@ -56,6 +58,9 @@
 		7EB852AE2D0DD3EA009FAC62 /* ProductManageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB852AD2D0DD3EA009FAC62 /* ProductManageViewModel.swift */; };
 		7EBED5E12D077BAB00E7CACB /* HomeViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBED5E02D077BAB00E7CACB /* HomeViewController+TableView.swift */; };
 		7EBED5E32D07837F00E7CACB /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBED5E22D07837F00E7CACB /* UIView+Extension.swift */; };
+		7EC0127C2DF0F1EE0047CBC8 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC0127B2DF0F1E20047CBC8 /* ProfileModel.swift */; };
+		7EC0127E2DF0F2130047CBC8 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC0127D2DF0F2030047CBC8 /* ProfileViewModel.swift */; };
+		7EC012802DF0F28C0047CBC8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC0127F2DF0F2850047CBC8 /* ProfileViewController.swift */; };
 		7EC6CCCA2D760F6000316926 /* MapDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC6CCC92D760F6000316926 /* MapDetailViewController.swift */; };
 		7EC6CCCC2D760FAF00316926 /* MapDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC6CCCB2D760FAF00316926 /* MapDetailViewModel.swift */; };
 		7EC6CCD62D775BCB00316926 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7EC6CCD52D775BCB00316926 /* FirebaseAuth */; };
@@ -91,6 +96,8 @@
 		7E2869082D71F1CC00C5F46D /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		7E28691A2D72002100C5F46D /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		7E4FD07B2DECBCAD0062918E /* OrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
+		7E553E0A2DF35FD900B6E102 /* EditUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUser.swift; sourceTree = "<group>"; };
+		7E553E0D2DF3608A00B6E102 /* ProfilAyarlariViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilAyarlariViewModel.swift; sourceTree = "<group>"; };
 		7E60E6362D8F6CDC00A297CE /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
 		7E60E6382D8F6D1D00A297CE /* PasswordResetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewModel.swift; sourceTree = "<group>"; };
 		7E652CF02D0711C000137ECA /* CheapEatsRestaurantApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheapEatsRestaurantApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +137,9 @@
 		7EB852AD2D0DD3EA009FAC62 /* ProductManageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManageViewModel.swift; sourceTree = "<group>"; };
 		7EBED5E02D077BAB00E7CACB /* HomeViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+TableView.swift"; sourceTree = "<group>"; };
 		7EBED5E22D07837F00E7CACB /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		7EC0127B2DF0F1E20047CBC8 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		7EC0127D2DF0F2030047CBC8 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		7EC0127F2DF0F2850047CBC8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7EC6CCC92D760F6000316926 /* MapDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailViewController.swift; sourceTree = "<group>"; };
 		7EC6CCCB2D760FAF00316926 /* MapDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailViewModel.swift; sourceTree = "<group>"; };
 		7EC772F02D75E5FD00846090 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
@@ -178,6 +188,7 @@
 		7E445D092D38024E00BEDD0C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7E553E0F2DF3628700B6E102 /* Profil Edit Model */,
 				7EA74CAD2DD104DE005479DC /* Customer.swift */,
 				7EA74CAB2DD1040C005479DC /* ProductDetail.swift */,
 				7EA74CA92DD103D4005479DC /* OrderDetail.swift */,
@@ -206,6 +217,7 @@
 		7E445D0B2D3802FB00BEDD0C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				7E553E0C2DF3607800B6E102 /* Profil Edit VM */,
 				7EC6CCD02D76519A00316926 /* User */,
 				7EC6CCCD2D760FB900316926 /* Map */,
 				7E847A112D19ED7700D1DE23 /* HomeViewModel.swift */,
@@ -226,6 +238,29 @@
 				7E78EC382D08353C001A3782 /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		7E553E0C2DF3607800B6E102 /* Profil Edit VM */ = {
+			isa = PBXGroup;
+			children = (
+				7E553E0D2DF3608A00B6E102 /* ProfilAyarlariViewModel.swift */,
+			);
+			path = "Profil Edit VM";
+			sourceTree = "<group>";
+		};
+		7E553E0F2DF3628700B6E102 /* Profil Edit Model */ = {
+			isa = PBXGroup;
+			children = (
+				7E553E0A2DF35FD900B6E102 /* EditUser.swift */,
+			);
+			path = "Profil Edit Model";
+			sourceTree = "<group>";
+		};
+		7E553E102DF362BB00B6E102 /* Profil Edit View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Profil Edit View";
 			sourceTree = "<group>";
 		};
 		7E652CE72D0711C000137ECA = {
@@ -283,6 +318,7 @@
 		7E652D0C2D07177E00137ECA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7E553E102DF362BB00B6E102 /* Profil Edit View */,
 				7E9014BE2D73AA650005572A /* User */,
 				7EC772F22D75E61800846090 /* Map */,
 				7E445D0A2D3802C700BEDD0C /* SubView */,
@@ -346,6 +382,7 @@
 		7EA0AF8C2D6F683F004F4499 /* Design */ = {
 			isa = PBXGroup;
 			children = (
+				7EC0127A2DF0F1D30047CBC8 /* Person */,
 				7ECF12522D79CD3E0062F6DA /* BorderAndShadow.swift */,
 				7E28691A2D72002100C5F46D /* LoadingIndicator.swift */,
 				7EA0AF8D2D6F6845004F4499 /* LineView.swift */,
@@ -362,6 +399,16 @@
 				7EA74CA72DD10057005479DC /* OrderViewController+TableView.swift */,
 			);
 			path = Order;
+			sourceTree = "<group>";
+		};
+		7EC0127A2DF0F1D30047CBC8 /* Person */ = {
+			isa = PBXGroup;
+			children = (
+				7EC0127F2DF0F2850047CBC8 /* ProfileViewController.swift */,
+				7EC0127D2DF0F2030047CBC8 /* ProfileViewModel.swift */,
+				7EC0127B2DF0F1E20047CBC8 /* ProfileModel.swift */,
+			);
+			path = Person;
 			sourceTree = "<group>";
 		};
 		7EC6CCCD2D760FB900316926 /* Map */ = {
@@ -519,8 +566,10 @@
 				7E28691B2D72002700C5F46D /* LoadingIndicator.swift in Sources */,
 				7EBED5E32D07837F00E7CACB /* UIView+Extension.swift in Sources */,
 				7E652D132D07218400137ECA /* ProductTableViewCell.swift in Sources */,
+				7EC0127E2DF0F2130047CBC8 /* ProfileViewModel.swift in Sources */,
 				7ECF12692D8492FC0062F6DA /* LocationSearchTable.swift in Sources */,
 				7E9014BC2D73A37A0005572A /* Restaurant.swift in Sources */,
+				7EC012802DF0F28C0047CBC8 /* ProfileViewController.swift in Sources */,
 				7E149DB12D7863A60095DAE3 /* City.swift in Sources */,
 				7EB852AE2D0DD3EA009FAC62 /* ProductManageViewModel.swift in Sources */,
 				7ECF12572D79D4530062F6DA /* DropDownCell.swift in Sources */,
@@ -538,6 +587,8 @@
 				7EBED5E12D077BAB00E7CACB /* HomeViewController+TableView.swift in Sources */,
 				7EA0AF7D2D6F4572004F4499 /* ProductManageViewController+TextField.swift in Sources */,
 				7ECF12622D7DF27E0062F6DA /* MapDetailViewController+MapView.swift in Sources */,
+				7E553E0E2DF3609600B6E102 /* ProfilAyarlariViewModel.swift in Sources */,
+				7EC0127C2DF0F1EE0047CBC8 /* ProfileModel.swift in Sources */,
 				7E78EC392D08353C001A3782 /* UIViewController+Extension.swift in Sources */,
 				7E847A202D1B60CC00D1DE23 /* ProductManageViewController.swift in Sources */,
 				7EA0AF842D6F4782004F4499 /* NetworkHelper.swift in Sources */,
@@ -560,6 +611,7 @@
 				7EA74CA82DD10065005479DC /* OrderViewController+TableView.swift in Sources */,
 				7ECF12552D79D3D80062F6DA /* MapDetailViewController+TableView.swift in Sources */,
 				7EDF6E312D8F5AA100B20AEC /* OrderTableViewCell.swift in Sources */,
+				7E553E0B2DF35FEA00B6E102 /* EditUser.swift in Sources */,
 				7EC6CCCA2D760F6000316926 /* MapDetailViewController.swift in Sources */,
 				7EA74CAA2DD103DB005479DC /* OrderDetail.swift in Sources */,
 				7E8C182E2DE224F900FF3713 /* OrderService.swift in Sources */,

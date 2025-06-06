@@ -10,11 +10,6 @@ protocol OrderViewModelProtocol {
     func updateOrderStatus(orderId: String, newStatus: OrderStatus, completion: @escaping (Bool) -> Void)
 }
 
-protocol OrderViewModelOutputProtocol: AnyObject {
-    func update()
-    func error()
-}
-
 class OrderViewModel: OrderViewModelProtocol {
     var orders: [Orders] = []
     var productsById: [String: Product] = [:]
@@ -124,4 +119,8 @@ class OrderViewModel: OrderViewModelProtocol {
             completion(success)
         }
     }
+}
+protocol OrderViewModelOutputProtocol: AnyObject {
+    func update()
+    func error()
 }
