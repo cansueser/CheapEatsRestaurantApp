@@ -41,7 +41,6 @@ final class ProductManageViewController: UIViewController {
     
     var productManageViewModel: ProductManageViewModelProtocol = ProductManageViewModel()
     private var bottomSheetViewModel: BottomSheetViewModel = BottomSheetViewModel()
-    weak var dataTransferDelegate: DataTransferDelegate?
     private var loadIndicator: NVActivityIndicatorView!
     var tipView: EasyTipView?
     var preferences = EasyTipView.Preferences()
@@ -173,11 +172,17 @@ final class ProductManageViewController: UIViewController {
             showOneButtonAlert(title: "Hata", message: "Eski fiyat yeni fiyattan yüksek olamaz.")
         }else{
             let endDate = dateFormatter().string(from: lastTimePicker.date)
-            let product =  Product(name: name, description: description, oldPrice: oldPrice, newPrice: newPrice,  endDate: endDate, deliveryType: deliveryType, restaurantId: "WXJ5I0rRDYfWaJSfwF3d", category: selectedMealTypes, imageUrl: productManageViewModel.cloudinaryImageUrlString, quantity: stepperNumber)
+            let product =  Product(name: name, description: description, oldPrice: oldPrice, newPrice: newPrice,  endDate: endDate, deliveryType: deliveryType, restaurantId: RestaurantManager.shared.getRestaurantId(), category: selectedMealTypes, imageUrl: productManageViewModel.cloudinaryImageUrlString, quantity: stepperNumber)
             
             productManageViewModel.selectedMealTypes = product.endDate.isEmpty ? [] : productManageViewModel.selectedMealTypes
 
-             productManageViewModel.setProduct(product: product)
+            switch productManageViewModel.goSource {
+            case .addProduct:
+                productManageViewModel.setProduct(product: product)
+            case .updateProduct:
+                productManageViewModel.updateProduct(product: product)
+            }
+             
             
         }
         
@@ -244,7 +249,6 @@ extension ProductManageViewController: ProductManageViewModelOutputProtocol {
     func update() {
         print("Update")
         if let product = productManageViewModel.product {
-            dataTransferDelegate?.didSaveProduct(product: product)
             navigationController?.popViewController(animated: true)
         } else{
             print("Hata oluştu")

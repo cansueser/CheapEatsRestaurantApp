@@ -14,6 +14,7 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.configureWithOrderOnly(order: order)
         }
+        cell.selectionStyle = .none
         return cell
     }
     

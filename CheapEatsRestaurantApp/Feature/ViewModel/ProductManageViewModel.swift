@@ -23,10 +23,6 @@ protocol ProductManageViewModelProtocol {
     var goSource : GoSource { get set }
 }
 
-protocol DataTransferDelegate: AnyObject {
-    func didSaveProduct(product: Product)
-}
-
 protocol ProductManageViewModelOutputProtocol: AnyObject{
     func update()
     func error()
@@ -65,8 +61,17 @@ final class ProductManageViewModel {
     }
     
     func updateProduct(product: Product) {
-        self.product = product
-        delegate?.update()
+        var tempProduct = product
+        tempProduct.productId = self.product?.productId ?? ""
+        NetworkManager.shared.updateProduct(product: tempProduct) { result in
+            switch result {
+            case .success():
+                self.product = product
+                self.delegate?.update()
+            case .failure(_):
+                self.delegate?.error()
+            }
+        }
     }
     
     private func initCloudinary() -> CLDCloudinary {

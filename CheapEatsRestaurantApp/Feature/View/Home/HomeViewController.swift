@@ -29,7 +29,6 @@ final class HomeViewController: UIViewController {
             productStatuView.isHidden = true
         }
         
-        homeViewModel.fetchRestaurantProducts()
     }
     
     private func configureTableView() {
@@ -42,13 +41,13 @@ final class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        homeViewModel.fetchRestaurantProducts()
     }
     
     @IBAction func foodAddButtonClicked(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let productVC = storyboard.instantiateViewController(withIdentifier: "ProductAddedViewController") as? ProductManageViewController {
             //productVC.orderViewModel = orderViewModel
-            productVC.dataTransferDelegate = self
             productVC.productManageViewModel.goSource = .addProduct
             navigationController?.pushViewController(productVC, animated: true)
         }
@@ -68,11 +67,5 @@ extension HomeViewController: HomeViewModelOutputProtocol {
     
     func error() {
         print("Error")
-    }
-}
-
-extension HomeViewController: DataTransferDelegate {
-    func didSaveProduct(product: Product) {
-        homeViewModel.addProduct(product)
     }
 }

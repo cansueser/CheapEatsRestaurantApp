@@ -28,7 +28,7 @@ struct Product {
         imageUrl: String,
         quantity: Int
     ) {
-        self.productId = "\(Int.random(in: 100000..<1000000))"
+        self.productId = ""
         self.name = name
         self.description = description
         self.oldPrice = oldPrice

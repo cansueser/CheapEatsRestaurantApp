@@ -29,6 +29,17 @@ final class NetworkManager {
         }
     }
     
+    func updateProduct(product: Product, completion: @escaping (Result<Void, Error>) -> Void) {
+        let productRef = db.collection("products").document(product.productId)
+        productRef.setData(product.toDictionary(), merge: true) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
     // Restoran kaydı
     func registerRestaurant(restaurant: Restaurant, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
         var restaurant = restaurant
@@ -87,8 +98,9 @@ final class NetworkManager {
     }
     // MARK: - Orders
     func fetchOrders(completion: @escaping ([Orders]) -> Void) {
-        //TODO: -resturantID gelecek(Singleton)
-        db.collection("orders").whereField("restaurantId", isEqualTo: "WXJ5I0rRDYfWaJSfwF3d").getDocuments { snapshot, error in
+        let restaurantId = RestaurantManager.shared.getRestaurantId()
+        
+        db.collection("orders").whereField("restaurantId", isEqualTo: restaurantId).getDocuments { snapshot, error in
             if let error = error {
                 print("Siparişleri çekerken hata oluştu: \(error.localizedDescription)")
                 completion([])
@@ -102,11 +114,6 @@ final class NetworkManager {
             
             let orders = documents.compactMap { document in
                 return Orders(dictionary: document.data(), documentId: document.documentID)
-            }
-            
-            print("Çekilen siparişler: \(orders.count)")
-            for order in orders {
-                print("Sipariş ID: \(order.orderId), Ürün ID: \(order.productId)")
             }
             
             completion(orders)
@@ -171,16 +178,13 @@ final class NetworkManager {
                 completion(nil)
                 return
             }
-            
-            // Belge verisine belge ID'sini ekle, çünkü Product init'i bunu bekliyor olabilir
+
             var productData = data
-            // Eğer productId alanı eksikse, belge ID'sini kullan
             if productData["productId"] == nil {
                 productData["productId"] = productId
             }
             
             if let product = Product(dictionary: productData) {
-                print("Ürün bulundu: \(product.name)")
                 completion(product)
             } else {
                 print("Ürün verisi dönüştürülemedi: \(productId)")
@@ -189,140 +193,7 @@ final class NetworkManager {
         }
     }
     
-    // Birden fazla ürünü ID listesiyle çek - belge ID'leri ile
-    func fetchProductsByIds(_ productIds: [String], completion: @escaping ([Product]) -> Void) {
-        guard !productIds.isEmpty else {
-            print("Ürün ID listesi boş")
-            completion([])
-            return
-        }
-        
-        print("Çekilecek ürün ID'leri: \(productIds)")
-        
-        var allProducts: [Product] = []
-        let dispatchGroup = DispatchGroup()
-        
-        // Her bir belge ID'sini ayrı ayrı çekelim
-        for productId in productIds {
-            dispatchGroup.enter()
-            
-            fetchProduct(withId: productId) { product in
-                if let product = product {
-                    allProducts.append(product)
-                }
-                dispatchGroup.leave()
-            }
-        }
-        
-        dispatchGroup.notify(queue: .main) {
-            print("Bulunan ürün sayısı: \(allProducts.count)")
-            completion(allProducts)
-        }
-    }
 
-//    
-//    var restaurant: Restaurant?
-//    private let db = Firestore.firestore()
-//    
-//    private init() {}
-//    
-//    func fetchRestaurantData(completion: @escaping (Result<Restaurant, Error>) -> Void) {
-//        guard let currentUser = Auth.auth().currentUser else {
-//            completion(.failure(NSError(domain: "RestaurantManager", code: 401, userInfo: [NSLocalizedDescriptionKey: "Kullanıcı oturum açmamış"])))
-//            return
-//        }
-//        
-//        // Kullanıcının email'i ile restoranı bulma
-//        let userEmail = currentUser.email ?? ""
-//        
-//        db.collection("restaurants").whereField("email", isEqualTo: userEmail).getDocuments { [weak self] (snapshot, error) in
-//            if let error = error {
-//                print("Firestore error: \(error.localizedDescription)")
-//                completion(.failure(error))
-//                return
-//            }
-//            
-//            guard let documents = snapshot?.documents, !documents.isEmpty else {
-//                completion(.failure(NSError(domain: "RestaurantManager", code: 404, userInfo: [NSLocalizedDescriptionKey: "Restoran bulunamadı"])))
-//                return
-//            }
-//            
-//            // İlk eşleşen restoranı al
-//            let restaurantData = documents[0].data()
-//            
-//            // Firestore'dan gelen veriyi Restaurant nesnesine dönüştür
-//            guard let ownerName = restaurantData["ownerName"] as? String,
-//                  let ownerSurname = restaurantData["ownerSurname"] as? String,
-//                  let email = restaurantData["email"] as? String,
-//                  let phone = restaurantData["phone"] as? String,
-//                  let address = restaurantData["address"] as? String,
-//                  let companyName = restaurantData["companyName"] as? String,
-//                  let locationData = restaurantData["location"] as? [String: Any],
-//                  let latitude = locationData["latitude"] as? Double,
-//                  let longitude = locationData["longitude"] as? Double else {
-//                completion(.failure(NSError(domain: "RestaurantManager", code: 400, userInfo: [NSLocalizedDescriptionKey: "Restoran verisi eksik veya hatalı"])))
-//                return
-//            }
-//            
-//            let location = Location(latitude: latitude, longitude: longitude)
-//            
-//            var restaurant = Restaurant(
-//                ownerName: ownerName,
-//                ownerSurname: ownerSurname,
-//                email: email,
-//                phone: phone,
-//                address: address,
-//                companyName: companyName,
-//                location: location
-//            )
-//            
-//            // Firestore belge ID'sini kaydet
-//            restaurant.restaurantId = documents[0].documentID
-//            
-//            // Cache için kaydet
-//            self?.restaurant = restaurant
-//            
-//            completion(.success(restaurant))
-//        }
-//    }
-//    
-//    func updateRestaurantInfo(restaurant: Restaurant, completion: @escaping (Result<Void, Error>) -> Void) {
-//        // Boş ID kontrolü
-//        if restaurant.restaurantId.isEmpty {
-//            completion(.failure(NSError(domain: "RestaurantManager", code: 400, userInfo: [NSLocalizedDescriptionKey: "Restoran ID bulunamadı"])))
-//            return
-//        }
-//        
-//        let restaurantId = restaurant.restaurantId
-//        
-//        // Restaurant nesnesini Firestore belgesine dönüştür
-//        let restaurantData: [String: Any] = [
-//            "ownerName": restaurant.ownerName,
-//            "ownerSurname": restaurant.ownerSurname,
-//            "email": restaurant.email,
-//            "phone": restaurant.phone,
-//            "address": restaurant.address,
-//            "companyName": restaurant.companyName,
-//            "location": [
-//                "latitude": restaurant.location.latitude,
-//                "longitude": restaurant.location.longitude
-//            ]
-//        ]
-//        
-//        // Firestore belgesini güncelle
-//        db.collection("restaurants").document(restaurantId).updateData(restaurantData) { [weak self] error in
-//            if let error = error {
-//                print("Firestore update error: \(error.localizedDescription)")
-//                completion(.failure(error))
-//                return
-//            }
-//            
-//            // Başarılı güncelleme, cache'i güncelle
-//            self?.restaurant = restaurant
-//            completion(.success(()))
-//        }
-//    }
-//  
 }
 enum NetworkError: Error {
     case updateFailed

@@ -57,7 +57,6 @@ class ProductTableViewCell: UITableViewCell {
     
     // MARK: - Sipariş ve ürün gösterme
     func configureWithOrder(order: Orders, product: Product) {
-        // Ürün ve sipariş bilgileri gösteriliyor
         if !product.imageUrl.isEmpty {
             foodImage.kf.setImage(with: URL(string: product.imageUrl), placeholder: UIImage(named: "Logo"))
         } else {
@@ -68,16 +67,13 @@ class ProductTableViewCell: UITableViewCell {
         orderNoLabel.text = "#\(order.orderNo)"
         newAmountLabel.text = "\(product.newPrice) TL"
         
-        // Sipariş saati göster
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         dateLabel.text = dateFormatter.string(from: order.orderDate)
         dateLabel.isHidden = false
         
-        // Ürün miktarını göster
         stepperNumber.text = "\(order.quantity) Adet"
         
-        // Durum gösterge resmini ve yazısını ayarla
         configureStateIndicators(with: order.status)
     }
     

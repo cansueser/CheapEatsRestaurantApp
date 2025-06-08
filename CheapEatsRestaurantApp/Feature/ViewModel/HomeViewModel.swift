@@ -31,6 +31,7 @@ final class HomeViewModel {
     }
     
     func fetchRestaurantProducts() {
+        products.removeAll()
         NetworkManager.shared.fetchRestaurantProducts { result in
             switch result {
             case .success(let product):

@@ -24,7 +24,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let SB = UIStoryboard(name: "Main", bundle: nil)
         let productUpdateVC = SB.instantiateViewController(withIdentifier: "ProductAddedViewController") as! ProductManageViewController
         productUpdateVC.productManageViewModel.product = homeViewModel.products[indexPath.row]
-        productUpdateVC.dataTransferDelegate = self
         productUpdateVC.productManageViewModel.goSource = .updateProduct
         navigationController?.pushViewController(productUpdateVC, animated: true)
     }
