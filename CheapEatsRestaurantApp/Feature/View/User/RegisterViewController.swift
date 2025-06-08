@@ -125,22 +125,10 @@ final class RegisterViewController: UIViewController {
 }
 extension RegisterViewController: RegisterViewModelOutputProtocol {
     func update() {
-        print("Update")
-        /*
-        if tabBarVC == nil {
-            navigationController?.navigationBar.isHidden = true
-            tabBarVC = SB.instantiateViewController(identifier: "TabBarController") as? UITabBarController
-        }
-        if let tabBarVC = tabBarVC {
-            navigationController?.navigationBar.isHidden = true
-            navigationController?.pushViewController(tabBarVC, animated: true)
-        }
-         */
+        navigationController?.popViewController(animated: true)
     }
     
     func error() {
-        print("Error")
+        print("Kayıt başarısız")
     }
-    
-    
 }

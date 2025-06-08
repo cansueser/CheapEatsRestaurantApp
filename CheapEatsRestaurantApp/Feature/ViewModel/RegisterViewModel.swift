@@ -24,6 +24,7 @@ protocol RegisterViewModelOutputProtocol: AnyObject {
 final class RegisterViewModel {
     weak var delegate: RegisterViewModelOutputProtocol?
     var mapLocation: MapLocation?
+    
     func registerRestaurant(restaurant: Restaurant, password: String) {
         NetworkManager.shared.registerRestaurant(restaurant: restaurant, password: password) { result in
             switch result{
@@ -36,19 +37,19 @@ final class RegisterViewModel {
         }
     }
     func validateEmail(_ email: String) throws {
-        if email.isEmpty {
-            throw EmailValidationError.empty
-        }
+        guard !email.isEmpty else { throw EmailValidationError.empty }
         
-        let emailRegex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,64}$"
-        let emailPredicate = NSPredicate(format: "SELF MATCHES[c] %@", emailRegex)
-        
-        if !emailPredicate.evaluate(with: email) {
+        // E-posta formatı kontrolü
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        guard emailPredicate.evaluate(with: email) else {
             throw EmailValidationError.invalidFormat
         }
         
-        let allowedDomains = ["example.com", "test.com"]
-        if let emailDomain = email.split(separator: "@").last, !allowedDomains.contains(String(emailDomain)) {
+        // Domain kontrolü
+        let allowedDomains = ["gmail.com", "hotmail.com", "outlook.com", "yahoo.com", "icloud.com"]
+        let domain = email.components(separatedBy: "@").last ?? ""
+        guard allowedDomains.contains(domain) else {
             throw EmailValidationError.domainNotAllowed
         }
     }

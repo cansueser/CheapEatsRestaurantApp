@@ -176,10 +176,8 @@ final class ProductManageViewController: UIViewController {
             let product =  Product(name: name, description: description, oldPrice: oldPrice, newPrice: newPrice,  endDate: endDate, deliveryType: deliveryType, restaurantId: "WXJ5I0rRDYfWaJSfwF3d", category: selectedMealTypes, imageUrl: productManageViewModel.cloudinaryImageUrlString, quantity: stepperNumber)
             
             productManageViewModel.selectedMealTypes = product.endDate.isEmpty ? [] : productManageViewModel.selectedMealTypes
-            productManageViewModel.setMockProduct(product: product)
-            //  selectedMealTypeLabel.text = selectedOptions.isEmpty ? "Yemek Türü Seçiniz" : selectedOptions.map { $0.rawValue }.joined(separator: ", ")
-            //Bunu daha sonra aç Firebaseye gönderme metodum.
-            // productManageViewModel.setProduct(product: product)
+
+             productManageViewModel.setProduct(product: product)
             
         }
         

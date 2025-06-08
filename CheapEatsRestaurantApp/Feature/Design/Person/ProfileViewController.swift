@@ -58,6 +58,25 @@ class ProfileViewController: UIViewController, ProfileViewModelOutputProtocol {
         )
     }
     
+    @IBAction func logoutButtonTapped(_ sender: Any) {
+        NetworkManager.shared.logout { [weak self] result in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
+                    // Giriş ekranına yönlendir
+                    if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") {
+                        loginVC.modalPresentationStyle = .fullScreen
+                        self.present(loginVC, animated: true)
+                    }
+                case .failure(let error):
+                    self.showAlert(title: "Hata", message: "Çıkış yapılamadı: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+    
     private func validateInputs() -> Bool {
         // Boş alan kontrolü
         guard let restaurantName = restaurantNameTextField.text, !restaurantName.isEmpty else {

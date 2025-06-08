@@ -22,13 +22,14 @@ final class LoginViewController: UIViewController {
     @IBOutlet weak var securityIcon: UIButton!
     @IBOutlet weak var resetPassword: UIButton!
     @IBOutlet weak var ImageBackView: CustomLineView!
-    
     @IBOutlet weak var girisYapLabel: UILabel!
+    
     //MARK: - Variables
     var loginViewModel: LoginViewModelProtocol = LoginViewModel()
     let SB = UIStoryboard(name: "Main", bundle: nil)
     private var registerVC: RegisterViewController?
     private var tabBarVC: UITabBarController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initScreen()
@@ -56,15 +57,12 @@ final class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButtonClicked(_ sender: Any) {
-        if let email = emailTextField.text,
-           let password = passwordTextField.text {
-            let user = UserLogin(email: email, password: password)
-            loginViewModel.loginUser(user: user, password: password)
-            print("doğru")
+        guard let email = emailTextField.text,
+           let password = passwordTextField.text else {
+               return
         }
-        else{
-            print("bilgiler hatalı")
-        }
+        loginViewModel.loginUser(email: email, password: password)
+        print("doğru")
     }
     
     @IBAction func registerButtonClicked(_ sender: UIButton) {
@@ -100,6 +98,7 @@ final class LoginViewController: UIViewController {
 extension LoginViewController: LoginViewModelOutputProtocol {
     func update() {
         print("Update")
+        print(RestaurantManager.shared.getRestaurantId())
         if tabBarVC == nil {
             navigationController?.navigationBar.isHidden = true
             tabBarVC = SB.instantiateViewController(identifier: "TabBarController") as? UITabBarController

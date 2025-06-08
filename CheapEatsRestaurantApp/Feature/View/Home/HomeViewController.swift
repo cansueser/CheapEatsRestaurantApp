@@ -4,20 +4,33 @@ final class HomeViewController: UIViewController {
     //MARK: -Variables
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var foodAddButton: UIButton!
+    @IBOutlet weak var welcomeLabel: UILabel!
+    @IBOutlet weak var productStatuView: UIView!
     
-    var homeViewModel: HomeViewModel = HomeViewModel()
-    var selectedIndexPath: IndexPath?
-    var productManageViewModel = ProductManageViewModel()
+    var homeViewModel: HomeViewModelProtocol = HomeViewModel()
 
-    //TODO: -Cell güncelle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        homeViewModel.delegate = self
-
+        initLoad()
     }
     
-     
+    private func initLoad() {
+        homeViewModel.delegate = self
+        
+        welcomeLabel.text = "Hello, \(RestaurantManager.shared.getRestaurantName())"
+        
+        tableView.addRoundedBorder(borderWidth: 1, borderColor: .button)
+        tableView.backgroundColor = .BG
+        
+        if homeViewModel.getProductStatu() {
+            productStatuView.isHidden = false
+        } else {
+            productStatuView.isHidden = true
+        }
+        
+        homeViewModel.fetchRestaurantProducts()
+    }
     
     private func configureTableView() {
         tableView.delegate = self
@@ -45,6 +58,11 @@ final class HomeViewController: UIViewController {
 extension HomeViewController: HomeViewModelOutputProtocol {
     func update() {
         tableView.reloadData()
+        if homeViewModel.getProductStatu() {
+            productStatuView.isHidden = false
+        } else {
+            productStatuView.isHidden = true
+        }
         print("Update")
     }
     

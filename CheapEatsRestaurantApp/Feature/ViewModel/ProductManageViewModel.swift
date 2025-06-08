@@ -18,7 +18,6 @@ protocol ProductManageViewModelProtocol {
     func uploadImage(selectedImageView: CLDUIImageView)
     func emptyCheckSelectedItem(bottomSheetVC: BottomSheetViewController)
     func setProduct(product: Product)
-    func setMockProduct(product: Product)
     func getProduct() -> Product?
     func updateProduct(product: Product)
     var goSource : GoSource { get set }
@@ -70,25 +69,12 @@ final class ProductManageViewModel {
         delegate?.update()
     }
     
-    func setMockProduct(product: Product) {
-        switch goSource {
-        case .addProduct:
-            self.product = product
-        case .updateProduct:
-            var tempProduct = product
-            tempProduct.productId = self.product?.productId ?? product.productId
-            self.product = tempProduct
-        }
-        
-        delegate?.update()
-    }
-    
     private func initCloudinary() -> CLDCloudinary {
         let networkHelper = NetworkHelper.self
         let config = CLDConfiguration(cloudName: networkHelper.cloudName, secure: true)
         return CLDCloudinary(configuration: config)
     }
-
+    
     func uploadImage(selectedImageView: CLDUIImageView) {
         delegate?.startLoading()
         guard let imageView = selectedImageView.image, let data = imageView.jpegData(compressionQuality: 0.8) else {

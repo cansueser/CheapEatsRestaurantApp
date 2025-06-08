@@ -1,12 +1,14 @@
 //
-//  User.swift
+//  Restaurant.swift
 //  CheapEatsRestaurantApp
 //
 //  Created by CANSU on 1.03.2025.
 //
-import Firebase
 
-struct Restaurant {
+import Firebase
+import FirebaseFirestore
+
+struct Restaurant: Codable {
     var restaurantId : String
     var ownerName : String
     var ownerSurname : String
@@ -16,7 +18,31 @@ struct Restaurant {
     var companyName : String
     var location : Location
     var createdAt: Date
+  
+    var ownerFullName: String {
+        return "\(ownerName) \(ownerSurname)"
+    }
     
+    init?(data: [String: Any]) {
+        self.restaurantId = data["restaurantId"] as? String ?? ""
+        self.companyName = data["companyName"] as? String ?? ""
+        self.ownerName = data["ownerName"] as? String ?? ""
+        self.ownerSurname = data["ownerSurname"] as? String ?? ""
+        self.address = data["address"] as? String ?? ""
+        self.email = data["email"] as? String ?? ""
+        self.phone = data["phone"] as? String ?? ""
+        
+        if let geoPoint = data["location"] as? GeoPoint {
+            self.location = Location(latitude: geoPoint.latitude, longitude: geoPoint.longitude)
+        } else {
+            self.location = Location(latitude: 0.0, longitude: 0.0)
+        }
+        if let timestamp = data["createdAt"] as? Timestamp {
+            self.createdAt = timestamp.dateValue()
+        } else {
+            self.createdAt = Date()
+        }
+    }
     
     init(ownerName: String, ownerSurname: String, email: String, phone: String, address: String, companyName: String, location: Location) {
         self.restaurantId = ""
@@ -45,13 +71,15 @@ struct Restaurant {
          ]
     }
 }
-struct Location {
+
+struct Location: Codable {
     var latitude: Double
     var longitude: Double
     var toGeoPoint: GeoPoint {
         return GeoPoint(latitude: latitude, longitude: longitude)
     }
 }
+
 
 enum EmailValidationError: Error {
     case empty

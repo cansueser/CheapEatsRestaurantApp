@@ -34,35 +34,31 @@ class ProfileViewModel: ProfileViewModelProtocol {
                 return
             }
             
-            if let data = snapshot?.data() {
-                self.profileInternal = ProfileModel(
-                    restaurantName: data["restaurantName"] as? String ?? "",
-                    ownerName: data["ownerName"] as? String ?? "",
-                    ownerSurname: data["ownerSurname"] as? String ?? "",
-                    email: data["email"] as? String ?? "",
-                    phone: data["phone"] as? String ?? ""
-                )
-                self.output?.onProfileUpdated(profile: self.profileInternal)
+            guard let data = snapshot?.data() else {
+                self.output?.onError(message: "Restaurant data not available")
+                return
             }
+            
+            self.profileInternal = ProfileModel(
+                restaurantName: data["companyName"] as? String ?? "",
+                ownerName: data["ownerName"] as? String ?? "",
+                ownerSurname: data["ownerSurname"] as? String ?? "",
+                email: data["email"] as? String ?? "",
+                phone: data["phone"] as? String ?? ""
+            )
+            
+            self.output?.onProfileUpdated(profile: self.profileInternal)
         }
     }
     
-    func updateProfile(restaurantName: String, ownerName: String, ownerSurname: String,
-                       email: String, phone: String) {
-        
-        profileInternal.restaurantName = restaurantName
-        profileInternal.ownerName = ownerName
-        profileInternal.ownerSurname = ownerSurname
-        profileInternal.email = email
-        profileInternal.phone = phone
-        
+    func updateProfile(restaurantName: String, ownerName: String, ownerSurname: String, email: String, phone: String) {
         guard let userID = Auth.auth().currentUser?.uid else {
             output?.onError(message: "Kullanıcı bilgisi bulunamadı")
             return
         }
         
         let profileData: [String: Any] = [
-            "restaurantName": restaurantName,
+            "companyName": restaurantName,
             "ownerName": ownerName,
             "ownerSurname": ownerSurname,
             "email": email,
@@ -77,6 +73,14 @@ class ProfileViewModel: ProfileViewModelProtocol {
                 self.output?.onError(message: "Profil güncellenemedi: \(error.localizedDescription)")
                 return
             }
+            
+            self.profileInternal = ProfileModel(
+                restaurantName: restaurantName,
+                ownerName: ownerName,
+                ownerSurname: ownerSurname,
+                email: email,
+                phone: phone
+            )
             
             self.output?.onSaveSuccess()
         }

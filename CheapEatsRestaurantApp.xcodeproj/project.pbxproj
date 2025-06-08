@@ -16,8 +16,14 @@
 		7E2869202D72005900C5F46D /* NVActivityIndicatorViewExtended in Frameworks */ = {isa = PBXBuildFile; productRef = 7E28691F2D72005900C5F46D /* NVActivityIndicatorViewExtended */; };
 		7E4FD07C2DECBCB20062918E /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4FD07B2DECBCAD0062918E /* OrderDetailViewController.swift */; };
 		7E52053B2D6F358900650F4C /* JVFloatLabeledTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 7E52053A2D6F358900650F4C /* JVFloatLabeledTextField */; };
-		7E553E0B2DF35FEA00B6E102 /* EditUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E553E0A2DF35FD900B6E102 /* EditUser.swift */; };
-		7E553E0E2DF3609600B6E102 /* ProfilAyarlariViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E553E0D2DF3608A00B6E102 /* ProfilAyarlariViewModel.swift */; };
+		7E553E262DF45FED00B6E102 /* RestaurantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E553E252DF45FEB00B6E102 /* RestaurantManager.swift */; };
+		7E553E2C2DF4617100B6E102 /* ProfileSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E553E2B2DF4616F00B6E102 /* ProfileSettingsViewModel.swift */; };
+		7E553E2E2DF4620B00B6E102 /* ProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E553E2D2DF4620800B6E102 /* ProfileSettingsViewController.swift */; };
+		7E553E302DF4622500B6E102 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E553E2F2DF4622300B6E102 /* EditProfileViewModel.swift */; };
+		7E553E322DF4623C00B6E102 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E553E312DF4623900B6E102 /* EditProfileViewController.swift */; };
+		7E553E342DF4625A00B6E102 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E553E332DF4625700B6E102 /* ChangePasswordViewModel.swift */; };
+		7E553E362DF4634300B6E102 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E553E352DF4634100B6E102 /* ChangePasswordViewController.swift */; };
+		7E553E392DF5EE9300B6E102 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E553E382DF5EE8E00B6E102 /* UserDefaultManager.swift */; };
 		7E60E6372D8F6CDC00A297CE /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E60E6362D8F6CDC00A297CE /* PasswordResetViewController.swift */; };
 		7E60E6392D8F6D1D00A297CE /* PasswordResetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E60E6382D8F6D1D00A297CE /* PasswordResetViewModel.swift */; };
 		7E652CF42D0711C000137ECA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E652CF32D0711C000137ECA /* AppDelegate.swift */; };
@@ -33,7 +39,6 @@
 		7E847A102D19ECED00D1DE23 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E847A0F2D19ECED00D1DE23 /* Product.swift */; };
 		7E847A122D19ED7700D1DE23 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E847A112D19ED7700D1DE23 /* HomeViewModel.swift */; };
 		7E847A202D1B60CC00D1DE23 /* ProductManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E847A1F2D1B60CC00D1DE23 /* ProductManageViewController.swift */; };
-		7E8C182E2DE224F900FF3713 /* OrderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C182D2DE224EA00FF3713 /* OrderService.swift */; };
 		7E9014BC2D73A37A0005572A /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9014BB2D73A36A0005572A /* Restaurant.swift */; };
 		7E9014C12D73AAB50005572A /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9014C02D73AAA90005572A /* RegisterViewModel.swift */; };
 		7E9642022D70617700176FAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E9642012D70617700176FAA /* Assets.xcassets */; };
@@ -58,9 +63,6 @@
 		7EB852AE2D0DD3EA009FAC62 /* ProductManageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB852AD2D0DD3EA009FAC62 /* ProductManageViewModel.swift */; };
 		7EBED5E12D077BAB00E7CACB /* HomeViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBED5E02D077BAB00E7CACB /* HomeViewController+TableView.swift */; };
 		7EBED5E32D07837F00E7CACB /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBED5E22D07837F00E7CACB /* UIView+Extension.swift */; };
-		7EC0127C2DF0F1EE0047CBC8 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC0127B2DF0F1E20047CBC8 /* ProfileModel.swift */; };
-		7EC0127E2DF0F2130047CBC8 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC0127D2DF0F2030047CBC8 /* ProfileViewModel.swift */; };
-		7EC012802DF0F28C0047CBC8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC0127F2DF0F2850047CBC8 /* ProfileViewController.swift */; };
 		7EC6CCCA2D760F6000316926 /* MapDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC6CCC92D760F6000316926 /* MapDetailViewController.swift */; };
 		7EC6CCCC2D760FAF00316926 /* MapDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC6CCCB2D760FAF00316926 /* MapDetailViewModel.swift */; };
 		7EC6CCD62D775BCB00316926 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7EC6CCD52D775BCB00316926 /* FirebaseAuth */; };
@@ -96,8 +98,15 @@
 		7E2869082D71F1CC00C5F46D /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		7E28691A2D72002100C5F46D /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		7E4FD07B2DECBCAD0062918E /* OrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
-		7E553E0A2DF35FD900B6E102 /* EditUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUser.swift; sourceTree = "<group>"; };
-		7E553E0D2DF3608A00B6E102 /* ProfilAyarlariViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilAyarlariViewModel.swift; sourceTree = "<group>"; };
+		7E553E252DF45FEB00B6E102 /* RestaurantManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantManager.swift; sourceTree = "<group>"; };
+		7E553E2B2DF4616F00B6E102 /* ProfileSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewModel.swift; sourceTree = "<group>"; };
+		7E553E2D2DF4620800B6E102 /* ProfileSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewController.swift; sourceTree = "<group>"; };
+		7E553E2F2DF4622300B6E102 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
+		7E553E312DF4623900B6E102 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		7E553E332DF4625700B6E102 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
+		7E553E352DF4634100B6E102 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		7E553E382DF5EE8E00B6E102 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
+		7E553E3B2DF601B400B6E102 /* emreMain 2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "emreMain 2.storyboard"; sourceTree = "<group>"; };
 		7E60E6362D8F6CDC00A297CE /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
 		7E60E6382D8F6D1D00A297CE /* PasswordResetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewModel.swift; sourceTree = "<group>"; };
 		7E652CF02D0711C000137ECA /* CheapEatsRestaurantApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheapEatsRestaurantApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,7 +122,6 @@
 		7E847A0F2D19ECED00D1DE23 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		7E847A112D19ED7700D1DE23 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		7E847A1F2D1B60CC00D1DE23 /* ProductManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManageViewController.swift; sourceTree = "<group>"; };
-		7E8C182D2DE224EA00FF3713 /* OrderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderService.swift; sourceTree = "<group>"; };
 		7E9014BB2D73A36A0005572A /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		7E9014C02D73AAA90005572A /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		7E9642012D70617700176FAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -137,9 +145,6 @@
 		7EB852AD2D0DD3EA009FAC62 /* ProductManageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManageViewModel.swift; sourceTree = "<group>"; };
 		7EBED5E02D077BAB00E7CACB /* HomeViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+TableView.swift"; sourceTree = "<group>"; };
 		7EBED5E22D07837F00E7CACB /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
-		7EC0127B2DF0F1E20047CBC8 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
-		7EC0127D2DF0F2030047CBC8 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		7EC0127F2DF0F2850047CBC8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7EC6CCC92D760F6000316926 /* MapDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailViewController.swift; sourceTree = "<group>"; };
 		7EC6CCCB2D760FAF00316926 /* MapDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailViewModel.swift; sourceTree = "<group>"; };
 		7EC772F02D75E5FD00846090 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
@@ -188,7 +193,6 @@
 		7E445D092D38024E00BEDD0C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7E553E0F2DF3628700B6E102 /* Profil Edit Model */,
 				7EA74CAD2DD104DE005479DC /* Customer.swift */,
 				7EA74CAB2DD1040C005479DC /* ProductDetail.swift */,
 				7EA74CA92DD103D4005479DC /* OrderDetail.swift */,
@@ -217,9 +221,14 @@
 		7E445D0B2D3802FB00BEDD0C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				7E553E0C2DF3607800B6E102 /* Profil Edit VM */,
-				7EC6CCD02D76519A00316926 /* User */,
-				7EC6CCCD2D760FB900316926 /* Map */,
+				7E553E332DF4625700B6E102 /* ChangePasswordViewModel.swift */,
+				7E553E2F2DF4622300B6E102 /* EditProfileViewModel.swift */,
+				7E553E2B2DF4616F00B6E102 /* ProfileSettingsViewModel.swift */,
+				7EB2D3A02D74DC3A00CFF13E /* LoginViewModel.swift */,
+				7E9014C02D73AAA90005572A /* RegisterViewModel.swift */,
+				7E60E6382D8F6D1D00A297CE /* PasswordResetViewModel.swift */,
+				7EC772F02D75E5FD00846090 /* MapViewModel.swift */,
+				7EC6CCCB2D760FAF00316926 /* MapDetailViewModel.swift */,
 				7E847A112D19ED7700D1DE23 /* HomeViewModel.swift */,
 				7EB852AD2D0DD3EA009FAC62 /* ProductManageViewModel.swift */,
 				7ED81A022D4BD37800E4F272 /* BottomSheetViewModel.swift */,
@@ -240,27 +249,23 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		7E553E0C2DF3607800B6E102 /* Profil Edit VM */ = {
+		7E553E372DF5EC0800B6E102 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				7E553E0D2DF3608A00B6E102 /* ProfilAyarlariViewModel.swift */,
+				7E553E382DF5EE8E00B6E102 /* UserDefaultManager.swift */,
+				7E553E252DF45FEB00B6E102 /* RestaurantManager.swift */,
 			);
-			path = "Profil Edit VM";
+			path = Manager;
 			sourceTree = "<group>";
 		};
-		7E553E0F2DF3628700B6E102 /* Profil Edit Model */ = {
+		7E553E3A2DF5FA4600B6E102 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				7E553E0A2DF35FD900B6E102 /* EditUser.swift */,
+				7E553E352DF4634100B6E102 /* ChangePasswordViewController.swift */,
+				7E553E312DF4623900B6E102 /* EditProfileViewController.swift */,
+				7E553E2D2DF4620800B6E102 /* ProfileSettingsViewController.swift */,
 			);
-			path = "Profil Edit Model";
-			sourceTree = "<group>";
-		};
-		7E553E102DF362BB00B6E102 /* Profil Edit View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Profil Edit View";
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		7E652CE72D0711C000137ECA = {
@@ -285,6 +290,7 @@
 				7E652D072D0715CB00137ECA /* Core */,
 				7E652D082D0716BA00137ECA /* Feature */,
 				7E652CF92D0711C000137ECA /* Main.storyboard */,
+				7E553E3B2DF601B400B6E102 /* emreMain 2.storyboard */,
 				7E2868F92D71EE1A00C5F46D /* GoogleService-Info.plist */,
 				7E652D012D0711C100137ECA /* Info.plist */,
 			);
@@ -306,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				7EA0AF8C2D6F683F004F4499 /* Design */,
+				7E553E372DF5EC0800B6E102 /* Manager */,
 				7EA0AF802D6F4744004F4499 /* Network Layer */,
 				7E445D132D38055900BEDD0C /* Extension */,
 				7E445D092D38024E00BEDD0C /* Model */,
@@ -318,13 +325,13 @@
 		7E652D0C2D07177E00137ECA /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7E553E102DF362BB00B6E102 /* Profil Edit View */,
+				7E445D0A2D3802C700BEDD0C /* SubView */,
 				7E9014BE2D73AA650005572A /* User */,
 				7EC772F22D75E61800846090 /* Map */,
-				7E445D0A2D3802C700BEDD0C /* SubView */,
 				7EA0AF782D6F41DD004F4499 /* Home */,
 				7EA0AF792D6F4280004F4499 /* Product Manage */,
 				7EA74CA22DD0FC9B005479DC /* Order */,
+				7E553E3A2DF5FA4600B6E102 /* Profile */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -382,7 +389,6 @@
 		7EA0AF8C2D6F683F004F4499 /* Design */ = {
 			isa = PBXGroup;
 			children = (
-				7EC0127A2DF0F1D30047CBC8 /* Person */,
 				7ECF12522D79CD3E0062F6DA /* BorderAndShadow.swift */,
 				7E28691A2D72002100C5F46D /* LoadingIndicator.swift */,
 				7EA0AF8D2D6F6845004F4499 /* LineView.swift */,
@@ -393,41 +399,11 @@
 		7EA74CA22DD0FC9B005479DC /* Order */ = {
 			isa = PBXGroup;
 			children = (
-				7E4FD07B2DECBCAD0062918E /* OrderDetailViewController.swift */,
-				7E8C182D2DE224EA00FF3713 /* OrderService.swift */,
 				7EA74CA32DD0FEF2005479DC /* OrderViewController.swift */,
+				7E4FD07B2DECBCAD0062918E /* OrderDetailViewController.swift */,
 				7EA74CA72DD10057005479DC /* OrderViewController+TableView.swift */,
 			);
 			path = Order;
-			sourceTree = "<group>";
-		};
-		7EC0127A2DF0F1D30047CBC8 /* Person */ = {
-			isa = PBXGroup;
-			children = (
-				7EC0127F2DF0F2850047CBC8 /* ProfileViewController.swift */,
-				7EC0127D2DF0F2030047CBC8 /* ProfileViewModel.swift */,
-				7EC0127B2DF0F1E20047CBC8 /* ProfileModel.swift */,
-			);
-			path = Person;
-			sourceTree = "<group>";
-		};
-		7EC6CCCD2D760FB900316926 /* Map */ = {
-			isa = PBXGroup;
-			children = (
-				7EC772F02D75E5FD00846090 /* MapViewModel.swift */,
-				7EC6CCCB2D760FAF00316926 /* MapDetailViewModel.swift */,
-			);
-			path = Map;
-			sourceTree = "<group>";
-		};
-		7EC6CCD02D76519A00316926 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				7EB2D3A02D74DC3A00CFF13E /* LoginViewModel.swift */,
-				7E9014C02D73AAA90005572A /* RegisterViewModel.swift */,
-				7E60E6382D8F6D1D00A297CE /* PasswordResetViewModel.swift */,
-			);
-			path = User;
 			sourceTree = "<group>";
 		};
 		7EC772F22D75E61800846090 /* Map */ = {
@@ -566,15 +542,17 @@
 				7E28691B2D72002700C5F46D /* LoadingIndicator.swift in Sources */,
 				7EBED5E32D07837F00E7CACB /* UIView+Extension.swift in Sources */,
 				7E652D132D07218400137ECA /* ProductTableViewCell.swift in Sources */,
-				7EC0127E2DF0F2130047CBC8 /* ProfileViewModel.swift in Sources */,
 				7ECF12692D8492FC0062F6DA /* LocationSearchTable.swift in Sources */,
 				7E9014BC2D73A37A0005572A /* Restaurant.swift in Sources */,
-				7EC012802DF0F28C0047CBC8 /* ProfileViewController.swift in Sources */,
+				7E553E322DF4623C00B6E102 /* EditProfileViewController.swift in Sources */,
 				7E149DB12D7863A60095DAE3 /* City.swift in Sources */,
+				7E553E392DF5EE9300B6E102 /* UserDefaultManager.swift in Sources */,
 				7EB852AE2D0DD3EA009FAC62 /* ProductManageViewModel.swift in Sources */,
 				7ECF12572D79D4530062F6DA /* DropDownCell.swift in Sources */,
 				7EA0AF7B2D6F42EB004F4499 /* ProductManageViewController+EastTipView.swift in Sources */,
 				7E2869092D71F1CE00C5F46D /* Order.swift in Sources */,
+				7E553E2E2DF4620B00B6E102 /* ProfileSettingsViewController.swift in Sources */,
+				7E553E262DF45FED00B6E102 /* RestaurantManager.swift in Sources */,
 				7EB2D3A52D74E0D200CFF13E /* UserLogin.swift in Sources */,
 				7E1F5D5F2D7273E30000D990 /* RegisterViewController.swift in Sources */,
 				7EA74CA42DD0FEF2005479DC /* OrderViewController.swift in Sources */,
@@ -587,8 +565,6 @@
 				7EBED5E12D077BAB00E7CACB /* HomeViewController+TableView.swift in Sources */,
 				7EA0AF7D2D6F4572004F4499 /* ProductManageViewController+TextField.swift in Sources */,
 				7ECF12622D7DF27E0062F6DA /* MapDetailViewController+MapView.swift in Sources */,
-				7E553E0E2DF3609600B6E102 /* ProfilAyarlariViewModel.swift in Sources */,
-				7EC0127C2DF0F1EE0047CBC8 /* ProfileModel.swift in Sources */,
 				7E78EC392D08353C001A3782 /* UIViewController+Extension.swift in Sources */,
 				7E847A202D1B60CC00D1DE23 /* ProductManageViewController.swift in Sources */,
 				7EA0AF842D6F4782004F4499 /* NetworkHelper.swift in Sources */,
@@ -604,17 +580,19 @@
 				7EC6CCCC2D760FAF00316926 /* MapDetailViewModel.swift in Sources */,
 				7EA0AF8A2D6F573F004F4499 /* BottomSheetViewController+TableView.swift in Sources */,
 				7E9014C12D73AAB50005572A /* RegisterViewModel.swift in Sources */,
+				7E553E362DF4634300B6E102 /* ChangePasswordViewController.swift in Sources */,
 				7E652CF62D0711C000137ECA /* SceneDelegate.swift in Sources */,
 				7E60E6392D8F6D1D00A297CE /* PasswordResetViewModel.swift in Sources */,
 				7EA74CA62DD0FF19005479DC /* OrderViewModel.swift in Sources */,
+				7E553E342DF4625A00B6E102 /* ChangePasswordViewModel.swift in Sources */,
 				7ECF12532D79CD530062F6DA /* BorderAndShadow.swift in Sources */,
 				7EA74CA82DD10065005479DC /* OrderViewController+TableView.swift in Sources */,
+				7E553E302DF4622500B6E102 /* EditProfileViewModel.swift in Sources */,
 				7ECF12552D79D3D80062F6DA /* MapDetailViewController+TableView.swift in Sources */,
 				7EDF6E312D8F5AA100B20AEC /* OrderTableViewCell.swift in Sources */,
-				7E553E0B2DF35FEA00B6E102 /* EditUser.swift in Sources */,
+				7E553E2C2DF4617100B6E102 /* ProfileSettingsViewModel.swift in Sources */,
 				7EC6CCCA2D760F6000316926 /* MapDetailViewController.swift in Sources */,
 				7EA74CAA2DD103DB005479DC /* OrderDetail.swift in Sources */,
-				7E8C182E2DE224F900FF3713 /* OrderService.swift in Sources */,
 				7ECF12642D7F250C0062F6DA /* MapLocation.swift in Sources */,
 				7E847A122D19ED7700D1DE23 /* HomeViewModel.swift in Sources */,
 				7EA0AF882D6F5237004F4499 /* Alert.swift in Sources */,
