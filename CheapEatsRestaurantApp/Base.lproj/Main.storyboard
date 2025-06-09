@@ -588,6 +588,48 @@
                                 <color key="backgroundColor" name="BGColor"/>
                                 <color key="sectionIndexBackgroundColor" name="BGColor"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NvP-Pg-Cmq">
+                                <rect key="frame" x="15" y="216" width="363" height="419"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Siparişleriniz boş gözüküyor." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BtY-BX-J9q" userLabel="Yayında herhangi bir ürününüz bulunmamaktadır.">
+                                        <rect key="frame" x="8" y="230" width="347" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="lqB-OF-gIN"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tray" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="0A6-RI-OMG">
+                                        <rect key="frame" x="61.666666666666686" y="62" width="240" height="146"/>
+                                        <color key="tintColor" name="ButtonColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="9ex-gD-xza"/>
+                                            <constraint firstAttribute="width" constant="240" id="IiJ-zo-i7V"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ürün eklemek için ana sayfadaki ürün ekle butonunu kullanabilirsiniz." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2mj-bh-qnD">
+                                        <rect key="frame" x="8" y="288" width="347" height="43"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="43" id="qse-43-uXH"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                        <color key="textColor" name="gri"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="BGColor"/>
+                                <constraints>
+                                    <constraint firstItem="0A6-RI-OMG" firstAttribute="centerX" secondItem="NvP-Pg-Cmq" secondAttribute="centerX" id="5aw-Ik-Idp"/>
+                                    <constraint firstItem="2mj-bh-qnD" firstAttribute="leading" secondItem="NvP-Pg-Cmq" secondAttribute="leading" constant="8" id="7mT-Ez-AHI"/>
+                                    <constraint firstItem="2mj-bh-qnD" firstAttribute="top" secondItem="BtY-BX-J9q" secondAttribute="bottom" constant="8" id="e5m-dz-gXw"/>
+                                    <constraint firstItem="0A6-RI-OMG" firstAttribute="top" secondItem="NvP-Pg-Cmq" secondAttribute="top" constant="60" id="hJk-CN-WNd"/>
+                                    <constraint firstAttribute="trailing" secondItem="2mj-bh-qnD" secondAttribute="trailing" constant="8" id="m2X-K4-rmo"/>
+                                    <constraint firstItem="BtY-BX-J9q" firstAttribute="top" secondItem="0A6-RI-OMG" secondAttribute="bottom" constant="20" id="muS-nN-0we"/>
+                                    <constraint firstAttribute="trailing" secondItem="BtY-BX-J9q" secondAttribute="trailing" constant="8" id="oa0-DK-4cC"/>
+                                    <constraint firstItem="BtY-BX-J9q" firstAttribute="leading" secondItem="NvP-Pg-Cmq" secondAttribute="leading" constant="8" id="wmw-NZ-hly"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZlT-Mq-KNx" userLabel="Wait View">
                                 <rect key="frame" x="0.0" y="162" width="393" height="573"/>
                                 <color key="backgroundColor" name="BGColor"/>
@@ -597,18 +639,23 @@
                         <color key="backgroundColor" name="BGColor"/>
                         <constraints>
                             <constraint firstItem="ZlT-Mq-KNx" firstAttribute="bottom" secondItem="3PO-cv-6Ye" secondAttribute="bottom" id="AYZ-B1-qh7"/>
+                            <constraint firstItem="3PO-cv-6Ye" firstAttribute="bottom" secondItem="NvP-Pg-Cmq" secondAttribute="bottom" constant="100" id="NME-Cw-fYr"/>
                             <constraint firstItem="ZlT-Mq-KNx" firstAttribute="top" secondItem="3PO-cv-6Ye" secondAttribute="top" id="RQ0-hS-DvR"/>
                             <constraint firstItem="ZlT-Mq-KNx" firstAttribute="leading" secondItem="3PO-cv-6Ye" secondAttribute="leading" id="cgn-Q7-Kt2"/>
                             <constraint firstItem="ciP-Wo-QWA" firstAttribute="top" secondItem="3PO-cv-6Ye" secondAttribute="top" id="dID-JU-5Rx"/>
+                            <constraint firstItem="NvP-Pg-Cmq" firstAttribute="leading" secondItem="3PO-cv-6Ye" secondAttribute="leading" constant="15" id="dMu-MR-05o"/>
                             <constraint firstItem="3PO-cv-6Ye" firstAttribute="bottom" secondItem="ciP-Wo-QWA" secondAttribute="bottom" id="eYM-JK-nel"/>
                             <constraint firstItem="ZlT-Mq-KNx" firstAttribute="trailing" secondItem="3PO-cv-6Ye" secondAttribute="trailing" id="qTG-WF-XjM"/>
                             <constraint firstItem="ciP-Wo-QWA" firstAttribute="leading" secondItem="3PO-cv-6Ye" secondAttribute="leading" id="s0N-DS-TfW"/>
+                            <constraint firstItem="NvP-Pg-Cmq" firstAttribute="top" secondItem="3PO-cv-6Ye" secondAttribute="top" constant="54" id="saw-43-bQd"/>
+                            <constraint firstItem="3PO-cv-6Ye" firstAttribute="trailing" secondItem="NvP-Pg-Cmq" secondAttribute="trailing" constant="15" id="wzy-Ii-d5j"/>
                             <constraint firstItem="3PO-cv-6Ye" firstAttribute="trailing" secondItem="ciP-Wo-QWA" secondAttribute="trailing" id="z4Z-oM-IZf"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Siparişler" image="fork.knife.circle" catalog="system" selectedImage="fork.knife.circle.fill" id="z5q-SN-Wsw"/>
                     <navigationItem key="navigationItem" title="Order" id="YUS-uS-h8E"/>
                     <connections>
+                        <outlet property="orderStatuView" destination="NvP-Pg-Cmq" id="yVg-8t-cKO"/>
                         <outlet property="orderTableView" destination="ciP-Wo-QWA" id="yGh-13-ibO"/>
                         <outlet property="waitView" destination="ZlT-Mq-KNx" id="1YG-We-09z"/>
                         <segue destination="0fv-He-dpx" kind="show" identifier="OrderDetailViewController" id="Xfb-cX-gBW"/>

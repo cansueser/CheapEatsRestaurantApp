@@ -90,7 +90,7 @@ final class NetworkManager {
             if let error = error {
                 completion(.failure(error))
             } else {
-                if let restaurant = RestaurantManager.shared.restaurant {
+                if RestaurantManager.shared.restaurant != nil {
                     RestaurantManager.shared.updateRestaurantAddress(address: address, location: location)
                 } else {
                 }
@@ -191,14 +191,42 @@ final class NetworkManager {
         }
     }
     
+    // MARK: - Orders
+    func listenOrder(onNewOrder: @escaping (Orders) -> Void) -> ListenerRegistration? {
+        let restaurantId = RestaurantManager.shared.getRestaurantId()
+        
+        let listener = db.collection("orders")
+            .whereField("restaurantId", isEqualTo: restaurantId)
+            .addSnapshotListener { snapshot, error in
+                if let error = error {
+                    print("Siparişleri dinlerken hata oluştu: \(error.localizedDescription)")
+                    return
+                }
+                
+                guard let snapshot = snapshot else { return }
+                
+                for diff in snapshot.documentChanges {
+                    if diff.type == .added {
+                        if let newOrder = Orders(dictionary: diff.document.data(), documentId: diff.document.documentID) {
+                            onNewOrder(newOrder)
+                        }
+                    }
+                }
+            }
+        return listener
+    }
+    
     // MARK: - Products
     func fetchRestaurantProducts(comletion: @escaping(Result<[Product], Error>) -> Void) {
         let restaurantId = RestaurantManager.shared.getRestaurantId()
         
         db.collection("products")
             .whereField("restaurantId", isEqualTo: restaurantId)
+            .whereField("quantity", isGreaterThan: 0)
+            .whereField("status", isEqualTo: false)
             .getDocuments { (querySnapshot, error) in
                 if let error = error {
+                    print("Firestore Error:", error)
                     comletion(.failure(error))
                     return
                 }
@@ -234,7 +262,7 @@ final class NetworkManager {
                 completion(nil)
                 return
             }
-
+            
             var productData = data
             if productData["productId"] == nil {
                 productData["productId"] = productId
@@ -249,7 +277,7 @@ final class NetworkManager {
         }
     }
     
-
+    
 }
 enum NetworkError: Error {
     case updateFailed

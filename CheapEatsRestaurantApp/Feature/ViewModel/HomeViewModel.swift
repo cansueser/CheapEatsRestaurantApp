@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import Firebase
 
 protocol HomeViewModelProtocol {
     var delegate: HomeViewModelOutputProtocol? { get set}
@@ -7,6 +8,7 @@ protocol HomeViewModelProtocol {
     func addProduct(_ product: Product)
     func getProductStatu() -> Bool
     func fetchRestaurantProducts()
+    func startListeningOrders()
 }
 
 protocol HomeViewModelOutputProtocol: AnyObject {
@@ -19,7 +21,14 @@ protocol HomeViewModelOutputProtocol: AnyObject {
 final class HomeViewModel {
     weak var delegate: HomeViewModelOutputProtocol?
     var products: [Product] = []
+    var orderListener: ListenerRegistration?
 
+    func startListeningOrders() {
+        orderListener = NetworkManager.shared.listenOrder { newOrder in
+            print("Yeni sipariş geldi: \(newOrder)")
+        }
+    }
+    
     func addProduct(_ product: Product) {
         if products.contains(where: { $0.productId == product.productId }) {
             products.remove(at: products.firstIndex(where: { $0.productId == product.productId })!)

@@ -176,8 +176,6 @@ final class MapDetailViewModel {
                 case .success:
                     if RestaurantManager.shared.restaurant != nil {
                         RestaurantManager.shared.updateRestaurantAddress(address: fullAddress, location: newLocation)
-                    } else {
-
                     }
                     self?.delegate?.updateSuccess()
                 case .failure(let error):

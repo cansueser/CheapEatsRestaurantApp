@@ -12,6 +12,7 @@ final class OrderViewController: UIViewController {
     //MARK: - Variables
     @IBOutlet weak var orderTableView: UITableView!
     @IBOutlet weak var waitView: UIView!
+    @IBOutlet weak var orderStatuView: UIView!
     var orderViewModel: OrderViewModelProtocol = OrderViewModel()
     private var loadIndicator: NVActivityIndicatorView!
     
@@ -32,6 +33,8 @@ final class OrderViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         orderViewModel.getOrders()
+        
+        
     }
     
     private func setupLoadingIndicator() {
@@ -42,9 +45,15 @@ final class OrderViewController: UIViewController {
 extension OrderViewController: OrderViewModelOutputProtocol {
     func update() {
         orderTableView.reloadData()
+        
+        if orderViewModel.getOrderStatu() {
+            orderStatuView.isHidden = false
+        } else {
+            orderStatuView.isHidden = true
+        }
     }
     func error() {
-        // Hata göster
+        
     }
     func startLoading() {
         waitView.isHidden = false

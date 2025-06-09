@@ -22,6 +22,7 @@ final class HomeViewController: UIViewController {
     
     private func initLoad() {
         homeViewModel.delegate = self
+        homeViewModel.startListeningOrders()
         
         welcomeLabel.text = "Hello, \(RestaurantManager.shared.getRestaurantName())"
         

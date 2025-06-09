@@ -6,6 +6,7 @@ protocol OrderViewModelProtocol {
     var delegate: OrderViewModelOutputProtocol? { get set }
     func getOrders()
     func product(for order: Orders) -> Product?
+    func getOrderStatu() -> Bool
     func updateOrderStatus(orderId: String, newStatus: OrderStatus, completion: @escaping (Bool) -> Void)
 }
 
@@ -60,6 +61,10 @@ class OrderViewModel: OrderViewModelProtocol {
     }
     
    
+    func getOrderStatu() -> Bool {
+        return orders.isEmpty
+    }
+    
     
     func product(for order: Orders) -> Product? {
         return productsById[order.productId]

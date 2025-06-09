@@ -165,11 +165,9 @@ final class ProductManageViewController: UIViewController {
         guard let deliveryType = DeliveryType(index: deliveryTypeSegmentControl.selectedSegmentIndex) else {
             return
         }
-        
-        productManageViewModel.cloudinaryImageUrlString = "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=556,505"
-        
+
         if productManageViewModel.cloudinaryImageUrlString.isEmpty {
-            showOneButtonAlert(title: "Hata", message: "Eski fiyat yeni fiyattan yüksek olamaz.")
+            showOneButtonAlert(title: "Hata", message: "Resim yüklenemedi")
         }else{
             let endDate = dateFormatter().string(from: lastTimePicker.date)
             let product =  Product(name: name, description: description, oldPrice: oldPrice, newPrice: newPrice,  endDate: endDate, deliveryType: deliveryType, restaurantId: RestaurantManager.shared.getRestaurantId(), category: selectedMealTypes, imageUrl: productManageViewModel.cloudinaryImageUrlString, quantity: stepperNumber)

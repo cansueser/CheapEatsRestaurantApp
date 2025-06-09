@@ -232,11 +232,9 @@ extension MapDetailViewController :MapDetailViewModelOutputProtocol {
     }
     
     func updateSuccess() {
-        let alert = UIAlertController(title: "Başarılı", message: "Adres bilgileriniz güncellendi.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Tamam", style: .default) { _ in
+        showOneButtonAlert(title: "Başarılı", message: "Adres bilgileriniz güncellendi.", buttonTitle: "Tamam") { _ in
             self.navigationController?.popToViewController(self.profileVC!, animated: true)
-        })
-        self.present(alert, animated: true)
+        }
     }
     
     func updateFailed(error: String) {
