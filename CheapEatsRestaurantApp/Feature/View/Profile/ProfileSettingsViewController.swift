@@ -19,34 +19,73 @@ final class ProfileSettingsViewController: UIViewController {
     @IBOutlet private weak var changePasswordButton: UIButton!
     @IBOutlet private weak var logoutButton: UIButton!
     @IBOutlet weak var waitView: UIView!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var ownerView: UIView!
+    @IBOutlet weak var phoneView: UIView!
+    @IBOutlet weak var emailView: UIView!
+    @IBOutlet weak var profileView: UIView!
     
     var profileSettingsViewModel: ProfileSettingsViewModelProtocol = ProfileSettingsViewModel()
     private var loadIndicator: NVActivityIndicatorView!
+    let SB = UIStoryboard(name: "Main", bundle: nil)
+    //private var editAddressViewController: EditAddressViewController?
+    private var editProfileViewController: EditProfileViewController?
+    private var changePasswordViewController: ChangePasswordViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initLoad()
-        setupButtons()
+        initScreen()
         setupLoadingIndicator()
+        updateUserInfo()
+        NotificationCenter.default.addObserver(self, selector: #selector(restaurantProfileUpdated), name: NSNotification.Name("RestaurantProfileUpdated"), object: nil)
     }
     
-    private func initLoad() {
-        profileSettingsViewModel.delegate = self
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
-    private func setupButtons() {
-        editProfileButton.layer.cornerRadius = 8
-        changePasswordButton.layer.cornerRadius = 8
-        updateAddressButton.layer.cornerRadius = 8
-        logoutButton.layer.cornerRadius = 8
+    
+    @objc private func restaurantProfileUpdated() {
+        profileSettingsViewModel.refreshRestaurantData()
+        updateUserInfo()
+        showOneButtonAlert(title: "Uyarı", message: "İşleminiz başarılı bir şekilde gerçekleştirildi.")
+    }
+    
+    private func updateUserInfo() {
+        if let restaurant = profileSettingsViewModel.restaurant {
+            ownerNameLabel.text = "\(restaurant.ownerName) \(restaurant.ownerSurname)"
+            companyNameLabel.text = "\(restaurant.companyName)"
+            emailLabel.text = restaurant.email
+            phoneLabel.text = restaurant.phone
+        }
     }
     
     private func setupLoadingIndicator() {
         loadIndicator = createLoadingIndicator(in: waitView)
     }
+    
+    private func initScreen() {
+        profileSettingsViewModel.delegate = self
+        configureView(profileImageView, cornerRadius: 5, borderColor: .gray, borderWidth: 0.5)
+        setBorder(with: profileView.layer)
+        setBorder(with: emailView.layer)
+        setBorder(with: phoneView.layer)
+        setBorder(with: logoutButton.layer)
+        setBorder(with: updateAddressButton.layer)
+        setBorder(with: changePasswordButton.layer)
+        setBorder(with: editProfileButton.layer)
+        setShadow(with: editProfileButton.layer , shadowOffset: true)
+        setShadow(with: phoneView.layer, shadowOffset: false)
+        
+    }
 
     // MARK: - Actions
     @IBAction func editProfileTapped(_ sender: UIButton) {
-        
+        if editProfileViewController == nil {
+            editProfileViewController = SB.instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController
+        }
+        if let editProfileVC = editProfileViewController {
+            navigationController?.pushViewController(editProfileVC, animated: true)
+        }
     }
     
     @IBAction func changePasswordTapped(_ sender: UIButton) {

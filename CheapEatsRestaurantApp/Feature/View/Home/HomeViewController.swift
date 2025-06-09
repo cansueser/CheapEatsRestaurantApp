@@ -17,6 +17,7 @@ final class HomeViewController: UIViewController {
         initLoad()
         configureTableView()
         setupLoadingIndicator()
+        NotificationCenter.default.addObserver(self, selector: #selector(restaurantProfileUpdated), name: NSNotification.Name("RestaurantProfileUpdated"), object: nil)
     }
     
     private func initLoad() {
@@ -33,6 +34,14 @@ final class HomeViewController: UIViewController {
             productStatuView.isHidden = true
         }
         
+    }
+    
+    private func updateUserInfo() {
+        welcomeLabel.text = "Hello, \(RestaurantManager.shared.getRestaurantName())"
+    }
+    
+    @objc private func restaurantProfileUpdated() {
+        updateUserInfo()
     }
     
     private func configureTableView() {

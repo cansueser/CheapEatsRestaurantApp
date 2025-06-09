@@ -64,6 +64,21 @@ final class NetworkManager {
         }
     }
     
+    func updateRestaurantInfo(restaurant: Restaurant, completion: @escaping (Result<Void, Error>) -> Void) {
+        let db = Firestore.firestore()
+        let restaurantRef = db.collection("restaurants").document(restaurant.restaurantId)
+        let data = restaurant.toDictionary()
+        
+        restaurantRef.updateData(data) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                RestaurantManager.shared.restaurant = restaurant
+                completion(.success(()))
+            }
+        }
+    }
+    
     // Çıkış yapma fonksiyonu
     func logout(completion: @escaping (Result<Void, Error>) -> Void) {
         do {

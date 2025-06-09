@@ -7,10 +7,10 @@
 
 import Foundation
 
-// MARK: - Protocols
 protocol ProfileSettingsViewModelProtocol {
     var delegate: ProfileSettingsViewModelOutputProtocol? { get set }
     var restaurant: Restaurant? { get }
+    func refreshRestaurantData()
     func signOut()
 }
 
@@ -24,6 +24,14 @@ protocol ProfileSettingsViewModelOutputProtocol: AnyObject {
 final class ProfileSettingsViewModel {
     weak var delegate: ProfileSettingsViewModelOutputProtocol?
     private(set) var restaurant: Restaurant?
+    
+    init() {
+        self.restaurant = RestaurantManager.shared.restaurant
+    }
+    
+    func refreshRestaurantData() {
+        restaurant = RestaurantManager.shared.restaurant
+    }
     
     func signOut() {
         self.delegate?.startLoading()
