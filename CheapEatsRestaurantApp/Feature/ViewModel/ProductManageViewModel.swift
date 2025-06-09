@@ -61,6 +61,7 @@ final class ProductManageViewModel {
     }
     
     func updateProduct(product: Product) {
+        delegate?.startLoading()
         var tempProduct = product
         tempProduct.productId = self.product?.productId ?? ""
         NetworkManager.shared.updateProduct(product: tempProduct) { result in
@@ -71,6 +72,7 @@ final class ProductManageViewModel {
             case .failure(_):
                 self.delegate?.error()
             }
+            self.delegate?.stopLoading()
         }
     }
     

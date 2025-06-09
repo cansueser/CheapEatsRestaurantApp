@@ -6,10 +6,10 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 final class ProfileSettingsViewController: UIViewController {
-    
-    // MARK: - Outlets
+    // MARK: - Variables
     @IBOutlet private weak var companyNameLabel: UILabel!
     @IBOutlet private weak var ownerNameLabel: UILabel!
     @IBOutlet private weak var emailLabel: UILabel!
@@ -18,13 +18,16 @@ final class ProfileSettingsViewController: UIViewController {
     @IBOutlet private weak var editProfileButton: UIButton!
     @IBOutlet private weak var changePasswordButton: UIButton!
     @IBOutlet private weak var logoutButton: UIButton!
+    @IBOutlet weak var waitView: UIView!
     
     var profileSettingsViewModel: ProfileSettingsViewModelProtocol = ProfileSettingsViewModel()
-    // MARK: - Lifecycle
+    private var loadIndicator: NVActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initLoad()
         setupButtons()
+        setupLoadingIndicator()
     }
     
     private func initLoad() {
@@ -35,6 +38,10 @@ final class ProfileSettingsViewController: UIViewController {
         changePasswordButton.layer.cornerRadius = 8
         updateAddressButton.layer.cornerRadius = 8
         logoutButton.layer.cornerRadius = 8
+    }
+    
+    private func setupLoadingIndicator() {
+        loadIndicator = createLoadingIndicator(in: waitView)
     }
 
     // MARK: - Actions
@@ -69,6 +76,17 @@ extension ProfileSettingsViewController: ProfileSettingsViewModelOutputProtocol 
         print("Error")
     }
     
+    func startLoading() {
+        waitView.isHidden = false
+        waitView.alpha = 0.4
+        loadIndicator.isHidden = false
+        loadIndicator.startAnimating()
+    }
     
+    func stopLoading() {
+        waitView.isHidden = true
+        loadIndicator.isHidden = true
+        loadIndicator.stopAnimating()
+    }
 }
 

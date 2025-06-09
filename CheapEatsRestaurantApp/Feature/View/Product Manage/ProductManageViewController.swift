@@ -248,12 +248,7 @@ extension ProductManageViewController: ProductManageViewModelOutputProtocol {
     
     func update() {
         print("Update")
-        if let product = productManageViewModel.product {
-            navigationController?.popViewController(animated: true)
-        } else{
-            print("Hata oluştu")
-        }
-        
+        navigationController?.popViewController(animated: true)
     }
     
     func error() {
@@ -268,6 +263,7 @@ extension ProductManageViewController: ProductManageViewModelOutputProtocol {
     
     func startLoading() {
         waitView.isHidden = false
+        waitView.alpha = 0.4
         loadIndicator.isHidden = false
         loadIndicator.startAnimating()
         

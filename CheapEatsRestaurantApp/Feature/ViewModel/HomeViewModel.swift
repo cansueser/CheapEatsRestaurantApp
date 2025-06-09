@@ -12,6 +12,8 @@ protocol HomeViewModelProtocol {
 protocol HomeViewModelOutputProtocol: AnyObject {
     func update()
     func error()
+    func startLoading()
+    func stopLoading()
 }
 
 final class HomeViewModel {
@@ -31,6 +33,7 @@ final class HomeViewModel {
     }
     
     func fetchRestaurantProducts() {
+        delegate?.startLoading()
         products.removeAll()
         NetworkManager.shared.fetchRestaurantProducts { result in
             switch result {
@@ -41,6 +44,7 @@ final class HomeViewModel {
             case .failure(_):
                 self.delegate?.error()
             }
+            self.delegate?.stopLoading()
         }
     }
 }

@@ -17,18 +17,19 @@ protocol ProfileSettingsViewModelProtocol {
 protocol ProfileSettingsViewModelOutputProtocol: AnyObject {
     func update()
     func error()
+    func startLoading()
+    func stopLoading()
 }
 
-// MARK: - ViewModel Implementation
 final class ProfileSettingsViewModel {
     weak var delegate: ProfileSettingsViewModelOutputProtocol?
     private(set) var restaurant: Restaurant?
     
     func signOut() {
-        //self.delegate?.startLoading()
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
+        self.delegate?.startLoading()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             NetworkManager.shared.logout { [weak self] result in
-                //self?.delegate?.stopLoading()
+                self?.delegate?.stopLoading()
                 switch result {
                 case .success:
                     RestaurantManager.shared.signOut()

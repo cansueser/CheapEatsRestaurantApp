@@ -6,21 +6,20 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 final class OrderViewController: UIViewController {
     //MARK: - Variables
-    
     @IBOutlet weak var orderTableView: UITableView!
-    //EKLE
-    //    @IBOutlet weak var emptyOrdersView: UIView!
-    //    @IBOutlet weak var emptyOrdersLabel: UILabel!
+    @IBOutlet weak var waitView: UIView!
     var orderViewModel: OrderViewModelProtocol = OrderViewModel()
+    private var loadIndicator: NVActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        title = "Siparişler"
         orderViewModel.delegate = self
+        setupLoadingIndicator()
     }
     
     private func configureTableView() {
@@ -34,6 +33,10 @@ final class OrderViewController: UIViewController {
         super.viewWillAppear(animated)
         orderViewModel.getOrders()
     }
+    
+    private func setupLoadingIndicator() {
+        loadIndicator = createLoadingIndicator(in: waitView)
+    }
 }
 
 extension OrderViewController: OrderViewModelOutputProtocol {
@@ -42,5 +45,16 @@ extension OrderViewController: OrderViewModelOutputProtocol {
     }
     func error() {
         // Hata göster
+    }
+    func startLoading() {
+        waitView.isHidden = false
+        loadIndicator.isHidden = false
+        loadIndicator.startAnimating()
+    }
+    
+    func stopLoading() {
+        waitView.isHidden = true
+        loadIndicator.isHidden = true
+        loadIndicator.stopAnimating()
     }
 }

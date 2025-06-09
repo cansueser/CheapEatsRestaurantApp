@@ -17,26 +17,30 @@ protocol LoginViewModelProtocol{
 protocol LoginViewModelOutputProtocol: AnyObject {
     func update()
     func error()
-    
+    func startLoading()
+    func stopLoading()
 }
 
 final class LoginViewModel {
     weak var delegate: LoginViewModelOutputProtocol?
     
     func loginUser(email: String, password: String) {
+        delegate?.startLoading()
         NetworkManager.shared.login(email: email, password: password) { result in
             switch result{
             case .success:
                 guard let restaurantId = self.getCurrentUser()?.uid else{
                     self.delegate?.error()
-                    //self.delegate?.stopLoading()
+                    self.delegate?.stopLoading()
                     return
                 }
                 self.getRestaurantInfo(uid: restaurantId)
             case .failure(let error):
                 print(error)
                 self.delegate?.error()
+                self.delegate?.stopLoading()
             }
+            
         }
     }
     
@@ -57,6 +61,7 @@ final class LoginViewModel {
             } else {
                 self.delegate?.error()
             }
+            self.delegate?.stopLoading()
         }
     }
 }

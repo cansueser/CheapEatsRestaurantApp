@@ -9,9 +9,10 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
 import JVFloatLabeledTextField
+import NVActivityIndicatorView
 
 final class LoginViewController: UIViewController {
-    
+    //MARK: - Variables
     @IBOutlet weak var emailBackView: UIView!
     @IBOutlet weak var passwordBackView: UIView!
     @IBOutlet weak var emailTextField: JVFloatLabeledTextField!
@@ -23,9 +24,10 @@ final class LoginViewController: UIViewController {
     @IBOutlet weak var resetPassword: UIButton!
     @IBOutlet weak var ImageBackView: CustomLineView!
     @IBOutlet weak var girisYapLabel: UILabel!
+    @IBOutlet weak var waitView: UIView!
     
-    //MARK: - Variables
     var loginViewModel: LoginViewModelProtocol = LoginViewModel()
+    private var loadIndicator: NVActivityIndicatorView!
     let SB = UIStoryboard(name: "Main", bundle: nil)
     private var registerVC: RegisterViewController?
     private var tabBarVC: UITabBarController?
@@ -33,6 +35,7 @@ final class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initScreen()
+        setupLoadingIndicator()
     }
     
     
@@ -45,6 +48,10 @@ final class LoginViewController: UIViewController {
         emailBackView.addRoundedBorder(cornerRadius: 2,borderWidth: 1, borderColor: .iconBG)
         passwordBackView.addRoundedBorder(cornerRadius: 2,borderWidth: 1, borderColor: .iconBG)
         loginButton.makeRounded(radius: 5)
+    }
+    
+    private func setupLoadingIndicator() {
+        loadIndicator = createLoadingIndicator(in: waitView)
     }
     
     @IBAction func securityIconClicked(_ sender: UIButton) {
@@ -113,5 +120,16 @@ extension LoginViewController: LoginViewModelOutputProtocol {
         print("Error")
     }
     
+    func startLoading() {
+        waitView.isHidden = false
+        waitView.alpha = 0.4
+        loadIndicator.isHidden = false
+        loadIndicator.startAnimating()
+    }
     
+    func stopLoading() {
+        waitView.isHidden = true
+        loadIndicator.isHidden = true
+        loadIndicator.stopAnimating()
+    }
 }

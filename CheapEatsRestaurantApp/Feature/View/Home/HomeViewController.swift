@@ -1,4 +1,5 @@
 import UIKit
+import NVActivityIndicatorView
 
 final class HomeViewController: UIViewController {
     //MARK: -Variables
@@ -6,13 +7,16 @@ final class HomeViewController: UIViewController {
     @IBOutlet weak var foodAddButton: UIButton!
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var productStatuView: UIView!
+    @IBOutlet weak var waitView: UIView!
     
+    private var loadIndicator: NVActivityIndicatorView!
     var homeViewModel: HomeViewModelProtocol = HomeViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTableView()
         initLoad()
+        configureTableView()
+        setupLoadingIndicator()
     }
     
     private func initLoad() {
@@ -44,6 +48,10 @@ final class HomeViewController: UIViewController {
         homeViewModel.fetchRestaurantProducts()
     }
     
+    private func setupLoadingIndicator() {
+        loadIndicator = createLoadingIndicator(in: waitView)
+    }
+    
     @IBAction func foodAddButtonClicked(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let productVC = storyboard.instantiateViewController(withIdentifier: "ProductAddedViewController") as? ProductManageViewController {
@@ -67,5 +75,17 @@ extension HomeViewController: HomeViewModelOutputProtocol {
     
     func error() {
         print("Error")
+    }
+    
+    func startLoading() {
+        waitView.isHidden = false
+        loadIndicator.isHidden = false
+        loadIndicator.startAnimating()
+    }
+    
+    func stopLoading() {
+        waitView.isHidden = true
+        loadIndicator.isHidden = true
+        loadIndicator.stopAnimating()
     }
 }
