@@ -18,11 +18,17 @@ protocol MapDetailViewModelProtocol {
     func getDistrict(cityName: String)
     func clearDistrictData()
     func checkLocation(cityButton: UIButton, districtButton: UIButton)
+    func loadLocationFromRestaurant()
+    func updateRestaurantAddress(mapLocation: MapLocation)
 }
 
 protocol MapDetailViewModelOutputProtocol: AnyObject {
     func update()
     func error()
+    func updateSuccess()
+    func updateFailed(error: String)
+    func showLoading()
+    func hideLoading()
 }
 
 final class MapDetailViewModel {
@@ -90,6 +96,95 @@ final class MapDetailViewModel {
     }
     func clearDistrictData() {
         districtData = []
+    }
+    
+    func loadLocationFromRestaurant() {
+        guard let restaurant = RestaurantManager.shared.restaurant else { return }
+        var mapLocation = MapLocation(
+            latitude: restaurant.location.latitude,
+            longitude: restaurant.location.longitude
+        )
+        
+        var address = restaurant.address
+        
+        if let directionsStart = address.range(of: "(") {
+            let directionsEnd = address.range(of: ")")?.upperBound ?? address.endIndex
+            let directionsRange = directionsStart.lowerBound..<directionsEnd
+            let directionsText = String(address[directionsRange])
+            mapLocation.directions = directionsText.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
+            address = address.replacingCharacters(in: directionsRange, with: "").trimmingCharacters(in: .whitespaces)
+        }
+
+        if let slashIndex = address.lastIndex(of: "/") {
+            let cityPart = String(address.suffix(from: address.index(after: slashIndex))).trimmingCharacters(in: .whitespaces)
+            mapLocation.city = cityPart
+            
+        
+            let beforeSlash = String(address.prefix(upTo: slashIndex))
+            
+            if let lastCommaIndex = beforeSlash.lastIndex(of: ",") {
+                let districtPart = String(beforeSlash.suffix(from: beforeSlash.index(after: lastCommaIndex))).trimmingCharacters(in: .whitespaces)
+                mapLocation.district = districtPart
+                
+                let remainingAddress = String(beforeSlash.prefix(upTo: lastCommaIndex))
+                let parts = remainingAddress.components(separatedBy: ", ")
+                
+                if parts.count >= 1 {
+                    mapLocation.buildingNumber = parts[0].trimmingCharacters(in: .whitespaces)
+                }
+                if parts.count >= 2 {
+                    mapLocation.neighbourhood = parts[1].trimmingCharacters(in: .whitespaces)
+                }
+                if parts.count >= 3 {
+                    mapLocation.street = parts[2].trimmingCharacters(in: .whitespaces)
+                }
+            } else {
+                mapLocation.district = beforeSlash.trimmingCharacters(in: .whitespaces)
+            }
+        } else {
+            let parts = address.components(separatedBy: ", ")
+            
+            if parts.count >= 1 {
+                mapLocation.buildingNumber = parts[0].trimmingCharacters(in: .whitespaces)
+            }
+            if parts.count >= 2 {
+                mapLocation.neighbourhood = parts[1].trimmingCharacters(in: .whitespaces)
+            }
+            if parts.count >= 3 {
+                mapLocation.street = parts[2].trimmingCharacters(in: .whitespaces)
+            }
+        }
+        
+        self.location = mapLocation
+    }
+    
+    func updateRestaurantAddress(mapLocation: MapLocation) {
+        guard let restaurant = RestaurantManager.shared.restaurant else { return }
+        
+        delegate?.showLoading()
+        
+        self.location = mapLocation
+        
+        let fullAddress = mapLocation.getAddress()
+        let newLocation = Location(latitude: mapLocation.latitude, longitude: mapLocation.longitude)
+        
+        NetworkManager.shared.updateAddress(restaurantId: restaurant.restaurantId, address: fullAddress, location: newLocation) { [weak self] result in
+            DispatchQueue.main.async {
+                self?.delegate?.hideLoading()
+                
+                switch result {
+                case .success:
+                    if RestaurantManager.shared.restaurant != nil {
+                        RestaurantManager.shared.updateRestaurantAddress(address: fullAddress, location: newLocation)
+                    } else {
+
+                    }
+                    self?.delegate?.updateSuccess()
+                case .failure(let error):
+                    self?.delegate?.updateFailed(error: error.localizedDescription)
+                }
+            }
+        }
     }
     
     private func loadJson(filename fileName: String) -> [City]? {

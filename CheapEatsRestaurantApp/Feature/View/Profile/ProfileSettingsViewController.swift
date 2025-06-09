@@ -99,16 +99,12 @@ final class ProfileSettingsViewController: UIViewController {
     }
 
     @IBAction func updateAddressButton(_ sender: UIButton) {
-//        if editAddressViewController == nil {
-//            editAddressViewController = SB.instantiateViewController(withIdentifier: "EditAddressViewController") as? EditAddressViewController
-//        }
-//        if let editAddressVC = editAddressViewController {
-//            navigationController?.pushViewController(editAddressVC, animated: true)
-//        }
         if mapViewController == nil {
             mapViewController = SB.instantiateViewController(withIdentifier: "MapViewController") as? MapViewController
         }
         if let mapVC = mapViewController {
+            mapVC.isFromProfile = true
+            mapVC.profileVC = self
             navigationController?.pushViewController(mapVC, animated: true)
         }
         

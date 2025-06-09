@@ -60,6 +60,7 @@ extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate  {
         getAddressFromCoordinates(latitude: coordinate.latitude, longitude: coordinate.longitude)
     }
     
+    
     func getAddressFromCoordinates(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         let geocoder = CLGeocoder()
         let location = CLLocation(latitude: latitude, longitude: longitude)
@@ -91,4 +92,5 @@ extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate  {
             mapViewModel.location = MapLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
             getAddressFromCoordinates(latitude: coordinate.latitude, longitude: coordinate.longitude)
         }
-    }}
+    }
+}

@@ -30,6 +30,8 @@ final class MapDetailViewController: UIViewController {
     let tableview = UITableView()
     var selectedButton = UIButton()
     var registerVC: RegisterViewController?
+    var profileVC: ProfileSettingsViewController?
+    var isFromProfile: Bool = false
     
     
     override func viewDidLoad() {
@@ -42,8 +44,21 @@ final class MapDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        tabBarController?.tabBar.isHidden = true
+        
         mapDetailViewModel.centerMapToLocation(mapView: detailMapView)
         mapDetailViewModel.checkLocation(cityButton: provinceButton, districtButton: districtButton)
+        if isFromProfile {
+            loadRestaurantDetailsForProfile()
+            saveButton.setTitle("Kaydet", for: .normal)
+        } else {
+            saveButton.setTitle("Kaydet", for: .normal)
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = false
     }
   
     private func initView() {
@@ -154,11 +169,45 @@ final class MapDetailViewController: UIViewController {
         guard let provinceName = provinceButton.titleLabel?.text, let districtName = districtButton.titleLabel?.text ,let neighbourhood = neighbourhoodTextField.text, let street = streetTextField.text ,let buildingNumber = buildingNumberTextField.text, let directions = directionsTextField.text else { return }
         if let location = mapDetailViewModel.location {
             let mapLocation = MapLocation(latitude: location.latitude, longitude: location.longitude, city: provinceName, district: districtName, neighbourhood: neighbourhood, street: street, buildingNumber: buildingNumber, directions: directions)
-            NotificationCenter.default.post(name: NSNotification.Name("MapUpdated"), object: mapLocation)
-            navigationController?.popToViewController(registerVC!, animated: true)
+            
+            if isFromProfile {
+                mapDetailViewModel.updateRestaurantAddress(mapLocation: mapLocation)
+            } else {
+                NotificationCenter.default.post(name: NSNotification.Name("MapUpdated"), object: mapLocation)
+                navigationController?.popToViewController(registerVC!, animated: true)
+            }
         }
         
         
+    }
+    
+    func loadCurrentRestaurantDetails() {
+        guard let mapLocation = mapDetailViewModel.location else { return }
+
+        neighbourhoodTextField.text = mapLocation.neighbourhood
+        streetTextField.text = mapLocation.street
+        buildingNumberTextField.text = mapLocation.buildingNumber
+        directionsTextField.text = mapLocation.directions
+    }
+    
+    func loadRestaurantDetailsForProfile() {
+        guard RestaurantManager.shared.restaurant != nil else { return }
+
+        let currentLocation = mapDetailViewModel.location
+
+        mapDetailViewModel.loadLocationFromRestaurant()
+
+        if let currentLocation = currentLocation {
+            mapDetailViewModel.location?.latitude = currentLocation.latitude
+            mapDetailViewModel.location?.longitude = currentLocation.longitude
+        }
+
+        if let mapLocation = mapDetailViewModel.location {
+            neighbourhoodTextField.text = mapLocation.neighbourhood
+            streetTextField.text = mapLocation.street
+            buildingNumberTextField.text = mapLocation.buildingNumber
+            directionsTextField.text = mapLocation.directions
+        }
     }
     
 }
@@ -171,4 +220,28 @@ extension MapDetailViewController :MapDetailViewModelOutputProtocol {
         print("error")
     }
     
+    func showLoading() {
+        let loadingAlert = UIAlertController(title: "Güncelleniyor", message: "Adres bilgileriniz güncelleniyor...", preferredStyle: .alert)
+        self.present(loadingAlert, animated: true)
+    }
+    
+    func hideLoading() {
+        if let presentedViewController = self.presentedViewController as? UIAlertController {
+            presentedViewController.dismiss(animated: true)
+        }
+    }
+    
+    func updateSuccess() {
+        let alert = UIAlertController(title: "Başarılı", message: "Adres bilgileriniz güncellendi.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Tamam", style: .default) { _ in
+            self.navigationController?.popToViewController(self.profileVC!, animated: true)
+        })
+        self.present(alert, animated: true)
+    }
+    
+    func updateFailed(error: String) {
+        let alert = UIAlertController(title: "Hata", message: "Adres güncellenirken bir hata oluştu: \(error)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Tamam", style: .default))
+        self.present(alert, animated: true)
+    }
 }

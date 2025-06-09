@@ -79,6 +79,26 @@ final class NetworkManager {
         }
     }
     
+    func updateAddress(restaurantId: String, address: String, location: Location, completion: @escaping (Result<Void, Error>) -> Void) {
+        let restaurantRef = db.collection("restaurants").document(restaurantId)
+        let updateData: [String: Any] = [
+            "address": address,
+            "location": location.toGeoPoint
+        ]
+        
+        restaurantRef.updateData(updateData) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                if let restaurant = RestaurantManager.shared.restaurant {
+                    RestaurantManager.shared.updateRestaurantAddress(address: address, location: location)
+                } else {
+                }
+                completion(.success(()))
+            }
+        }
+    }
+    
     func updatePassword(currentPassword: String, newPassword: String, completion: @escaping (Result<Void, Error>) -> Void) {
         guard let currentUser = Auth.auth().currentUser,
               let email = currentUser.email else {
