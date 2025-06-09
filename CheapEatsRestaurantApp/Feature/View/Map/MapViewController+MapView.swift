@@ -52,9 +52,9 @@ extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate  {
 
         mapViewModel.location = MapLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
         
-        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-        let region = MKCoordinateRegion(center: coordinate, span: span)
-        mapView.setRegion(region, animated: true)
+//        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+//        let region = MKCoordinateRegion(center: coordinate, span: span)
+//        mapView.setRegion(region, animated: true)
         
         saveButton.isEnabled = true
         getAddressFromCoordinates(latitude: coordinate.latitude, longitude: coordinate.longitude)

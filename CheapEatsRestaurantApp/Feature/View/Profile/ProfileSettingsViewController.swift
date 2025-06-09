@@ -28,7 +28,8 @@ final class ProfileSettingsViewController: UIViewController {
     var profileSettingsViewModel: ProfileSettingsViewModelProtocol = ProfileSettingsViewModel()
     private var loadIndicator: NVActivityIndicatorView!
     let SB = UIStoryboard(name: "Main", bundle: nil)
-    //private var editAddressViewController: EditAddressViewController?
+    private var editAddressViewController: EditAddressViewController?
+    private var mapViewController: MapViewController?
     private var editProfileViewController: EditProfileViewController?
     private var changePasswordViewController: ChangePasswordViewController?
     
@@ -95,6 +96,23 @@ final class ProfileSettingsViewController: UIViewController {
         if let changePasswordVC = changePasswordViewController {
             navigationController?.pushViewController(changePasswordVC, animated: true)
         }
+    }
+
+    @IBAction func updateAddressButton(_ sender: UIButton) {
+//        if editAddressViewController == nil {
+//            editAddressViewController = SB.instantiateViewController(withIdentifier: "EditAddressViewController") as? EditAddressViewController
+//        }
+//        if let editAddressVC = editAddressViewController {
+//            navigationController?.pushViewController(editAddressVC, animated: true)
+//        }
+        if mapViewController == nil {
+            mapViewController = SB.instantiateViewController(withIdentifier: "MapViewController") as? MapViewController
+        }
+        if let mapVC = mapViewController {
+            navigationController?.pushViewController(mapVC, animated: true)
+        }
+        
+        
     }
     
     @IBAction func logoutTapped(_ sender: UIButton) {
