@@ -79,6 +79,27 @@ final class NetworkManager {
         }
     }
     
+    func updatePassword(currentPassword: String, newPassword: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        guard let currentUser = Auth.auth().currentUser,
+              let email = currentUser.email else {
+            return
+        }
+        let credential = EmailAuthProvider.credential(withEmail: email, password: currentPassword)
+        currentUser.reauthenticate(with: credential) { _, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            currentUser.updatePassword(to: newPassword) { error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                completion(.success(()))
+            }
+        }
+    }
+    
     // Çıkış yapma fonksiyonu
     func logout(completion: @escaping (Result<Void, Error>) -> Void) {
         do {

@@ -89,7 +89,12 @@ final class ProfileSettingsViewController: UIViewController {
     }
     
     @IBAction func changePasswordTapped(_ sender: UIButton) {
-        
+        if changePasswordViewController == nil {
+            changePasswordViewController = SB.instantiateViewController(withIdentifier: "ChangePasswordViewController") as? ChangePasswordViewController
+        }
+        if let changePasswordVC = changePasswordViewController {
+            navigationController?.pushViewController(changePasswordVC, animated: true)
+        }
     }
     
     @IBAction func logoutTapped(_ sender: UIButton) {

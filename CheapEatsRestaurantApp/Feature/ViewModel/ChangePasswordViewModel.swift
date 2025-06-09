@@ -7,20 +7,33 @@
 
 import Foundation
 
-// MARK: - Protocols
-protocol ChangePasswordDelegate: AnyObject {
-    func didChangePassword()
+protocol ChangePasswordViewModelProtocol {
+    var delegate: ChangePasswordViewModelOutputProtocol? { get set }
+    func changePassword(currentPassword: String, newPassword: String)
 }
 
 protocol ChangePasswordViewModelOutputProtocol: AnyObject {
-    func showLoading()
-    func hideLoading()
-    func passwordChanged()
-    func showError(message: String)
+    func update()
+    func error()
+    func startLoading()
+    func stopLoading()
 }
 
 final class ChangePasswordViewModel {
     weak var delegate: ChangePasswordViewModelOutputProtocol?
-    weak var changePasswordDelegate: ChangePasswordDelegate?
-
+    func changePassword(currentPassword: String, newPassword: String) {
+        delegate?.startLoading()
+        NetworkManager.shared.updatePassword(currentPassword: currentPassword, newPassword: newPassword) { [weak self] result in
+            switch result {
+            case .success:
+                self?.delegate?.update()
+            case .failure(let error):
+                print(error)
+                self?.delegate?.error()
+            }
+            self?.delegate?.stopLoading()
+        }
+    }
 }
+
+extension ChangePasswordViewModel: ChangePasswordViewModelProtocol {}
