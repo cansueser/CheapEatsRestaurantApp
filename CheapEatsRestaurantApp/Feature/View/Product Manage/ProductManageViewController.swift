@@ -73,10 +73,20 @@ final class ProductManageViewController: UIViewController {
             }
         }
     }
+    @objc func deleteItemClicked() {
+        showTwoButtonAlert(title: "Uyarı!", message: "Ürünü silmek istediğinizden emin misiniz?", firstButtonTitle: "Evet", firstButtonHandler: { _ in
+            self.productManageViewModel.deleteItem()
+        }, secondButtonTitle: "İptal")
+    }
+    
     private func setupUI() {
         oldPriceTextField.delegate = self
         newPriceTextField.delegate = self
         productManageViewModel.delegate = self
+        
+        let deleteItem = UIBarButtonItem(image: UIImage(systemName: "trash.fill"), style: .plain, target: self, action: #selector(deleteItemClicked))
+        deleteItem.tintColor = .cut
+        navigationItem.rightBarButtonItem = deleteItem
         
         productDescriptionTextView.addRoundedBorder(cornerRadius: 5, borderWidth: 1, borderColor: .title,backgroundColor: .textWhite)
         selectedImageView.layer.masksToBounds = true
@@ -183,9 +193,6 @@ final class ProductManageViewController: UIViewController {
              
             
         }
-        
-        //        showTwoButtonAlert(title: "Uyarı", message: "Emin misin", firstButtonTitle: "Sil", firstButtonHandler: { _ in
-        //        }, secondButtonTitle: "İptal Et")
     }
     
     private func dateFormatter() -> DateFormatter {
@@ -243,12 +250,18 @@ extension ProductManageViewController: BottomSheetViewModelDelegate {
 }
 
 extension ProductManageViewController: ProductManageViewModelOutputProtocol {
-    
     func update() {
         print("Update")
         navigationController?.popViewController(animated: true)
     }
     
+    func updateDelete() {
+        showOneButtonAlert(title: "Başarılı", message: "Ürününüz başarılı bir şekilde silindi.") { _ in
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+    }
+
     func error() {
         print("Error")
     }

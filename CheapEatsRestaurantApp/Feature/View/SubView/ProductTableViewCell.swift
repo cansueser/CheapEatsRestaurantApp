@@ -127,27 +127,24 @@ class ProductTableViewCell: UITableViewCell {
         configureStateIndicators(with: order.status)
     }
     
-    // MARK: - Durum göstergeleri yapılandırma
     private func configureStateIndicators(with status: OrderStatus) {
-        // Durum metni
         stateLabel.text = status.description
-        
-        // Durum renkleri
         var stateColor: UIColor
         
         switch status {
+        case .pending:
+            stateColor = .systemGray
         case .preparing:
             stateColor = UIColor(named: "AccentColor") ?? .systemYellow
+        case .ready:
+            stateColor = .title
         case .delivered:
             stateColor = UIColor(named: "ButtonColor") ?? .systemGreen
         case .canceled:
             stateColor = UIColor(named: "Cutcolor") ?? .systemRed
         }
         
-        // Metin rengini ayarla
         stateLabel.textColor = stateColor
-        
-        // Durum görselini göster ve rengini ayarla
         stateImage.isHidden = false
         stateImage.tintColor = stateColor
         

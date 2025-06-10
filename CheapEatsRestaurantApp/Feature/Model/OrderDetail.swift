@@ -7,7 +7,7 @@
 import Foundation
 
 struct OrderDetail {
-    let userOrder: Orders
-    let user: Customer
-    let product: Product
+    var userOrder: Orders
+    var user: Customer
+    var product: Product
 }

@@ -8,7 +8,6 @@ final class HomeViewController: UIViewController {
     @IBOutlet weak var foodAddButton: UIButton!
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var productStatuView: UIView!
-    
     @IBOutlet weak var orderStatuView: UIView!
     @IBOutlet weak var waitView: UIView!
     
@@ -42,7 +41,6 @@ final class HomeViewController: UIViewController {
         } else {
             productStatuView.isHidden = true
         }
-        homeViewModel.fetchRestaurantOrders()
     }
     
     private func updateUserInfo() {
@@ -69,6 +67,7 @@ final class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         
         homeViewModel.fetchRestaurantProducts()
+        homeViewModel.fetchRestaurantOrders()
     }
     
     private func setupLoadingIndicator() {

@@ -14,7 +14,7 @@ final class OrderDetailViewController: UIViewController {
     @IBOutlet weak var orderDetailView: UIView!
     @IBOutlet weak var orderDetailExtView: UIView!
     @IBOutlet weak var paymentDetailView: CustomLineView!
-    @IBOutlet weak var adressDetailView: UIView!
+    @IBOutlet weak var customerView: UIView!
     @IBOutlet weak var detailImageView: UIImageView!
     @IBOutlet weak var companyLabel: UILabel!
     @IBOutlet weak var foodLabel: UILabel!
@@ -32,6 +32,12 @@ final class OrderDetailViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var deliveryLabel: UILabel!
     
+    @IBOutlet weak var customerNameLabel: UILabel!
+    @IBOutlet weak var customerMailLabel: UILabel!
+    @IBOutlet weak var customerSurnameLabel: UILabel!
+    @IBOutlet weak var customerTelLabel: UILabel!
+    
+    @IBOutlet weak var updateStatusButton: UIButton!
     var orderDetailViewModel: OrderDetailViewModelProtocol = OrderDetailViewModel()
     
     override func viewDidLoad() {
@@ -52,19 +58,19 @@ final class OrderDetailViewController: UIViewController {
         configureView(detailImageView, cornerRadius: 5, borderColor: .gray, borderWidth: 0.5)
         configureView(orderDetailView, cornerRadius: 5)
         configureView(orderDetailExtView, cornerRadius: 5)
-        configureView(adressDetailView, cornerRadius: 5)
+        configureView(customerView, cornerRadius: 5)
         configureView(paymentDetailView, cornerRadius: 5)
         setBorder(with: orderDetailView.layer)
         setBorder(with: orderDetailExtView.layer)
-        setBorder(with: adressDetailView.layer)
+        setBorder(with: customerView.layer)
         setBorder(with: paymentDetailView.layer)
         setShadow(with: orderDetailExtView.layer , shadowOffset: true)
         setShadow(with: orderDetailView.layer, shadowOffset: false)
-        setShadow(with: adressDetailView.layer, shadowOffset: true)
+        setShadow(with: customerView.layer, shadowOffset: true)
         setShadow(with: paymentDetailView.layer, shadowOffset: true)
         paymentDetailView.lineYPosition = totalLabel.frame.origin.y - 10
         paymentDetailView.setNeedsDisplay()
-        
+        updateStatusButton.layer.cornerRadius = 5
     }
     
     private func initScreen() {
@@ -78,8 +84,12 @@ final class OrderDetailViewController: UIViewController {
             dateLabel.text = "\(dateFormatter(with: order.userOrder.orderDate))"
             orderStatusLabel.text = "\(order.userOrder.status)"
             switch order.userOrder.status {
+            case .pending:
+                orderStatusLabel.textColor = .systemGray
             case .preparing:
                 orderStatusLabel.textColor = .systemOrange
+            case .ready:
+                orderStatusLabel.textColor = .title
             case .delivered:
                 orderStatusLabel.textColor = .button
             case .canceled:
@@ -92,6 +102,11 @@ final class OrderDetailViewController: UIViewController {
             discountLabel.text = "-\(formatDouble(oldAmount - newAmount)) TL"
             newAmountLabel.text = "\(formatDouble(order.product.newPrice)) TL"
             totalLabel.text = "\(formatDouble(newAmount)) TL"
+            
+            customerNameLabel.text = order.user.firstName
+            customerSurnameLabel.text = order.user.lastName
+            customerMailLabel.text = order.user.email
+            customerTelLabel.text = order.user.phoneNumber
         }
     }
     
@@ -105,6 +120,18 @@ final class OrderDetailViewController: UIViewController {
             deliveryLabel.isHidden = true
             deliveryTypeLabel.text = "Gel-Al"
         }
+    }
+    
+    
+    @IBAction func updateStatusButton(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Sipariş Durumunu Seç", message: nil, preferredStyle: .actionSheet)
+        for status in OrderStatus.allCases {
+            alert.addAction(UIAlertAction(title: status.rawValue, style: .default, handler: { [weak self] _ in
+                self?.orderDetailViewModel.updateOrderStatus(newStatus: status)
+            }))
+        }
+        alert.addAction(UIAlertAction(title: "İptal", style: .cancel, handler: nil))
+        present(alert, animated: true)
     }
     
 }
@@ -129,7 +156,21 @@ extension OrderDetailViewController: OrderDetailViewModelOutputProtocol {
     }
     
     func update() {
-        print("update")
+        guard let order = orderDetailViewModel.order else { return }
+        orderStatusLabel.text = "\(order.userOrder.status)"
+        switch order.userOrder.status {
+        case .pending:
+            orderStatusLabel.textColor = .systemGray
+        case .preparing:
+            orderStatusLabel.textColor = .systemOrange
+        case .ready:
+            orderStatusLabel.textColor = .title
+        case .delivered:
+            orderStatusLabel.textColor = .button
+        case .canceled:
+            orderStatusLabel.textColor = .cut
+        }
+        showOneButtonAlert(title: "Başarılı", message: "Durum değiştirme işlemi başarılı.")
     }
     
     func error() {

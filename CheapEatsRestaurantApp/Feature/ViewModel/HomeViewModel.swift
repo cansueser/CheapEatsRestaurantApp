@@ -13,6 +13,7 @@ protocol HomeViewModelProtocol {
     func fetchRestaurantProducts()
     func startListeningOrders()
     func fetchRestaurantOrders()
+    func updateOrderStatus(index: Int, newStatus: OrderStatus)
 }
 
 protocol HomeViewModelOutputProtocol: AnyObject {
@@ -100,6 +101,8 @@ final class HomeViewModel {
     }
     
     func fetchRestaurantOrders() {
+        orders.removeAll()
+        productsById.removeAll()
         delegate?.startLoading()
         loadingCounter += 1
         NetworkManager.shared.fetchRestaurntOrders { [weak self] orders in
@@ -147,6 +150,23 @@ final class HomeViewModel {
     private func checkLoading() {
         if loadingCounter == 0 {
             delegate?.stopLoading()
+        }
+    }
+    
+    func updateOrderStatus(index: Int, newStatus: OrderStatus) {
+        let orderId = orders[index].orderId
+        
+        NetworkManager.shared.updateOrderStatus(orderId: orderId, newStatus: newStatus) { result in
+            if result {
+                if newStatus == .canceled || newStatus == .delivered {
+                    self.orders.removeAll { $0.orderId == orderId }
+                } else {
+                    self.orders[index].status = newStatus
+                }
+                self.delegate?.updateOrder()
+            } else {
+                self.delegate?.error()
+            }
         }
     }
 }

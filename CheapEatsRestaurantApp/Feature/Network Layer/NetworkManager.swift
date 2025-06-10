@@ -329,6 +329,20 @@ final class NetworkManager {
             }
     }
     
+    func deleteProduct(productId: String, completion: @escaping (Bool) -> Void) {
+        let productRef = db.collection("products").document(productId)
+        productRef.updateData([
+            "status": true
+        ]) { error in
+            if let error = error {
+                print("Ürün durumu güncellenirken hata oluştu: \(error.localizedDescription)")
+                completion(false)
+            } else {
+                completion(true)
+            }
+        }
+    }
+    
     //MARK: -Customer
     func fetchUsers(completion: @escaping (Result<[Customer], Error>) -> Void) {
         db.collection("users").getDocuments { (querySnapshot, error) in

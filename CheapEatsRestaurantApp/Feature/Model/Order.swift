@@ -38,7 +38,9 @@ struct Orders {
 }
 
 enum OrderStatus: String, Codable, CaseIterable, CustomStringConvertible {
+    case pending = "Sipariş Alındı"
     case preparing = "Hazırlanıyor"
+    case ready = "Hazır"
     case delivered = "Teslim Edildi"
     case canceled = "İptal Edildi"
     var description: String { self.rawValue }

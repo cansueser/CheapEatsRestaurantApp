@@ -16,6 +16,7 @@ protocol OrderDetailViewModelProtocol {
     var totalAmount: Double { get set }
     func getCoupon()
     func checkDeliveryType() -> Bool
+    func updateOrderStatus(newStatus: OrderStatus)
 }
 
 protocol OrderDetailViewModelOutputProtocol: AnyObject {
@@ -61,6 +62,20 @@ final class OrderDetailViewModel {
             return true
         case .all:
             return false
+        }
+    }
+    
+    func updateOrderStatus(newStatus: OrderStatus) {
+        guard let orderId = order?.userOrder.orderId else { return }
+        var tempOrder = order
+        tempOrder?.userOrder.status = newStatus
+        NetworkManager.shared.updateOrderStatus(orderId: orderId, newStatus: newStatus) { result in
+            if result {
+                self.order = tempOrder
+                self.delegate?.update()
+            } else {
+                self.delegate?.error()
+            }
         }
     }
 }

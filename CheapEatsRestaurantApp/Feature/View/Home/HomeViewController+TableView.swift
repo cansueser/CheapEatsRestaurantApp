@@ -42,7 +42,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             productUpdateVC.productManageViewModel.goSource = .updateProduct
             navigationController?.pushViewController(productUpdateVC, animated: true)
         } else if tableView == orderTableView {
-            // Siparişe tıklanınca yapılacaklar
+            let alert = UIAlertController(title: "Sipariş Durumunu Seç", message: nil, preferredStyle: .actionSheet)
+            for status in OrderStatus.allCases {
+                alert.addAction(UIAlertAction(title: status.rawValue, style: .default, handler: { [weak self] _ in
+                    self?.homeViewModel.updateOrderStatus(index: indexPath.row, newStatus: status)
+                }))
+            }
+            alert.addAction(UIAlertAction(title: "İptal", style: .cancel, handler: nil))
+            present(alert, animated: true)
         }
     }
 }

@@ -15,17 +15,19 @@ protocol ProductManageViewModelProtocol {
     var product: Product? { get set }
     var selectedMealTypes: [Category] { get set }
     var cloudinaryImageUrlString: String { get set }
+    var goSource : GoSource { get set }
     func uploadImage(selectedImageView: CLDUIImageView)
     func emptyCheckSelectedItem(bottomSheetVC: BottomSheetViewController)
     func setProduct(product: Product)
     func getProduct() -> Product?
     func updateProduct(product: Product)
-    var goSource : GoSource { get set }
+    func deleteItem()
 }
 
 protocol ProductManageViewModelOutputProtocol: AnyObject{
     func update()
     func error()
+    func updateDelete()
     func startLoading()
     func stopLoading()
 }
@@ -116,9 +118,23 @@ final class ProductManageViewModel {
             bottomSheetVC.bottomSheetViewModel.selectedOptions = selectedMealTypes
         }
     }
+    func deleteItem() {
+        guard let product = product else {
+            delegate?.update()
+            return
+        }
+        NetworkManager.shared.deleteProduct(productId: product.productId) { result in
+            if result {
+                self.delegate?.updateDelete()
+            } else {
+                self.delegate?.error()
+            }
+        }
+        
+    }
 }
 
-extension ProductManageViewModel: ProductManageViewModelProtocol { }
+extension ProductManageViewModel: ProductManageViewModelProtocol {}
 
 
 enum GoSource {
