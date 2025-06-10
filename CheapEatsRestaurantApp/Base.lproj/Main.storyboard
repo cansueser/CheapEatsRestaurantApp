@@ -745,9 +745,7 @@
                         <rect key="frame" x="0.0" y="118" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" name="ButtonColor"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" name="ButtonColor"/>
-                        </textAttributes>
+                        <color key="barTintColor" name="ButtonColor"/>
                     </navigationBar>
                     <connections>
                         <segue destination="hw3-Gd-2Nk" kind="relationship" relationship="rootViewController" id="auS-Kw-PDp"/>
@@ -765,6 +763,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tXW-58-cZy">
                         <rect key="frame" x="0.0" y="118" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="ButtonColor"/>
+                        <color key="barTintColor" name="ButtonColor"/>
                     </navigationBar>
                     <connections>
                         <segue destination="OQt-xM-zk9" kind="relationship" relationship="rootViewController" id="Mgv-MG-n9w"/>
@@ -2423,9 +2423,7 @@
                         <rect key="frame" x="0.0" y="118" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" name="ButtonColor"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" name="ButtonColor"/>
-                        </textAttributes>
+                        <color key="barTintColor" red="0.32156863810000003" green="0.4196078479" blue="0.30196079609999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -2445,9 +2443,7 @@
                         <rect key="frame" x="0.0" y="118" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" name="ButtonColor"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" name="ButtonColor"/>
-                        </textAttributes>
+                        <color key="barTintColor" name="ButtonColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

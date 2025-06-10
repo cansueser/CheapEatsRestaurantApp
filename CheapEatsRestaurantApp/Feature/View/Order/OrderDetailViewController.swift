@@ -44,7 +44,7 @@ final class OrderDetailViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.navigationBar.backgroundColor = .clear
-        navigationController?.navigationBar.tintColor = UIColor(named: "ButtonColor")
+        navigationController?.navigationBar.tintColor = .button
     }
     
     private func initConfigureView() {

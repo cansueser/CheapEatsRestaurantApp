@@ -56,7 +56,7 @@ extension OrderViewController: OrdersViewModelOutputProtocol {
     }
     
     func error() {
-        
+        print("Error")
     }
     func startLoading() {
         waitView.isHidden = false
