@@ -16,4 +16,11 @@ struct Customer: Codable {
     let email: String
     let phoneNumber: String
 
+    init?(dictionary: [String: Any], documentId: String) {
+        self.uid = documentId
+        self.firstName = dictionary["firstName"] as? String ?? ""
+        self.lastName = dictionary["lastName"] as? String ?? ""
+        self.email = dictionary["email"] as? String ?? ""
+        self.phoneNumber = dictionary["phoneNumber"] as? String ?? ""
+    }
 }

@@ -153,26 +153,26 @@ final class NetworkManager {
         }
     }
     // MARK: - Orders
-    func fetchOrders(completion: @escaping ([Orders]) -> Void) {
+    func fetchOrders(completion: @escaping (Result<[Orders], Error>) -> Void) {
         let restaurantId = RestaurantManager.shared.getRestaurantId()
         
         db.collection("orders").whereField("restaurantId", isEqualTo: restaurantId).getDocuments { snapshot, error in
             if let error = error {
-                print("Siparişleri çekerken hata oluştu: \(error.localizedDescription)")
-                completion([])
+                completion(.failure(error))
                 return
             }
             
             guard let documents = snapshot?.documents else {
-                completion([])
+                completion(.success([]))
                 return
             }
             
-            let orders = documents.compactMap { document in
-                return Orders(dictionary: document.data(), documentId: document.documentID)
+            let orders = documents.compactMap { (document) -> Orders? in
+                let data = document.data()
+                return Orders(dictionary: data, documentId: document.documentID)
             }
             
-            completion(orders)
+            completion(.success(orders))
         }
     }
     
@@ -191,9 +191,35 @@ final class NetworkManager {
         }
     }
     
-    // MARK: - Orders
+    func fetchRestaurntOrders(completion: @escaping ([Orders]) -> Void) {
+        let restaurantId = RestaurantManager.shared.getRestaurantId()
+        
+        db.collection("orders")
+            .whereField("restaurantId", isEqualTo: restaurantId)
+            .whereField("status", notIn: ["Teslim Edildi", "İptal Edildi"])
+            .getDocuments { snapshot, error in
+                if let error = error {
+                    print("Siparişleri çekerken hata oluştu: \(error.localizedDescription)")
+                    completion([])
+                    return
+                }
+                
+                guard let documents = snapshot?.documents else {
+                    completion([])
+                    return
+                }
+                
+                let orders = documents.compactMap { document in
+                    return Orders(dictionary: document.data(), documentId: document.documentID)
+                }
+                
+                completion(orders)
+            }
+    }
+    
     func listenOrder(onNewOrder: @escaping (Orders) -> Void) -> ListenerRegistration? {
         let restaurantId = RestaurantManager.shared.getRestaurantId()
+        var isInitialLoad = true
         
         let listener = db.collection("orders")
             .whereField("restaurantId", isEqualTo: restaurantId)
@@ -204,6 +230,11 @@ final class NetworkManager {
                 }
                 
                 guard let snapshot = snapshot else { return }
+                
+                if isInitialLoad {
+                    isInitialLoad = false
+                    return
+                }
                 
                 for diff in snapshot.documentChanges {
                     if diff.type == .added {
@@ -277,6 +308,46 @@ final class NetworkManager {
         }
     }
     
+    func fetchSelectedProduct(productIds: [String], completion: @escaping (Result<[Product], Error>) -> Void) {
+        db.collection("products")
+            .whereField(FieldPath.documentID(), in: productIds)
+            .getDocuments { querySnapshot, error in
+                if let error = error {
+                    print("Error getting documents: \(error)")
+                    completion(.failure(error))
+                } else {
+                    var products: [Product] = []
+                    for document in querySnapshot!.documents {
+                        let data = document.data()
+                        let productId = document.documentID
+                        if let product = Product(dictionary: data, documentId: productId) {
+                            products.append(product)
+                        }
+                    }
+                    completion(.success(products))
+                }
+            }
+    }
+    
+    //MARK: -Customer
+    func fetchUsers(completion: @escaping (Result<[Customer], Error>) -> Void) {
+        db.collection("users").getDocuments { (querySnapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let documents = querySnapshot?.documents else {
+                completion(.success([]))
+                return
+            }
+            
+            let users = documents.compactMap { document -> Customer? in
+                Customer(dictionary: document.data(), documentId: document.documentID)
+            }
+            completion(.success(users))
+        }
+    }
     
 }
 enum NetworkError: Error {

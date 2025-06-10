@@ -32,9 +32,7 @@ final class OrderViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        orderViewModel.getOrders()
-        
-        
+        orderViewModel.fetchData()
     }
     
     private func setupLoadingIndicator() {
@@ -42,8 +40,12 @@ final class OrderViewController: UIViewController {
     }
 }
 
-extension OrderViewController: OrderViewModelOutputProtocol {
+extension OrderViewController: OrdersViewModelOutputProtocol {
     func update() {
+        orderViewModel.loadData()
+    }
+    
+    func updateTable() {
         orderTableView.reloadData()
         
         if orderViewModel.getOrderStatu() {
@@ -52,6 +54,7 @@ extension OrderViewController: OrderViewModelOutputProtocol {
             orderStatuView.isHidden = true
         }
     }
+    
     func error() {
         
     }

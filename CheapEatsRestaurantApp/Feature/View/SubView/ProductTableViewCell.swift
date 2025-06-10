@@ -77,6 +77,29 @@ class ProductTableViewCell: UITableViewCell {
         configureStateIndicators(with: order.status)
     }
     
+    func configureWithOrder(orderDetail: OrderDetail) {
+        let product = orderDetail.product
+        let order = orderDetail.userOrder
+        if !product.imageUrl.isEmpty {
+            foodImage.kf.setImage(with: URL(string: product.imageUrl), placeholder: UIImage(named: "Logo"))
+        } else {
+            foodImage.image = UIImage(named: "Logo")
+        }
+        
+        foodNameLabel.text = product.name.isEmpty ? "İsimsiz Ürün" : product.name
+        orderNoLabel.text = "#\(order.orderNo)"
+        newAmountLabel.text = "\(product.newPrice) TL"
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        dateLabel.text = dateFormatter.string(from: order.orderDate)
+        dateLabel.isHidden = false
+        
+        stepperNumber.text = "\(order.quantity) Adet"
+        
+        configureStateIndicators(with: order.status)
+    }
+    
     // MARK: - Sadece sipariş gösterme (ürün yoksa)
     func configureWithOrderOnly(order: Orders) {
         // Varsayılan görsel

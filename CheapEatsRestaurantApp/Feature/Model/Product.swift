@@ -5,8 +5,8 @@ struct Product {
     var productId: String
     var name: String
     var description: String
-    var oldPrice: Int
-    var newPrice: Int
+    var oldPrice: Double
+    var newPrice: Double
     var restaurantId: String
     var category: [String]
     var imageUrl: String
@@ -19,8 +19,8 @@ struct Product {
     init(
         name: String,
         description: String,
-        oldPrice: Int,
-        newPrice: Int,
+        oldPrice: Double,
+        newPrice: Double,
         endDate: String,
         deliveryType: DeliveryType,
         restaurantId: String,
@@ -48,8 +48,8 @@ struct Product {
             let productId = dictionary["productId"] as? String,
             let name = dictionary["name"] as? String,
             let description = dictionary["description"] as? String,
-            let oldPrice = dictionary["oldPrice"] as? Int,
-            let newPrice = dictionary["newPrice"] as? Int,
+            let oldPrice = dictionary["oldPrice"] as? Double,
+            let newPrice = dictionary["newPrice"] as? Double,
             let endDate = dictionary["endDate"] as? String,
             let deliveryTypeString = dictionary["deliveryType"] as? String,
             let deliveryType = DeliveryType(rawValue: deliveryTypeString),
@@ -77,6 +77,27 @@ struct Product {
             self.createdAt = Date()
         }
         self.quantity = quantity
+    }
+    
+    init?(dictionary: [String: Any], documentId: String) {
+        self.productId = documentId
+        self.name = dictionary["name"] as? String ?? ""
+        self.description = dictionary["description"] as? String ?? ""
+        self.oldPrice = dictionary["oldPrice"] as? Double ?? 0.0
+        self.newPrice = dictionary["newPrice"] as? Double ?? 0.0
+        self.restaurantId = dictionary["restaurantId"] as? String ?? ""
+        self.category = dictionary["category"] as? [String] ?? []
+        self.imageUrl = dictionary["imageUrl"] as? String ?? ""
+        let deliveryTypeString = dictionary["deliveryType"] as? String ?? DeliveryType.all.rawValue
+        self.deliveryType = DeliveryType(rawValue: deliveryTypeString) ?? .all
+        if let timestamp = dictionary["createdAt"] as? Timestamp {
+            self.createdAt = timestamp.dateValue()
+        } else {
+            self.createdAt = Date()
+        }
+        self.endDate = dictionary["endDate"] as? String ?? "00:00"
+        self.status = dictionary["status"] as? Bool ?? false
+        self.quantity = dictionary["quantity"] as? Int ?? 1
     }
     
     func toDictionary() -> [String: Any] {

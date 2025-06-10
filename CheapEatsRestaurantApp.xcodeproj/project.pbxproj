@@ -43,6 +43,7 @@
 		7E9014C12D73AAB50005572A /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9014C02D73AAA90005572A /* RegisterViewModel.swift */; };
 		7E916A2C2DF701270033598D /* EditAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E916A2B2DF701270033598D /* EditAddressViewController.swift */; };
 		7E916A2E2DF702D20033598D /* EditAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E916A2D2DF702C10033598D /* EditAddressViewModel.swift */; };
+		7E916A302DF86FD60033598D /* OrderDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E916A2F2DF86FD20033598D /* OrderDetailViewModel.swift */; };
 		7E9642022D70617700176FAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E9642012D70617700176FAA /* Assets.xcassets */; };
 		7EA0AF772D6F3A66004F4499 /* EasyTipView in Frameworks */ = {isa = PBXBuildFile; productRef = 7EA0AF762D6F3A66004F4499 /* EasyTipView */; };
 		7EA0AF7B2D6F42EB004F4499 /* ProductManageViewController+EastTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0AF7A2D6F42D9004F4499 /* ProductManageViewController+EastTipView.swift */; };
@@ -57,11 +58,13 @@
 		7EA74CA62DD0FF19005479DC /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA74CA52DD0FF19005479DC /* OrderViewModel.swift */; };
 		7EA74CA82DD10065005479DC /* OrderViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA74CA72DD10057005479DC /* OrderViewController+TableView.swift */; };
 		7EA74CAA2DD103DB005479DC /* OrderDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA74CA92DD103D4005479DC /* OrderDetail.swift */; };
-		7EA74CAC2DD10412005479DC /* ProductDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA74CAB2DD1040C005479DC /* ProductDetail.swift */; };
 		7EA74CAE2DD104E3005479DC /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA74CAD2DD104DE005479DC /* Customer.swift */; };
 		7EB2D3A12D74DC4A00CFF13E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB2D3A02D74DC3A00CFF13E /* LoginViewModel.swift */; };
 		7EB2D3A32D74DC5E00CFF13E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB2D3A22D74DC5700CFF13E /* LoginViewController.swift */; };
 		7EB2D3A52D74E0D200CFF13E /* UserLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB2D3A42D74E0C600CFF13E /* UserLogin.swift */; };
+		7EB4802E2DF8799900E27FD5 /* OrderDetailView+ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB4802D2DF8799400E27FD5 /* OrderDetailView+ScrollView.swift */; };
+		7EB480302DF87ABD00E27FD5 /* FormatDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB4802F2DF87ABA00E27FD5 /* FormatDouble.swift */; };
+		7EB480322DF87C0400E27FD5 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB480312DF87BFF00E27FD5 /* DateFormatter.swift */; };
 		7EB852AE2D0DD3EA009FAC62 /* ProductManageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB852AD2D0DD3EA009FAC62 /* ProductManageViewModel.swift */; };
 		7EBED5E12D077BAB00E7CACB /* HomeViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBED5E02D077BAB00E7CACB /* HomeViewController+TableView.swift */; };
 		7EBED5E32D07837F00E7CACB /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBED5E22D07837F00E7CACB /* UIView+Extension.swift */; };
@@ -127,6 +130,7 @@
 		7E9014C02D73AAA90005572A /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		7E916A2B2DF701270033598D /* EditAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAddressViewController.swift; sourceTree = "<group>"; };
 		7E916A2D2DF702C10033598D /* EditAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAddressViewModel.swift; sourceTree = "<group>"; };
+		7E916A2F2DF86FD20033598D /* OrderDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewModel.swift; sourceTree = "<group>"; };
 		7E9642012D70617700176FAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7EA0AF7A2D6F42D9004F4499 /* ProductManageViewController+EastTipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductManageViewController+EastTipView.swift"; sourceTree = "<group>"; };
 		7EA0AF7C2D6F4567004F4499 /* ProductManageViewController+TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductManageViewController+TextField.swift"; sourceTree = "<group>"; };
@@ -140,11 +144,13 @@
 		7EA74CA52DD0FF19005479DC /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		7EA74CA72DD10057005479DC /* OrderViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderViewController+TableView.swift"; sourceTree = "<group>"; };
 		7EA74CA92DD103D4005479DC /* OrderDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetail.swift; sourceTree = "<group>"; };
-		7EA74CAB2DD1040C005479DC /* ProductDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetail.swift; sourceTree = "<group>"; };
 		7EA74CAD2DD104DE005479DC /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		7EB2D3A02D74DC3A00CFF13E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		7EB2D3A22D74DC5700CFF13E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7EB2D3A42D74E0C600CFF13E /* UserLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogin.swift; sourceTree = "<group>"; };
+		7EB4802D2DF8799400E27FD5 /* OrderDetailView+ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderDetailView+ScrollView.swift"; sourceTree = "<group>"; };
+		7EB4802F2DF87ABA00E27FD5 /* FormatDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatDouble.swift; sourceTree = "<group>"; };
+		7EB480312DF87BFF00E27FD5 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		7EB852AD2D0DD3EA009FAC62 /* ProductManageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManageViewModel.swift; sourceTree = "<group>"; };
 		7EBED5E02D077BAB00E7CACB /* HomeViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+TableView.swift"; sourceTree = "<group>"; };
 		7EBED5E22D07837F00E7CACB /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -196,7 +202,6 @@
 			isa = PBXGroup;
 			children = (
 				7EA74CAD2DD104DE005479DC /* Customer.swift */,
-				7EA74CAB2DD1040C005479DC /* ProductDetail.swift */,
 				7EA74CA92DD103D4005479DC /* OrderDetail.swift */,
 				7ECF12632D7F24FF0062F6DA /* MapLocation.swift */,
 				7E149DB02D78638F0095DAE3 /* City.swift */,
@@ -231,6 +236,7 @@
 				7E847A112D19ED7700D1DE23 /* HomeViewModel.swift */,
 				7EB852AD2D0DD3EA009FAC62 /* ProductManageViewModel.swift */,
 				7EA74CA52DD0FF19005479DC /* OrderViewModel.swift */,
+				7E916A2F2DF86FD20033598D /* OrderDetailViewModel.swift */,
 				7E553E2B2DF4616F00B6E102 /* ProfileSettingsViewModel.swift */,
 				7E553E2F2DF4622300B6E102 /* EditProfileViewModel.swift */,
 				7E916A2D2DF702C10033598D /* EditAddressViewModel.swift */,
@@ -243,6 +249,8 @@
 		7E445D132D38055900BEDD0C /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				7EB480312DF87BFF00E27FD5 /* DateFormatter.swift */,
+				7EB4802F2DF87ABA00E27FD5 /* FormatDouble.swift */,
 				7ECF12662D7F5B960062F6DA /* String+UpperCase.swift */,
 				7EDDC4642D75BE4F004085F4 /* HiddenPassword+UITextField.swift */,
 				7EA0AF872D6F5235004F4499 /* Alert.swift */,
@@ -404,8 +412,9 @@
 			isa = PBXGroup;
 			children = (
 				7EA74CA32DD0FEF2005479DC /* OrderViewController.swift */,
-				7E4FD07B2DECBCAD0062918E /* OrderDetailViewController.swift */,
 				7EA74CA72DD10057005479DC /* OrderViewController+TableView.swift */,
+				7E4FD07B2DECBCAD0062918E /* OrderDetailViewController.swift */,
+				7EB4802D2DF8799400E27FD5 /* OrderDetailView+ScrollView.swift */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -559,7 +568,6 @@
 				7E1F5D5F2D7273E30000D990 /* RegisterViewController.swift in Sources */,
 				7EA74CA42DD0FEF2005479DC /* OrderViewController.swift in Sources */,
 				7EB2D3A12D74DC4A00CFF13E /* LoginViewModel.swift in Sources */,
-				7EA74CAC2DD10412005479DC /* ProductDetail.swift in Sources */,
 				7E652CF82D0711C000137ECA /* HomeViewController.swift in Sources */,
 				7EA0AF8E2D6F6848004F4499 /* LineView.swift in Sources */,
 				7EA0AF7F2D6F45E1004F4499 /* ProductManageViewController+Picker.swift in Sources */,
@@ -570,6 +578,7 @@
 				7E78EC392D08353C001A3782 /* UIViewController+Extension.swift in Sources */,
 				7E847A202D1B60CC00D1DE23 /* ProductManageViewController.swift in Sources */,
 				7EA0AF842D6F4782004F4499 /* NetworkHelper.swift in Sources */,
+				7E916A302DF86FD60033598D /* OrderDetailViewModel.swift in Sources */,
 				7EA0AF822D6F4751004F4499 /* NetworkManager.swift in Sources */,
 				7ECF12672D7F5B9E0062F6DA /* String+UpperCase.swift in Sources */,
 				7ECF125C2D7DB26F0062F6DA /* MapViewController+MapView.swift in Sources */,
@@ -586,16 +595,19 @@
 				7E652CF62D0711C000137ECA /* SceneDelegate.swift in Sources */,
 				7E60E6392D8F6D1D00A297CE /* PasswordResetViewModel.swift in Sources */,
 				7EA74CA62DD0FF19005479DC /* OrderViewModel.swift in Sources */,
+				7EB480302DF87ABD00E27FD5 /* FormatDouble.swift in Sources */,
 				7E553E342DF4625A00B6E102 /* ChangePasswordViewModel.swift in Sources */,
 				7ECF12532D79CD530062F6DA /* BorderAndShadow.swift in Sources */,
 				7EA74CA82DD10065005479DC /* OrderViewController+TableView.swift in Sources */,
 				7E553E302DF4622500B6E102 /* EditProfileViewModel.swift in Sources */,
+				7EB4802E2DF8799900E27FD5 /* OrderDetailView+ScrollView.swift in Sources */,
 				7ECF12552D79D3D80062F6DA /* MapDetailViewController+TableView.swift in Sources */,
 				7EDF6E312D8F5AA100B20AEC /* OrderTableViewCell.swift in Sources */,
 				7E553E2C2DF4617100B6E102 /* ProfileSettingsViewModel.swift in Sources */,
 				7E916A2E2DF702D20033598D /* EditAddressViewModel.swift in Sources */,
 				7EC6CCCA2D760F6000316926 /* MapDetailViewController.swift in Sources */,
 				7EA74CAA2DD103DB005479DC /* OrderDetail.swift in Sources */,
+				7EB480322DF87C0400E27FD5 /* DateFormatter.swift in Sources */,
 				7ECF12642D7F250C0062F6DA /* MapLocation.swift in Sources */,
 				7E847A122D19ED7700D1DE23 /* HomeViewModel.swift in Sources */,
 				7E916A2C2DF701270033598D /* EditAddressViewController.swift in Sources */,

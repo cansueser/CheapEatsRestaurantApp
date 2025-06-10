@@ -2,74 +2,121 @@ import Foundation
 import Firebase
 
 protocol OrderViewModelProtocol {
-    var orders: [Orders] { get }
-    var delegate: OrderViewModelOutputProtocol? { get set }
-    func getOrders()
-    func product(for order: Orders) -> Product?
+    var delegate: OrdersViewModelOutputProtocol? { get set }
+    var orderDetailsList: [OrderDetail] { get set }
+    func fetchData()
+    func loadData()
+    
     func getOrderStatu() -> Bool
     func updateOrderStatus(orderId: String, newStatus: OrderStatus, completion: @escaping (Bool) -> Void)
 }
 
-protocol OrderViewModelOutputProtocol: AnyObject {
+protocol OrdersViewModelOutputProtocol: AnyObject {
     func update()
     func error()
+    func updateTable()
     func startLoading()
     func stopLoading()
 }
 
-class OrderViewModel: OrderViewModelProtocol {
+final class OrderViewModel {
+    weak var delegate: OrdersViewModelOutputProtocol?
     var orders: [Orders] = []
-    var productsById: [String: Product] = [:]
-    weak var delegate: OrderViewModelOutputProtocol?
+    var products: [Product]?
+    var users: [Customer]?
+    var orderDetailsList: [OrderDetail] = []
+    private let dispatchGroup = DispatchGroup()
     
-    func getOrders() {
-        delegate?.startLoading()
-        NetworkManager.shared.fetchOrders { [weak self] orders in
+    func fetchData() {
+        self.delegate?.startLoading()
+        orders.removeAll()
+        products?.removeAll()
+        users?.removeAll()
+        orderDetailsList.removeAll()
+        dispatchGroup.enter()
+        fetchOrders()
+        dispatchGroup.notify(queue: .main) { [weak self] in
             guard let self = self else { return }
-            self.orders = orders
-            
-            if orders.isEmpty {
-                DispatchQueue.main.async {
-                    self.delegate?.error()
-                    self.delegate?.stopLoading()
-                }
-                return
-            }
-
-            let productIds = orders.map { $0.productId }
-            self.productsById = [:]
-            
-            let dispatchGroup = DispatchGroup()
-            
-            for productId in productIds {
-                dispatchGroup.enter()
-                NetworkManager.shared.fetchProduct(withId: productId) { product in
-                    if let product = product {
-                        self.productsById[productId] = product
-                    } else {
-                        print("Ürün bulunamadı: \(productId)")
-                    }
-                    dispatchGroup.leave()
-                }
-            }
-            
-            dispatchGroup.notify(queue: .main) {
-                self.delegate?.update()
-                self.delegate?.stopLoading()
+            let productIds = self.orders.map { $0.productId }
+            self.dispatchGroup.enter()
+            self.fetchProducts(productIds: productIds)
+            self.dispatchGroup.enter()
+            self.fetchUsers()
+            self.dispatchGroup.notify(queue: .main) { [weak self] in
+                self?.delegate?.update()
+                self?.delegate?.stopLoading()
             }
         }
     }
     
+    private func fetchOrders() {
+        NetworkManager.shared.fetchOrders { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let orders):
+                self.orders = orders
+            case .failure(let error):
+                print(error)
+                self.delegate?.error()
+            }
+            self.dispatchGroup.leave()
+        }
+    }
+    
+    private func fetchProducts(productIds: [String]) {
+        if productIds.isEmpty{
+            dispatchGroup.leave()
+            return
+        }
+        NetworkManager.shared.fetchSelectedProduct(productIds: productIds) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let products):
+                self.products = products
+            case .failure(let error):
+                print(error)
+            }
+            dispatchGroup.leave()
+        }
+    }
+    
+    private func fetchUsers() {
+        NetworkManager.shared.fetchUsers { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let users):
+                self.users = users
+            case .failure(let error):
+                print(error)
+            }
+            dispatchGroup.leave()
+        }
+    }
+    
+    private func combineOrderAndUserAndProduct() {
+        orderDetailsList.removeAll()
+        guard let products = products, let users = users else { return }
+        
+        for order in orders {
+            guard let product = products.first(where: { $0.productId == order.productId }), let user = users.first(where: { $0.uid == order.userId })
+            else {
+                continue
+            }
+            
+            let orderDetail = OrderDetail(userOrder: order, user: user, product: product)
+            orderDetailsList.append(orderDetail)
+        }
+    }
+    
+    func loadData() {
+        combineOrderAndUserAndProduct()
+        delegate?.updateTable()
+    }
    
     func getOrderStatu() -> Bool {
-        return orders.isEmpty
+        return orderDetailsList.isEmpty
     }
-    
-    
-    func product(for order: Orders) -> Product? {
-        return productsById[order.productId]
-    }
-    
+
     func updateOrderStatus(orderId: String, newStatus: OrderStatus, completion: @escaping (Bool) -> Void) {
         NetworkManager.shared.updateOrderStatus(orderId: orderId, newStatus: newStatus) { success in
             if success {
@@ -82,3 +129,4 @@ class OrderViewModel: OrderViewModelProtocol {
     }
 }
 
+extension OrderViewModel: OrderViewModelProtocol {}

@@ -37,15 +37,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="3c2-jU-pBk">
-                                <rect key="frame" x="266" y="6.3333333333333339" width="15" height="11.33333333333333"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3c2-jU-pBk">
+                                <rect key="frame" x="266" y="3.3333333333333339" width="15" height="17"/>
                                 <color key="tintColor" name="TitleColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="jBo-3W-xhO"/>
                                     <constraint firstAttribute="width" constant="15" id="vQE-S1-vMJ"/>
                                 </constraints>
+                                <imageReference key="image" image="chevron.right" catalog="system" symbolScale="large"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1234567" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ew-pv-h6L">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1234567" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ew-pv-h6L">
                                 <rect key="frame" x="186" y="2" width="80" height="19.333333333333332"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="3PC-Cz-ej1"/>

@@ -8,5 +8,6 @@ import Foundation
 
 struct OrderDetail {
     let userOrder: Orders
-    let product: ProductDetails
+    let user: Customer
+    let product: Product
 }

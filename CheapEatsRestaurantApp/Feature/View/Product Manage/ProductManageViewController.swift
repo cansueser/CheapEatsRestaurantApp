@@ -146,8 +146,8 @@ final class ProductManageViewController: UIViewController {
             !name.isEmpty,
             let description = productDescriptionTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines),
             !description.isEmpty,
-            let oldPrice = Int(oldPriceTextField.text ?? "0"),
-            let newPrice = Int(newPriceTextField.text ?? "0"),
+            let oldPrice = Double(oldPriceTextField.text ?? "0"),
+            let newPrice = Double(newPriceTextField.text ?? "0"),
             let stepperNumber = Int(stepperLabel.text ?? "1")
                 
         else {
