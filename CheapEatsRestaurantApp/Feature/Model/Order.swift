@@ -10,6 +10,7 @@ struct Orders {
     var cardInfo: String
     var quantity: Int
     var selectedDeliveryType: DeliveryType
+    var couponId: String
 
     init?(dictionary: [String: Any], documentId: String) {
         self.orderId = documentId
@@ -32,6 +33,7 @@ struct Orders {
         let selectedDeliveryTypeString = dictionary["selectedDeliveryType"] as? String ?? DeliveryType.all.rawValue
         self.selectedDeliveryType = DeliveryType(rawValue: selectedDeliveryTypeString) ?? .all
         self.quantity = dictionary["quantity"] as? Int ?? 1
+        self.couponId = dictionary["couponId"] as? String ?? ""
     }
 }
 

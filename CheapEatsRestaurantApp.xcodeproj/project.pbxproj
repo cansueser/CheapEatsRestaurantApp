@@ -65,6 +65,7 @@
 		7EB4802E2DF8799900E27FD5 /* OrderDetailView+ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB4802D2DF8799400E27FD5 /* OrderDetailView+ScrollView.swift */; };
 		7EB480302DF87ABD00E27FD5 /* FormatDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB4802F2DF87ABA00E27FD5 /* FormatDouble.swift */; };
 		7EB480322DF87C0400E27FD5 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB480312DF87BFF00E27FD5 /* DateFormatter.swift */; };
+		7EB480342DF88C1C00E27FD5 /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB480332DF88C1A00E27FD5 /* Coupon.swift */; };
 		7EB852AE2D0DD3EA009FAC62 /* ProductManageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB852AD2D0DD3EA009FAC62 /* ProductManageViewModel.swift */; };
 		7EBED5E12D077BAB00E7CACB /* HomeViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBED5E02D077BAB00E7CACB /* HomeViewController+TableView.swift */; };
 		7EBED5E32D07837F00E7CACB /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBED5E22D07837F00E7CACB /* UIView+Extension.swift */; };
@@ -151,6 +152,7 @@
 		7EB4802D2DF8799400E27FD5 /* OrderDetailView+ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderDetailView+ScrollView.swift"; sourceTree = "<group>"; };
 		7EB4802F2DF87ABA00E27FD5 /* FormatDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatDouble.swift; sourceTree = "<group>"; };
 		7EB480312DF87BFF00E27FD5 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		7EB480332DF88C1A00E27FD5 /* Coupon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coupon.swift; sourceTree = "<group>"; };
 		7EB852AD2D0DD3EA009FAC62 /* ProductManageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManageViewModel.swift; sourceTree = "<group>"; };
 		7EBED5E02D077BAB00E7CACB /* HomeViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+TableView.swift"; sourceTree = "<group>"; };
 		7EBED5E22D07837F00E7CACB /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 		7E445D092D38024E00BEDD0C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7EB480332DF88C1A00E27FD5 /* Coupon.swift */,
 				7EA74CAD2DD104DE005479DC /* Customer.swift */,
 				7EA74CA92DD103D4005479DC /* OrderDetail.swift */,
 				7ECF12632D7F24FF0062F6DA /* MapLocation.swift */,
@@ -575,6 +578,7 @@
 				7EBED5E12D077BAB00E7CACB /* HomeViewController+TableView.swift in Sources */,
 				7EA0AF7D2D6F4572004F4499 /* ProductManageViewController+TextField.swift in Sources */,
 				7ECF12622D7DF27E0062F6DA /* MapDetailViewController+MapView.swift in Sources */,
+				7EB480342DF88C1C00E27FD5 /* Coupon.swift in Sources */,
 				7E78EC392D08353C001A3782 /* UIViewController+Extension.swift in Sources */,
 				7E847A202D1B60CC00D1DE23 /* ProductManageViewController.swift in Sources */,
 				7EA0AF842D6F4782004F4499 /* NetworkHelper.swift in Sources */,

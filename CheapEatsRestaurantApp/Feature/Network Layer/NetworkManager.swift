@@ -349,6 +349,29 @@ final class NetworkManager {
         }
     }
     
+    //MARK: -Coupon
+    func fetchCouponById(id: String, completion: @escaping (Result<Coupon, Error>) -> Void) {
+        db.collection("coupon").document(id).getDocument { document, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let document = document, document.exists, let data = document.data() else {
+                let notFoundError = NSError(domain: "", code: 404, userInfo: [NSLocalizedDescriptionKey: "Kupon bulunamadı."])
+                completion(.failure(notFoundError))
+                return
+            }
+            
+            if let coupon = Coupon(dictionary: data, documentId: document.documentID) {
+                completion(.success(coupon))
+            } else {
+                let parseError = NSError(domain: "", code: 500, userInfo: [NSLocalizedDescriptionKey: "Kupon verisi parse edilemedi."])
+                completion(.failure(parseError))
+            }
+        }
+    }
+    
 }
 enum NetworkError: Error {
     case updateFailed

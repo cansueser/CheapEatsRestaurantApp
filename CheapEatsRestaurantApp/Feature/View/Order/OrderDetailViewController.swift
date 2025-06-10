@@ -38,7 +38,7 @@ final class OrderDetailViewController: UIViewController {
         super.viewDidLoad()
         initConfigureView()
         initScreen()
-        //orderDetailViewModel.getCoupon()
+        orderDetailViewModel.getCoupon()
         checkDeliveryType()
     }
     
@@ -110,17 +110,17 @@ final class OrderDetailViewController: UIViewController {
 }
 extension OrderDetailViewController: OrderDetailViewModelOutputProtocol {
     func couponUpdated() {
-//        guard let couponId = orderDetailViewModel.coupon else {
-//            couponLabel.isHidden = true
-//            couponStateLabel.isHidden = true
-//            return
-//        }
-//        couponLabel.isHidden = false
-//        couponStateLabel.isHidden = false
-//        couponStateLabel.text = "Kupon(\(couponId.code))"
-//        couponLabel.text = "-\(couponId.discountValue) TL"
-//        totalLabel.text = "\(formatDouble(orderDetailViewModel.totalAmount)) TL"
-//        
+        guard let couponId = orderDetailViewModel.coupon else {
+            couponLabel.isHidden = true
+            couponStateLabel.isHidden = true
+            return
+        }
+        couponLabel.isHidden = false
+        couponStateLabel.isHidden = false
+        couponStateLabel.text = "Kupon(\(couponId.code))"
+        couponLabel.text = "-\(couponId.discountValue) TL"
+        totalLabel.text = "\(formatDouble(orderDetailViewModel.totalAmount)) TL"
+        
     }
     
     func errorCoupon() {
