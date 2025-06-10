@@ -47,6 +47,7 @@ final class HomeViewModel {
                 }
                 
                 DispatchQueue.main.async {
+                    self.showOrderNotificationBanner(orderNo: newOrder.orderNo, quantity: newOrder.quantity)
                     self.delegate?.updateOrder()
                 }
             }

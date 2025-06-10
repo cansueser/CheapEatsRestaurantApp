@@ -19,9 +19,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.configureCell(wtih: product)
             return cell
         } else if tableView == orderTableView {
+            if indexPath.row >= homeViewModel.orders.count { return UITableViewCell() }
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as? ProductTableViewCell else {
                 return UITableViewCell()
             }
+            
             cell.selectionStyle = .none
             let order = homeViewModel.orders[indexPath.row]
             if let product = homeViewModel.orderProduct(for: order) {

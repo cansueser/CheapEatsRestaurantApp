@@ -59,6 +59,8 @@
 		7EA74CA82DD10065005479DC /* OrderViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA74CA72DD10057005479DC /* OrderViewController+TableView.swift */; };
 		7EA74CAA2DD103DB005479DC /* OrderDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA74CA92DD103D4005479DC /* OrderDetail.swift */; };
 		7EA74CAE2DD104E3005479DC /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA74CAD2DD104DE005479DC /* Customer.swift */; };
+		7EACB35E2DF8C641007CD17F /* SwiftEntryKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7EACB35D2DF8C641007CD17F /* SwiftEntryKit */; };
+		7EACB3602DF8C667007CD17F /* ShowBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EACB35F2DF8C661007CD17F /* ShowBanner.swift */; };
 		7EB2D3A12D74DC4A00CFF13E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB2D3A02D74DC3A00CFF13E /* LoginViewModel.swift */; };
 		7EB2D3A32D74DC5E00CFF13E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB2D3A22D74DC5700CFF13E /* LoginViewController.swift */; };
 		7EB2D3A52D74E0D200CFF13E /* UserLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB2D3A42D74E0C600CFF13E /* UserLogin.swift */; };
@@ -146,6 +148,7 @@
 		7EA74CA72DD10057005479DC /* OrderViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderViewController+TableView.swift"; sourceTree = "<group>"; };
 		7EA74CA92DD103D4005479DC /* OrderDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetail.swift; sourceTree = "<group>"; };
 		7EA74CAD2DD104DE005479DC /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		7EACB35F2DF8C661007CD17F /* ShowBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBanner.swift; sourceTree = "<group>"; };
 		7EB2D3A02D74DC3A00CFF13E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		7EB2D3A22D74DC5700CFF13E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7EB2D3A42D74E0C600CFF13E /* UserLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogin.swift; sourceTree = "<group>"; };
@@ -182,6 +185,7 @@
 			files = (
 				7E2869202D72005900C5F46D /* NVActivityIndicatorViewExtended in Frameworks */,
 				7E7666B62D59AFCE000F808F /* Cloudinary in Frameworks */,
+				7EACB35E2DF8C641007CD17F /* SwiftEntryKit in Frameworks */,
 				7EA0AF772D6F3A66004F4499 /* EasyTipView in Frameworks */,
 				7EC6CCDC2D775BCB00316926 /* FirebaseFirestore in Frameworks */,
 				7EF612D22D518CC2003B1DF1 /* Kingfisher in Frameworks */,
@@ -252,6 +256,7 @@
 		7E445D132D38055900BEDD0C /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				7EACB35F2DF8C661007CD17F /* ShowBanner.swift */,
 				7EB480312DF87BFF00E27FD5 /* DateFormatter.swift */,
 				7EB4802F2DF87ABA00E27FD5 /* FormatDouble.swift */,
 				7ECF12662D7F5B960062F6DA /* String+UpperCase.swift */,
@@ -481,6 +486,7 @@
 				7EE588DD2D8CAF6300547559 /* GooglePlaces */,
 				7EE588DF2D8CAF6300547559 /* GooglePlacesSwift */,
 				7E6B14C22D8CB7290055B293 /* GoogleMaps */,
+				7EACB35D2DF8C641007CD17F /* SwiftEntryKit */,
 			);
 			productName = CheapEatsRestaurantApp;
 			productReference = 7E652CF02D0711C000137ECA /* CheapEatsRestaurantApp.app */;
@@ -519,6 +525,7 @@
 				7EC6CCD42D775BCB00316926 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				7EE588DC2D8CAF6300547559 /* XCRemoteSwiftPackageReference "ios-places-sdk" */,
 				7E6B14C12D8CB7290055B293 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */,
+				7EACB35C2DF8C641007CD17F /* XCRemoteSwiftPackageReference "SwiftEntryKit" */,
 			);
 			productRefGroup = 7E652CF12D0711C000137ECA /* Products */;
 			projectDirPath = "";
@@ -572,6 +579,7 @@
 				7EA74CA42DD0FEF2005479DC /* OrderViewController.swift in Sources */,
 				7EB2D3A12D74DC4A00CFF13E /* LoginViewModel.swift in Sources */,
 				7E652CF82D0711C000137ECA /* HomeViewController.swift in Sources */,
+				7EACB3602DF8C667007CD17F /* ShowBanner.swift in Sources */,
 				7EA0AF8E2D6F6848004F4499 /* LineView.swift in Sources */,
 				7EA0AF7F2D6F45E1004F4499 /* ProductManageViewController+Picker.swift in Sources */,
 				7EC772F62D75E85000846090 /* MapViewController.swift in Sources */,
@@ -881,6 +889,14 @@
 				minimumVersion = 2.1.0;
 			};
 		};
+		7EACB35C2DF8C641007CD17F /* XCRemoteSwiftPackageReference "SwiftEntryKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/huri000/SwiftEntryKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		7EC6CCD42D775BCB00316926 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -937,6 +953,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7EA0AF752D6F3A66004F4499 /* XCRemoteSwiftPackageReference "EasyTipView" */;
 			productName = EasyTipView;
+		};
+		7EACB35D2DF8C641007CD17F /* SwiftEntryKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7EACB35C2DF8C641007CD17F /* XCRemoteSwiftPackageReference "SwiftEntryKit" */;
+			productName = SwiftEntryKit;
 		};
 		7EC6CCD52D775BCB00316926 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;

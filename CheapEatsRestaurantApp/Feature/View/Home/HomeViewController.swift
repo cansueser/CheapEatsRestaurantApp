@@ -65,7 +65,6 @@ final class HomeViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         homeViewModel.fetchRestaurantProducts()
         homeViewModel.fetchRestaurantOrders()
     }
@@ -96,13 +95,14 @@ extension HomeViewController: HomeViewModelOutputProtocol {
     }
     
     func updateOrder() {
-        UIView.transition(with: orderTableView,
-                          duration: 0.25,
-                          options: .curveLinear,
-                          animations: {
-            self.orderTableView.reloadData()
-        })
-        
+        if !homeViewModel.orders.isEmpty {
+            UIView.transition(with: orderTableView,
+                              duration: 0.25,
+                              options: .curveLinear,
+                              animations: {
+                self.orderTableView.reloadData()
+            })
+        }
         if homeViewModel.getOrderStatu() {
             orderStatuView.isHidden = false
         } else {
@@ -112,6 +112,17 @@ extension HomeViewController: HomeViewModelOutputProtocol {
     
     
     func error() {
+        if homeViewModel.getProductStatu() {
+            productStatuView.isHidden = false
+        } else {
+            productStatuView.isHidden = true
+        }
+        
+        if homeViewModel.getOrderStatu() {
+            orderStatuView.isHidden = false
+        } else {
+            orderStatuView.isHidden = true
+        }
         print("Error")
     }
     
