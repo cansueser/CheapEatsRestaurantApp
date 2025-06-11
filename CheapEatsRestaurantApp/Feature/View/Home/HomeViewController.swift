@@ -36,6 +36,11 @@ final class HomeViewController: UIViewController {
         orderTableView.backgroundColor = .BG
         addShadow(orderTableView)
         
+        addShadow(orderStatuView)
+        orderStatuView.layer.cornerRadius = 5
+        addShadow(productStatuView)
+        productStatuView.layer.cornerRadius = 5
+        
         if homeViewModel.getProductStatu() {
             productStatuView.isHidden = false
         } else {
@@ -56,11 +61,13 @@ final class HomeViewController: UIViewController {
         tableView.dataSource = self
         tableView.separatorStyle = .none
         tableView.register(UINib(nibName: "ProductTableViewCell", bundle: nil), forCellReuseIdentifier: "orderCell")
+        tableView.clipsToBounds = true
         
         orderTableView.delegate = self
         orderTableView.dataSource = self
         orderTableView.separatorStyle = .none
         orderTableView.register(UINib(nibName: "ProductTableViewCell", bundle: nil), forCellReuseIdentifier: "orderCell")
+        orderTableView.clipsToBounds = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -109,8 +116,7 @@ extension HomeViewController: HomeViewModelOutputProtocol {
             orderStatuView.isHidden = true
         }
     }
-    
-    
+ 
     func error() {
         if homeViewModel.getProductStatu() {
             productStatuView.isHidden = false

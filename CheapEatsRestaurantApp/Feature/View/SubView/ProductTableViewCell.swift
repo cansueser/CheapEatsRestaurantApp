@@ -48,7 +48,8 @@ class ProductTableViewCell: UITableViewCell {
         orderNoLabel.isHidden = true
         foodNameLabel.text = product.name
         newAmountLabel.text = "\(product.newPrice) TL"
-        
+        dateLabel.text =  product.endDate
+        dateLabel.isHidden = false
         stateLabel.text = "Beklemede"
         stateLabel.textColor = .systemYellow
         stateImage.tintColor = .systemYellow
